@@ -12,11 +12,13 @@
   "dependencies": {
     "@tanstack/react-query": "^5.14.6",
     "@tanstack/react-query-devtools": "^5.14.7",
+    "@types/react-router-dom": "^5.3.3",
     "axios": "^1.6.2",
     "jotai": "^2.6.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-hook-form": "^7.49.2"
+    "react-hook-form": "^7.49.2",
+    "react-router-dom": "^6.21.1"
   },
   "devDependencies": {
     "@emotion/react": "^11.11.3",
