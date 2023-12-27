@@ -34,5 +34,9 @@ export const setStorage = <T>({ key, value }: LocalStorageProps<T>) => {
 };
 
 export const removeStorage = <T>({ key }: LocalStorageProps<T>) => {
-  STORAGE.removeItem(key);
+  try {
+    STORAGE.removeItem(key);
+  } catch (error) {
+    console.error(error);
+  }
 };
