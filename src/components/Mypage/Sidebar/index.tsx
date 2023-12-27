@@ -1,13 +1,7 @@
-import { SyntheticEvent } from 'react';
 import { Link } from 'react-router-dom';
 import SidebarItem from '../SidebarItem';
-import empty_user from '@/assets/images/empty_user.png';
-import {
-  Container,
-  GoButton,
-  ProfileContainer,
-  ProfilePhoto
-} from './index.style';
+import ProfileImg from '../ProfileImg';
+import { Container, GoButton, ProfileContainer } from './index.style';
 
 interface SidebarProps {
   fullName: string;
@@ -54,20 +48,14 @@ function Sidebar({
     ]
   };
 
-  const handleImgError = (e: SyntheticEvent<HTMLImageElement, Event>) => {
-    // 임시 빈 이미지
-    e.currentTarget.src = empty_user;
-  };
-
   return (
     <Container>
       <ProfileContainer>
-        <ProfilePhoto
-          src={image}
-          alt="profile image"
-          onError={(e: SyntheticEvent<HTMLImageElement, Event>) =>
-            handleImgError(e)
-          }
+        <ProfileImg
+          image={image}
+          alt="user profile image"
+          width={5.625}
+          height={5.625}
         />
         <div className="name-wrapper">
           <span>{fullName}</span>
