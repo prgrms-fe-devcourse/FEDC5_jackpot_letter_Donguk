@@ -2,8 +2,7 @@ import { Path, UseFormRegister } from 'react-hook-form';
 import { InputContainer, Label, StyledInput } from './index.style';
 
 export interface FormValues {
-  email: string;
-  password: string;
+  [key: string]: string;
 }
 
 interface InputProps {
