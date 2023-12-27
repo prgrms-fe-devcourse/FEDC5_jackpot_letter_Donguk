@@ -1,42 +1,33 @@
-interface valueType<T> {
-  [key: string]: Array<T> | T;
-}
-
-interface LocalStorageProps<T> {
-  key: string;
-  value?: valueType<T>;
-  defaultValue?: valueType<T> | string;
-}
-
 const STORAGE = window.localStorage;
 
-export const getStorage = <T>({
-  key,
-  defaultValue = ''
-}: LocalStorageProps<T>): T => {
+export function getStorage<T>(key: string): T | undefined;
+export function getStorage<T>(key: string, defaultValue: T): T;
+export function getStorage<T>(key: string, defaultValue?: T) {
   try {
     const data = STORAGE.getItem(key);
 
-    if (!data) return defaultValue as T;
+    if (!data) return defaultValue;
 
     return JSON.parse(data);
   } catch (error) {
     console.error(error);
-  }
-};
 
-export const setStorage = <T>({ key, value }: LocalStorageProps<T>) => {
+    return defaultValue;
+  }
+}
+
+export function setStorage<T>(key: string, value: T) {
   try {
     STORAGE.setItem(key, JSON.stringify(value));
   } catch (error) {
     console.error(error);
   }
-};
+}
 
-export const removeStorage = <T>({ key }: LocalStorageProps<T>) => {
+export function removeStorage(key: string) {
   try {
     STORAGE.removeItem(key);
   } catch (error) {
     console.error(error);
   }
-};
+}
