@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
@@ -10,10 +9,21 @@ import useModal from './hooks/useModal';
 import { Toaster } from 'react-hot-toast';
 import { toast } from 'react-hot-toast';
 import Button from './components/Common/Button';
-function App() {
+
 import { theme } from './theme';
 
-  const [visible, handleModalClick, top, left] = useModal();
+const [visible, handleModalClick, top, left] = useModal();
+
+import { useRequestData } from './hooks/useRequestData';
+import { requestAPI } from './api';
+
+function App() {
+  const { isPending, error, data } = useRequestData('test', requestAPI);
+  if (isPending) console.log('pending');
+  if (error) console.log('error');
+  console.log('데이터:', data);
+
+  const [count, setCount] = useState(0);
 
   const toastStyle = {
     fontWeight: 600,
@@ -86,20 +96,20 @@ import { theme } from './theme';
             />
           </a>
 
-      <h1 onClick={() => toast.success('성공했당')}>success case</h1>
-      <h1 onClick={() => toast.error('실패했당')}>error case</h1>
+          <h1 onClick={() => toast.success('성공했당')}>success case</h1>
+          <h1 onClick={() => toast.error('실패했당')}>error case</h1>
 
-      <Button
-        size="md"
-        content={'disabled, xs, primary'}
-        onClick={() => toast.success('zmzm')}
-        kind={'primary'}
-      />
-      <Toaster
-        toastOptions={{
-          style: { ...toastStyle }
-        }}
-      />
+          <Button
+            size="md"
+            content={'disabled, xs, primary'}
+            onClick={() => toast.success('zmzm')}
+            kind={'primary'}
+          />
+          <Toaster
+            toastOptions={{
+              style: { ...toastStyle }
+            }}
+          />
           <img
             src={reactLogo}
             className="logo react"
