@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo } from 'react';
-import { css } from '@emotion/react';
+import { Container, ModalContainer } from './index.style';
 import ReactDOM from 'react-dom';
 
 interface ModalProps {
@@ -10,6 +10,10 @@ interface ModalProps {
   radius?: number;
   padding?: number;
   visible: boolean;
+  type: 'center' | 'relative';
+  top?: number;
+  left?: number;
+  marginTop?: number;
   handleModalClose: (e: React.MouseEvent<HTMLDivElement>) => void;
 }
 
@@ -21,6 +25,10 @@ function Modal({
   radius = 10,
   padding = 1,
   visible,
+  type,
+  top,
+  left,
+  marginTop,
   handleModalClose
 }: ModalProps) {
   const el = useMemo(() => document.createElement('div'), []);
@@ -34,37 +42,30 @@ function Modal({
     };
   });
 
+  const modalProps = {
+    visible,
+    width,
+    height,
+    bgColor,
+    radius,
+    padding,
+    top,
+    left,
+    marginTop
+  };
+
   return ReactDOM.createPortal(
-    <div
-      onClick={(e: React.MouseEvent<HTMLDivElement>) => handleModalClose(e)}
-      css={css`
-        display: ${visible ? 'flex' : 'none'};
-        justify-content: center;
-        align-items: center;
-        position: absolute;
-        top: 0px;
-        left: 0px;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.2);
-      `}>
-      <div
+    <Container
+      className={type}
+      visible={visible}
+      onClick={(e: React.MouseEvent<HTMLDivElement>) => handleModalClose(e)}>
+      <ModalContainer
         id="modal"
-        css={css`
-          display: ${visible ? 'block' : 'none'};
-          width: ${width}rem;
-          height: ${height}rem;
-          padding: ${`${padding}rem` || '1rem'};
-          border-radius: ${radius}px;
-          background-color: ${bgColor};
-          box-shadow:
-            0 10px 20px rgba(0, 0, 0, 0.19),
-            0 6px 6px rgba(0, 0, 0, 0.1);
-          box-sizing: border-box;
-        `}>
+        className={type}
+        {...modalProps}>
         {children}
-      </div>
-    </div>,
+      </ModalContainer>
+    </Container>,
     el
   );
 }
