@@ -9,9 +9,10 @@ import Modal from '@components/Common/Modal';
 import useModal from './hooks/useModal';
 import { Toaster } from 'react-hot-toast';
 import { toast } from 'react-hot-toast';
+import Button from './components/Common/Button';
+function App() {
 import { theme } from './theme';
 
-function App() {
   const [visible, handleModalClick, top, left] = useModal();
 
   const toastStyle = {
@@ -85,6 +86,20 @@ function App() {
             />
           </a>
 
+      <h1 onClick={() => toast.success('성공했당')}>success case</h1>
+      <h1 onClick={() => toast.error('실패했당')}>error case</h1>
+
+      <Button
+        size="md"
+        content={'disabled, xs, primary'}
+        onClick={() => toast.success('zmzm')}
+        kind={'primary'}
+      />
+      <Toaster
+        toastOptions={{
+          style: { ...toastStyle }
+        }}
+      />
           <img
             src={reactLogo}
             className="logo react"
