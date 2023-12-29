@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { buttonTypes, buttonSize } from './type';
+import { buttonSize, buttonTypes } from './type';
 
 export const ButtonStyle = styled.button<{
   disabled: boolean;
@@ -9,15 +9,13 @@ export const ButtonStyle = styled.button<{
 }>`
   font-weight: 700;
   overflow: hidden;
+  border-radius: 10px;
   white-space: nowrap;
   text-overflow: ellipsis;
+  outline: none;
+  border: none;
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
   ${({ kind }) => buttonTypes[kind]};
   ${({ size }) => buttonSize[size]};
   ${({ styleOption }) => styleOption}
-
-  &:focus, &:hover {
-    outline: none;
-    border: none;
-  }
 `;

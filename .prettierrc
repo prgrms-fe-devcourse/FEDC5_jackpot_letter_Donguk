@@ -4,5 +4,16 @@
   "endOfLine": "lf",
   "singleAttributePerLine": true,
   "jsxBracketSameLine": true,
-  "trailingComma": "none"
+  "trailingComma": "none",
+  "importOrder": [
+    "^react",
+    "<THIRD_PARTY_MODULES>",
+    "^@/components/(.*)$",
+    "^@/hooks/(.*)$",
+    "^@/(.*)$",
+    "^@emotion/(.*)$",
+    "^[./]"
+  ],
+  "importOrderSortSpecifiers": true,
+  "plugins": ["@trivago/prettier-plugin-sort-imports"]
 }

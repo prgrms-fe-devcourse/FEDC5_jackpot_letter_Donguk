@@ -1,18 +1,17 @@
-
 import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
-import './App.css';
-import { Global, ThemeProvider } from '@emotion/react';
-import reset from './styles/reset';
-import Modal from '@components/Common/Modal';
-import useModal from './hooks/useModal';
 import { Toaster } from 'react-hot-toast';
 import { toast } from 'react-hot-toast';
+import Modal from '@components/Common/Modal';
+import { Global, ThemeProvider } from '@emotion/react';
+import reactLogo from './assets/react.svg';
 import Button from './components/Common/Button';
-function App() {
+import useModal from './hooks/useModal';
+import reset from './styles/reset';
 import { theme } from './theme';
+import viteLogo from '/vite.svg';
 
+function App() {
+  const [count, setCount] = useState(0);
   const [visible, handleModalClick, top, left] = useModal();
 
   const toastStyle = {
@@ -23,39 +22,42 @@ import { theme } from './theme';
 
   return (
     <>
-      <Global styles={reset} />
-      <button
-        style={{ float: 'right' }}
-        onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
-          handleModalClick(e);
-        }}>
-        해당요소 아래에 생기는 모달클릭
-      </button>
-      <Modal
-        type="relative"
-        top={top}
-        left={left}
-        radius={0}
-        marginTop={1}
-        children={
-          <>
-            <h1>해당요소 아래에 생기는 모달내용</h1>
-          </>
-        }
-        width={10}
-        height={15}
-        visible={visible}
-        handleModalClose={(e: React.MouseEvent<HTMLDivElement>) =>
-          handleModalClick(e)
-        }
-      />
-      <button
-        onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
-          handleModalClick(e)
-        }>
-        중간에 뜨는 모달클릭
-      </button>
-      {/* <Modal
+      <ThemeProvider theme={theme}>
+        <Global styles={reset} />
+        <button
+          style={{ float: 'right' }}
+          onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+            handleModalClick(e);
+          }}
+        >
+          해당요소 아래에 생기는 모달클릭
+        </button>
+        <Modal
+          type="relative"
+          top={top}
+          left={left}
+          radius={0}
+          marginTop={1}
+          children={
+            <>
+              <h1>해당요소 아래에 생기는 모달내용</h1>
+            </>
+          }
+          width={10}
+          height={15}
+          visible={visible}
+          handleModalClose={(e: React.MouseEvent<HTMLDivElement>) =>
+            handleModalClick(e)
+          }
+        />
+        <button
+          onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
+            handleModalClick(e)
+          }
+        >
+          중간에 뜨는 모달클릭
+        </button>
+        {/* <Modal
         type="center"
         children={
           <>
@@ -70,15 +72,14 @@ import { theme } from './theme';
         }
       /> */}
 
-      <h1 onClick={() => toast.success('성공했당')}>success case</h1>
-      <h1 onClick={() => toast.error('실패했당')}>error case</h1>
-      <ThemeProvider theme={theme}>
-        <Global styles={reset} />
+        <h1 onClick={() => toast.success('성공했당')}>success case</h1>
+        <h1 onClick={() => toast.error('실패했당')}>error case</h1>
 
         <div>
           <a
             href="https://vitejs.dev"
-            target="_blank">
+            target="_blank"
+          >
             <img
               src={viteLogo}
               className="logo"
@@ -86,20 +87,20 @@ import { theme } from './theme';
             />
           </a>
 
-      <h1 onClick={() => toast.success('성공했당')}>success case</h1>
-      <h1 onClick={() => toast.error('실패했당')}>error case</h1>
+          <h1 onClick={() => toast.success('성공했당')}>success case</h1>
+          <h1 onClick={() => toast.error('실패했당')}>error case</h1>
 
-      <Button
-        size="md"
-        content={'disabled, xs, primary'}
-        onClick={() => toast.success('zmzm')}
-        kind={'primary'}
-      />
-      <Toaster
-        toastOptions={{
-          style: { ...toastStyle }
-        }}
-      />
+          <Button
+            size="md"
+            content={'disabled, xs, primary'}
+            onClick={() => toast.success('zmzm')}
+            kind={'primary'}
+          />
+          <Toaster
+            toastOptions={{
+              style: { ...toastStyle }
+            }}
+          />
           <img
             src={reactLogo}
             className="logo react"
