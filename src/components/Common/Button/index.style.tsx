@@ -15,4 +15,9 @@ export const ButtonStyle = styled.button<{
   ${({ kind }) => buttonTypes[kind]};
   ${({ size }) => buttonSize[size]};
   ${({ styleOption }) => styleOption}
+
+  &:focus, &:hover {
+    outline: none;
+    border: none;
+  }
 `;
