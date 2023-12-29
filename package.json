@@ -11,6 +11,7 @@
     "vercel": "vercel dev"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.3.3",
     "@tanstack/react-query": "^5.14.6",
     "@tanstack/react-query-devtools": "^5.14.7",
     "@types/react-router-dom": "^5.3.3",
