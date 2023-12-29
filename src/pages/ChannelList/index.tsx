@@ -16,8 +16,10 @@ function ChannelList() {
         />
       </Header>
       <ChannelIconList>
-        {[1, 2, 3, 4, 5].map(() => (
-          <ChannelIcon />
+        {[1, 2, 3, 4, 5].map((index) => (
+          <div key={`button${index}`}>
+            <ChannelIcon />
+          </div>
         ))}
       </ChannelIconList>
     </>
