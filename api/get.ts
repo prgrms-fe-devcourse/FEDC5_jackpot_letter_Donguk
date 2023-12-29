@@ -4,13 +4,16 @@ import axios from 'axios';
 const { API_ENDPOINT } = process.env;
 
 export default async function (req: VercelRequest, res: VercelResponse) {
-  const { path } = req.body;
+  const { method, path, params = {}, headers = {}, data = {} } = req.body;
   console.log(req);
 
-  const { data } = await axios({
-    method: 'GET',
-    url: `${API_ENDPOINT}${path}`
+  const { data: responseData } = await axios({
+    method,
+    url: `${API_ENDPOINT}${path}`,
+    params,
+    headers,
+    data
   });
 
-  res.status(200).json(data);
+  res.status(200).json(responseData);
 }
