@@ -11,13 +11,12 @@ import { toast } from 'react-hot-toast';
 import Button from './components/Common/Button';
 
 import { theme } from './theme';
-
-const [visible, handleModalClick, top, left] = useModal();
-
 import { useRequestData } from './hooks/useRequestData';
 import { requestAPI } from './api';
 
 function App() {
+  const [visible, handleModalClick, top, left] = useModal();
+
   const { query } = useRequestData();
 
   /* tanstack 호출 */
