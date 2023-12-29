@@ -5,7 +5,6 @@ const { API_ENDPOINT } = process.env;
 
 export default async function (req: VercelRequest, res: VercelResponse) {
   const { method, path, params = {}, headers = {}, data = {} } = req.body;
-  console.log(req);
 
   const { data: responseData } = await axios({
     method,
