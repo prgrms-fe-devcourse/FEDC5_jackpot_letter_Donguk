@@ -12,13 +12,12 @@ import Button from './components/Common/Button';
 
 import { theme } from './theme';
 
-const [visible, handleModalClick, top, left] = useModal();
-
 import { useRequestData } from './hooks/useRequestData';
 import { requestAPI } from './api';
 
 function App() {
   const { query } = useRequestData();
+  const [visible, handleModalClick, top, left] = useModal();
 
   /* tanstack 호출 */
   const { isPending, error, data } = query({
