@@ -5,6 +5,7 @@ interface buttonSortType {
   border?: string;
   boxShadow?: string;
 }
+
 interface buttonSizeType {
   width: string;
   height: string;

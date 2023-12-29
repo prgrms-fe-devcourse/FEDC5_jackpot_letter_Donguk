@@ -3,7 +3,7 @@ import { Global } from '@emotion/react';
 import reset from './styles/reset';
 import { Toaster } from 'react-hot-toast';
 import { toast } from 'react-hot-toast';
-import Button from './hooks/Button';
+import Button from './components/Common/Button';
 function App() {
   const toastStyle = {
     fontWeight: 600,
@@ -18,29 +18,10 @@ function App() {
       <h1 onClick={() => toast.error('실패했당')}>error case</h1>
 
       <Button
-        size="xs"
-        content={'이전'}
-        type={'primary'}
-      />
-      <Button
-        size="xl"
-        content={'이전'}
-        type={'secondary'}
-      />
-      <Button
-        size="lg"
-        content={'이전'}
-        type={'assistant'}
-      />
-      <Button
         size="md"
-        content={'이전'}
-        type={'outlined'}
-      />
-      <Button
-        size="sm"
-        content={'이전'}
-        type={'tertiary'}
+        content={'disabled, xs, primary'}
+        onClick={() => toast.success('zmzm')}
+        kind={'primary'}
       />
       <Toaster
         toastOptions={{
