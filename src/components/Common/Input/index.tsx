@@ -1,19 +1,21 @@
-import { Path, UseFormRegister } from 'react-hook-form';
+import { FieldValues, Path, UseFormRegister } from 'react-hook-form';
 import { InputContainer, Label, StyledInput } from './index.style';
 
-export interface FormValues {
-  [key: string]: string;
-}
-
-interface InputProps {
+interface InputProps<T extends FieldValues> {
   type: string;
   label: string;
-  value: Path<FormValues>;
-  register: UseFormRegister<FormValues>;
+  value: Path<T>;
+  register: UseFormRegister<T>;
   required: boolean;
 }
 
-function Input({ type, label, value, register, required }: InputProps) {
+function Input<T extends FieldValues>({
+  type,
+  label,
+  value,
+  register,
+  required
+}: InputProps<T>) {
   return (
     <InputContainer>
       <Label>{label}</Label>
