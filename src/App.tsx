@@ -1,11 +1,9 @@
 import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
-import './App.css';
+import { Toaster, toast } from 'react-hot-toast';
+import reactLogo from '@/assets/react.svg';
+import reset from '@/styles/reset';
 import { Global } from '@emotion/react';
-import reset from './styles/reset';
-import { Toaster } from 'react-hot-toast';
-import { toast } from 'react-hot-toast';
+import './App.css';
 
 function App() {
   const [count, setCount] = useState(0);
@@ -18,18 +16,7 @@ function App() {
   return (
     <>
       <Global styles={reset} />
-
       <div>
-        <a
-          href="https://vitejs.dev"
-          target="_blank">
-          <img
-            src={viteLogo}
-            className="logo"
-            alt="Vite logo"
-          />
-        </a>
-
         <img
           src={reactLogo}
           className="logo react"
