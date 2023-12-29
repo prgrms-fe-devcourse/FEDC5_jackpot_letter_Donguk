@@ -1,5 +1,6 @@
+import Button from '@/components/Common/Button';
 import OpenChannelImg from '@/assets/openChannel.svg';
-import { OpenIcon } from './index.style';
+import { ChannelButton, OpenIcon } from './index.style';
 
 function OpenChannel() {
   return (
@@ -8,7 +9,19 @@ function OpenChannel() {
         src={OpenChannelImg}
         alt="OpenChannel-img"
       />
-      <div></div>
+      <ChannelButton>
+        <Button
+          onClick={() => console.log('Tets')}
+          content="마음 전달하기"
+          size="md"
+          kind={'assistant'}
+        />
+        <Button
+          onClick={() => console.log('나도 만들기')}
+          content="나도 만들기"
+          size="md"
+        />
+      </ChannelButton>
     </>
   );
 }
