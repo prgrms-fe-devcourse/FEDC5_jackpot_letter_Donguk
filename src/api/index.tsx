@@ -14,6 +14,10 @@ interface requestAPIProps {
   };
 }
 
+interface responseData {
+  [key: string]: unknown;
+}
+
 export async function requestAPI({
   method,
   path,
@@ -21,13 +25,15 @@ export async function requestAPI({
   headers,
   data
 }: requestAPIProps) {
-  const responseData = await axios.post<string, string>('/api/get', {
-    method,
-    path,
-    params,
-    headers,
-    data
-  });
+  const response = await axios
+    .post<responseData, responseData>('/api/get', {
+      method,
+      path,
+      params,
+      headers,
+      data
+    })
+    .catch((err) => console.error(err));
 
-  return responseData;
+  return response;
 }

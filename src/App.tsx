@@ -9,18 +9,18 @@ import useModal from './hooks/useModal';
 import { Toaster } from 'react-hot-toast';
 import { toast } from 'react-hot-toast';
 import Button from './components/Common/Button';
+import { useRequestAPI } from './hooks/useRequestAPI';
 
 import { theme } from './theme';
-import { useRequestData } from './hooks/useRequestData';
 import { requestAPI } from './api';
 
 function App() {
   const [visible, handleModalClick, top, left] = useModal();
 
-  const { query } = useRequestData();
+  const { useRequestQuery } = useRequestAPI();
 
   /* tanstack 호출 */
-  const { isPending, error, data } = query({
+  const { isPending, error, data } = useRequestQuery({
     key: 'test',
     queryFunction: () =>
       requestAPI({
@@ -28,6 +28,7 @@ function App() {
         path: '/users/get-users'
       })
   });
+
   if (isPending) console.log('pending');
   if (error) console.log('error');
   console.log('데이터:', data);
