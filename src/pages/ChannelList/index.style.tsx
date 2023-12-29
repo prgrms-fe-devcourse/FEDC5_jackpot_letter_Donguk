@@ -8,9 +8,15 @@ export const Title = styled.div`
   padding: 2rem;
   color: white;
   font-weight: 600;
+
   & h1 {
     font-size: 1.5rem;
     line-height: 2rem;
+    & span {
+      font-size: 1.5rem;
+      line-height: 2rem;
+      color: #0eb29a;
+    }
   }
   & span {
     font-size: 0.875rem;

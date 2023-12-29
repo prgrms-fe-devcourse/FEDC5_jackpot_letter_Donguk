@@ -1,5 +1,6 @@
 import { Toaster } from 'react-hot-toast';
 import { Route, Routes } from 'react-router-dom';
+import Channel from '@/pages/Channel';
 import ChannelList from '@/pages/ChannelList';
 import { Global, ThemeProvider } from '@emotion/react';
 import reset from './styles/reset';
@@ -20,6 +21,10 @@ function App() {
           <Route
             path="/"
             element={<ChannelList />}
+          />
+          <Route
+            path="/:id"
+            element={<Channel />}
           />
         </Routes>
         <Toaster
