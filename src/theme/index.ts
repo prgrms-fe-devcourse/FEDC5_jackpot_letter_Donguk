@@ -4,7 +4,9 @@ const palette = {
   dark: '#0F172A',
   main: '#0EB29A',
   sub: '#F0ECE5',
-  gray_1: '#0F172A' //** Input 라벨 */
+  gray_1: '#0F172A', //** Input 라벨 */
+  gray_2: '#9f9f9f', //** Input border */
+  error: '#FF0000'
 };
 
 const typography = {
