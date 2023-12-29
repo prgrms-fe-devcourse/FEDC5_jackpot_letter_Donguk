@@ -138,5 +138,8 @@ const reset = css`
   a {
     text-decoration-line: none;
   }
+  input {
+    box-sizing: border-box;
+  }
 `;
 export default reset;
