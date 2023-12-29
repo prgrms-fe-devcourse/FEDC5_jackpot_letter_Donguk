@@ -18,7 +18,17 @@ import { useRequestData } from './hooks/useRequestData';
 import { requestAPI } from './api';
 
 function App() {
-  const { isPending, error, data } = useRequestData('test', requestAPI);
+  const { query } = useRequestData();
+
+  /* tanstack 호출 */
+  const { isPending, error, data } = query({
+    key: 'test',
+    queryFunction: () =>
+      requestAPI({
+        method: 'GET',
+        path: '/users/get-users'
+      })
+  });
   if (isPending) console.log('pending');
   if (error) console.log('error');
   console.log('데이터:', data);

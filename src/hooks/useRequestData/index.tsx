@@ -1,11 +1,21 @@
 import { useQuery } from '@tanstack/react-query';
 
-export function useRequestData(key, queryFunction, options = {}) {
-  const { isPending, error, data } = useQuery({
-    queryKey: [key],
-    queryFn: async () => await queryFunction(),
-    ...options
-  });
+interface useQueryProps {
+  key: string;
+  queryFunction: () => Promise<string>;
+  options?: {
+    [key: string]: string;
+  };
+}
 
-  return { isPending, error, data };
+/** TanStack useQuery */
+export function useRequestData() {
+  const query = ({ key, queryFunction, options = {} }: useQueryProps) =>
+    useQuery({
+      queryKey: [key],
+      queryFn: queryFunction,
+      ...options
+    });
+
+  return { query };
 }
