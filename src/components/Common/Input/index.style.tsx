@@ -3,17 +3,21 @@ import styled from '@emotion/styled';
 export const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 0.6rem 0;
 `;
-export const Label = styled.label`
-  padding-bottom: 0.3rem;
-  font-size: 0.75rem;
-  color: #0f172a;
-`;
-export const StyledInput = styled.input`
-  width: 15rem;
-  height: 2.2rem;
-  padding: 0 1.25rem;
-  border: 0.9px solid #9f9f9f;
-  border-radius: 3px;
-`;
+
+export const Label = styled.label(({ theme }) => ({
+  paddingBottom: '0.3rem',
+  ...theme.typography.label,
+  color: theme.palette.gray_1
+}));
+
+export const StyledInput = styled.input(({ theme, width, height, color }) => ({
+  width: width,
+  height: height,
+  padding: '0 1.25rem',
+  border:
+    color === 'error'
+      ? `1px solid ${theme.palette.error}`
+      : `0.9px solid ${theme.palette.gray_2}`,
+  borderRadius: '3px'
+}));
