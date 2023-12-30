@@ -1,7 +1,9 @@
 import { css } from '@emotion/react';
 
-const breakpoints = [640, 1024];
-export const media = breakpoints.map((bp) => `@media (min-width: ${bp}px)`);
+const breakPoints = [640, 1024];
+export const media = breakPoints.map(
+  (breakPoint) => `@media (min-width: ${breakPoint}px)`
+);
 
 const responsiveStyle = css`
   html {
