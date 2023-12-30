@@ -61,6 +61,8 @@ const Item = styled.img`
   height: 5.625rem;
   border-radius: 10px;
   &:hover {
+    width: calc(5.625rem - 15px);
+    height: calc(5.625rem - 15px);
     border: 3px solid #0eb29a;
   }
 `;

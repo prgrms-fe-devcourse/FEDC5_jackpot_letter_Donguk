@@ -47,6 +47,8 @@ const Item = styled.div`
   padding: 1rem;
   margin: 0.2rem;
   &:hover {
+    width: calc(5.625rem - 15px);
+    height: calc(5.625rem - 15px);
     border: 3px solid #0eb29a;
   }
 `;

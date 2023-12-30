@@ -1,7 +1,7 @@
 import { Theme } from '@emotion/react';
 
 const palette = {
-  dark: '#0F172A',
+  dark: '#261B3E',
   main: '#0EB29A',
   sub: '#F0ECE5',
   gray_1: '#0F172A', //** Input 라벨 */
