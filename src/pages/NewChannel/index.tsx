@@ -1,9 +1,11 @@
-import SelectBackground from '@/components/NewChannel/SelectBackground';
+// import SelectBackground from '@/components/NewChannel/SelectBackground';
+import SelectChannel from '@/components/NewChannel/SelectChannel';
 
 function NewChannel() {
   return (
     <>
-      <SelectBackground />
+      s {/* <SelectBackground /> */}
+      <SelectChannel />
     </>
   );
 }
