@@ -1,14 +1,14 @@
 import styled from '@emotion/styled';
 
-export const CommentContainer = styled.div(({ theme }) => ({
-  backgroundColor: theme.palette.sub,
-  display: 'flex',
-  flexDirection: 'column',
-  width: '19.375rem',
-  height: '8.1875rem',
-  borderRadius: '20px',
-  marginTop: '0.7rem'
-}));
+export const CommentContainer = styled.div`
+  background-color: ${(props) => props.theme.palette.sub};
+  display: flex;
+  flex-direction: column;
+  width: 19.375rem;
+  height: 8.1875rem;
+  border-radius: 20px;
+  margin-top: 0.7rem;
+`;
 
 export const CommentTitle = styled.div`
   flex-grow: 0;
