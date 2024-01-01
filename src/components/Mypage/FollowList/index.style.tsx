@@ -1,3 +1,4 @@
+import { theme } from '@/theme';
 import styled from '@emotion/styled';
 
 export const Container = styled.div`
@@ -12,6 +13,8 @@ export const FollowItemList = styled.ul`
   .follow-item {
     display: flex;
     align-items: center;
+    font-size: ${theme.typography.mypage_small.fontSize};
+    font-weight: bold;
 
     span {
       flex: 1;
@@ -24,6 +27,8 @@ export const FollowItemList = styled.ul`
       border-radius: 10px;
       border: none;
       background-color: #d9d9d9;
+      font-size: ${theme.typography.mypage_small.fontSize};
+      font-weight: bold;
       cursor: pointer;
     }
   }

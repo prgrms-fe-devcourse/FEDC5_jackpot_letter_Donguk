@@ -1,3 +1,4 @@
+import { theme } from '@/theme';
 import styled from '@emotion/styled';
 
 export const Container = styled.div`
@@ -8,6 +9,7 @@ export const Container = styled.div`
       display: inline-block;
       width: 50%;
       padding: 15px;
+      font-size: ${theme.typography.mypage_regular.fontSize};
       font-weight: bold;
       text-align: center;
       box-sizing: border-box;

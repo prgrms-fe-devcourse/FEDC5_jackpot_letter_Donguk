@@ -1,5 +1,5 @@
 import ProfileImg from '../ProfileImg';
-import { Container, FollowItemList } from './index.style';
+import * as Style from './index.style';
 
 interface FollowListProps {
   type: 'follower' | 'following';
@@ -13,12 +13,13 @@ type followType = {
 
 function FollowList({ type, followList }: FollowListProps) {
   return (
-    <Container>
-      <FollowItemList>
+    <Style.Container>
+      <Style.FollowItemList>
         {followList.map(({ image, name }) => (
           <li
             className="follow-item"
-            key={name}>
+            key={name}
+          >
             <ProfileImg
               image={image}
               alt="user profile image"
@@ -29,8 +30,8 @@ function FollowList({ type, followList }: FollowListProps) {
             <button>{type === 'follower' ? '삭제' : '팔로잉'}</button>
           </li>
         ))}
-      </FollowItemList>
-    </Container>
+      </Style.FollowItemList>
+    </Style.Container>
   );
 }
 

@@ -1,3 +1,4 @@
+import { theme } from '@/theme';
 import styled from '@emotion/styled';
 
 export const Container = styled.div`
@@ -22,6 +23,11 @@ export const PostTexInfoWrap = styled.div`
 
   .author {
     font-weight: bold;
+    font-size: ${theme.typography.mypage_regular.fontSize};
+  }
+
+  .content {
+    font-size: ${theme.typography.mypage_small.fontSize};
   }
 
   .comment-info-wrap {

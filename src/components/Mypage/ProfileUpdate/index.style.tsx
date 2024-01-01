@@ -1,3 +1,4 @@
+import { theme } from '@/theme';
 import styled from '@emotion/styled';
 
 export const Container = styled.div`
@@ -10,8 +11,8 @@ export const Container = styled.div`
   box-sizing: border-box;
 
   .warning-text {
-    font-size: 0.75rem;
-    color: red;
+    font-size: ${theme.typography.mypage_small.fontSize};
+    color: ${theme.palette.error};
   }
 
   .name-form {

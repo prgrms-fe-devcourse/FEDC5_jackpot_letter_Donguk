@@ -16,8 +16,11 @@ function SidebarItem({ title, items }: SidebarItemProps) {
     <Container>
       <p className="sidebar-items-title">{title}</p>
       <div className="sidebar-items-container">
-        {items.map(({ text, link }) => (
-          <li className="sidebar-item">
+        {items.map(({ text, link }, index) => (
+          <li
+            className="sidebar-item"
+            key={index}
+          >
             <Link to={link}>{text}</Link>
           </li>
         ))}

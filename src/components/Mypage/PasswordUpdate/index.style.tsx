@@ -1,3 +1,4 @@
+import { theme } from '@/theme';
 import styled from '@emotion/styled';
 
 export const Container = styled.div`
@@ -18,8 +19,8 @@ export const Container = styled.div`
     }
 
     .warning-text {
-      color: red;
-      font-size: 0.75rem;
+      font-size: ${theme.typography.label.fontSize};
+      color: ${theme.palette.error};
     }
   }
 `;

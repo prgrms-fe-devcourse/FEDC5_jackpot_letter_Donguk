@@ -1,3 +1,4 @@
+import { theme } from '@/theme';
 import styled from '@emotion/styled';
 
 export const Container = styled.div`
@@ -12,25 +13,29 @@ export const PostItem = styled.div`
   border-bottom: 1px solid #d2d2d2;
 
   .post-title {
-    font-size: 1.125rem;
+    font-size: ${theme.typography.mypage_regular.fontSize};
     font-weight: bold;
   }
 
   .post-content {
     display: -webkit-box;
     overflow: hidden;
+    font-size: ${theme.typography.mypage_small.fontSize};
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
   }
 `;
 
+export const PostTitle = styled.label(({ theme }) => ({
+  ...theme.typography.mypage_regular
+}));
 export const PostInfo = styled.div`
   display: flex;
   justify-content: space-between;
   margin-top: 0.5rem;
 
   .channel-name {
-    font-size: 1rem;
+    font-size: ${theme.typography.mypage_small.fontSize};
     color: #717171;
   }
 
@@ -38,7 +43,7 @@ export const PostInfo = styled.div`
     display: flex;
     align-items: center;
     gap: 0.8rem;
-    font-size: 0.875rem;
+    font-size: ${theme.typography.mypage_small.fontSize};
 
     .reaction-wrap {
       display: flex;
