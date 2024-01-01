@@ -6,6 +6,7 @@ import { Global, ThemeProvider } from '@emotion/react';
 import reactLogo from './assets/react.svg';
 import Button from './components/Common/Button';
 import useModal from './hooks/useModal';
+import global from './styles/global';
 import reset from './styles/reset';
 import { theme } from './theme';
 import viteLogo from '/vite.svg';
@@ -23,7 +24,7 @@ function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <Global styles={reset} />
+        <Global styles={[reset, global]} />
         <button
           style={{ float: 'right' }}
           onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
