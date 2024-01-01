@@ -5,19 +5,19 @@ import Comment from './Comment';
 import Footer from './Footer';
 import Header from './Header';
 import PrePost from './PrePost';
-import { CommentContainer } from './index.style';
+import * as Style from './index.style';
 
 function PostComment() {
   return (
     <>
       <ThemeProvider theme={theme}>
         <Global styles={reset} />
-        <CommentContainer>
+        <Style.CommentContainer>
           <Header />
           <PrePost />
           <Comment />
           <Footer />
-        </CommentContainer>
+        </Style.CommentContainer>
       </ThemeProvider>
     </>
   );

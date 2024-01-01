@@ -10,7 +10,7 @@ export const WarningContainer = styled.div(() => ({
   borderRadius: '10px'
 }));
 
-export const WarninginnerSvg = styled.img`
+export const WarningLogo = styled.img`
   margin-left: 1rem;
 `;
 

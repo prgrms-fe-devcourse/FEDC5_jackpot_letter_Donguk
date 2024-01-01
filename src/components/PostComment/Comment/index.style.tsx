@@ -6,7 +6,8 @@ export const CommentContainer = styled.div(({ theme }) => ({
   flexDirection: 'column',
   width: '19.375rem',
   height: '8.1875rem',
-  borderRadius: '20px'
+  borderRadius: '20px',
+  marginTop: '0.7rem'
 }));
 
 export const CommentTitle = styled.div`
@@ -22,7 +23,7 @@ export const CommentTitle = styled.div`
   background-color: transparent;
 `;
 
-export const CommentUnderLine = styled.div`
+export const CommentTitleUnderLine = styled.div`
   width: 90%;
   height: 1px;
   margin: 0 auto;

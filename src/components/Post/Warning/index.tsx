@@ -1,9 +1,5 @@
 import { useState } from 'react';
-import {
-  WarningContainer,
-  WarninginnerSvg,
-  WarninginnerText
-} from './index.style';
+import * as Style from './index.style';
 
 function Warning() {
   const [isWarningMessage, setIsWarningMessage] = useState(true); // warning messsage를 위한 임시 state
@@ -14,10 +10,10 @@ function Warning() {
 
   return (
     <>
-      <WarningContainer>
-        <WarninginnerSvg src="/src/assets/WarningLogo.svg" />
-        <WarninginnerText>{warningMessage}</WarninginnerText>
-      </WarningContainer>
+      <Style.WarningContainer>
+        <Style.WarningLogo src="/src/assets/WarningLogo.svg" />
+        <Style.WarninginnerText>{warningMessage}</Style.WarninginnerText>
+      </Style.WarningContainer>
     </>
   );
 }

@@ -26,7 +26,7 @@ export const LetterTitle = styled.textarea`
   box-sizing: border-box;
 `;
 
-export const UnderLine = styled.div`
+export const TitleUnderLine = styled.div`
   width: 90%;
   height: 1px;
   background-color: #aca3a3;

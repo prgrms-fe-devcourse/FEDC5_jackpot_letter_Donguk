@@ -1,15 +1,40 @@
 import { useState } from 'react';
-import {
-  PrePostComment,
-  PrePostContainer,
-  PrePostContent,
-  PrePostInner,
-  PrePostInnerTitle,
-  PrePostUnnerline
-} from './index.style';
+import * as Style from './index.style';
 
 function PrePost() {
   const [emptyContent, setEmptyContent] = useState([
+    {
+      user: '최익',
+      comment: '1번째 댓글'
+    },
+    {
+      user: '머쓱이',
+      comment: '2번째 댓글'
+    },
+    {
+      user: '최익',
+      comment: '1번째 댓글'
+    },
+    {
+      user: '머쓱이',
+      comment: '2번째 댓글'
+    },
+    {
+      user: '최익',
+      comment: '1번째 댓글'
+    },
+    {
+      user: '머쓱이',
+      comment: '2번째 댓글'
+    },
+    {
+      user: '최익',
+      comment: '1번째 댓글'
+    },
+    {
+      user: '머쓱이',
+      comment: '2번째 댓글'
+    },
     {
       user: '최익',
       comment: '1번째 댓글'
@@ -24,22 +49,24 @@ function PrePost() {
 
   return (
     <>
-      <PrePostInner>
-        <PrePostInnerTitle
-          disabled={true}
-          value={'기본 제목'}
-        ></PrePostInnerTitle>
-        <PrePostUnnerline />
-        <PrePostContent
-          disabled={true}
-          value={'기본 내용'}
-        ></PrePostContent>
-      </PrePostInner>
-      <PrePostContainer>
-        {emptyContent.map(({ comment }, idx) => (
-          <PrePostComment key={idx}>{comment}</PrePostComment>
-        ))}
-      </PrePostContainer>
+      <Style.PrePostAndCommentContainer>
+        <Style.PrePostContainer>
+          <Style.PrePostInnerTitle
+            disabled={true}
+            value={'기본 제목'}
+          ></Style.PrePostInnerTitle>
+          <Style.PrePostUnnerline />
+          <Style.PrePostContent
+            disabled={true}
+            value={'기본 내용'}
+          ></Style.PrePostContent>
+        </Style.PrePostContainer>
+        <Style.PreCommentContainer>
+          {emptyContent.map(({ comment }, idx) => (
+            <Style.PrePostComment key={idx}>{comment}</Style.PrePostComment>
+          ))}
+        </Style.PreCommentContainer>
+      </Style.PrePostAndCommentContainer>
     </>
   );
 }
