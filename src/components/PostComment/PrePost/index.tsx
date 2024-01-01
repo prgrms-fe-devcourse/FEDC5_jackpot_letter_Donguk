@@ -5,7 +5,8 @@ function PrePost() {
   const [emptyContent, setEmptyContent] = useState([
     {
       user: '최익',
-      comment: '1번째 댓글'
+      comment:
+        '1번째 댓글1번째 댓글1번째 댓글1번째 댓글1번째 댓글1번째 댓글1번째 댓글1번째 댓글1번째 댓글1번째 댓글1번째 댓글1번째 댓글1번째 댓글1번째 댓글1번째 댓글1번째 댓글1번째 댓글1번째 댓글1번째 댓글1번째 댓글1번째 댓글1번째 댓글1번째 댓글1번째 댓글1번째 댓글'
     },
     {
       user: '머쓱이',
