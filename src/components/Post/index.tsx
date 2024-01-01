@@ -5,20 +5,20 @@ import Footer from './Footer';
 import Header from './Header';
 import Letter from './Letter';
 import Warning from './Warning';
-import { GroudImage, PostContainer } from './index.style';
+import * as Style from './index.style';
 
 function Post() {
   return (
     <>
       <ThemeProvider theme={theme}>
         <Global styles={reset} />
-        <PostContainer>
+        <Style.PostContainer>
           <Header />
-          <GroudImage src="/src/assets/ShortLogo.svg" />
+          <Style.GroudImage src="/src/assets/ShortLogo.svg" />
           <Letter />
           <Warning />
           <Footer />
-        </PostContainer>
+        </Style.PostContainer>
       </ThemeProvider>
     </>
   );

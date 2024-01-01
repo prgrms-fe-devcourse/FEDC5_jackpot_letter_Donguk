@@ -12,6 +12,6 @@ export const HeaderInnerText = styled.div(({ theme }) => ({
   color: 'white'
 }));
 
-export const HeaderInnerNameText = styled.span(({ theme }) => ({
+export const HeaderUserName = styled.span(({ theme }) => ({
   color: theme.palette.main
 }));

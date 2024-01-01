@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import Button from '@components/Common/Button';
-import { FooterContainer } from './index.style';
+import * as Style from './index.style';
 
 function Footer() {
   const navigate = useNavigate();
@@ -12,7 +12,7 @@ function Footer() {
 
   return (
     <>
-      <FooterContainer>
+      <Style.FooterContainer>
         <Button
           onClick={goBackPage}
           size="sm"
@@ -30,7 +30,7 @@ function Footer() {
             height: '2.5625rem'
           }}
         />
-      </FooterContainer>
+      </Style.FooterContainer>
     </>
   );
 }

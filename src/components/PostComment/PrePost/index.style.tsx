@@ -1,6 +1,12 @@
 import styled from '@emotion/styled';
 
-export const PrePostInner = styled.div(({ theme }) => ({
+export const PrePostAndCommentContainer = styled.div`
+  overflow-x: scroll;
+  padding-bottom: 0.5rem;
+  box-sizing: border-box;
+`;
+
+export const PrePostContainer = styled.div(({ theme }) => ({
   backgroundColor: theme.palette.sub,
   display: 'flex',
   flexDirection: 'column',
@@ -44,7 +50,7 @@ export const PrePostContent = styled.textarea`
   box-sizing: border-box;
 `;
 
-export const PrePostContainer = styled.div(() => ({
+export const PreCommentContainer = styled.div(() => ({
   display: 'flex',
   position: 'relative',
   flexDirection: 'column',
