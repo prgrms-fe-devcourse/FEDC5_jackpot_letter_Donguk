@@ -2,8 +2,6 @@ import { theme } from '@/theme';
 import styled from '@emotion/styled';
 
 export const Container = styled.div`
-  padding: 1.625rem 1.75rem;
-
   .follow-title-wrap {
     span {
       display: inline-block;

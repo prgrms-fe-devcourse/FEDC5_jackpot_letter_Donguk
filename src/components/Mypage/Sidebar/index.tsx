@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import ProfileImg from '../ProfileImg';
 import SidebarItem from '../SidebarItem';
 import { Container, GoButton, ProfileContainer } from './index.style';
@@ -16,20 +16,21 @@ function Sidebar({
   followingCount,
   image
 }: SidebarProps) {
+  const navigate = useNavigate();
   const sidebarItemActive = {
     title: '나의 활동',
     item: [
       {
         text: '작성한 주머니',
-        link: '/post'
+        link: '/mypage/post-list'
       },
       {
         text: '좋아요한 주머니',
-        link: '/like'
+        link: '/mypage/like-list'
       },
       {
         text: '작성한 댓글',
-        link: '/comment'
+        link: '/mypage/comment-list'
       }
     ]
   };
@@ -39,11 +40,11 @@ function Sidebar({
     item: [
       {
         text: '비밀번호 변경',
-        link: '/change-password'
+        link: '/mypage/password-update'
       },
       {
-        text: '계정 삭제',
-        link: '/delete-account'
+        text: '로그아웃',
+        link: '/'
       }
     ]
   };
@@ -59,7 +60,10 @@ function Sidebar({
         />
         <div className="name-wrapper">
           <span>{fullName}</span>
-          <button className="setting-btn">
+          <button
+            className="setting-btn"
+            onClick={() => navigate('/mypage/profile-update')}
+          >
             <svg
               viewBox="0 0 24 24"
               fill="none"
@@ -101,19 +105,19 @@ function Sidebar({
         <div className="follow-wrapper">
           <Link
             className="followers"
-            to="/followers"
+            to="/mypage/follow"
           >
             팔로워 {followersCount}
           </Link>
           <Link
             className="following"
-            to="/following"
+            to="/mypage/follow"
           >
             팔로잉 {followingCount}
           </Link>
         </div>
       </ProfileContainer>
-      <GoButton>
+      <GoButton onClick={() => navigate('/')}>
         내 박 보러가기
         <svg
           viewBox="0 0 24 24"

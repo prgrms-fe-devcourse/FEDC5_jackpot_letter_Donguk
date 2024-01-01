@@ -1,17 +1,21 @@
 import { useRef, useState } from 'react';
+import { Follow as FollowDefaultType } from '@/types/ResponseType';
 import { css } from '@emotion/react';
 import FollowList from '../FollowList';
 import * as Style from './index.style';
 
-function Follow() {
+interface FollowProps {
+  followers: FollowType[];
+  followings: FollowType[];
+}
+
+interface FollowType extends FollowDefaultType {
+  image: string;
+}
+
+function Follow({ followers, followings }: FollowProps) {
   const [selected, setSelected] = useState('follower');
   const scrollRef = useRef<HTMLDivElement>(null);
-
-  const followListData1 = [
-    { image: '', name: '테스트1' },
-    { image: '', name: '테스트2' },
-    { image: '', name: '테스트3' }
-  ];
 
   const handleFollowTypeClick = (type: string) => {
     if (selected === type) return;
@@ -26,7 +30,7 @@ function Follow() {
   };
 
   return (
-    <Style.Container>
+    <Style.Container className="container">
       <div className="follow-title-wrap">
         <span
           css={css`
@@ -55,11 +59,11 @@ function Follow() {
         <div className="follow-list-container">
           <FollowList
             type="follower"
-            followList={followListData1}
+            followList={followers}
           />
           <FollowList
             type="following"
-            followList={followListData1}
+            followList={followings}
           />
         </div>
       </div>

@@ -7,7 +7,6 @@ export const Container = styled.div`
   align-items: center;
   height: 100%;
   padding-top: 4.25rem;
-  padding-bottom: 2rem;
   box-sizing: border-box;
 
   .warning-text {
@@ -19,6 +18,7 @@ export const Container = styled.div`
     flex-grow: 1;
     display: flex;
     flex-direction: column;
+    width: 100%;
 
     .input-wrap {
       flex-grow: 1;
