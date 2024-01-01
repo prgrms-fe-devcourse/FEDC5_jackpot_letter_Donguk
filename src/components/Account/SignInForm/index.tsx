@@ -1,11 +1,11 @@
 import React from 'react';
-import Description from '@components/Common/Description';
-import Account  from '@components/Common/Account'
-import Input from '@components/Common/Input'
 import { SubmitHandler, useForm } from 'react-hook-form';
+import Input from '@components/Common/Input';
 import { ErrorMessage } from '@hookform/error-message';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
+import Account from '@/components/Account';
+import Description from '@/components/Account/Description';
 import * as Style from './index.style';
 
 const INPUTDATA = [
@@ -26,7 +26,7 @@ const INPUTDATA = [
 type InputValue = 'email' | 'password';
 type SignInSchemaType = z.infer<typeof SingInSchema>;
 
-const passwordRegex = new RegExp(/^(?=.*[a-zA-Z])(?=.*[0-9]).{8,15}$/,);
+const passwordRegex = new RegExp(/^(?=.*[a-zA-Z])(?=.*[0-9]).{8,15}$/);
 const SingInSchema = z.object({
   email: z
     .string()
@@ -34,7 +34,7 @@ const SingInSchema = z.object({
     .email('올바른 이메일 형식이 아닙니다.'),
   password: z
     .string()
-    .min(1, { message: '영문,숫자를 조합하여 입력해주세요! (8-15자)'})
+    .min(1, { message: '영문,숫자를 조합하여 입력해주세요! (8-15자)' })
     .regex(passwordRegex, '영문,숫자를 조합하여 입력해주세요! (8-15자)')
 });
 
@@ -86,13 +86,13 @@ function SignInForm() {
           type="submit">
           로그인하기
         </Style.Button>
-        
+
         <Style.Button
           color="#8C999A"
           type="submit">
           익명으로 체험하기
         </Style.Button>
-        </Style.Form>
+      </Style.Form>
     </Account>
   );
 }
