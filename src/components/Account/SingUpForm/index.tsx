@@ -1,11 +1,11 @@
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import Account from '@components/Common/Account';
-import Description from '@components/Common/Description';
 import Input from '@components/Common/Input';
 import { ErrorMessage } from '@hookform/error-message';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
+import Account from '@/components/Account';
+import Description from '@/components/Account/Description';
 import * as Style from './index.style';
 
 const INPUTDATA = [
