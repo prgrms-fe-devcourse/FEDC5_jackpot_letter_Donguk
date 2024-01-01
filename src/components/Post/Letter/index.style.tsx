@@ -34,6 +34,7 @@ export const TitleUnderLine = styled.div`
 
 export const LetterContent = styled.textarea`
   flex-grow: 1;
+  font-size: 0.6rem;
   width: 95%;
   background-color: transparent;
   border-color: transparent;

@@ -51,15 +51,9 @@ function PrePost() {
     <>
       <Style.PrePostAndCommentContainer>
         <Style.PrePostContainer>
-          <Style.PrePostInnerTitle
-            disabled={true}
-            value={'기본 제목'}
-          ></Style.PrePostInnerTitle>
+          <Style.PrePostInnerTitle>기본 제목</Style.PrePostInnerTitle>
           <Style.PrePostUnnerline />
-          <Style.PrePostContent
-            disabled={true}
-            value={'기본 내용'}
-          ></Style.PrePostContent>
+          <Style.PrePostContent>기본 내용</Style.PrePostContent>
         </Style.PrePostContainer>
         <Style.PreCommentContainer>
           {emptyContent.map(({ comment }, idx) => (

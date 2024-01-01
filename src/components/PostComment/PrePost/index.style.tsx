@@ -18,7 +18,7 @@ export const PrePostContainer = styled.div(({ theme }) => ({
   boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.5)'
 }));
 
-export const PrePostInnerTitle = styled.textarea`
+export const PrePostInnerTitle = styled.div`
   flex-grow: 0;
   width: 95%;
   height: 2.5rem;
@@ -27,8 +27,6 @@ export const PrePostInnerTitle = styled.textarea`
   background-color: transparent;
   border-color: transparent;
   padding: 1rem 1rem 0 0.5rem;
-  outline: none;
-  resize: none;
   box-sizing: border-box;
 `;
 
@@ -38,8 +36,9 @@ export const PrePostUnnerline = styled.div`
   background-color: #aca3a3;
 `;
 
-export const PrePostContent = styled.textarea`
+export const PrePostContent = styled.div`
   flex-grow: 1;
+  font-size: 0.6rem;
   width: 95%;
   background-color: transparent;
   border-color: transparent;
@@ -69,7 +68,7 @@ export const PrePostComment = styled.div(({ theme }) => ({
   width: '100%',
   height: 'auto',
   marginBottom: '0.5rem',
-  padding: '0.5rem',
+  padding: '0.5rem 1rem',
   boxSizing: 'border-box',
-  borderRadius: '20px'
+  borderRadius: '10px'
 }));
