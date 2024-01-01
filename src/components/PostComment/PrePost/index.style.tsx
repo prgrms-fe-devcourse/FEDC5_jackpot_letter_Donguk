@@ -60,15 +60,20 @@ export const PreCommentContainer = styled.div`
   height: 13.5625rem;
 `;
 
+export const profileLogo = styled.img`
+  width: 2rem;
+`;
+
 export const PrePostComment = styled.div`
   display: flex;
   align-items: center;
   background-color: ${(props) => props.theme.palette.sub};
   font-size: 0.8rem;
   width: 100%;
-  height: auto;
-  margin-bottom: 0.5rem;
-  padding: 0.5rem 1rem;
+  height: 3rem;
+  margin-bottom: 0.6rem;
+  padding: 1rem 1.3rem;
   box-sizing: border-box;
   border-radius: 10px;
+  x-overflow: scroll;
 `;
