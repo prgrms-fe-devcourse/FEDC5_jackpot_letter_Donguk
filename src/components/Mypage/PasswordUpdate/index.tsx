@@ -48,7 +48,7 @@ function PasswordUpdate() {
           <Input
             width="100%"
             height="3rem"
-            type="text"
+            type="password"
             label="비밀번호"
             register={register}
             value="password"
@@ -60,7 +60,7 @@ function PasswordUpdate() {
           <Input
             width="100%"
             height="3rem"
-            type="text"
+            type="password"
             label="비밀번호 확인"
             register={register}
             value="passwordCheck"
