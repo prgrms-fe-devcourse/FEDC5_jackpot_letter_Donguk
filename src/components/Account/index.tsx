@@ -1,7 +1,7 @@
-import * as S from './index.style';
 import { ReactElement } from 'react';
-import LongLogo from '@/assets/images/LongLogo.svg'
-import ShortLogo from '@/assets/images/ShortLogo.svg'
+import LongLogo from '@/assets/images/LongLogo.svg';
+import ShortLogo from '@/assets/images/ShortLogo.svg';
+import * as Style from './index.style';
 
 interface AccountProps {
   children: ReactElement;
@@ -9,21 +9,23 @@ interface AccountProps {
 
 function Account({ children }: AccountProps) {
   return (
-    <S.SignInContainer>
-      <S.HeaderContainer>
-        <S.ImageContainer>
+    <Style.SignInContainer>
+      <Style.HeaderContainer>
+        <Style.ImageContainer>
           <img src={LongLogo} />
-        </S.ImageContainer>
-        <S.TitleContainer>
-          <S.Description>큰 행운을 터트리며 마음을 나누는</S.Description>
-          <S.Title>대박 사건</S.Title>
-        </S.TitleContainer>
-        <S.ImageContainer>
+        </Style.ImageContainer>
+        <Style.TitleContainer>
+          <Style.Description>
+            큰 행운을 터트리며 마음을 나누는
+          </Style.Description>
+          <Style.Title>대박 사건</Style.Title>
+        </Style.TitleContainer>
+        <Style.ImageContainer>
           <img src={ShortLogo} />
-        </S.ImageContainer>
-      </S.HeaderContainer>
-        {children}
-    </S.SignInContainer>
+        </Style.ImageContainer>
+      </Style.HeaderContainer>
+      {children}
+    </Style.SignInContainer>
   );
 }
 
