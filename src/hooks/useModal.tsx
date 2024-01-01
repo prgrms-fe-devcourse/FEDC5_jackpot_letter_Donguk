@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 
 type useModalResult = [
   visible: boolean,
@@ -24,12 +24,12 @@ function useModal(): useModalResult {
       setTop(rect.bottom);
       setLeft(rect.right);
 
-      const rootEl = document.getElementById('root') as HTMLDivElement;
+      const bodyEl = document.body as HTMLDivElement;
 
       if (visible) {
-        rootEl.style.overflow = 'auto';
+        bodyEl.style.overflow = 'auto';
       } else {
-        rootEl.style.overflow = 'hidden';
+        bodyEl.style.overflow = 'hidden';
       }
       setVisible((prev) => !prev);
     },
