@@ -1,5 +1,4 @@
 import PostList from '@/components/Mypage/PostList';
-import styled from '@emotion/styled';
 
 function PostListPage() {
   const DUMMY = [
@@ -169,7 +168,3 @@ function PostListPage() {
 }
 
 export default PostListPage;
-
-export const Container = styled.div`
-  width: 100%;
-`;
