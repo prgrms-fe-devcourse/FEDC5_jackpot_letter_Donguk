@@ -1,4 +1,13 @@
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+
+const ContainerMixin = css`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 19.375rem;
+  border-radius: 20px;
+`;
 
 export const PrePostAndCommentContainer = styled.div`
   overflow-x: scroll;
@@ -6,17 +15,13 @@ export const PrePostAndCommentContainer = styled.div`
   box-sizing: border-box;
 `;
 
-export const PrePostContainer = styled.div(({ theme }) => ({
-  backgroundColor: theme.palette.sub,
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  width: '19.375rem',
-  height: '8.125rem',
-  marginBottom: '0.5rem',
-  borderRadius: '20px',
-  boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.5)'
-}));
+export const PrePostContainer = styled.div`
+  ${ContainerMixin}
+  background-color: ${(props) => props.theme.palette.sub};
+  height: 8.125rem;
+  margin-bottom: 0.5rem;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.5);
+`;
 
 export const PrePostInnerTitle = styled.div`
   flex-grow: 0;
@@ -49,26 +54,21 @@ export const PrePostContent = styled.div`
   box-sizing: border-box;
 `;
 
-export const PreCommentContainer = styled.div(() => ({
-  display: 'flex',
-  position: 'relative',
-  flexDirection: 'column',
-  alignItems: 'center',
-  width: '19.375rem',
-  height: '13.5625rem', //'13.3125rem',
-  borderRadius: '20px'
-  //   boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.5)'
-}));
+export const PreCommentContainer = styled.div`
+  ${ContainerMixin}
+  position: relative;
+  height: 13.5625rem;
+`;
 
-export const PrePostComment = styled.div(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
-  backgroundColor: theme.palette.sub,
-  fontSize: '0.8rem',
-  width: '100%',
-  height: 'auto',
-  marginBottom: '0.5rem',
-  padding: '0.5rem 1rem',
-  boxSizing: 'border-box',
-  borderRadius: '10px'
-}));
+export const PrePostComment = styled.div`
+  display: flex;
+  align-items: center;
+  background-color: ${(props) => props.theme.palette.sub};
+  font-size: 0.8rem;
+  width: 100%;
+  height: auto;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem 1rem;
+  box-sizing: border-box;
+  border-radius: 10px;
+`;

@@ -6,12 +6,12 @@ export const HeaderContainer = styled.div`
   margin-top: 2.0625rem;
 `;
 
-export const HeaderInnerText = styled.div(({ theme }) => ({
-  ...theme.typography.postTitle,
-  lineHeight: '1.8rem',
-  color: 'white'
-}));
+export const HeaderInnerText = styled.div`
+  ${(props) => props.theme.typography.postTitle};
+  line-height: 1.8rem;
+  color: white;
+`;
 
-export const HeaderUserName = styled.span(({ theme }) => ({
-  color: theme.palette.main
-}));
+export const HeaderUserName = styled.span`
+  color: ${(props) => props.theme.palette.main};
+`;

@@ -1,29 +1,34 @@
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
-export const LetterContainer = styled.div(({ theme }) => ({
-  backgroundColor: theme.palette.sub,
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  width: '19.375rem',
-  height: '13.3125rem',
-  borderRadius: '20px',
-  marginTop: '1.625rem',
-  boxShadow: '0px 4px 4px 0px rgba0, 0, 0, 0.25)'
-}));
+const TextArea = css`
+  background-color: transparent;
+  border-color: transparent;
+  outline: none;
+  resize: none;
+  box-sizing: border-box;
+`;
+
+export const LetterContainer = styled.div`
+  background-color: ${(props) => props.theme.palette.sub};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 19.375rem;
+  height: 13.3125rem;
+  border-radius: 20px;
+  margin-top: 1.625rem;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+`;
 
 export const LetterTitle = styled.textarea`
+  ${TextArea}
   flex-grow: 0;
   width: 95%;
   height: 40px;
   font-size: 1rem;
   font-weight: 500;
-  background-color: transparent;
-  border-color: transparent;
   padding: 1rem 1rem 0 0.5rem;
-  outline: none;
-  resize: none;
-  box-sizing: border-box;
 `;
 
 export const TitleUnderLine = styled.div`
@@ -33,14 +38,10 @@ export const TitleUnderLine = styled.div`
 `;
 
 export const LetterContent = styled.textarea`
+  ${TextArea}
   flex-grow: 1;
   font-size: 0.6rem;
   width: 95%;
-  background-color: transparent;
-  border-color: transparent;
-  outline: none;
-  resize: none;
   margin: 0.6rem 0;
   padding: 0 0.6rem;
-  box-sizing: border-box;
 `;
