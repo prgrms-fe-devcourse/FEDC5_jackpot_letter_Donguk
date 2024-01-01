@@ -1,4 +1,5 @@
 import { ButtonStyle } from './index.style';
+
 interface ButtonProps {
   content: string;
   onClick: () => void;
@@ -27,7 +28,8 @@ function Button(props: ButtonProps) {
       kind={kind}
       size={size}
       styleOption={styleOption}
-      onClick={onClick}>
+      onClick={onClick}
+    >
       {content}
     </ButtonStyle>
   );
