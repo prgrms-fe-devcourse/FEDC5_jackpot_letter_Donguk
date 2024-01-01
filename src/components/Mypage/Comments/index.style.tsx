@@ -1,10 +1,6 @@
 import { theme } from '@/theme';
 import styled from '@emotion/styled';
 
-export const Container = styled.div`
-  padding: 1.625rem 1.75rem;
-`;
-
 export const CommentsContainer = styled.div`
   padding: 1rem 0;
   border-bottom: 1px solid #d2d2d2;

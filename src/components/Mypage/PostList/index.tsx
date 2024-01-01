@@ -12,7 +12,7 @@ interface PostType extends Post {
 
 function PostList({ posts, type }: PostListProps) {
   return (
-    <Style.Container>
+    <div className="container">
       {posts.map(({ title, channel, content, likes, comments, _id }) => (
         <Style.PostItem key={_id}>
           <span className="post-title">{title}</span>
@@ -77,7 +77,7 @@ function PostList({ posts, type }: PostListProps) {
           </Style.PostInfo>
         </Style.PostItem>
       ))}
-    </Style.Container>
+    </div>
   );
 }
 

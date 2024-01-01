@@ -1,10 +1,6 @@
 import { theme } from '@/theme';
 import styled from '@emotion/styled';
 
-export const Container = styled.div`
-  padding: 1.625rem 1.75rem;
-`;
-
 export const PostItem = styled.div`
   display: flex;
   flex-direction: column;
@@ -26,9 +22,6 @@ export const PostItem = styled.div`
   }
 `;
 
-export const PostTitle = styled.label(({ theme }) => ({
-  ...theme.typography.mypage_regular
-}));
 export const PostInfo = styled.div`
   display: flex;
   justify-content: space-between;

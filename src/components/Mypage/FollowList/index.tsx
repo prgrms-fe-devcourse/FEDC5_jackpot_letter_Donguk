@@ -1,24 +1,24 @@
+import { Follow as FollowDefaultType } from '@/types/ResponseType';
 import ProfileImg from '../ProfileImg';
 import * as Style from './index.style';
 
 interface FollowListProps {
   type: 'follower' | 'following';
-  followList: followType[];
+  followList: FollowType[];
 }
 
-type followType = {
+interface FollowType extends FollowDefaultType {
   image: string;
-  name: string;
-};
+}
 
 function FollowList({ type, followList }: FollowListProps) {
   return (
     <Style.Container>
       <Style.FollowItemList>
-        {followList.map(({ image, name }) => (
+        {followList.map(({ image, user, _id }) => (
           <li
             className="follow-item"
-            key={name}
+            key={_id}
           >
             <ProfileImg
               image={image}
@@ -26,7 +26,7 @@ function FollowList({ type, followList }: FollowListProps) {
               width={2.5}
               height={2.5}
             />
-            <span>{name}</span>
+            <span>{user}</span>
             <button>{type === 'follower' ? '삭제' : '팔로잉'}</button>
           </li>
         ))}

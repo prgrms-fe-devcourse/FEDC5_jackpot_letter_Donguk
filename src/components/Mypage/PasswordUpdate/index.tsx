@@ -3,6 +3,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import Button from '@/components/Common/Button';
 import Input from '@/components/Common/Input';
+import { theme } from '@/theme';
 import * as Style from './index.style';
 
 interface PasswordUpdateValue {
@@ -39,7 +40,7 @@ function PasswordUpdate() {
   };
 
   return (
-    <Style.Container>
+    <Style.Container className="container">
       <form
         onSubmit={handleSubmit(handleNameSubmit)}
         className="name-form"
@@ -74,6 +75,11 @@ function PasswordUpdate() {
           content="비밀번호 변경"
           type="submit"
           onClick={handleSubmit(handleNameSubmit)}
+          styleOption={{
+            height: '3.5rem',
+            width: '100%',
+            fontSize: theme.typography.mypage_regular.fontSize
+          }}
         />
       </form>
     </Style.Container>

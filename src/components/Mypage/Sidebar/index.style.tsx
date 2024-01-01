@@ -2,7 +2,7 @@ import { theme } from '@/theme';
 import styled from '@emotion/styled';
 
 export const Container = styled.div`
-  padding: 2.5rem 1.75rem;
+  padding-bottom: 2rem;
 
   a {
     color: black;
@@ -15,7 +15,7 @@ export const GoButton = styled.button`
   justify-content: space-between;
   width: 100%;
   height: 4rem;
-  padding: 1.2rem;
+  padding: 1rem;
   margin-top: 0.75rem;
   border: none;
   border-radius: 10px;

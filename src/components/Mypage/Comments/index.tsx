@@ -13,9 +13,9 @@ interface Comments extends Comment {
 
 function Comments({ comments }: CommentsProps) {
   return (
-    <Style.Container>
-      {comments.map(({ title, postAuthor, comment }) => (
-        <Style.CommentsContainer>
+    <div className="container">
+      {comments.map(({ title, postAuthor, comment, _id }) => (
+        <Style.CommentsContainer key={_id}>
           <Style.PostInfoContainer>
             <ProfileImg
               image="https://cdn.pixabay.com/photo/2023/12/16/00/06/mountain-8451604_640.jpg"
@@ -34,7 +34,7 @@ function Comments({ comments }: CommentsProps) {
           </Style.PostInfoContainer>
         </Style.CommentsContainer>
       ))}
-    </Style.Container>
+    </div>
   );
 }
 

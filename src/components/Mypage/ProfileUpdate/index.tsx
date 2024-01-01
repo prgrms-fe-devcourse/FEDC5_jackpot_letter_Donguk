@@ -3,6 +3,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import Button from '@/components/Common/Button';
 import Input from '@/components/Common/Input';
+import { theme } from '@/theme';
 import ProfileImg from '../ProfileImg';
 import * as Style from './index.style';
 
@@ -30,7 +31,7 @@ function ProfileUpdate() {
   };
 
   return (
-    <Style.Container id="dd">
+    <Style.Container className="container">
       <Style.ProfileImgWrap>
         <ProfileImg
           image="https://cdn.pixabay.com/photo/2023/11/29/11/55/pine-hills-8419433_640.jpg"
@@ -84,11 +85,15 @@ function ProfileUpdate() {
             </span>
           )}
         </div>
-
         <Button
           content="수정"
           type="submit"
           onClick={handleSubmit(handleNameSubmit)}
+          styleOption={{
+            height: '3.5rem',
+            width: '100%',
+            fontSize: theme.typography.mypage_regular.fontSize
+          }}
         />
       </form>
     </Style.Container>
