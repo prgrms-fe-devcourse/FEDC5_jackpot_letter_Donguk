@@ -20,7 +20,16 @@ const typography = {
   },
   description: {
     fontSize: '0.68rem' // 11px
-  }
+  },
+  //** 마이페이지에서 사용하는 프로젝트명 */
+  mypage_large: {
+    fontSize: '1.125rem', // 18px
+    fontWeight: 700
+  },
+  mypage_regular: {
+    fontSize: '0.875rem' // 14px
+  },
+  mypage_small: { fontSize: '0.75rem' } // 12px
 };
 
 export const theme: Theme = {

@@ -1,7 +1,7 @@
-import { useState, useRef } from 'react';
+import { useRef, useState } from 'react';
 import { css } from '@emotion/react';
 import FollowList from '../FollowList';
-import { Container, UnderLine } from './index.style';
+import * as Style from './index.style';
 
 function Follow() {
   const [selected, setSelected] = useState('follower');
@@ -26,29 +26,32 @@ function Follow() {
   };
 
   return (
-    <Container>
+    <Style.Container>
       <div className="follow-title-wrap">
         <span
           css={css`
             color: ${selected === 'follower' ? 'black' : '#d2d2d2'};
           `}
-          onClick={() => handleFollowTypeClick('follower')}>
+          onClick={() => handleFollowTypeClick('follower')}
+        >
           팔로워
         </span>
         <span
           css={css`
             color: ${selected === 'following' ? 'black' : '#d2d2d2'};
           `}
-          onClick={() => handleFollowTypeClick('following')}>
+          onClick={() => handleFollowTypeClick('following')}
+        >
           팔로잉
         </span>
       </div>
-      <UnderLine className={selected === 'following' ? 'active' : ''} />
+      <Style.UnderLine className={selected === 'following' ? 'active' : ''} />
       <div
         ref={scrollRef}
         css={css`
           overflow-x: hidden;
-        `}>
+        `}
+      >
         <div className="follow-list-container">
           <FollowList
             type="follower"
@@ -60,7 +63,7 @@ function Follow() {
           />
         </div>
       </div>
-    </Container>
+    </Style.Container>
   );
 }
 

@@ -25,10 +25,10 @@ function Comments({ comments }: CommentsProps) {
             />
             <Style.PostTexInfoWrap>
               <p className="author">{postAuthor}</p>
-              <p>{title}</p>
+              <p className="content">{title}</p>
               <div className="comment-info-wrap">
                 <span className="author">댓글작성자</span>
-                <span>{comment}</span>
+                <span className="content">{comment}</span>
               </div>
             </Style.PostTexInfoWrap>
           </Style.PostInfoContainer>

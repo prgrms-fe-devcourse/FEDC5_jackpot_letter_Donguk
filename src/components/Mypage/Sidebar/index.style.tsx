@@ -1,3 +1,4 @@
+import { theme } from '@/theme';
 import styled from '@emotion/styled';
 
 export const Container = styled.div`
@@ -19,8 +20,8 @@ export const GoButton = styled.button`
   border: none;
   border-radius: 10px;
   background-color: #0eb29a;
-  font-size: 1.2rem;
-  font-weight: bold;
+  font-size: ${theme.typography.mypage_large.fontSize};
+  font-weight: ${theme.typography.mypage_large.fontWeight};
   color: white;
   text-align: left;
   cursor: pointer;
@@ -36,6 +37,7 @@ export const ProfileContainer = styled.div`
     display: flex;
     align-items: center;
     margin-bottom: 0.5rem;
+    font-size: ${theme.typography.mypage_regular.fontSize};
     font-weight: bold;
 
     .setting-btn {
@@ -53,7 +55,7 @@ export const ProfileContainer = styled.div`
   }
 
   .follow-wrapper {
-    font-size: 0.875rem;
+    font-size: ${theme.typography.mypage_small.fontSize};
     text-align: left;
 
     a {
