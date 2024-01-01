@@ -15,6 +15,11 @@ const typography = {
     fontSize: '2rem', // 32px
     fontWeight: 900
   },
+  /** 포스트/댓글 페이지에서 사용하는 헤더 텍스트 */
+  postTitle: {
+    fontSize: '1.3rem',
+    fontWeight: 900
+  },
   label: {
     fontSize: '0.75rem' // 12px
   },

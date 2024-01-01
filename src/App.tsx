@@ -1,14 +1,14 @@
 import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
-import { Global, ThemeProvider } from '@emotion/react';
-import reset from './styles/reset';
-import Modal from '@components/Common/Modal';
-import useModal from './hooks/useModal';
 import { Toaster } from 'react-hot-toast';
 import { toast } from 'react-hot-toast';
+import Modal from '@components/Common/Modal';
+import { Global, ThemeProvider } from '@emotion/react';
+import reactLogo from './assets/react.svg';
 import Button from './components/Common/Button';
+import useModal from './hooks/useModal';
+import reset from './styles/reset';
 import { theme } from './theme';
+import viteLogo from '/vite.svg';
 
 function App() {
   const [count, setCount] = useState(0);
@@ -28,7 +28,8 @@ function App() {
           style={{ float: 'right' }}
           onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
             handleModalClick(e);
-          }}>
+          }}
+        >
           해당요소 아래에 생기는 모달클릭
         </button>
         <Modal
@@ -52,7 +53,8 @@ function App() {
         <button
           onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
             handleModalClick(e)
-          }>
+          }
+        >
           중간에 뜨는 모달클릭
         </button>
         {/* <Modal
@@ -76,7 +78,8 @@ function App() {
         <div>
           <a
             href="https://vitejs.dev"
-            target="_blank">
+            target="_blank"
+          >
             <img
               src={viteLogo}
               className="logo"
