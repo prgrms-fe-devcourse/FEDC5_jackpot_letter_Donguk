@@ -3,6 +3,7 @@ import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
 import { Global, ThemeProvider } from '@emotion/react';
 import reset from './styles/reset';
+import global from './styles/global';
 import Modal from '@components/Common/Modal';
 import useModal from './hooks/useModal';
 import { Toaster } from 'react-hot-toast';
@@ -23,7 +24,7 @@ function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <Global styles={reset} />
+        <Global styles={[reset, global]} />
         <button
           style={{ float: 'right' }}
           onClick={(e: React.MouseEvent<HTMLButtonElement>) => {

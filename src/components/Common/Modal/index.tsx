@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from 'react';
-import { Container, ModalContainer } from './index.style';
 import ReactDOM from 'react-dom';
+import { Container, ModalContainer } from './index.style';
 
 interface ModalProps {
   children: React.ReactElement;
@@ -28,7 +28,7 @@ function Modal({
   type,
   top,
   left,
-  marginTop,
+  marginTop = 0,
   handleModalClose
 }: ModalProps) {
   const el = useMemo(() => document.createElement('div'), []);
@@ -58,11 +58,13 @@ function Modal({
     <Container
       className={type}
       visible={visible}
-      onClick={(e: React.MouseEvent<HTMLDivElement>) => handleModalClose(e)}>
+      onClick={(e: React.MouseEvent<HTMLDivElement>) => handleModalClose(e)}
+    >
       <ModalContainer
         id="modal"
         className={type}
-        {...modalProps}>
+        {...modalProps}
+      >
         {children}
       </ModalContainer>
     </Container>,
