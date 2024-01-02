@@ -6,6 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import Account from '@/components/Account';
 import Description from '@/components/Account/Description';
+import Button from '@/components/Common/Button';
 import { ACCOUNT_SIGNIN_DATA } from '@/constants/account';
 import { SingInSchema } from '@/utils/validation';
 import * as Style from './index.style';
@@ -20,13 +21,17 @@ function SignInForm() {
     formState: { errors }
   } = useForm<SignInSchemaType>({ resolver: zodResolver(SingInSchema) });
 
-  const onSubmit: SubmitHandler<SignInSchemaType> = (data) => {
+  const handleSignInSubmit: SubmitHandler<SignInSchemaType> = (data) => {
     alert(JSON.stringify(data));
+  };
+
+  const startAnonymousExperience = () => {
+    alert('익명 체험');
   };
 
   return (
     <Account>
-      <Style.Form onSubmit={handleSubmit(onSubmit)}>
+      <Style.Form onSubmit={handleSubmit(handleSignInSubmit)}>
         <Style.FormTitle>로그인</Style.FormTitle>
         {ACCOUNT_SIGNIN_DATA.map((data) => {
           const { id, label, value, type } = data;
@@ -55,18 +60,25 @@ function SignInForm() {
         })}
 
         <Description text="계정이 없으시다면?" />
-
-        <Style.Button
-          color="#0EB29A"
-          type="submit">
-          로그인하기
-        </Style.Button>
-
-        <Style.Button
-          color="#8C999A"
-          type="submit">
-          익명으로 체험하기
-        </Style.Button>
+        <Button
+          content="로그인하기"
+          type="submit"
+          onClick={handleSubmit(handleSignInSubmit)}
+          styleOption={{
+            height: '2.47rem',
+            width: '17.5rem'
+          }}
+        />
+        <Button
+          content="익명으로 체험하기"
+          type="button"
+          onClick={startAnonymousExperience}
+          styleOption={{
+            height: '2.47rem',
+            width: '17.5rem',
+            backgroundColor: '#8C999A'
+          }}
+        />
       </Style.Form>
     </Account>
   );

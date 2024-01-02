@@ -25,25 +25,6 @@ export const FormTitle = styled.p`
   text-align: center;
 `;
 
-export const NameDescription = styled.p`
-  font-size: 11px;
-  color: #000;
-  align-self: flex-start;
-`;
-
-// 공통 컴포넌트로 변경
-export const Button = styled.button<{ width: string }>`
-  width: ${(props) => props.width};
-  height: 37px;
-  flex-shrink: 0;
-  border-radius: 10px;
-  background-color: #0eb29a;
-  border: #0eb29a;
-  color: #fff;
-  font-weight: 600;
-  font-size: 13px;
-`;
-
 export const InputName = styled.div`
   display: flex;
   align-items: flex-end;
