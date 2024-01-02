@@ -1,6 +1,7 @@
 import { Toaster } from 'react-hot-toast';
-import { Route, Routes } from 'react-router-dom';
-import { Global, ThemeProvider } from '@emotion/react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Post from '@components/Post';
+import Comment from '@components/PostComment';
 import PasswordUpdate from './components/Mypage/PasswordUpdate';
 import ProfileUpdate from './components/Mypage/ProfileUpdate';
 import CommentListPage from './pages/CommentListPage';
@@ -8,9 +9,6 @@ import FollowPage from './pages/FollowPage';
 import LikeListPage from './pages/LikeListPage';
 import Mypage from './pages/Mypage';
 import PostListPage from './pages/PostListPage';
-import reset from './styles/_reset';
-import global from './styles/global';
-import { theme } from './theme';
 
 function App() {
   const toastStyle = {
@@ -21,9 +19,16 @@ function App() {
 
   return (
     <>
-      <ThemeProvider theme={theme}>
-        <Global styles={[reset, global]} />
+      <BrowserRouter>
         <Routes>
+          <Route
+            path="/post"
+            element={<Post />}
+          />
+          <Route
+            path="/comment"
+            element={<Comment />}
+          />
           <Route
             path="/mypage"
             element={<Mypage />}>
@@ -53,13 +58,13 @@ function App() {
             />
           </Route>
         </Routes>
+      </BrowserRouter>
 
-        <Toaster
-          toastOptions={{
-            style: { ...toastStyle }
-          }}
-        />
-      </ThemeProvider>
+      <Toaster
+        toastOptions={{
+          style: { ...toastStyle }
+        }}
+      />
     </>
   );
 }
