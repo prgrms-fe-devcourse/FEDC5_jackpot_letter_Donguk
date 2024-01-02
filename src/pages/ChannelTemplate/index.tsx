@@ -4,15 +4,42 @@ import SelectColor from '@/components/ChannelTemplate/SelectColor';
 import Button from '@/components/Common/Button';
 import { ChannelButton } from './index.style';
 
-function ChannelTemplate() {
-  type PhaseType = { [key: number]: React.ReactElement };
-  const PhaseInfo: PhaseType = {
-    0: <SelectBackground />,
-    1: <SelectColor />,
-    2: <SelectBackground />
-  };
+export interface ChannelOptionType {
+  background: number;
+  color: number;
+  allowViewAll: boolean;
+  allowWriteAll: boolean;
+}
 
+interface PhaseType {
+  [key: number]: React.ReactElement;
+}
+
+function ChannelTemplate() {
+  const [channelOption, setChannelOption] = useState<ChannelOptionType>({
+    background: 0,
+    color: 0,
+    allowViewAll: true,
+    allowWriteAll: true
+  });
+
+  const PhaseInfo: PhaseType = {
+    0: (
+      <SelectBackground
+        option={channelOption}
+        setOption={setChannelOption}
+      />
+    ),
+    1: (
+      <SelectColor
+        option={channelOption}
+        setOption={setChannelOption}
+      />
+    ),
+    2: <div></div>
+  };
   const [phase, setPhase] = useState<number>(0);
+
   return (
     <div>
       <div>{PhaseInfo[phase]}</div>

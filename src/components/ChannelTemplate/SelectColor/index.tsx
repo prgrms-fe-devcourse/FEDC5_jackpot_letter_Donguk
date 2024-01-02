@@ -1,9 +1,24 @@
+import { Dispatch, SetStateAction } from 'react';
 import CustomChannelIcon from '@/components/Common/CustomChannelIcon';
 import { ChannelIconList, Title } from '@/pages/ChannelList/index.style.tsx';
+import { ChannelOptionType } from '@/pages/ChannelTemplate';
+import { theme } from '@/theme';
+import { css } from '@emotion/react';
 import { Item } from './index.style';
 import { IconColor, IconColorType } from './type';
 
-function SelectColor() {
+interface Props {
+  option: ChannelOptionType;
+  setOption: Dispatch<SetStateAction<ChannelOptionType>>;
+}
+
+export const selectedStyle = css`
+  width: calc(5.625rem - 7px);
+  height: calc(5.625rem - 7px);
+  border: 3px solid ${theme.palette.main};
+`;
+
+function SelectColor({ option, setOption }: Props) {
   return (
     <>
       <Title>
@@ -14,8 +29,13 @@ function SelectColor() {
       </Title>
       <ChannelIconList>
         {(Object.keys(IconColor) as Array<keyof IconColorType>).map(
-          (color: keyof IconColorType) => (
-            <Item>
+          (color: keyof IconColorType, index) => (
+            <Item
+              role="button"
+              key={`channel-color${index}`}
+              css={option.color === index && selectedStyle}
+              onClick={() => setOption({ ...option, color: index })}
+            >
               <CustomChannelIcon color={IconColor[color]} />
             </Item>
           )
