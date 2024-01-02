@@ -116,3 +116,29 @@ export interface Message {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface Authentication {
+  user: AuthenticationUser;
+  token: string;
+}
+
+export interface AuthenticationUser {
+  role: string;
+  emailVerified: boolean;
+  banned: boolean;
+  isOnline: boolean;
+  posts: [];
+  likes: [];
+  comments: [];
+  followers: [];
+  following: [];
+  notifications: [];
+  messages: [];
+  _id: string;
+  fullName: string;
+  email: string;
+  password: string;
+  createdAt: string;
+  updatedAt: string;
+  __v: 0;
+}
