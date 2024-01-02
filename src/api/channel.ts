@@ -7,3 +7,4 @@ export const getChannelList = async () => {
   });
   return data;
 };
+// 다른 channel 요청
