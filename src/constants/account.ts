@@ -25,11 +25,5 @@ export const ACCOUNT_SIGNUP_DATA = [
     label: '비밀번호',
     value: 'password',
     type: 'password'
-  },
-  {
-    id: 3,
-    label: '비밀번호 확인',
-    value: 'checkPassword',
-    type: 'password'
   }
 ];
