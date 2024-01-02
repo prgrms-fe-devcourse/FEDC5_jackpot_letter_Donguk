@@ -1,4 +1,5 @@
 import { Toaster } from 'react-hot-toast';
+
 import { Global, ThemeProvider } from '@emotion/react';
 import reset from './styles/reset';
 import { theme } from './theme';
@@ -13,8 +14,9 @@ function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <Global styles={reset} />
-
+        <Global styles={resetStyle} />
+        <Global styles={responsiveStyle} />
+     
         <Toaster
           toastOptions={{
             style: { ...toastStyle }
