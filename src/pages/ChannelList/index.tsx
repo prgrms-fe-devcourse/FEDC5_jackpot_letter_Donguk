@@ -1,4 +1,4 @@
-import ChannelImg from '@/assets/channelWithLine.svg';
+import ChannelImg from '@/assets/channelWithLongLine.svg';
 import ChannelIcon from '../../components/ChannelList/ChannelIcon';
 import { ChannelIconList, Header, Title } from './index.style';
 
