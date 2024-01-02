@@ -19,6 +19,7 @@ export default async function request(req: VercelRequest, res: VercelResponse) {
     });
     res.status(200).json(responseData);
   } catch (error) {
+    //에러핸들링 interceptor
     res.status(500).json({ message: error });
     throw new Error('Internal Server Error');
   }
