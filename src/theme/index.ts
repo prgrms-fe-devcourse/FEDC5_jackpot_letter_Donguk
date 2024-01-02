@@ -1,7 +1,7 @@
 import { Theme } from '@emotion/react';
 
 const palette = {
-  dark: '#0F172A',
+  dark: '#261b3e',
   main: '#0EB29A',
   sub: '#F0ECE5',
   gray_1: '#0F172A', //** Input 라벨 */
@@ -20,11 +20,28 @@ const typography = {
     fontSize: '1.3rem',
     fontWeight: 900
   },
+  title2: {
+    fontSize: '1.5rem;', //24px
+    lineHeight: '2rem' // 32px
+  },
   label: {
     fontSize: '0.75rem' // 12px
   },
   description: {
     fontSize: '0.68rem' // 11px
+  },
+  //** 마이페이지에서 사용하는 프로젝트명 */
+  mypage_large: {
+    fontSize: '1.125rem', // 18px
+    fontWeight: 700
+  },
+  mypage_regular: {
+    fontSize: '0.875rem' // 14px
+  },
+  mypage_small: { fontSize: '0.75rem' }, // 12px
+  description2: {
+    fontSize: ' 0.875rem', // 14px
+    fontWeight: 600
   }
 };
 
