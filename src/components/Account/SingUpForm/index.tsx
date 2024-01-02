@@ -6,6 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import Account from '@/components/Account';
 import Description from '@/components/Account/Description';
+import Button from '@/components/Common/Button';
 import { ACCOUNT_SIGNUP_DATA } from '@/constants/account';
 import { SignUpSchema } from '@/utils/validation';
 import * as Style from './index.style';
@@ -21,13 +22,17 @@ function SignUpForm() {
   } = useForm<SignUpSchemaType>({ resolver: zodResolver(SignUpSchema) });
   console.log(errors && errors);
 
-  const onSubmit: SubmitHandler<SignUpSchemaType> = (data) => {
+  const handleSignUpSubmit: SubmitHandler<SignUpSchemaType> = (data) => {
     alert(JSON.stringify(data));
+  };
+
+  const checkForDuplicates = () => {
+    alert('중복 확인');
   };
 
   return (
     <Account>
-      <Style.Form onSubmit={handleSubmit(onSubmit)}>
+      <Style.Form onSubmit={handleSubmit(handleSignUpSubmit)}>
         <Style.FormTitle>회원가입</Style.FormTitle>
         <Style.InputName>
           <Input
@@ -39,7 +44,15 @@ function SignUpForm() {
             register={register}
             required
           />
-          <Style.Button width="120px">중복 확인</Style.Button>
+          <Button
+            content="중복 확인"
+            type="button"
+            onClick={checkForDuplicates}
+            styleOption={{
+              height: '2.47rem',
+              width: '7.5rem'
+            }}
+          />
         </Style.InputName>
         <Description text=" 현재 설정한 이름은 채널명으로 사용됩니다 :)" />
         <ErrorMessage
@@ -77,11 +90,15 @@ function SignUpForm() {
             </React.Fragment>
           );
         })}
-        <Style.Button
-          width="280px"
-          type="submit">
-          로그인하기
-        </Style.Button>
+        <Button
+          content="로그인하기"
+          type="submit"
+          onClick={handleSubmit(handleSignUpSubmit)}
+          styleOption={{
+            height: '2.47rem',
+            width: '17.5rem'
+          }}
+        />
       </Style.Form>
     </Account>
   );

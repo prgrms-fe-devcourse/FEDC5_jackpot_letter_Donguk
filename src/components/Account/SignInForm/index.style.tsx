@@ -24,16 +24,3 @@ export const FormTitle = styled.p`
   font-weight: 700;
   text-align: center;
 `;
-
-// 공통 컴포넌트로 변경
-export const Button = styled.button<{ color: string }>`
-  width: 280px;
-  height: 39.549px;
-  flex-shrink: 0;
-  border-radius: 10px;
-  background-color: ${(props) => props.color};
-  border: ${(props) => props.color};
-  color: #fff;
-  font-weight: 600;
-  font-size: 13px;
-`;
