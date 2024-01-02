@@ -8,3 +8,9 @@ export const CommentContainer = styled.div`
   min-height: 100vh;
   width: 100%;
 `;
+
+export const GroudImage = styled.img`
+  position: absolute;
+  height: 6rem;
+  right: 3rem;
+`;
