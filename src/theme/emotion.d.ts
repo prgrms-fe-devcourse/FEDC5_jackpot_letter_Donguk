@@ -6,6 +6,7 @@ type typography =
   | 'label'
   | 'mypage_large'
   | 'mypage_regular'
+  | 'postTitle'
   | 'mypage_small'
   | 'title2'
   | 'description'
