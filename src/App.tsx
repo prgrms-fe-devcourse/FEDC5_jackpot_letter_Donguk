@@ -8,7 +8,12 @@ import Modal from '@components/Common/Modal';
 import useModal from './hooks/useModal';
 import { Toaster } from 'react-hot-toast';
 import { toast } from 'react-hot-toast';
+import { Route, Routes } from 'react-router-dom';
 import Button from './components/Common/Button';
+import SignIn from './components/Common/SignIn';
+import useModal from './hooks/useModal';
+import { authRoutes, userRoutes } from './route/AppRouter';
+import AuthMiddleware from './route/AuthMiddleware';
 import { theme } from './theme';
 
 function App() {
@@ -25,6 +30,20 @@ function App() {
     <>
       <ThemeProvider theme={theme}>
         <Global styles={[reset, global]} />
+        <Routes>
+          {authRoutes.map((route, idx) => (
+            <Route
+              path={route.path}
+              element={<SignIn>{route.component}</SignIn>}
+              key={idx}></Route>
+          ))}
+          {userRoutes.map((route, idx) => (
+            <Route
+              path={route.path}
+              element={<AuthMiddleware>{route.component}</AuthMiddleware>}
+              key={idx}></Route>
+          ))}
+        </Routes>
         <button
           style={{ float: 'right' }}
           onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
