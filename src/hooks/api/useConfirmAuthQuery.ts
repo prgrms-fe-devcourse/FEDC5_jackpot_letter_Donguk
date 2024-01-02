@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { getConfirmAuth } from '@/api/member/getConfirmAuth';
+import { getConfirmAuth } from '@/api/member';
 
 export const useConfirmAuthQuery = () => {
   return useQuery({
