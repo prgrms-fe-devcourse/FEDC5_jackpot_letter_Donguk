@@ -9,7 +9,7 @@ import Description from '@/components/Account/Description';
 import Button from '@/components/Common/Button';
 import { ACCOUNT_SIGNIN_DATA } from '@/constants/account';
 import { SingInSchema } from '@/utils/validation';
-import * as Style from './index.style';
+import * as Style from '../SingUpForm/index.style';
 
 type InputValue = 'email' | 'password';
 type SignInSchemaType = z.infer<typeof SingInSchema>;
