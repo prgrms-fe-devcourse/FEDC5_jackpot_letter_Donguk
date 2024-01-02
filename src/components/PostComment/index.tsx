@@ -14,6 +14,7 @@ function PostComment() {
         <Global styles={reset} />
         <Style.CommentContainer>
           <Header />
+          <Style.GroudImage src="/src/assets/ShortLogo.svg" />
           <PrePost />
           <Comment />
           <Footer />

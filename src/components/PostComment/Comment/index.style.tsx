@@ -1,12 +1,14 @@
 import styled from '@emotion/styled';
 
 export const CommentContainer = styled.div`
+  position: absolute;
+  bottom: 5.2rem;
   background-color: ${(props) => props.theme.palette.sub};
   display: flex;
   flex-direction: column;
   width: 19.375rem;
   height: 8.1875rem;
-  border-radius: 20px;
+  border-radius: 10px;
   margin-top: 0.7rem;
 `;
 
@@ -16,7 +18,7 @@ export const CommentTitle = styled.div`
   align-items: center;
   widht: 95%;
   height: 2.5rem;
-  font-size: 1rem;
+  font-size: 0.8rem;
   font-weight: 500;
   padding: 1rem 1rem 0 1rem;
   box-sizing: border-box;

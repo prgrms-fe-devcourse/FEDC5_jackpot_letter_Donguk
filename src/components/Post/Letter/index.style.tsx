@@ -9,6 +9,10 @@ const TextArea = css`
   box-sizing: border-box;
 `;
 
+export const LetterForm = styled.form`
+  width: 100%;
+`;
+
 export const LetterContainer = styled.div`
   background-color: ${(props) => props.theme.palette.sub};
   display: flex;
@@ -28,7 +32,7 @@ export const LetterTitle = styled.textarea`
   height: 40px;
   font-size: 1rem;
   font-weight: 500;
-  padding: 1rem 1rem 0 0.5rem;
+  padding: 1rem 3rem 0 1rem;
 `;
 
 export const TitleUnderLine = styled.div`
@@ -40,7 +44,7 @@ export const TitleUnderLine = styled.div`
 export const LetterContent = styled.textarea`
   ${TextArea}
   flex-grow: 1;
-  font-size: 0.6rem;
+  font-size: 0.7rem;
   width: 95%;
   margin: 0.6rem 0;
   padding: 0 0.6rem;

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import * as Style from './index.style';
 
 function PrePost() {
-  const [emptyContent, setEmptyContent] = useState([
+  const [temporaryContent, setTemporaryContent] = useState([
     {
       user: '최익',
       comment:
@@ -46,7 +46,7 @@ function PrePost() {
     }
   ]);
 
-  console.log('커밋을 위한 임시 출력', setEmptyContent);
+  console.log('커밋을 위한 임시 출력', setTemporaryContent);
 
   return (
     <>
@@ -56,9 +56,23 @@ function PrePost() {
           <Style.PrePostUnnerline />
           <Style.PrePostContent>기본 내용</Style.PrePostContent>
         </Style.PrePostContainer>
+        <Style.LikeCommentContainer>
+          <Style.LikeLogoContainer>
+            <Style.LikeLogo src="/src/assets/Like.svg" />
+            <Style.ListCount>1</Style.ListCount>
+          </Style.LikeLogoContainer>
+          <Style.CommentCountText>
+            총{' '}
+            <Style.CommentCount>{temporaryContent.length}개</Style.CommentCount>
+            의 댓글이 있습니다.
+          </Style.CommentCountText>
+        </Style.LikeCommentContainer>
         <Style.PreCommentContainer>
-          {emptyContent.map(({ comment }, idx) => (
-            <Style.PrePostComment key={idx}>{comment}</Style.PrePostComment>
+          {temporaryContent.map(({ comment }, idx) => (
+            <Style.PrePostComment key={idx}>
+              <Style.PrePostUserName>사용자 명: </Style.PrePostUserName>
+              {comment}
+            </Style.PrePostComment>
           ))}
         </Style.PreCommentContainer>
       </Style.PrePostAndCommentContainer>
