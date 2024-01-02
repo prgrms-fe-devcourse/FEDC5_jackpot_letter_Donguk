@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 
-const reset = css`
+const resetStyle = css`
   /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -115,6 +115,7 @@ const reset = css`
   body,
   #root {
     height: 100%;
+    background-color: #261b3e;
   }
   ol,
   ul {
@@ -142,4 +143,4 @@ const reset = css`
     box-sizing: border-box;
   }
 `;
-export default reset;
+export default resetStyle;
