@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import { useSetAtom } from 'jotai';
-import { postSignIn } from '@/api/member/postSignIn';
+import { postSignIn } from '@/api/member';
 import { isLoggedInAtom, tokenAtom } from '@/store/auth';
 
 export const useSignInMutation = () => {
