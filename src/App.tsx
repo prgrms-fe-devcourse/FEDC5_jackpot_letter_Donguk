@@ -1,15 +1,16 @@
 import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
-import { Global, ThemeProvider } from '@emotion/react';
-import reset from './styles/reset';
-import global from './styles/global';
-import Modal from '@components/Common/Modal';
-import useModal from './hooks/useModal';
 import { Toaster } from 'react-hot-toast';
 import { toast } from 'react-hot-toast';
+import Modal from '@components/Common/Modal';
+import { Global, ThemeProvider } from '@emotion/react';
+import reactLogo from './assets/react.svg';
 import Button from './components/Common/Button';
+import usePostQuery from './hooks/api/usePostQuery';
+import useModal from './hooks/useModal';
+import global from './styles/global';
+import reset from './styles/reset';
 import { theme } from './theme';
+import viteLogo from '/vite.svg';
 
 function App() {
   const [count, setCount] = useState(0);
@@ -21,6 +22,26 @@ function App() {
     marginTop: '0.5rem'
   };
 
+  const channelId = '658afcdeef2fa724b416d228';
+
+  const { data: test1, error: error1 } = usePostQuery({
+    key: 'test',
+    query: { channelId, path: 'author', method: 'get' }
+  });
+
+  const { data: test2, error: error2 } = usePostQuery({
+    key: 'test',
+    query: {
+      path: 'create',
+      title: 'n번째 게시글',
+      method: 'post',
+      channelId
+    }
+  });
+
+  console.log(test1, test2);
+  console.log(error1, error2);
+
   return (
     <>
       <ThemeProvider theme={theme}>
@@ -29,7 +50,8 @@ function App() {
           style={{ float: 'right' }}
           onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
             handleModalClick(e);
-          }}>
+          }}
+        >
           해당요소 아래에 생기는 모달클릭
         </button>
         <Modal
@@ -53,7 +75,8 @@ function App() {
         <button
           onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
             handleModalClick(e)
-          }>
+          }
+        >
           중간에 뜨는 모달클릭
         </button>
         {/* <Modal
@@ -77,7 +100,8 @@ function App() {
         <div>
           <a
             href="https://vitejs.dev"
-            target="_blank">
+            target="_blank"
+          >
             <img
               src={viteLogo}
               className="logo"
