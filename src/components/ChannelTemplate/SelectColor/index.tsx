@@ -4,6 +4,7 @@ import { ChannelIconList, Title } from '@/pages/ChannelList/index.style.tsx';
 import { ChannelOptionType } from '@/pages/ChannelTemplate';
 import { theme } from '@/theme';
 import { css } from '@emotion/react';
+import { Background } from '../SelectBackground/index.style';
 import { Item } from './index.style';
 import { IconColor, IconColorType } from './type';
 
@@ -20,7 +21,7 @@ export const selectedStyle = css`
 
 function SelectColor({ option, setOption }: Props) {
   return (
-    <>
+    <Background selectedNumber={option.background}>
       <Title>
         <h1>
           <span>최익</span>님의 박
@@ -41,7 +42,7 @@ function SelectColor({ option, setOption }: Props) {
           )
         )}
       </ChannelIconList>
-    </>
+    </Background>
   );
 }
 

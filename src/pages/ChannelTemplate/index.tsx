@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import SelectAccess from '@/components/ChannelTemplate/SelectAccess';
 import SelectBackground from '@/components/ChannelTemplate/SelectBackground';
 import SelectColor from '@/components/ChannelTemplate/SelectColor';
 import Button from '@/components/Common/Button';
@@ -36,7 +37,12 @@ function ChannelTemplate() {
         setOption={setChannelOption}
       />
     ),
-    2: <div></div>
+    2: (
+      <SelectAccess
+        option={channelOption}
+        setOption={setChannelOption}
+      />
+    )
   };
   const [phase, setPhase] = useState<number>(0);
 
