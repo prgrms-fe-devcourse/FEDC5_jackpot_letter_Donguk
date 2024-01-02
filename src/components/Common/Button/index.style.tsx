@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { buttonTypes, buttonSize } from './type';
+import { buttonSize, buttonTypes } from './type';
 
 export const ButtonStyle = styled.button<{
   disabled: boolean;
