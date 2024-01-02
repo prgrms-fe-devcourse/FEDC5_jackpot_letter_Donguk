@@ -136,5 +136,11 @@ const resetStyle = css`
     border-collapse: collapse;
     border-spacing: 0;
   }
+  a {
+    text-decoration-line: none;
+  }
+  input {
+    box-sizing: border-box;
+  }
 `;
 export default resetStyle;
