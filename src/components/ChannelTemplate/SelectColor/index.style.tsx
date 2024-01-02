@@ -11,9 +11,4 @@ export const Item = styled.div`
   width: 5.625rem;
   height: 5.625rem;
   border-radius: 10px;
-  &:hover {
-    width: calc(5.625rem - 7px);
-    height: calc(5.625rem - 7px);
-    border: 3px solid ${({ theme }) => theme.palette.main};
-  }
 `;

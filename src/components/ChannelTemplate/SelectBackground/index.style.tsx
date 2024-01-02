@@ -16,10 +16,4 @@ export const Item = styled.img`
   border-radius: 10px;
   object-fit: fill;
   box-shadow: 1px 1px 10px ${({ theme }) => theme.palette.gray_2};
-
-  &:hover {
-    width: calc(5.625rem - 7px);
-    height: calc(5.625rem - 7px);
-    border: 3px solid ${({ theme }) => theme.palette.main};
-  }
 `;
