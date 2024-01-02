@@ -1,4 +1,4 @@
-import reset from '@/styles/reset';
+import reset from '@/styles/_reset';
 import { theme } from '@/theme';
 import { Global, ThemeProvider } from '@emotion/react';
 import Footer from './Footer';
