@@ -11,7 +11,7 @@ import { ACCOUNT_SIGNUP_DATA } from '@/constants/account';
 import { SignUpSchema } from '@/utils/validation';
 import * as Style from './index.style';
 
-type InputValue = 'email' | 'password' | 'checkPassword';
+type InputValue = 'email' | 'password';
 type SignUpSchemaType = z.infer<typeof SignUpSchema>;
 
 function SignUpForm() {
@@ -38,9 +38,9 @@ function SignUpForm() {
           <Input
             width="7rem"
             label="이름(채널)"
-            value="name"
+            value="fullName"
             type="text"
-            color={errors.name && 'error'}
+            color={errors.fullName && 'error'}
             register={register}
             required
           />
@@ -57,7 +57,7 @@ function SignUpForm() {
         <Description text=" 현재 설정한 이름은 채널명으로 사용됩니다 :)" />
         <ErrorMessage
           errors={errors}
-          name="name"
+          name="fullName"
           render={({ message }) => (
             <Description
               color="error"
