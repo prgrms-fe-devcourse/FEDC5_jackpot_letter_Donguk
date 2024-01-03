@@ -9,7 +9,7 @@ import Account from '@/components/Account';
 import Description from '@/components/Account/Description';
 import Button from '@/components/Common/Button';
 import { useUserListQuery } from '@/hooks/api/useUserListQuery';
-import { ACCOUNT_SIGNUP_DATA } from '@/constants/account';
+import { ACCOUNT_DATA } from '@/constants/account';
 import { SignUpSchema } from '@/utils/validation';
 import * as Style from './index.style';
 
@@ -104,7 +104,7 @@ function SignUpForm() {
             )}
           />
 
-          {ACCOUNT_SIGNUP_DATA.map((data) => {
+          {ACCOUNT_DATA.map((data) => {
             const { id, label, value, type } = data;
             return (
               <React.Fragment key={id}>
