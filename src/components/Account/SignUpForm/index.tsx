@@ -139,20 +139,9 @@ function SignUpForm() {
             }}
           />
         </Style.Form>
-        <Toaster
-          toastOptions={{
-            style: { ...toastStyle }
-          }}
-        />
       </>
     </Account>
   );
 }
 
 export default SignUpForm;
-
-const toastStyle = {
-  fontWeight: 600,
-  padding: '0.75rem 1rem',
-  marginTop: '0.5rem'
-};
