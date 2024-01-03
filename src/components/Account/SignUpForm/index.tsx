@@ -8,6 +8,7 @@ import { z } from 'zod';
 import Account from '@/components/Account';
 import Description from '@/components/Account/Description';
 import Button from '@/components/Common/Button';
+import { useSignUpMutation } from '@/hooks/api/useSignUpMutation';
 import { useUserListQuery } from '@/hooks/api/useUserListQuery';
 import { ACCOUNT_DATA } from '@/constants/account';
 import { SignUpSchema } from '@/utils/validation';
@@ -24,12 +25,14 @@ function SignUpForm() {
     formState: { errors }
   } = useForm<SignUpSchemaType>({ resolver: zodResolver(SignUpSchema) });
   let isDuplicate = true;
+
+  const { mutateSignUp } = useSignUpMutation();
   const { data } = useUserListQuery();
 
-  const handleSignUpSubmit: SubmitHandler<SignUpSchemaType> = (data) => {
+  const handleSignUpSubmit: SubmitHandler<SignUpSchemaType> = (signUpData) => {
     if (isDuplicate) handleDuplicateNameError();
     else {
-      alert(JSON.stringify(data));
+      mutateSignUp(signUpData);
       toast.success('회원가입 성공!');
     }
   };

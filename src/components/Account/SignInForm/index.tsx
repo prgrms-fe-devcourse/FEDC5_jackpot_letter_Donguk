@@ -1,5 +1,8 @@
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Input from '@components/Common/Input';
 import { ErrorMessage } from '@hookform/error-message';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -7,7 +10,9 @@ import { z } from 'zod';
 import Account from '@/components/Account';
 import Description from '@/components/Account/Description';
 import Button from '@/components/Common/Button';
+import { useSignInMutation } from '@/hooks/api/useSignInMutation';
 import { ACCOUNT_DATA } from '@/constants/account';
+import { PATH } from '@/constants/path';
 import { SingInSchema } from '@/utils/validation';
 import * as Style from '../SignUpForm/index.style';
 
@@ -21,12 +26,16 @@ function SignInForm() {
     formState: { errors }
   } = useForm<SignInSchemaType>({ resolver: zodResolver(SingInSchema) });
 
-  const handleSignInSubmit: SubmitHandler<SignInSchemaType> = (data) => {
-    alert(JSON.stringify(data));
+  const { mutateSignIn } = useSignInMutation();
+  const navigate = useNavigate();
+
+  const handleSignInSubmit: SubmitHandler<SignInSchemaType> = (signInData) => {
+    mutateSignIn(signInData);
+    toast.success('로그인 성공!');
   };
 
   const startAnonymousExperience = () => {
-    alert('익명 체험');
+    navigate(PATH.ROOT);
   };
 
   return (
@@ -59,7 +68,10 @@ function SignInForm() {
           );
         })}
 
-        <Description text="계정이 없으시다면?" />
+        <Link to={PATH.SIGNUP}>
+          <Description text="계정이 없으시다면?" />
+        </Link>
+
         <Button
           content="로그인하기"
           type="submit"
@@ -83,5 +95,4 @@ function SignInForm() {
     </Account>
   );
 }
-
 export default SignInForm;
