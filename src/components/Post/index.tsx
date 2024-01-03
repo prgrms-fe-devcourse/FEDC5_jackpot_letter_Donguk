@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useForm } from 'react-hook-form';
+import { SubmitErrorHandler, useForm } from 'react-hook-form';
 import { Toaster } from 'react-hot-toast';
 import { toast } from 'react-hot-toast';
 import reset from '@/styles/_reset';
@@ -11,7 +11,7 @@ import Letter from './Letter';
 import Warning from './Warning';
 import * as Style from './index.style';
 
-interface useFormProps {
+export interface useFormProps {
   letterTitle: string;
   letterComment: string;
 }
@@ -35,15 +35,18 @@ function Post() {
     }
   });
 
-  const onSubmit = (data) => {
+  const onSubmit = (data: SubmitErrorHandler<useFormProps>) => {
     console.log('최종 데이터:', data);
   };
-  console.log(errors, isSubmitting);
 
   useEffect(() => {
     if (isSubmitting) {
-      errors.letterComment ? toast.error(errors.letterComment.message) : null;
-      errors.letterTitle ? toast.error(errors.letterTitle.message) : null;
+      errors.letterComment
+        ? toast.error(errors.letterComment.message as string)
+        : null;
+      errors.letterTitle
+        ? toast.error(errors.letterTitle.message as string)
+        : null;
     }
   }, [isSubmitting]);
 

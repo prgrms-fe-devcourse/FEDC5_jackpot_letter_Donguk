@@ -1,16 +1,14 @@
+import { UseFormReturn } from 'react-hook-form';
 import * as Style from './index.style';
 
 function Letter({ register }) {
   return (
     <Style.LetterContainer>
       <Style.LetterTitle
-        placeholder="작성자명을 입력하세요"
+        placeholder="작성자명을 입력하세요(최대 15자)"
+        maxLength={15}
         {...register('letterTitle', {
-          required: '작성자명은 반드시 입력해야합니다.',
-          maxLength: {
-            value: 20,
-            message: '작성자명은 20자 이하로 입력해주세요.'
-          }
+          required: '작성자명은 반드시 입력해야합니다.'
         })}
       />
       <Style.TitleUnderLine />
