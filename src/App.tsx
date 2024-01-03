@@ -1,4 +1,13 @@
 import { Toaster } from 'react-hot-toast';
+
+
+import { Route, Routes } from 'react-router-dom';
+import Button from './components/Common/Button';
+import SignIn from './components/Common/SignIn';
+import useModal from './hooks/useModal';
+import { authRoutes, userRoutes } from './route/AppRouter';
+import AuthMiddleware from './route/AuthMiddleware';
+import { theme } from './theme';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Post from '@components/Post';
 import Comment from '@components/PostComment';
