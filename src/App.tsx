@@ -1,23 +1,20 @@
 import { Toaster } from 'react-hot-toast';
-
-
-import { Route, Routes } from 'react-router-dom';
-import Button from './components/Common/Button';
-import SignIn from './components/Common/SignIn';
-import useModal from './hooks/useModal';
-import { authRoutes, userRoutes } from './route/AppRouter';
-import AuthMiddleware from './route/AuthMiddleware';
-import { theme } from './theme';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Post from '@components/Post';
 import Comment from '@components/PostComment';
+import Button from './components/Common/Button';
+import SignIn from './components/Common/SignIn';
 import PasswordUpdate from './components/Mypage/PasswordUpdate';
 import ProfileUpdate from './components/Mypage/ProfileUpdate';
+import useModal from './hooks/useModal';
 import CommentListPage from './pages/CommentListPage';
 import FollowPage from './pages/FollowPage';
 import LikeListPage from './pages/LikeListPage';
 import Mypage from './pages/Mypage';
 import PostListPage from './pages/PostListPage';
+import { authRoutes, userRoutes } from './route/AppRouter';
+import AuthMiddleware from './route/AuthMiddleware';
+import { theme } from './theme';
 
 function App() {
   const toastStyle = {

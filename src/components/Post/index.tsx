@@ -1,3 +1,7 @@
+import { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
+import { Toaster } from 'react-hot-toast';
+import { toast } from 'react-hot-toast';
 import reset from '@/styles/_reset';
 import { theme } from '@/theme';
 import { Global, ThemeProvider } from '@emotion/react';
@@ -7,7 +11,42 @@ import Letter from './Letter';
 import Warning from './Warning';
 import * as Style from './index.style';
 
+interface useFormProps {
+  letterTitle: string;
+  letterComment: string;
+}
+
 function Post() {
+  const toastStyle = {
+    fontWeight: 600,
+    padding: '0.75rem 1rem',
+    marginTop: '0.5rem'
+  };
+
+  const {
+    register,
+    formState: { errors, isSubmitting },
+    handleSubmit
+  } = useForm<useFormProps>({
+    mode: 'onSubmit',
+    defaultValues: {
+      letterTitle: '',
+      letterComment: ''
+    }
+  });
+
+  const onSubmit = (data) => {
+    console.log('최종 데이터:', data);
+  };
+  console.log(errors, isSubmitting);
+
+  useEffect(() => {
+    if (isSubmitting) {
+      errors.letterComment ? toast.error(errors.letterComment.message) : null;
+      errors.letterTitle ? toast.error(errors.letterTitle.message) : null;
+    }
+  }, [isSubmitting]);
+
   return (
     <>
       <ThemeProvider theme={theme}>
@@ -15,11 +54,19 @@ function Post() {
         <Style.PostContainer>
           <Header />
           <Style.GroudImage src="/src/assets/ShortLogo.svg" />
-          <Letter />
+          <Letter register={register} />
           <Warning />
-          <Footer />
+          <Style.Form onSubmit={handleSubmit(onSubmit)}>
+            <Footer />
+          </Style.Form>
         </Style.PostContainer>
       </ThemeProvider>
+      <Toaster
+        toastOptions={{
+          style: toastStyle,
+          duration: 1000
+        }}
+      />
     </>
   );
 }
