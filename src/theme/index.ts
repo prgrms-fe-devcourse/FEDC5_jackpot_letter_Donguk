@@ -15,6 +15,11 @@ const typography = {
     fontSize: '2rem', // 32px
     fontWeight: 900
   },
+  /** 포스트/댓글 페이지에서 사용하는 헤더 텍스트 */
+  postTitle: {
+    fontSize: '1.3rem',
+    fontWeight: 900
+  },
   title2: {
     fontSize: '1.5rem;', //24px
     lineHeight: '2rem' // 32px
@@ -25,6 +30,15 @@ const typography = {
   description: {
     fontSize: '0.68rem' // 11px
   },
+  //** 마이페이지에서 사용하는 프로젝트명 */
+  mypage_large: {
+    fontSize: '1.125rem', // 18px
+    fontWeight: 700
+  },
+  mypage_regular: {
+    fontSize: '0.875rem' // 14px
+  },
+  mypage_small: { fontSize: '0.75rem' }, // 12px
   description2: {
     fontSize: ' 0.875rem', // 14px
     fontWeight: 600
