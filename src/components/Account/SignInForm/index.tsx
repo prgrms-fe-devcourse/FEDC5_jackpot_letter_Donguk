@@ -7,9 +7,9 @@ import { z } from 'zod';
 import Account from '@/components/Account';
 import Description from '@/components/Account/Description';
 import Button from '@/components/Common/Button';
-import { ACCOUNT_SIGNIN_DATA } from '@/constants/account';
+import { ACCOUNT_DATA } from '@/constants/account';
 import { SingInSchema } from '@/utils/validation';
-import * as Style from '../SingUpForm/index.style';
+import * as Style from '../SignUpForm/index.style';
 
 type InputValue = 'email' | 'password';
 type SignInSchemaType = z.infer<typeof SingInSchema>;
@@ -33,7 +33,7 @@ function SignInForm() {
     <Account>
       <Style.Form onSubmit={handleSubmit(handleSignInSubmit)}>
         <Style.FormTitle>로그인</Style.FormTitle>
-        {ACCOUNT_SIGNIN_DATA.map((data) => {
+        {ACCOUNT_DATA.map((data) => {
           const { id, label, value, type } = data;
           return (
             <React.Fragment key={id}>

@@ -27,3 +27,11 @@ export const postSignIn = async (signInData: object) => {
   });
   return data;
 };
+
+export const getUserList = async () => {
+  const { data } = await axios.post<AuthenticationUser[]>('/api', {
+    method: 'GET',
+    url: END_POINTS.USER_LIST
+  });
+  return data;
+};
