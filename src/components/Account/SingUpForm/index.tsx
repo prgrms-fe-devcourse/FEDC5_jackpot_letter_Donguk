@@ -23,7 +23,6 @@ function SignUpForm() {
     getValues,
     formState: { errors }
   } = useForm<SignUpSchemaType>({ resolver: zodResolver(SignUpSchema) });
-  console.log(errors && errors);
 
   const handleSignUpSubmit: SubmitHandler<SignUpSchemaType> = (data) => {
     if (isDuplicate) handleDuplicateNameError();
