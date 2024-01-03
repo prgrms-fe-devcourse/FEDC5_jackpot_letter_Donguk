@@ -1,6 +1,6 @@
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import Input from '@components/Common/Input';
 import { ErrorMessage } from '@hookform/error-message';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -23,6 +23,8 @@ function SignUpForm() {
     getValues,
     formState: { errors }
   } = useForm<SignUpSchemaType>({ resolver: zodResolver(SignUpSchema) });
+  let isDuplicate = true;
+  const { data } = useUserListQuery();
 
   const handleSignUpSubmit: SubmitHandler<SignUpSchemaType> = (data) => {
     if (isDuplicate) handleDuplicateNameError();
@@ -31,11 +33,6 @@ function SignUpForm() {
       toast.success('회원가입 성공!');
     }
   };
-
-  const { data } = useUserListQuery();
-
-  // 이름 중복 확인
-  let isDuplicate = true;
 
   const checkForDuplicates = () => {
     const fullNameValue = getValues('fullName');
