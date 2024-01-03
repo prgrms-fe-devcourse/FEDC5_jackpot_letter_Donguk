@@ -33,6 +33,5 @@ export const getUserList = async () => {
     method: 'GET',
     url: END_POINTS.USER_LIST
   });
-  console.log(data);
   return data;
 };
