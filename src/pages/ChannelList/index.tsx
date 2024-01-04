@@ -21,13 +21,13 @@ function ChannelList() {
       </Header>
       <ChannelIconList>
         {channelList?.map((channel: Channel) => (
-          <Link to={`/channel/${channel.name}`}>
-            <div
-              key={`channel-${channel._id}`}
-              role="button">
+          <div
+            key={`channel-${channel._id}`}
+            role="button">
+            <Link to={`/channel/${channel.name}`}>
               <ChannelIcon channel={channel} />
-            </div>
-          </Link>
+            </Link>
+          </div>
         ))}
       </ChannelIconList>
     </>

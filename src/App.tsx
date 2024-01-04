@@ -28,7 +28,7 @@ function App() {
             element={<ChannelList />}
           />
           <Route
-            path="channel/:id"
+            path="channel/:channelId"
             element={<Channel />}
           />
           <Route

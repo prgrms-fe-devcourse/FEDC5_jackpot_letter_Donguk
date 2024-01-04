@@ -7,4 +7,13 @@ export const getChannelList = async () => {
   });
   return data;
 };
-// 다른 channel 요청
+
+export const getChannel = async (channelId: string) => {
+  const { data } = await axios.post('/api', {
+    method: 'GET',
+    url: `/channels/${channelId}`
+  });
+
+  console.log(data, 'tes', channelId);
+  return data;
+};
