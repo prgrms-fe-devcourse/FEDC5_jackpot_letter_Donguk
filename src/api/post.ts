@@ -10,3 +10,12 @@ export const getPost = async (postId: string) => {
 
   return data;
 };
+
+export const getAuthorPost = async (authorId: string) => {
+  const { data } = await axios.post<Post[]>('/api', {
+    method: 'GET',
+    url: `${END_POINTS.AUTHOR_POST_LIST}/${authorId}`
+  });
+
+  return data;
+};
