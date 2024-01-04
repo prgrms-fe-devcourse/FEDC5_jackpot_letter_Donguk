@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { Follow as FollowDefaultType } from '@/types/ResponseType';
+import { FollowType } from '@/types/ResponseType';
 import { css } from '@emotion/react';
 import FollowList from '../FollowList';
 import * as Style from './index.style';
@@ -7,10 +7,6 @@ import * as Style from './index.style';
 interface FollowProps {
   followers: FollowType[];
   followings: FollowType[];
-}
-
-interface FollowType extends FollowDefaultType {
-  image: string;
 }
 
 function Follow({ followers, followings }: FollowProps) {

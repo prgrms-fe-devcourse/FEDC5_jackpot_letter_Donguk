@@ -1,26 +1,28 @@
+import { useAtomValue } from 'jotai';
 import Follow from '@/components/Mypage/Follow';
+import useUserFollowList from '@/hooks/api/useUserFollowList';
+import { userAtom } from '@/store/user';
+import { FollowType } from '@/types/ResponseType';
 
 function FollowPage() {
-  const followListData = [
-    { _id: '1', image: '', user: '테스트1' },
-    { _id: '2', image: '', user: '테스트2' },
-    { _id: '3', image: '', user: '테스트3' },
-    { _id: '4', image: '', user: '테스트1' },
-    { _id: '5', image: '', user: '테스트2' },
-    { _id: '6', image: '', user: '테스트3' },
-    { _id: '7', image: '', user: '테스트1' },
-    { _id: '8', image: '', user: '테스트2' },
-    { _id: '9', image: '', user: '테스트3' },
-    { _id: '10', image: '', user: '테스트1' },
-    { _id: '11', image: '', user: '테스트2' },
-    { _id: '12', image: '', user: '테스트3' }
-  ];
+  const userData = useAtomValue(userAtom);
+
+  const followings = useUserFollowList(userData.following, 'followings');
+  const followers = useUserFollowList(userData.followers, 'followers');
 
   return (
     <>
       <Follow
-        followers={followListData}
-        followings={followListData}
+        followers={
+          !followings.pending && followings.data.length
+            ? (followings.data as FollowType[])
+            : []
+        }
+        followings={
+          !followers.pending && followers.data.length
+            ? (followers.data as FollowType[])
+            : []
+        }
       />
     </>
   );

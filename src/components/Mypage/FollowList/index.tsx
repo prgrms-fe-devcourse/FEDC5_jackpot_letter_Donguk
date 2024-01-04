@@ -8,25 +8,26 @@ interface FollowListProps {
 }
 
 interface FollowType extends FollowDefaultType {
-  image: string;
+  name: string;
+  image?: string;
 }
 
 function FollowList({ type, followList }: FollowListProps) {
   return (
     <Style.Container>
       <Style.FollowItemList>
-        {followList.map(({ image, user, _id }) => (
+        {followList.map(({ image, name, _id }) => (
           <li
             className="follow-item"
             key={_id}
           >
             <ProfileImg
-              image={image}
+              image={image ?? ''}
               alt="user profile image"
               width={2.5}
               height={2.5}
             />
-            <span>{user}</span>
+            <span>{name}</span>
             <button>{type === 'follower' ? '삭제' : '팔로잉'}</button>
           </li>
         ))}
