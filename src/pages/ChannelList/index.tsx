@@ -1,8 +1,11 @@
+import useChannelListQuery from '@/hooks/api/useChannelListQuery';
 import ChannelImg from '@/assets/channelWithLongLine.svg';
+import { Channel } from '@/types/ResponseType';
 import ChannelIcon from '../../components/ChannelList/ChannelIcon';
 import { ChannelIconList, Header, Title } from './index.style';
 
 function ChannelList() {
+  const { data: channelList } = useChannelListQuery();
   return (
     <>
       <Header>
@@ -16,12 +19,11 @@ function ChannelList() {
         />
       </Header>
       <ChannelIconList>
-        {[1, 2, 3, 4, 5].map((index) => (
+        {channelList?.map((channel: Channel) => (
           <div
-            key={`channel-${index}`}
-            role="button"
-          >
-            <ChannelIcon />
+            key={`channel-${channel._id}`}
+            role="button">
+            <ChannelIcon channel={channel} />
           </div>
         ))}
       </ChannelIconList>
