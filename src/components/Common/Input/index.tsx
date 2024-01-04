@@ -1,5 +1,5 @@
 import { FieldValues, Path, UseFormRegister } from 'react-hook-form';
-import { InputContainer, Label, StyledInput } from './index.style';
+import * as Style from './index.style';
 
 interface InputProps<T extends FieldValues> {
   width?: string;
@@ -23,16 +23,16 @@ function Input<T extends FieldValues>({
   required
 }: InputProps<T>) {
   return (
-    <InputContainer>
-      <Label>{label}</Label>
-      <StyledInput
+    <Style.InputContainer>
+      <Style.Label>{label}</Style.Label>
+      <Style.StyledInput
         width={width}
         height={height}
         color={color}
         {...register(value, { required })}
         type={type}
       />
-    </InputContainer>
+    </Style.InputContainer>
   );
 }
 

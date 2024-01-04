@@ -15,6 +15,12 @@ export const Form = styled.form`
   margin-top: 1.25rem;
   padding: 1.25rem;
   gap: 0.6rem;
+
+  a {
+    text-decoration: none;
+    color: ${(props) => props.theme.palette.gray_1};
+    align-self: flex-start;
+  }
 `;
 
 // 회원가입, 로그인에서 공통 사용

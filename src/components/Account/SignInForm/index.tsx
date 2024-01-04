@@ -50,6 +50,8 @@ function SignInForm() {
                 label={label}
                 value={value as InputValue}
                 type={type}
+                height="2.47rem"
+                width="17.5rem"
                 color={errors[value as InputValue] && 'error'}
                 register={register}
                 required

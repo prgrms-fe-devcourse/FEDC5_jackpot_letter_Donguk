@@ -74,10 +74,11 @@ function SignUpForm() {
           <Style.FormTitle>회원가입</Style.FormTitle>
           <Style.InputName>
             <Input
-              width="7rem"
+              width="9.5rem"
               label="이름(채널)"
               value="fullName"
               type="text"
+              height="2.47rem"
               color={errors.fullName && 'error'}
               register={register}
               required
@@ -112,6 +113,8 @@ function SignUpForm() {
                   label={label}
                   value={value as InputValue}
                   type={type}
+                  height="2.47rem"
+                  width="17.5rem"
                   color={errors[value as InputValue] && 'error'}
                   register={register}
                   required
@@ -130,7 +133,7 @@ function SignUpForm() {
             );
           })}
           <Button
-            content="로그인하기"
+            content="회원가입하기"
             type="submit"
             onClick={handleSubmit(handleSignUpSubmit)}
             styleOption={{
