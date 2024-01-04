@@ -6,6 +6,8 @@ export const CadidateContainer = styled.div`
   margin: auto;
   & > span {
     ${({ theme }) => theme.typography.description2};
+    color: white;
+    opacity: 50%;
   }
   & > div {
     margin: 1rem 0;

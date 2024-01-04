@@ -2,7 +2,6 @@ import { useQuery } from '@tanstack/react-query';
 import { getChannel } from '@/api/channel';
 
 const useChannelQuery = (channelId: string) => {
-  console.log(channelId);
   return useQuery({
     queryKey: ['channel'],
     queryFn: () => getChannel(channelId)

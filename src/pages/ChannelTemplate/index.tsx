@@ -3,6 +3,7 @@ import SelectAccess from '@/components/ChannelTemplate/SelectAccess';
 import SelectBackground from '@/components/ChannelTemplate/SelectBackground';
 import SelectColor from '@/components/ChannelTemplate/SelectColor';
 import Button from '@/components/Common/Button';
+import { useNewChannel } from '@/hooks/api/useNewChannel';
 import { ChannelButton } from './index.style';
 
 export interface ChannelOptionType {
@@ -23,7 +24,7 @@ function ChannelTemplate() {
     allowViewAll: true,
     allowWriteAll: true
   });
-
+  const { mutateNewChannel } = useNewChannel();
   const PhaseInfo: PhaseType = {
     0: (
       <SelectBackground
@@ -57,8 +58,15 @@ function ChannelTemplate() {
           size="sm"
         />
         <Button
-          content="생성하기"
-          onClick={() => setPhase(phase + 1)}
+          content={phase === 2 ? '생성하기' : '다음'}
+          onClick={() =>
+            phase === 2
+              ? mutateNewChannel({
+                  name: 'test2',
+                  detail: channelOption
+                })
+              : setPhase(phase + 1)
+          }
           kind={'primary'}
           size="lg"
         />

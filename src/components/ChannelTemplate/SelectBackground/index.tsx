@@ -8,6 +8,7 @@ interface Props {
   option: ChannelOptionType;
   setOption: Dispatch<SetStateAction<ChannelOptionType>>;
 }
+
 function SelectBackground({ option, setOption }: Props) {
   return (
     <Background selectedNumber={option.background}>
@@ -22,7 +23,7 @@ function SelectBackground({ option, setOption }: Props) {
           <div key={`channel-background${index}`}>
             <Item
               css={option.background === index && selectedStyle}
-              src={`src/assets/background/background${index}.png`}
+              src={`/src/assets/background/background${index}.png`}
               alt="background-img"
               onClick={() => setOption({ ...option, background: index })}
             />
