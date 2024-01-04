@@ -4,6 +4,7 @@ import Post from '@components/Post';
 import Comment from '@components/PostComment';
 import PasswordUpdate from './components/Mypage/PasswordUpdate';
 import ProfileUpdate from './components/Mypage/ProfileUpdate';
+import Channel from './pages/Channel';
 import ChannelList from './pages/ChannelList';
 import CommentListPage from './pages/CommentListPage';
 import FollowPage from './pages/FollowPage';
@@ -25,6 +26,10 @@ function App() {
           <Route
             path="/"
             element={<ChannelList />}
+          />
+          <Route
+            path="channel/:id"
+            element={<Channel />}
           />
           <Route
             path="/post"

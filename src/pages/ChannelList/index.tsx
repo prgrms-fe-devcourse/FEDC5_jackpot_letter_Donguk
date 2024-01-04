@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import useChannelListQuery from '@/hooks/api/useChannelListQuery';
 import ChannelImg from '@/assets/channelWithLongLine.svg';
 import { Channel } from '@/types/ResponseType';
@@ -20,11 +21,13 @@ function ChannelList() {
       </Header>
       <ChannelIconList>
         {channelList?.map((channel: Channel) => (
-          <div
-            key={`channel-${channel._id}`}
-            role="button">
-            <ChannelIcon channel={channel} />
-          </div>
+          <Link to={`/channel/${channel.name}`}>
+            <div
+              key={`channel-${channel._id}`}
+              role="button">
+              <ChannelIcon channel={channel} />
+            </div>
+          </Link>
         ))}
       </ChannelIconList>
     </>

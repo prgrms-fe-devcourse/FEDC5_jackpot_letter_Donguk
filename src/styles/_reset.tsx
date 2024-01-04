@@ -138,6 +138,7 @@ const resetStyle = css`
   }
   a {
     text-decoration-line: none;
+    color: white;
   }
   input {
     box-sizing: border-box;
