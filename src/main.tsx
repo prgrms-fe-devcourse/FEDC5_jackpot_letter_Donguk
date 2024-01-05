@@ -7,6 +7,7 @@ import { Global, ThemeProvider } from '@emotion/react';
 import reset from './styles/_reset';
 import global from './styles/global';
 import { theme } from './theme';
+import { BrowserRouter } from 'react-router-dom';
 
 const queryClient = new QueryClient();
 
@@ -15,9 +16,11 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <ReactQueryDevtools initialIsOpen={true} />
     <ThemeProvider theme={theme}>
       <Global styles={[reset, global]} />
+      <BrowserRouter>
       <React.StrictMode>
         <App />
       </React.StrictMode>
+      </BrowserRouter>
     </ThemeProvider>
   </QueryClientProvider>
 );
