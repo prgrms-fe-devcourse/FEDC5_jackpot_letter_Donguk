@@ -7,8 +7,9 @@ interface RequestType {
   headers?: {
     Authorization: string;
   };
-  data?: string | { [key: string]: string };
   params: string;
+  data?: object;
+  headers?: Record<string, string>;
 }
 
 const axiosInstance = axios.create({
@@ -16,14 +17,14 @@ const axiosInstance = axios.create({
 });
 
 export default async function request(req: VercelRequest, res: VercelResponse) {
-  const { method, url, headers, data } = req.body as RequestType;
-  console.log(method, url);
+
+  const { method, url, data, headers } = req.body as RequestType;
   try {
     const { data: responseData } = await axiosInstance({
       method,
       url,
-      headers,
-      data
+      data,
+      headers
     });
     res.status(200).json(responseData);
   } catch (error) {
