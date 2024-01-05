@@ -3,7 +3,7 @@ import { getChannel } from '@/api/channel';
 
 const useChannelQuery = (channelId: string) => {
   return useQuery({
-    queryKey: ['channel'],
+    queryKey: ['channel', channelId],
     queryFn: () => getChannel(channelId)
   });
 };
