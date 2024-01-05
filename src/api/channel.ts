@@ -24,7 +24,10 @@ export const createChannel = async (channelOption: MutationProps) => {
   const { data: adminLogin } = await axios.post('/api', {
     method: 'POST',
     url: END_POINTS.SIGNIN,
-    data: { email: 'admin@programmers.co.kr', password: 'programmers' }
+    data: {
+      email: process.env.ADMIN_EMAIL,
+      password: process.env.ADMIN_PASSWORD
+    }
   });
 
   if (!adminLogin)
