@@ -1,8 +1,9 @@
 import { Dispatch, SetStateAction } from 'react';
 import CustomChannelIcon from '@/components/Common/CustomChannelIcon';
 import { ChannelIconList, Title } from '@/pages/ChannelList/index.style.tsx';
-import { ChannelOptionType } from '@/pages/ChannelTemplate';
+import { channelNameAtom } from '@/store/auth';
 import { theme } from '@/theme';
+import { ChannelOptionType } from '@/types/channel';
 import { css } from '@emotion/react';
 import { Background } from '../SelectBackground/index.style';
 import { Item } from './index.style';
@@ -35,8 +36,7 @@ function SelectColor({ option, setOption }: Props) {
               role="button"
               key={`channel-color${index}`}
               css={option.color === index && selectedStyle}
-              onClick={() => setOption({ ...option, color: index })}
-            >
+              onClick={() => setOption({ ...option, color: index })}>
               <CustomChannelIcon color={IconColor[color]} />
             </Item>
           )

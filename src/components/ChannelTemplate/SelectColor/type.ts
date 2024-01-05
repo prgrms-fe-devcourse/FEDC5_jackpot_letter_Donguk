@@ -2,7 +2,7 @@ export type IconColorType = {
   [key in colorType]: string;
 };
 
-type colorType =
+export type colorType =
   | 'red'
   | 'orange'
   | 'yellow'

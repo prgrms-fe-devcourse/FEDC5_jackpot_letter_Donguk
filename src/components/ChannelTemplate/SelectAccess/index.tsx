@@ -1,7 +1,8 @@
 import { Dispatch, SetStateAction } from 'react';
 import AccessCandidate from '@/components/ChannelTemplate/AccessCandidate';
 import { Title } from '@/pages/ChannelList/index.style.tsx';
-import { ChannelOptionType } from '@/pages/ChannelTemplate';
+import { channelNameAtom } from '@/store/auth';
+import { ChannelOptionType } from '@/types/channel';
 import { Background } from '../SelectBackground/index.style';
 import { CadidateContainer } from './index.style';
 

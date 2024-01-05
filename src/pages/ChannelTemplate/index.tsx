@@ -3,14 +3,10 @@ import SelectAccess from '@/components/ChannelTemplate/SelectAccess';
 import SelectBackground from '@/components/ChannelTemplate/SelectBackground';
 import SelectColor from '@/components/ChannelTemplate/SelectColor';
 import Button from '@/components/Common/Button';
+import { useNewChannel } from '@/hooks/api/useNewChannel';
+import { channelNameAtom } from '@/store/auth';
+import { ChannelOptionType } from '@/types/channel';
 import { ChannelButton } from './index.style';
-
-export interface ChannelOptionType {
-  background: number;
-  color: number;
-  allowViewAll: boolean;
-  allowWriteAll: boolean;
-}
 
 interface PhaseType {
   [key: number]: React.ReactElement;
@@ -24,6 +20,7 @@ function ChannelTemplate() {
     allowWriteAll: true
   });
 
+  const { mutateNewChannel } = useNewChannel();
   const PhaseInfo: PhaseType = {
     0: (
       <SelectBackground
@@ -46,6 +43,17 @@ function ChannelTemplate() {
   };
   const [phase, setPhase] = useState<number>(0);
 
+  const isSubmit = phase === 2;
+
+  const handleNextButtonClick = () => {
+    isSubmit
+      ? mutateNewChannel({
+          name: `${channelName}v4`,
+          description: JSON.stringify(channelOption)
+        })
+      : setPhase(phase + 1);
+  };
+
   return (
     <div>
       <div>{PhaseInfo[phase]}</div>
@@ -57,8 +65,8 @@ function ChannelTemplate() {
           size="sm"
         />
         <Button
-          content="생성하기"
-          onClick={() => setPhase(phase + 1)}
+          content={isSubmit ? '생성하기' : '다음'}
+          onClick={handleNextButtonClick}
           kind={'primary'}
           size="lg"
         />

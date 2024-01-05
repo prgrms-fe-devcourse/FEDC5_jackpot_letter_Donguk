@@ -4,7 +4,7 @@ export const Background = styled.div<{ selectedNumber: number }>`
   width: 100vw;
   height: 100vh;
   background-image: ${({ selectedNumber }) =>
-    `url("src/assets/background/background${selectedNumber}.png")`};
+    `url("/src/assets/background/background${selectedNumber}.png")`};
   background-repeat: no-repeat;
   background-size: cover;
 `;

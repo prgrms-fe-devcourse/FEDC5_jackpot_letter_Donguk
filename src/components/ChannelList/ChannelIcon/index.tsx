@@ -1,14 +1,18 @@
-import ChannelImg from '@/assets/channel.svg';
+import CustomChannelIcon from '@/components/Common/CustomChannelIcon';
+import { Channel } from '@/types/ResponseType';
+import { parsedColor } from '@/utils/parse';
 import { ChannelIconContainer } from './index.style';
 
-function ChannelIcon() {
+interface Prop {
+  channel: Channel;
+}
+
+function ChannelIcon({ channel }: Prop) {
+  const { name, description } = channel;
   return (
     <ChannelIconContainer>
-      <img
-        src={ChannelImg}
-        alt="channel-button"
-      />
-      <span>세인</span>
+      <CustomChannelIcon color={parsedColor(description)} />
+      <span>{name}</span>
     </ChannelIconContainer>
   );
 }
