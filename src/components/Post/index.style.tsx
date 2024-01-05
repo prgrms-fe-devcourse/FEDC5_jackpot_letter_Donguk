@@ -13,3 +13,10 @@ export const GroudImage = styled.img`
   position: absolute;
   right: 3rem;
 `;
+
+export const Form = styled.form`
+  position: absolute;
+  width: 19.375rem;
+  height: 5.125rem;
+  bottom: 0;
+`;

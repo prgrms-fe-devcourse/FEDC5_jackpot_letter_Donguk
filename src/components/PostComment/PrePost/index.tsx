@@ -46,6 +46,15 @@ function PrePost() {
     }
   ]);
 
+  const [likeCount, setLikeCount] = useState(0);
+
+  const handleLikeCountClick = () => {
+    setLikeCount((count) => (count === 0 ? 1 : 0));
+  };
+
+  console.log('커밋을 위한 임시 출력', setTemporaryContent);
+
+
   return (
     <>
       <Style.PrePostAndCommentContainer>
@@ -55,9 +64,9 @@ function PrePost() {
           <Style.PrePostContent>기본 내용</Style.PrePostContent>
         </Style.PrePostContainer>
         <Style.LikeCommentContainer>
-          <Style.LikeLogoContainer>
+          <Style.LikeLogoContainer onClick={handleLikeCountClick}>
             <Style.LikeLogo src="/src/assets/Like.svg" />
-            <Style.ListCount>1</Style.ListCount>
+            <Style.ListCount>{likeCount}</Style.ListCount>
           </Style.LikeLogoContainer>
           <Style.CommentCountText>
             총{' '}

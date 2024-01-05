@@ -23,6 +23,7 @@ function Footer() {
           }}
         />
         <Button
+          type="submit"
           size="lg"
           content="답장 남기기"
           styleOption={{
