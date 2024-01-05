@@ -1,5 +1,4 @@
 import { Toaster } from 'react-hot-toast';
-
 import { Route, Routes } from 'react-router-dom';
 import SignIn from '@components/Common/SignIn';
 import { authRoutes, commonRoutes, userRoutes } from './route/AppRouter';
@@ -17,7 +16,6 @@ function App() {
       <Routes>
         {authRoutes.map((route, idx) => (
           <Route
-
             path={route.path}
             element={<SignIn>{route.component}</SignIn>}
             key={idx}></Route>
