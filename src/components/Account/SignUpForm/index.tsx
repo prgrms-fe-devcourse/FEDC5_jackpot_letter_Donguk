@@ -8,6 +8,7 @@ import { z } from 'zod';
 import Account from '@/components/Account';
 import Description from '@/components/Account/Description';
 import Button from '@/components/Common/Button';
+import { useSignUpMutation } from '@/hooks/api/useSignUpMutation';
 import { useUserListQuery } from '@/hooks/api/useUserListQuery';
 import { ACCOUNT_DATA } from '@/constants/account';
 import { SignUpSchema } from '@/utils/validation';
@@ -24,12 +25,14 @@ function SignUpForm() {
     formState: { errors }
   } = useForm<SignUpSchemaType>({ resolver: zodResolver(SignUpSchema) });
   let isDuplicate = true;
+
+  const { mutateSignUp } = useSignUpMutation();
   const { data } = useUserListQuery();
 
-  const handleSignUpSubmit: SubmitHandler<SignUpSchemaType> = (data) => {
+  const handleSignUpSubmit: SubmitHandler<SignUpSchemaType> = (signUpData) => {
     if (isDuplicate) handleDuplicateNameError();
     else {
-      alert(JSON.stringify(data));
+      mutateSignUp(signUpData);
       toast.success('회원가입 성공!');
     }
   };
@@ -71,10 +74,11 @@ function SignUpForm() {
           <Style.FormTitle>회원가입</Style.FormTitle>
           <Style.InputName>
             <Input
-              width="7rem"
+              width="9.5rem"
               label="이름(채널)"
               value="fullName"
               type="text"
+              height="2.47rem"
               color={errors.fullName && 'error'}
               register={register}
               required
@@ -109,6 +113,8 @@ function SignUpForm() {
                   label={label}
                   value={value as InputValue}
                   type={type}
+                  height="2.47rem"
+                  width="17.5rem"
                   color={errors[value as InputValue] && 'error'}
                   register={register}
                   required
@@ -127,7 +133,7 @@ function SignUpForm() {
             );
           })}
           <Button
-            content="로그인하기"
+            content="회원가입하기"
             type="submit"
             onClick={handleSubmit(handleSignUpSubmit)}
             styleOption={{
