@@ -1,8 +1,8 @@
-export type IconColorType = {
-  [key in colorType]: string;
+export type ColorWithValue = {
+  [key in ColorName]: string;
 };
 
-export type colorType =
+export type ColorName =
   | 'red'
   | 'orange'
   | 'yellow'
@@ -13,7 +13,7 @@ export type colorType =
   | 'pink'
   | 'white';
 
-export const IconColor: IconColorType = {
+export const ColorType: ColorWithValue = {
   red: '#FCA5A5',
   orange: '#FDBA74',
   yellow: '#FDE047',

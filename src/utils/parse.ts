@@ -1,20 +1,20 @@
-import {
-  IconColor,
-  colorType
-} from '@/components/ChannelTemplate/SelectColor/type';
+import { BgType } from '@/components/ChannelTemplate/SelectBackground/type';
+import { ColorType } from '@/components/ChannelTemplate/SelectColor/type';
 
 const parsedDescription = (description: string) => {
-  let result;
-  if (description && description.split('')[1] === '"') {
-    result = JSON.parse(description);
+  try {
+    return JSON.parse(description);
+  } catch (e) {
+    return undefined;
   }
-  return result;
 };
+
 export const parsedColor = (description: string) => {
-  const color = parsedDescription(description)?.color;
-  const parsedString = Object.keys(IconColor)[color ?? 0] as colorType;
-  return IconColor[`${parsedString}`];
+  const parsedColor = parsedDescription(description)?.color;
+
+  if (!parsedColor || typeof parsedColor === 'number') return ColorType.orange;
+  return parsedColor;
 };
 export const parsedBackground = (description: string) => {
-  return parsedDescription(description)?.background ?? 0;
+  return parsedDescription(description)?.background ?? BgType.original;
 };

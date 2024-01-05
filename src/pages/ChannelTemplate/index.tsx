@@ -17,8 +17,8 @@ function ChannelTemplate() {
   const channelName = useAtomValue(channelNameAtom);
 
   const [channelOption, setChannelOption] = useState<ChannelOptionType>({
-    background: 0,
-    color: 0,
+    background: 'original',
+    color: 'red',
     allowViewAll: true,
     allowWriteAll: true
   });
@@ -50,7 +50,7 @@ function ChannelTemplate() {
   const handleNextButtonClick = () => {
     isSubmit
       ? mutateNewChannel({
-          name: `${channelName}v4`,
+          name: `${channelName}v5`,
           description: JSON.stringify(channelOption)
         })
       : setPhase(phase + 1);

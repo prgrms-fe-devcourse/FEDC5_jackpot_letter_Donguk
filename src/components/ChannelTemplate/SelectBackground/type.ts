@@ -1,10 +1,8 @@
-export type IconColorType = {
-  [key in BackgroundType]: {
-    mode: 'dark' | 'white';
-  };
+export type BgwithMode = {
+  [key in BgName]: 'dark' | 'light';
 };
 
-export type BackgroundType =
+export type BgName =
   | 'mountain'
   | 'mountain2'
   | 'mountain3'
@@ -15,32 +13,14 @@ export type BackgroundType =
   | 'per'
   | 'original';
 
-export const BackgroundColor: BackgroundType = {
-  mountain: {
-    mode: 'light'
-  },
-  mountain2: {
-    mode: 'light'
-  },
-  mountain3: {
-    mode: 'dark'
-  },
-  gradation: {
-    mode: 'light'
-  },
-  see: {
-    mode: 'dark'
-  },
-  paper: {
-    mode: 'light'
-  },
-  paper2: {
-    mode: 'light'
-  },
-  per: {
-    mode: 'dark'
-  },
-  original: {
-    mode: 'dark'
-  }
+export const BgType: BgwithMode = {
+  mountain: 'light',
+  mountain2: 'light',
+  mountain3: 'dark',
+  gradation: 'light',
+  see: 'dark',
+  paper: 'light',
+  paper2: 'light',
+  per: 'dark',
+  original: 'dark'
 };

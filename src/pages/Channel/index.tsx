@@ -32,7 +32,7 @@ function Channel() {
 
   return (
     <Background
-      selectedNumber={data.description && parsedBackground(data.description)}>
+      selectedValue={data.description && parsedBackground(data.description)}>
       <Title>
         <h1>
           <span>{data.name}</span>님의 박
