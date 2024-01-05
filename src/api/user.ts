@@ -21,3 +21,14 @@ export const updateUser = async <T>(fullName: string, headers: T) => {
 
   return data;
 };
+
+export const updatePassword = async <T>(password: string, headers: T) => {
+  const { data } = await axios.post<User>('/api', {
+    method: 'PUT',
+    url: `${END_POINTS.UPDATE_USER}`,
+    data: { password },
+    headers
+  });
+
+  return data;
+};
