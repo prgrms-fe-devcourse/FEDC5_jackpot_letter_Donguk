@@ -7,6 +7,7 @@ function CustomChannelIcon({ tail = false, color, size = 80 }: Prop) {
   return (
     <svg
       width={size}
+      opacity="50%"
       height={tail ? size + 100 : size}
       viewBox="0 0 233 340"
       fill="none"

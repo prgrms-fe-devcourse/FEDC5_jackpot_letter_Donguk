@@ -1,8 +1,4 @@
 import { useParams } from 'react-router-dom';
-import {
-  ColorName,
-  ColorType
-} from '@/components/ChannelTemplate/SelectColor/type';
 import CustomChannelIcon from '@/components/Common/CustomChannelIcon';
 import useChannelQuery from '@/hooks/api/useChannelQuery';
 import PointerImg from '@/assets/Pointer.svg';
