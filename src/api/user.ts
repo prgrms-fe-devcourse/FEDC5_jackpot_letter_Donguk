@@ -10,3 +10,14 @@ export const getUser = async (userId: string) => {
 
   return data;
 };
+
+export const updateUser = async <T>(fullName: string, headers: T) => {
+  const { data } = await axios.post<User>('/api', {
+    method: 'PUT',
+    url: `${END_POINTS.UPDATE_USER}`,
+    data: { fullName },
+    headers
+  });
+
+  return data;
+};

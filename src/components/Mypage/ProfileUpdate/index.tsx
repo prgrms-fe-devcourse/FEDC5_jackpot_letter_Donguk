@@ -3,6 +3,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import Button from '@/components/Common/Button';
 import Input from '@/components/Common/Input';
+import useUpdateUser from '@/hooks/api/useUpdateUser';
 import { theme } from '@/theme';
 import ProfileImg from '../ProfileImg';
 import * as Style from './index.style';
@@ -26,8 +27,10 @@ function ProfileUpdate() {
     resolver: zodResolver(registerSchema)
   });
 
+  const mutation = useUpdateUser();
+
   const handleNameSubmit: SubmitHandler<FormValue> = (data) => {
-    console.log(data);
+    mutation.mutate(data.name);
   };
 
   return (
@@ -80,9 +83,9 @@ function ProfileUpdate() {
             required
           />
           {errors.name && (
-            <span className="warning-text">
+            <p className="warning-text">
               이름은 2자 이상 16자 이하로 입력해주세요
-            </span>
+            </p>
           )}
         </div>
         <Button
