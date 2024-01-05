@@ -5,7 +5,7 @@ import { END_POINTS } from '@/constants/api';
 export const getChannelList = async () => {
   const { data } = await axios.post('/api', {
     method: 'GET',
-    url: '/channels'
+    url: END_POINTS.CHANNEL
   });
   return data;
 };
@@ -13,7 +13,7 @@ export const getChannelList = async () => {
 export const getChannel = async (channelId: string) => {
   const { data } = await axios.post('/api', {
     method: 'GET',
-    url: `/channels/${channelId}`
+    url: `${END_POINTS.CHANNEL}/${channelId}`
   });
 
   return data;
@@ -22,7 +22,7 @@ export const getChannel = async (channelId: string) => {
 export const createChannel = async (channelOption: object) => {
   const { data: adminLogin } = await axios.post('/api', {
     method: 'POST',
-    url: 'login',
+    url: END_POINTS.SIGNIN,
     data: { email: 'admin@programmers.co.kr', password: 'programmers' }
   });
 

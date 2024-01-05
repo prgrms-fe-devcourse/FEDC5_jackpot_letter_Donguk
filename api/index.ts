@@ -4,7 +4,7 @@ import axios from 'axios';
 interface RequestType {
   method: 'GET' | 'POST';
   url: string;
-  data?: object;
+  data?: [key: string];
   headers?: Record<string, string>;
 }
 
