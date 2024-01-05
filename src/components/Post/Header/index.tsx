@@ -3,7 +3,7 @@ import * as Style from './index.style';
 
 function Header() {
   const [userName, setUserName] = useState('최익');
-  console.log('커밋을 위한 임시 출력', setUserName);
+  console.log(setUserName);
   return (
     <>
       <Style.HeaderContainer>

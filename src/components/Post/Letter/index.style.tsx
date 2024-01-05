@@ -32,7 +32,7 @@ export const LetterTitle = styled.textarea`
   height: 40px;
   font-size: 1rem;
   font-weight: 500;
-  padding: 1rem 3rem 0 1rem;
+  padding: 1rem 3rem 0 0.5rem;
 `;
 
 export const TitleUnderLine = styled.div`

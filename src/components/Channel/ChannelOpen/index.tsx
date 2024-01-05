@@ -1,14 +1,17 @@
+import { useNavigate } from 'react-router-dom';
 import Button from '@/components/Common/Button';
 import OpenChannelImg from '@/assets/OpenChannel.svg';
 import { ChannelButton, OpenIcon } from './index.style';
 
 function ChannelOpen() {
+  const navigate = useNavigate();
   return (
     <>
       <OpenIcon
         src={OpenChannelImg}
         alt="OpenChannel-img"
       />
+      {/* post 위치 */}
       <ChannelButton>
         <Button
           onClick={() => console.log('포스트 페이지 전환')}
@@ -17,7 +20,7 @@ function ChannelOpen() {
           kind={'assistant'}
         />
         <Button
-          onClick={() => console.log('생성 페이지 전환')}
+          onClick={() => navigate('/channel/new')}
           content="나도 만들기"
           size="md"
         />

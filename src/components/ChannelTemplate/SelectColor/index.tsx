@@ -13,7 +13,7 @@ interface Props {
   setOption: Dispatch<SetStateAction<ChannelOptionType>>;
 }
 
-export const selectedStyle = css`
+const selectedStyle = css`
   width: calc(5.625rem - 7px);
   height: calc(5.625rem - 7px);
   border: 3px solid ${theme.palette.main};

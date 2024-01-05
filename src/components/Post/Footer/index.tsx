@@ -15,6 +15,7 @@ function Footer() {
       <Style.FooterContainer>
         <Button
           onClick={goBackPage}
+          type="button"
           size="sm"
           content="이전"
           styleOption={{
@@ -25,10 +26,12 @@ function Footer() {
         />
         <Button
           size="lg"
+          type="submit"
           content="메시지 남기기"
           styleOption={{
             height: '2.5625rem'
           }}
+          // onClick={handleSubmit(onSubmit)}
         />
       </Style.FooterContainer>
     </>

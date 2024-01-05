@@ -8,9 +8,21 @@ export const END_POINTS = {
   POSTS: '/posts',
   UPLOAD_PHOTO: '/users/upload-photo',
   UPDATE_USER: '/settings/update-user',
-  UPDATE_PASSWORD: '/settings/update-password'
+  UPDATE_PASSWORD: '/settings/update-password',
+  POST_CREATE: '/posts/create',
+  /** postId 필요 */
+  POST_UPDATE: '/posts/update',
+  POST_DELETE: '/posts/delete',
+  POST_LIKE_CREATE: '/likes/create',
+  POST_LIKE_DELETE: '/likes/delete',
+  POST_COMMENT_CREATE: './comments/create',
+  POST_COMMENT_DELETE: '/comments/delete',
+  CREATE_CHANNEL: '/channels/create',
+  CHANNEL: '/channels'
 };
 
 export const ACCESS_TOKEN_KEY = 'ACCESS_TOKEN';
 
 export const ACCESS_USER_ID = 'ACCESS_USER_ID';
+
+export const ACCESS_CHANNEL_NAME = 'ACCESS_CHANNEL_NAME';
