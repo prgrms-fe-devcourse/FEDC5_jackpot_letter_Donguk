@@ -1,5 +1,7 @@
 export const PATH = {
   ROOT: '/',
+  CHANNEL: '/channel',
+  CHANNEL_CREATE: '/channel/new',
   SIGNIN: '/signin',
   SIGNUP: '/signup',
   MYPAGE: '/mypage',
