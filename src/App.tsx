@@ -1,17 +1,8 @@
 import { Toaster } from 'react-hot-toast';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Post from '@components/Post';
-import Comment from '@components/PostComment';
-import PasswordUpdate from './components/Mypage/PasswordUpdate';
-import ProfileUpdate from './components/Mypage/ProfileUpdate';
-import Channel from './pages/Channel';
-import ChannelList from './pages/ChannelList';
-import ChannelTemplate from './pages/ChannelTemplate';
-import CommentListPage from './pages/CommentListPage';
-import FollowPage from './pages/FollowPage';
-import LikeListPage from './pages/LikeListPage';
-import Mypage from './pages/Mypage';
-import PostListPage from './pages/PostListPage';
+import { Route, Routes } from 'react-router-dom';
+import SignIn from '@components/Common/SignIn';
+import { authRoutes, commonRoutes, userRoutes } from './route/AppRouter';
+import AuthMiddleware from './route/AuthMiddleware';
 
 function App() {
   const toastStyle = {
@@ -22,59 +13,26 @@ function App() {
 
   return (
     <>
-      <BrowserRouter>
-        <Routes>
+      <Routes>
+        {authRoutes.map((route, idx) => (
           <Route
-            path="/"
-            element={<ChannelList />}
-          />
+            path={route.path}
+            element={<SignIn>{route.component}</SignIn>}
+            key={idx}></Route>
+        ))}
+        {userRoutes.map((route, idx) => (
           <Route
-            path="/channel/new"
-            element={<ChannelTemplate />}
-          />
+            path={route.path}
+            element={<AuthMiddleware>{route.component}</AuthMiddleware>}
+            key={idx}></Route>
+        ))}
+        {commonRoutes.map((route, idx) => (
           <Route
-            path="/channel/:channelId"
-            element={<Channel />}
-          />
-
-          <Route
-            path="/post"
-            element={<Post />}
-          />
-          <Route
-            path="/comment"
-            element={<Comment />}
-          />
-          <Route
-            path="/mypage"
-            element={<Mypage />}>
-            <Route
-              path="/mypage/profile-update"
-              element={<ProfileUpdate />}
-            />
-            <Route
-              path="/mypage/follow"
-              element={<FollowPage />}
-            />
-            <Route
-              path="/mypage/post-list"
-              element={<PostListPage />}
-            />
-            <Route
-              path="/mypage/like-list"
-              element={<LikeListPage />}
-            />
-            <Route
-              path="/mypage/comment-list"
-              element={<CommentListPage />}
-            />
-            <Route
-              path="/mypage/password-update"
-              element={<PasswordUpdate />}
-            />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+            path={route.path}
+            element={<>{route.component}</>}
+            key={idx}></Route>
+        ))}
+      </Routes>
 
       <Toaster
         toastOptions={{

@@ -1,5 +1,6 @@
 import toast from 'react-hot-toast';
 import axios from 'axios';
+import { MutationProps } from '@/hooks/api/useNewChannel';
 import { END_POINTS } from '@/constants/api';
 
 export const getChannelList = async () => {
@@ -19,11 +20,14 @@ export const getChannel = async (channelId: string) => {
   return data;
 };
 
-export const createChannel = async (channelOption: object) => {
+export const createChannel = async (channelOption: MutationProps) => {
   const { data: adminLogin } = await axios.post('/api', {
     method: 'POST',
     url: END_POINTS.SIGNIN,
-    data: { email: 'admin@programmers.co.kr', password: 'programmers' }
+    data: {
+      email: process.env.ADMIN_EMAIL,
+      password: process.env.ADMIN_PASSWORD
+    }
   });
 
   if (!adminLogin)
