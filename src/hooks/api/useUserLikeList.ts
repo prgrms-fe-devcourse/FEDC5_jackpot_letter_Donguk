@@ -1,5 +1,5 @@
 import { useQueries } from '@tanstack/react-query';
-import { getPost } from '@/api/post';
+import { getPostDetail } from '@/api/post';
 import { Post, User, UserPost } from '@/types/ResponseType';
 
 function useUserLikeList(userData: User) {
@@ -9,7 +9,7 @@ function useUserLikeList(userData: User) {
           return {
             queryKey: ['post', like.post] as const,
             queryFn: () => {
-              return getPost(like.post);
+              return getPostDetail(like.post);
             },
             select: (data: Post): UserPost => {
               const response = {

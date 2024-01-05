@@ -42,7 +42,7 @@ export const postPostCreate = async (
 export const getPostDetail = async (postId: string) => {
   const { data } = await axios.post<Post>('/api', {
     method: 'GET',
-    url: `${END_POINTS.POSTS}${postId}`
+    url: `${END_POINTS.POSTS}/${postId}`
   });
 
   return data;
