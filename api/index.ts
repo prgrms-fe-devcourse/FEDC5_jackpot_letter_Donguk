@@ -4,6 +4,11 @@ import axios from 'axios';
 interface RequestType {
   method: 'GET' | 'POST';
   url: string;
+  headers?: {
+    Authorization: string;
+  };
+  data?: string | { [key: string]: string };
+  params: string;
 }
 
 const axiosInstance = axios.create({
@@ -11,11 +16,14 @@ const axiosInstance = axios.create({
 });
 
 export default async function request(req: VercelRequest, res: VercelResponse) {
-  const { method, url } = req.body as RequestType;
+  const { method, url, headers, data } = req.body as RequestType;
+  console.log(method, url);
   try {
     const { data: responseData } = await axiosInstance({
       method,
-      url
+      url,
+      headers,
+      data
     });
     res.status(200).json(responseData);
   } catch (error) {

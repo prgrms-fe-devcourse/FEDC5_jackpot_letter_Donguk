@@ -6,6 +6,7 @@ import { Comment, Like, Post } from '@/types/ResponseType';
 export const postPostCreate = async (
   JWTtoken: string,
   title: string,
+  content: string,
   image: string | null,
   channelId: string
 ) => {
@@ -16,7 +17,10 @@ export const postPostCreate = async (
       Authorization: `bearer ${JWTtoken}`
     },
     data: {
-      title,
+      title: JSON.stringify({
+        title,
+        content
+      }),
       image,
       channelId
     }
@@ -27,9 +31,9 @@ export const postPostCreate = async (
 
 /** 특정 포스트 상세 보기 */
 export const getPostDetail = async (postId: string) => {
-  const { data } = await axios.get<Post>('/api', {
+  const { data } = await axios.post<Post>('/api', {
     method: 'GET',
-    url: END_POINTS.POSTS + postId
+    url: `${END_POINTS.POSTS}${postId}`
   });
 
   return data;
