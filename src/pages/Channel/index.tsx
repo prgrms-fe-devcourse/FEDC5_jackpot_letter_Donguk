@@ -25,7 +25,6 @@ function Channel() {
   if (channelId === undefined) {
     return <Navigate to="/" />;
   }
-  console.log(data);
   const handleIconClick = (): void => {
     setIsOpened(true);
   };
