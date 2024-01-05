@@ -1,9 +1,11 @@
 import { useState } from 'react';
+import { useAtomValue } from 'jotai';
 import SelectAccess from '@/components/ChannelTemplate/SelectAccess';
 import SelectBackground from '@/components/ChannelTemplate/SelectBackground';
 import SelectColor from '@/components/ChannelTemplate/SelectColor';
 import Button from '@/components/Common/Button';
 import { useNewChannel } from '@/hooks/api/useNewChannel';
+import { channelNameAtom } from '@/store/auth';
 import { ChannelButton } from './index.style';
 
 export interface ChannelOptionType {
@@ -18,6 +20,8 @@ interface PhaseType {
 }
 
 function ChannelTemplate() {
+  const channelName = useAtomValue(channelNameAtom);
+
   const [channelOption, setChannelOption] = useState<ChannelOptionType>({
     background: 0,
     color: 0,
@@ -62,7 +66,7 @@ function ChannelTemplate() {
           onClick={() =>
             phase === 2
               ? mutateNewChannel({
-                  name: 'test2',
+                  name: channelName,
                   detail: channelOption
                 })
               : setPhase(phase + 1)
