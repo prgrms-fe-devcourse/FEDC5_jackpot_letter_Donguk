@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useAtomValue } from 'jotai';
 import SelectAccess from '@/components/ChannelTemplate/SelectAccess';
 import SelectBackground from '@/components/ChannelTemplate/SelectBackground';
 import SelectColor from '@/components/ChannelTemplate/SelectColor';
@@ -13,13 +14,14 @@ interface PhaseType {
 }
 
 function ChannelTemplate() {
+  const channelName = useAtomValue(channelNameAtom);
+
   const [channelOption, setChannelOption] = useState<ChannelOptionType>({
     background: 0,
     color: 0,
     allowViewAll: true,
     allowWriteAll: true
   });
-
   const { mutateNewChannel } = useNewChannel();
   const PhaseInfo: PhaseType = {
     0: (

@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { Navigate, useParams } from 'react-router-dom';
 import ChannelAnimation from '@/components/Channel/ChannelAnimation';
 import ChannelClose from '@/components/Channel/ChannelClose';
 import ChannelOpen from '@/components/Channel/ChannelOpen';
@@ -34,9 +35,9 @@ function Channel() {
       selectedNumber={data.description && parsedBackground(data.description)}>
       <Title>
         <h1>
-          <span>유경</span>님의 박
+          <span>{data.name}</span>님의 박
         </h1>
-        <span>30개의 주머니가 도착했어요</span>
+        <span>{data.posts.length}개의 주머니가 도착했어요</span>
       </Title>
       {isOpened ? (
         <>

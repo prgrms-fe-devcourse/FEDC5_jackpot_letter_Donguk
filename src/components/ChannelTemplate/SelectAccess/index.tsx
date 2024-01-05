@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
+import { useAtomValue } from 'jotai';
 import AccessCandidate from '@/components/ChannelTemplate/AccessCandidate';
 import { Title } from '@/pages/ChannelList/index.style.tsx';
 import { channelNameAtom } from '@/store/auth';
@@ -12,11 +13,13 @@ interface Props {
 }
 
 function SelectAccess({ option, setOption }: Props) {
+  const channelName = useAtomValue(channelNameAtom);
+
   return (
     <Background selectedNumber={option.background}>
       <Title>
         <h1>
-          <span>최익</span>님의 박
+          <span>{channelName}</span>님의 박
         </h1>
         <span>내 채널의 접근 권한을 선택해주세요</span>
       </Title>

@@ -1,18 +1,12 @@
 import { Toaster } from 'react-hot-toast';
-
-
-import { Route, Routes } from 'react-router-dom';
-import Button from './components/Common/Button';
-import SignIn from './components/Common/SignIn';
-import useModal from './hooks/useModal';
-import { authRoutes, userRoutes } from './route/AppRouter';
-import AuthMiddleware from './route/AuthMiddleware';
-import { theme } from './theme';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Post from '@components/Post';
 import Comment from '@components/PostComment';
 import PasswordUpdate from './components/Mypage/PasswordUpdate';
 import ProfileUpdate from './components/Mypage/ProfileUpdate';
+import Channel from './pages/Channel';
+import ChannelList from './pages/ChannelList';
+import ChannelTemplate from './pages/ChannelTemplate';
 import CommentListPage from './pages/CommentListPage';
 import FollowPage from './pages/FollowPage';
 import LikeListPage from './pages/LikeListPage';
@@ -30,6 +24,19 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
+          <Route
+            path="/"
+            element={<ChannelList />}
+          />
+          <Route
+            path="/channel/new"
+            element={<ChannelTemplate />}
+          />
+          <Route
+            path="/channel/:channelId"
+            element={<Channel />}
+          />
+
           <Route
             path="/post"
             element={<Post />}
