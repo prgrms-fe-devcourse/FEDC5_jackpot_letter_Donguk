@@ -20,16 +20,16 @@ export const FollowItemList = styled.ul`
       flex: 1;
       margin-left: 0.813rem;
     }
-
-    button {
-      width: 5rem;
-      height: 2rem;
-      border-radius: 10px;
-      border: none;
-      background-color: #d9d9d9;
-      font-size: ${theme.typography.mypage_small.fontSize};
-      font-weight: bold;
-      cursor: pointer;
-    }
   }
+`;
+
+export const FollowBtn = styled.button<{ color: string }>`
+  width: 5rem;
+  height: 2rem;
+  border-radius: 10px;
+  border: none;
+  background-color: ${(props) => props.color};
+  font-size: ${theme.typography.mypage_small.fontSize};
+  font-weight: bold;
+  cursor: pointer;
 `;

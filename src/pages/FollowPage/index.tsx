@@ -14,13 +14,13 @@ function FollowPage() {
     <>
       <Follow
         followers={
-          !followings.pending && followings.data.length
-            ? (followings.data as FollowType[])
+          !followers.pending && followers.data.length
+            ? (followers.data as FollowType[])
             : []
         }
         followings={
-          !followers.pending && followers.data.length
-            ? (followers.data as FollowType[])
+          !followings.pending && followings.data.length
+            ? (followings.data as FollowType[])
             : []
         }
       />
