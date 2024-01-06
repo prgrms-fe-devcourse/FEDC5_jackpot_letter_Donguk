@@ -23,8 +23,9 @@ export default async function request<T>(
       method,
       url,
       data,
-      headers
+      headers: { ...headers }
     });
+
     res.status(200).json(responseData);
   } catch (error) {
     //에러핸들링 interceptor

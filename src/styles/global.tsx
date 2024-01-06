@@ -12,6 +12,20 @@ const global = css`
 
   html {
     background-color: ${theme.palette.dark};
+    color: ${theme.palette.dark_font};
+  }
+
+  a {
+    color: ${theme.palette.dark_font};
+  }
+
+  .main .container,
+  .sidebar-container {
+    &::-webkit-scrollbar-thumb {
+      background-color: transparent;
+      border-radius: 10px;
+      border: 7px solid ${theme.palette.dark};
+    }
   }
 
   @font-face {

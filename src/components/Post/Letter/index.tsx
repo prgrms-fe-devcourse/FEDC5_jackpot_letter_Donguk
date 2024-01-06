@@ -1,4 +1,3 @@
-import { UseFormReturn } from 'react-hook-form';
 import * as Style from './index.style';
 
 function Letter({ register }) {

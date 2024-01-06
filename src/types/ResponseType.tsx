@@ -9,17 +9,8 @@ export interface User {
   posts: Post[];
   likes: Like[];
   comments: string[];
-  followers: [];
-  following: [
-    {
-      _id: string;
-      user: string;
-      follower: string;
-      createdAt: string;
-      updatedAt: string;
-      __v: 0;
-    }
-  ];
+  followers: Follow[];
+  following: Follow[];
   notifications: Notification[];
   messages: Message[];
   _id: string;
@@ -141,4 +132,17 @@ export interface AuthenticationUser {
   createdAt: string;
   updatedAt: string;
   __v: 0;
+}
+
+export interface UserPost extends Post {
+  channelName: string;
+}
+
+export interface UserComment extends Post {
+  postTitle: string;
+}
+
+export interface FollowType extends Follow {
+  name: string;
+  image?: string;
 }

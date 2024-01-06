@@ -1,167 +1,19 @@
+import { useAtomValue } from 'jotai';
 import PostList from '@/components/Mypage/PostList';
+import useUserLikeList from '@/hooks/api/useUserLikeList';
+import { userAtom } from '@/store/user';
+import { UserPost } from '@/types/ResponseType';
 
 function LikeListPage() {
-  const DUMMY = [
-    {
-      likes: [],
-      comments: [],
-      _id: '1',
-      title: '제목 부분 입니다.',
-      channel: { name: '채널주' },
-      author: '작성자',
-      createdAt: 'string',
-      updatedAt: 'string',
-      content: '포스트 내용'
-    },
-    {
-      likes: [],
-      comments: [],
-      _id: '1',
-      title: '제목 부분 입니다.',
-      channel: { name: '채널주' },
-      author: '작성자',
-      createdAt: 'string',
-      updatedAt: 'string',
-      content: '포스트 내용'
-    },
-    {
-      likes: [],
-      comments: [],
-      _id: '1',
-      title: '제목 부분 입니다.',
-      channel: { name: '채널주' },
-      author: '작성자',
-      createdAt: 'string',
-      updatedAt: 'string',
-      content: '포스트 내용'
-    },
-    {
-      likes: [],
-      comments: [],
-      _id: '1',
-      title: '제목 부분 입니다.',
-      channel: { name: '채널주' },
-      author: '작성자',
-      createdAt: 'string',
-      updatedAt: 'string',
-      content: '포스트 내용'
-    },
-    {
-      likes: [],
-      comments: [],
-      _id: '1',
-      title: '제목 부분 입니다.',
-      channel: { name: '채널주' },
-      author: '작성자',
-      createdAt: 'string',
-      updatedAt: 'string',
-      content: '포스트 내용'
-    },
-    {
-      likes: [],
-      comments: [],
-      _id: '1',
-      title: '제목 부분 입니다.',
-      channel: { name: '채널주' },
-      author: '작성자',
-      createdAt: 'string',
-      updatedAt: 'string',
-      content: '포스트 내용'
-    },
-    {
-      likes: [],
-      comments: [],
-      _id: '1',
-      title: '제목 부분 입니다.',
-      channel: { name: '채널주' },
-      author: '작성자',
-      createdAt: 'string',
-      updatedAt: 'string',
-      content: '포스트 내용'
-    },
-    {
-      likes: [],
-      comments: [],
-      _id: '1',
-      title: '제목 부분 입니다.',
-      channel: { name: '채널주' },
-      author: '작성자',
-      createdAt: 'string',
-      updatedAt: 'string',
-      content: '포스트 내용'
-    },
-    {
-      likes: [],
-      comments: [],
-      _id: '1',
-      title: '제목 부분 입니다.',
-      channel: { name: '채널주' },
-      author: '작성자',
-      createdAt: 'string',
-      updatedAt: 'string',
-      content: '포스트 내용'
-    },
-    {
-      likes: [],
-      comments: [],
-      _id: '1',
-      title: '제목 부분 입니다.',
-      channel: { name: '채널주' },
-      author: '작성자',
-      createdAt: 'string',
-      updatedAt: 'string',
-      content: '포스트 내용'
-    },
-    {
-      likes: [],
-      comments: [],
-      _id: '1',
-      title: '제목 부분 입니다.',
-      channel: { name: '채널주' },
-      author: '작성자',
-      createdAt: 'string',
-      updatedAt: 'string',
-      content: '포스트 내용'
-    },
-    {
-      likes: [],
-      comments: [],
-      _id: '1',
-      title: '제목 부분 입니다.',
-      channel: { name: '채널주' },
-      author: '작성자',
-      createdAt: 'string',
-      updatedAt: 'string',
-      content: '포스트 내용'
-    },
-    {
-      likes: [],
-      comments: [],
-      _id: '1',
-      title: '제목 부분 입니다.',
-      channel: { name: '채널주' },
-      author: '작성자',
-      createdAt: 'string',
-      updatedAt: 'string',
-      content: '포스트 내용'
-    },
-    {
-      likes: [],
-      comments: [],
-      _id: '1',
-      title: '제목 부분 입니다.',
-      channel: { name: '채널주' },
-      author: '작성자',
-      createdAt: 'string',
-      updatedAt: 'string',
-      content: '포스트 내용'
-    }
-  ];
+  const userData = useAtomValue(userAtom);
+
+  const { pending, data } = useUserLikeList(userData);
+
   return (
     <>
       <PostList
         type="like"
-        posts={DUMMY}
+        posts={!pending && data.length ? (data as UserPost[]) : []}
       />
     </>
   );

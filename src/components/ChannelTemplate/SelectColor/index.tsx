@@ -1,9 +1,7 @@
 import { Dispatch, SetStateAction } from 'react';
-import { useAtomValue } from 'jotai';
 import CustomChannelIcon from '@/components/Common/CustomChannelIcon';
 import { ChannelIconList, Title } from '@/pages/ChannelList/index.style.tsx';
 import { ChannelOptionType } from '@/pages/ChannelTemplate';
-import { channelNameAtom } from '@/store/auth';
 import { theme } from '@/theme';
 import { css } from '@emotion/react';
 import { Background } from '../SelectBackground/index.style';
@@ -22,12 +20,11 @@ export const selectedStyle = css`
 `;
 
 function SelectColor({ option, setOption }: Props) {
-  const channelName = useAtomValue(channelNameAtom);
   return (
     <Background selectedNumber={option.background}>
       <Title>
         <h1>
-          <span>{channelName}</span>님의 박
+          <span>최익</span>님의 박
         </h1>
         <span>내 채널의 박을 선택해주세요</span>
       </Title>
@@ -38,7 +35,8 @@ function SelectColor({ option, setOption }: Props) {
               role="button"
               key={`channel-color${index}`}
               css={option.color === index && selectedStyle}
-              onClick={() => setOption({ ...option, color: index })}>
+              onClick={() => setOption({ ...option, color: index })}
+            >
               <CustomChannelIcon color={IconColor[color]} />
             </Item>
           )

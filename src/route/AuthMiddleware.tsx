@@ -1,8 +1,8 @@
 import { ReactElement } from 'react';
 import { Navigate } from 'react-router-dom';
-import { PATH } from '../constants/path';
 import { ACCESS_TOKEN_KEY } from '@/constants/api';
 import { getStorage } from '@/utils/LocalStorage';
+import { PATH } from '../constants/path';
 
 interface AuthMiddlewareProps {
   children: ReactElement;

@@ -3,6 +3,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import Button from '@/components/Common/Button';
 import Input from '@/components/Common/Input';
+import useUpdatePassword from '@/hooks/api/useUpdatePassword';
 import { theme } from '@/theme';
 import * as Style from './index.style';
 
@@ -35,8 +36,10 @@ function PasswordUpdate() {
     resolver: zodResolver(registerSchema)
   });
 
+  const mutaion = useUpdatePassword();
+
   const handleNameSubmit: SubmitHandler<PasswordUpdateValue> = (data) => {
-    console.log(data);
+    mutaion.mutate(data.password);
   };
 
   return (
