@@ -35,7 +35,7 @@ function Channel() {
       {isOpened ? (
         <>
           <ChannelAnimation />
-          <ChannelOpen />
+          <ChannelOpen channelId={channelId} />
         </>
       ) : (
         <ChannelClose handleIconClick={handleIconClick} />

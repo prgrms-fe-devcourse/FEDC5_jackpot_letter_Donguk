@@ -4,9 +4,6 @@ import axios from 'axios';
 interface RequestType {
   method: 'GET' | 'POST';
   url: string;
-  headers?: {
-    Authorization: string;
-  };
   params: string;
   data?: object;
   headers?: Record<string, string>;
@@ -17,8 +14,8 @@ const axiosInstance = axios.create({
 });
 
 export default async function request(req: VercelRequest, res: VercelResponse) {
-
   const { method, url, data, headers } = req.body as RequestType;
+  console.log(method, '\n', url, '\n', data, '\n', headers);
   try {
     const { data: responseData } = await axiosInstance({
       method,
