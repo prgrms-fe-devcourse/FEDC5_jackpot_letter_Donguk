@@ -42,7 +42,7 @@ function PostComment() {
 
   const JWTtoken = useAtomValue(tokenAtom);
   const userId = useAtomValue(idAtom);
-  const { postId } = useParams();
+  const { postId } = useParams() as { postId: string };
   const { mutationCommentCreate } = usePostCommentCreateMutation();
   const { data, isError, isPending } = useUserInfomationQuery(userId);
 
@@ -50,13 +50,12 @@ function PostComment() {
   const onSubmit = (data: useFormProps) => {
     console.log('최종 데이터', data);
 
-    if (postId)
-      mutationCommentCreate({
-        JWTtoken,
-        title: data.commentTitle,
-        comment: data.commentContent,
-        postId
-      });
+    mutationCommentCreate({
+      JWTtoken,
+      title: data.commentTitle,
+      comment: data.commentContent,
+      postId
+    });
   };
 
   useEffect(() => {
@@ -81,8 +80,10 @@ function PostComment() {
           <PrePost />
           <Comment
             register={register}
-            userName={data ? data.fullName : '곧 이름 뜸'}
-            isEdit={postId ? false : true}
+            userId={userId}
+            data={data}
+            isError={isError}
+            isPending={isPending}
           />
           <Style.Form onSubmit={handleSubmit(onSubmit)}>
             <Footer />
