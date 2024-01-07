@@ -2,7 +2,11 @@ import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { Toaster } from 'react-hot-toast';
 import { toast } from 'react-hot-toast';
+import { useParams } from 'react-router-dom';
+import { useAtomValue } from 'jotai';
 import { usePostCommentCreateMutation } from '@/hooks/api/usePostCommentCreateMutation';
+import { useUserInfomationQuery } from '@/hooks/api/useUserInfomationQuery';
+import { idAtom, tokenAtom } from '@/store/auth';
 import reset from '@/styles/_reset';
 import { theme } from '@/theme';
 import { Global, ThemeProvider } from '@emotion/react';
@@ -12,22 +16,18 @@ import Header from './Header';
 import PrePost from './PrePost';
 import * as Style from './index.style';
 
+const toastStyle = {
+  fontWeight: 600,
+  padding: '0.75rem 1rem',
+  marginTop: '0.5rem'
+};
+
 interface useFormProps {
+  commentTitle: string;
   commentContent: string;
 }
 
 function PostComment() {
-  const toastStyle = {
-    fontWeight: 600,
-    padding: '0.75rem 1rem',
-    marginTop: '0.5rem'
-  };
-
-  const JWTtoken =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjY1OGViZjczZmIxZmIyNmE0MmNiYWZkNyIsImVtYWlsIjoiY2hsZGxyOThAbmF2ZXIuY29tIn0sImlhdCI6MTcwNDM0MzY3MH0.PtVWcjYkg8BxscGRFVp3aGLCP7xDNZOdkeBClrCQoho';
-
-  const { mutationCommentCreate } = usePostCommentCreateMutation();
-
   const {
     register,
     formState: { errors, isSubmitting },
@@ -35,25 +35,40 @@ function PostComment() {
   } = useForm<useFormProps>({
     mode: 'onSubmit',
     defaultValues: {
+      commentTitle: '',
       commentContent: ''
     }
   });
 
+  const JWTtoken = useAtomValue(tokenAtom);
+  const userId = useAtomValue(idAtom);
+  const { postId } = useParams();
+  const { mutationCommentCreate } = usePostCommentCreateMutation();
+  const { data, isError, isPending } = useUserInfomationQuery(userId);
+
+  /** 댓글 작성 시 서버로 전송 */
   const onSubmit = (data: useFormProps) => {
     console.log('최종 데이터', data);
 
-    mutationCommentCreate({
-      JWTtoken,
-      comment: data.commentContent,
-      postId: '6596a8c47bff35223a55215d'
-    });
+    if (postId)
+      mutationCommentCreate({
+        JWTtoken,
+        title: data.commentTitle,
+        comment: data.commentContent,
+        postId
+      });
   };
 
   useEffect(() => {
-    if (isSubmitting)
+    /** react-hook-form validation */
+    if (isSubmitting) {
+      errors.commentTitle
+        ? toast.error(errors.commentTitle.message as string)
+        : null;
       errors.commentContent
         ? toast.error(errors.commentContent.message as string)
         : null;
+    }
   }, [isSubmitting]);
 
   return (
@@ -64,7 +79,11 @@ function PostComment() {
           <Header />
           <Style.GroudImage src="/src/assets/ShortLogo.svg" />
           <PrePost />
-          <Comment register={register} />
+          <Comment
+            register={register}
+            userName={data ? data.fullName : '곧 이름 뜸'}
+            isEdit={postId ? false : true}
+          />
           <Style.Form onSubmit={handleSubmit(onSubmit)}>
             <Footer />
           </Style.Form>

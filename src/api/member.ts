@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { END_POINTS } from '@/constants/api';
-import { Authentication, AuthenticationUser } from '@/types/ResponseType';
+import { Authentication, AuthenticationUser, User } from '@/types/ResponseType';
 
 export const getConfirmAuth = async () => {
   const { data } = await axios.post<AuthenticationUser>('/api/auth', {
@@ -33,5 +33,14 @@ export const getUserList = async () => {
     method: 'GET',
     url: END_POINTS.USER_LIST
   });
+  return data;
+};
+
+export const getUserInfomation = async (userId: string) => {
+  const { data } = await axios.post<User>('/api', {
+    method: 'GET',
+    url: `${END_POINTS.USER_INFOMATION}/${userId}`
+  });
+
   return data;
 };

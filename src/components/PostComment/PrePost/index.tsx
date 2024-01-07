@@ -52,9 +52,6 @@ function PrePost() {
     setLikeCount((count) => (count === 0 ? 1 : 0));
   };
 
-  console.log('커밋을 위한 임시 출력', setTemporaryContent);
-
-
   return (
     <>
       <Style.PrePostAndCommentContainer>
@@ -77,7 +74,9 @@ function PrePost() {
         <Style.PreCommentContainer>
           {temporaryContent.map(({ comment }, idx) => (
             <Style.PrePostComment key={idx}>
-              <Style.PrePostUserName>사용자 명: </Style.PrePostUserName>
+              <Style.PrePostUserName>
+                {'댓글 목록의 fullName '}
+              </Style.PrePostUserName>
               {comment}
             </Style.PrePostComment>
           ))}

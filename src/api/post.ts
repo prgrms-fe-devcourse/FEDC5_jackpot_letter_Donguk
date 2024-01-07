@@ -117,6 +117,7 @@ export const postPostLikeDelete = async (JWTtoken: string, id: string) => {
 /** 특정 포스트에 댓글 달기 */
 export const postPostCommentCreate = async (
   JWTtoken: string,
+  title: string,
   comment: string,
   postId: string
 ) => {
@@ -127,7 +128,10 @@ export const postPostCommentCreate = async (
       Authorization: `bearer ${JWTtoken}`
     },
     data: {
-      comment,
+      comment: JSON.stringify({
+        title,
+        comment
+      }),
       postId
     }
   });

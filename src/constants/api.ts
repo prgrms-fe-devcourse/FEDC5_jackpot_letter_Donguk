@@ -3,6 +3,7 @@ export const END_POINTS = {
   SIGNUP: '/signup',
   AUTH_USER: '/auth-user',
   USER_LIST: '/users/get-users',
+  USER_INFOMATION: '/users',
   POST_CREATE: '/posts/create',
   /** postId 필요 */
   POSTS: '/posts/',
@@ -19,4 +20,3 @@ export const END_POINTS = {
 export const ACCESS_TOKEN_KEY = 'ACCESS_TOKEN';
 export const ACCESS_USER_ID = 'ACCESS_USER_ID';
 export const ACCESS_CHANNEL_NAME = 'ACCESS_CHANNEL_NAME';
-

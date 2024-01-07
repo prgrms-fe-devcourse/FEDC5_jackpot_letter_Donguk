@@ -12,15 +12,28 @@ export const CommentContainer = styled.div`
   margin-top: 0.7rem;
 `;
 
+export const CommentTitleInput = styled.input`
+  width: 95%;
+  height: 2rem;
+  padding: 0.5rem 0.7rem 0.3rem 0.7rem;
+  margin: 0 auto;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  font-weight: 600;
+  font-size: 1rem;
+  background-color: transparent;
+`;
+
 export const CommentTitle = styled.div`
   flex-grow: 0;
   display: flex;
   align-items: center;
   widht: 95%;
-  height: 2.5rem;
-  font-size: 0.8rem;
-  font-weight: 500;
-  padding: 1rem 1rem 0 1rem;
+  height: 2rem;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 0.3rem 1rem 0 1rem;
   box-sizing: border-box;
   background-color: transparent;
 `;
