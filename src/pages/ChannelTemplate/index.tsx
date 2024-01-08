@@ -50,7 +50,7 @@ function ChannelTemplate() {
   const handleNextButtonClick = () => {
     isSubmit
       ? mutateNewChannel({
-          name: `${channelName}v5`,
+          name: `${channelName}`,
           description: JSON.stringify(channelOption)
         })
       : setPhase(phase + 1);

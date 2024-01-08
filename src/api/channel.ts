@@ -25,13 +25,14 @@ export const createChannel = async (channelOption: MutationProps) => {
     method: 'POST',
     url: END_POINTS.SIGNIN,
     data: {
-      email: process.env.ADMIN_EMAIL,
-      password: process.env.ADMIN_PASSWORD
+      email: import.meta.env.VITE_ADMIN_EMAIL_KEY,
+      password: import.meta.env.VITE_ADMIN_PASSWORD_KEY
     }
   });
-
+  console.log('adminLogin', adminLogin);
   if (!adminLogin)
     return toast.error('채널을 생성하는 권한을 부여받지 못했습니다.');
+  console.log(adminLogin.token, channelOption, END_POINTS.CREATE_CHANNEL);
 
   const { data } = await axios.post('/api', {
     method: 'POST',
