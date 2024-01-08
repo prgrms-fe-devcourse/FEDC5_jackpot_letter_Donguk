@@ -38,7 +38,7 @@ const userRoutes: Array<RouteProps> = [
     component: <CommentListPage />
   },
   {
-    path: PATH.MYPGE_PASSWORD_LIST,
+    path: PATH.MYPGE_PASSWORD_UPDATE,
     exact: true,
     component: <PasswordUpdate />
   },
