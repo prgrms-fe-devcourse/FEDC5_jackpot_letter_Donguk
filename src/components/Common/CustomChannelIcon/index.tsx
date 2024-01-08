@@ -2,14 +2,20 @@ interface Prop {
   tail?: boolean;
   color: string;
   size?: number;
+  opacity?: number;
 }
-function CustomChannelIcon({ tail = false, color, size = 80 }: Prop) {
+function CustomChannelIcon({
+  tail = false,
+  color,
+  size = 80,
+  opacity = 100
+}: Prop) {
   return (
     <svg
       width={size}
-      opacity="50%"
+      opacity={`${opacity}%`}
       height={tail ? size + 100 : size}
-      viewBox="0 0 233 340"
+      viewBox={tail ? '0 0 233 340' : `80 80 80 300`}
       fill="none"
       xmlns="http://www.w3.org/2000/svg">
       {tail && (

@@ -36,7 +36,7 @@ function SelectColor({ option, setOption }: Props) {
             role="button"
             key={`channel-color${color}`}
             css={option.color === color && selectedStyle}
-            onClick={() => setOption({ ...option, color: color })}>
+            onClick={() => setOption({ ...option, color: color as ColorName })}>
             <CustomChannelIcon color={ColorType[color as ColorName]} />
           </Item>
         ))}
