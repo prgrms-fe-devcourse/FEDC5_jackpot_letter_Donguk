@@ -1,10 +1,10 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
 import Button from '@/components/Common/Button';
 import Input from '@/components/Common/Input';
 import useUpdatePassword from '@/hooks/api/useUpdatePassword';
 import { theme } from '@/theme';
+import { PasswordSchema } from '@/utils/validation';
 import * as Style from './index.style';
 
 interface PasswordUpdateValue {
@@ -13,21 +13,7 @@ interface PasswordUpdateValue {
 }
 
 function PasswordUpdate() {
-  const registerSchema = z
-    .object({
-      password: z
-        .string()
-        .min(1, '비밀번호를 입력해주세요.')
-        .regex(
-          /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,15}$/,
-          '영문+숫자+특수문자(! @ # $ % & * ?) 조합 6~15자리를 입력해주세요.'
-        ),
-      passwordCheck: z.string().min(1, '비밀번호를 다시 입력해주세요.')
-    })
-    .refine((data) => data.password === data.passwordCheck, {
-      path: ['passwordCheck'],
-      message: '비밀번호가 일치하지 않습니다.'
-    });
+  const registerSchema = PasswordSchema;
   const {
     register,
     handleSubmit,
