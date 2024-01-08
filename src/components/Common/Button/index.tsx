@@ -2,7 +2,7 @@ import { ButtonStyle } from './index.style';
 
 interface ButtonProps {
   content: string;
-  onClick: () => void;
+  onClick?: () => void;
   disabled?: boolean;
   styleOption?: { [key: string]: string };
   type?: 'submit' | 'reset' | 'button';
@@ -28,8 +28,7 @@ function Button(props: ButtonProps) {
       kind={kind}
       size={size}
       styleOption={styleOption}
-      onClick={onClick}
-    >
+      onClick={onClick}>
       {content}
     </ButtonStyle>
   );
