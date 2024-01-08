@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 const ContainerMixin = css`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  // align-items: center;
   width: 19.375rem;
   border-radius: 20px;
 `;
@@ -27,6 +27,7 @@ export const PrePostAndCommentContainer = styled.div`
 
 export const PrePostContainer = styled.div`
   ${ContainerMixin}
+  position: relative;
   background-color: ${(props) => props.theme.palette.sub};
   height: 13.3125rem;
   margin-bottom: 0.2rem;
@@ -40,6 +41,7 @@ export const PrePostInnerTitle = styled.div`
   font-weight: 500;
   background-color: transparent;
   border-color: transparent;
+  margin: 0 auto;
   padding: 1rem 1rem 0 0.5rem;
   box-sizing: border-box;
 `;
@@ -47,6 +49,7 @@ export const PrePostInnerTitle = styled.div`
 export const PrePostUnnerline = styled.div`
   width: 90%;
   height: 1px;
+  margin: 0 auto;
   background-color: #aca3a3;
 `;
 
@@ -58,7 +61,7 @@ export const PrePostContent = styled.div`
   border-color: transparent;
   outline: none;
   resize: none;
-  margin: 0.6rem 0;
+  margin: 0.5rem auto;
   padding: 0 0.6rem;
   box-sizing: border-box;
 `;

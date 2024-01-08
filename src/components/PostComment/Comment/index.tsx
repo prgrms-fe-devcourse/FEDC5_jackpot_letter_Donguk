@@ -1,6 +1,8 @@
 import Loading from '../Loading';
 import * as Style from './index.style';
 
+interface CommentProps {}
+
 function Comment({ register, userId, data, isError, isPending }) {
   return (
     <>
