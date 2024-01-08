@@ -7,9 +7,6 @@ import { useAtomValue } from 'jotai';
 import { usePostCommentCreateMutation } from '@/hooks/api/usePostCommentCreateMutation';
 import { useUserInfomationQuery } from '@/hooks/api/useUserInfomationQuery';
 import { idAtom, tokenAtom } from '@/store/auth';
-import reset from '@/styles/_reset';
-import { theme } from '@/theme';
-import { Global, ThemeProvider } from '@emotion/react';
 import Comment from './Comment';
 import Footer from './Footer';
 import Header from './Header';
@@ -30,8 +27,9 @@ interface useFormProps {
 function PostComment() {
   const {
     register,
-    formState: { errors, isSubmitting },
-    handleSubmit
+    formState: { errors, isSubmitting, isSubmitSuccessful },
+    handleSubmit,
+    reset
   } = useForm<useFormProps>({
     mode: 'onSubmit',
     defaultValues: {
@@ -43,10 +41,9 @@ function PostComment() {
   const JWTtoken = useAtomValue(tokenAtom);
   const userId = useAtomValue(idAtom);
   const { postId } = useParams() as { postId: string };
-  const { mutationCommentCreate } = usePostCommentCreateMutation();
-
+  const { mutationCommentCreate } = usePostCommentCreateMutation(postId);
   const { data, isError, isPending } = useUserInfomationQuery(userId);
-  // console.log('유저 정보 데이터:', data);
+  console.log('유저 정보 데이터:', data);
 
   /** 댓글 작성 시 서버로 전송 */
   const onSubmit = (data: useFormProps) => {
@@ -61,6 +58,8 @@ function PostComment() {
   };
 
   useEffect(() => {
+    if (isSubmitSuccessful) reset();
+
     /** react-hook-form validation */
     if (isSubmitting) {
       errors.commentTitle
@@ -74,24 +73,22 @@ function PostComment() {
 
   return (
     <>
-      <ThemeProvider theme={theme}>
-        <Global styles={reset} />
-        <Style.CommentContainer>
-          <Header />
-          <Style.GroudImage src="/src/assets/ShortLogo.svg" />
-          <PrePost postId={postId} />
-          <Comment
-            register={register}
-            userId={userId}
-            data={data}
-            isError={isError}
-            isPending={isPending}
-          />
-          <Style.Form onSubmit={handleSubmit(onSubmit)}>
-            <Footer />
-          </Style.Form>
-        </Style.CommentContainer>
-      </ThemeProvider>
+      <Style.CommentContainer>
+        <Header />
+        <Style.GroudImage src="/src/assets/ShortLogo.svg" />
+        <PrePost postId={postId} />
+        <Comment
+          register={register}
+          userId={userId}
+          data={data}
+          isError={isError}
+          isPending={isPending}
+        />
+        <Style.Form onSubmit={handleSubmit(onSubmit)}>
+          <Footer />
+        </Style.Form>
+      </Style.CommentContainer>
+
       <Toaster
         toastOptions={{
           style: toastStyle,

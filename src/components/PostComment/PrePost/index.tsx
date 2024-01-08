@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useAtomValue } from 'jotai';
 import { useGetPostDetailQuery } from '@/hooks/api/useGetPostDetailQuery';
 import { useLikeCreateMutation } from '@/hooks/api/useLikeCreateMutation';
@@ -7,56 +7,13 @@ import { idAtom, tokenAtom } from '@/store/auth';
 import * as Style from './index.style';
 
 function PrePost({ postId }) {
-  const [temporaryContent, setTemporaryContent] = useState([
-    {
-      user: '최익',
-      comment:
-        '1번째 댓글1번째 댓글1번째 댓글1번째 댓글1번째 댓글1번째 댓글1번째 댓글1번째 댓글1번째 댓글1번째 댓글1번째 댓글1번째 댓글1번째 댓글1번째 댓글1번째 댓글1번째 댓글1번째 댓글1번째 댓글1번째 댓글1번째 댓글1번째 댓글1번째 댓글1번째 댓글1번째 댓글1번째 댓글'
-    },
-    {
-      user: '머쓱이',
-      comment: '2번째 댓글'
-    },
-    {
-      user: '최익',
-      comment: '1번째 댓글'
-    },
-    {
-      user: '머쓱이',
-      comment: '2번째 댓글'
-    },
-    {
-      user: '최익',
-      comment: '1번째 댓글'
-    },
-    {
-      user: '머쓱이',
-      comment: '2번째 댓글'
-    },
-    {
-      user: '최익',
-      comment: '1번째 댓글'
-    },
-    {
-      user: '머쓱이',
-      comment: '2번째 댓글'
-    },
-    {
-      user: '최익',
-      comment: '1번째 댓글'
-    },
-    {
-      user: '머쓱이',
-      comment: '2번째 댓글'
-    }
-  ]);
-
   const JWTtoken = useAtomValue(tokenAtom);
   const userId = useAtomValue(idAtom);
   const { mutationLikeCreate } = useLikeCreateMutation(postId); // 특정 포스트 좋아요 추가
   const { mutationLikeDelete } = useLikeDeleteMutation(postId); // 특정 포스트 좋아요 제거
 
   const { data: likeData } = useGetPostDetailQuery(postId);
+  console.log(likeData);
 
   /** 포스트 좋아요 추가 함수 */
   const handleLikeCreateClick = async () => {
@@ -76,6 +33,14 @@ function PrePost({ postId }) {
     }
   };
 
+  const titleAndCommentList = (comment: string) => {
+    try {
+      return JSON.parse(comment);
+    } catch (error) {
+      return false;
+    }
+  };
+
   return (
     <>
       <Style.PrePostAndCommentContainer>
@@ -91,19 +56,24 @@ function PrePost({ postId }) {
           </Style.LikeLogoContainer>
           <Style.CommentCountText>
             총{' '}
-            <Style.CommentCount>{temporaryContent.length}개</Style.CommentCount>
+            <Style.CommentCount>
+              {likeData?.comments.length}개
+            </Style.CommentCount>
             의 댓글이 있습니다.
           </Style.CommentCountText>
         </Style.LikeCommentContainer>
         <Style.PreCommentContainer>
-          {temporaryContent.map(({ comment }, idx) => (
-            <Style.PrePostComment key={idx}>
-              <Style.PrePostUserName>
-                {'댓글 목록의 fullName '}
-              </Style.PrePostUserName>
-              {comment}
-            </Style.PrePostComment>
-          ))}
+          {likeData?.comments.map(
+            ({ comment }, idx) =>
+              titleAndCommentList(comment) && (
+                <Style.PrePostComment key={idx}>
+                  <Style.PrePostUserName>
+                    {`${titleAndCommentList(comment).title} `}
+                  </Style.PrePostUserName>
+                  {titleAndCommentList(comment).comment}
+                </Style.PrePostComment>
+              )
+          )}
         </Style.PreCommentContainer>
       </Style.PrePostAndCommentContainer>
     </>

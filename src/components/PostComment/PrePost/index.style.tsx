@@ -98,8 +98,10 @@ export const CommentCountText = styled.span`
   font-size: 0.8rem;
 `;
 
+// ${ContainerMixin}
 export const PreCommentContainer = styled.div`
-  ${ContainerMixin}
+  width: 19.375rem;
+  border-radius: 20px;
   position: relative;
   height: 13.5625rem;
   margin-top: 0.5rem;

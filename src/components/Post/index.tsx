@@ -8,9 +8,6 @@ import useChannelListQuery from '@/hooks/api/useChannelListQuery';
 import { useGetPostDetailQuery } from '@/hooks/api/useGetPostDetailQuery';
 import { usePostCreateMutation } from '@/hooks/api/usePostCreateMutation';
 import { tokenAtom } from '@/store/auth';
-import reset from '@/styles/_reset';
-import { theme } from '@/theme';
-import { Global, ThemeProvider } from '@emotion/react';
 import Footer from './Footer';
 import Header from './Header';
 import Letter from './Letter';
@@ -74,18 +71,15 @@ function Post() {
 
   return (
     <>
-      <ThemeProvider theme={theme}>
-        <Global styles={reset} />
-        <Style.PostContainer>
-          <Header />
-          <Style.GroudImage src="/src/assets/ShortLogo.svg" />
-          <Letter register={register} />
-          <Warning />
-          <Style.Form onSubmit={handleSubmit(onSubmit)}>
-            <Footer />
-          </Style.Form>
-        </Style.PostContainer>
-      </ThemeProvider>
+      <Style.PostContainer>
+        <Header />
+        <Style.GroudImage src="/src/assets/ShortLogo.svg" />
+        <Letter register={register} />
+        <Warning />
+        <Style.Form onSubmit={handleSubmit(onSubmit)}>
+          <Footer />
+        </Style.Form>
+      </Style.PostContainer>
       <Toaster
         toastOptions={{
           style: toastStyle,
