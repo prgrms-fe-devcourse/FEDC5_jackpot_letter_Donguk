@@ -14,7 +14,9 @@ export const END_POINTS = {
   POST_COMMENT_CREATE: './comments/create',
   POST_COMMENT_DELETE: '/comments/delete',
   CREATE_CHANNEL: '/channels/create',
-  CHANNEL: '/channels'
+  CHANNEL: '/channels',
+  LIKE_CREATE: '/likes/create',
+  LIKE_DELETE: '/likes/delete'
 };
 
 export const ACCESS_TOKEN_KEY = 'ACCESS_TOKEN';

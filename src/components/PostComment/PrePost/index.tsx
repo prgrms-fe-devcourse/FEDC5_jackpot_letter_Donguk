@@ -1,7 +1,12 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useAtomValue } from 'jotai';
+import { useGetPostDetailQuery } from '@/hooks/api/useGetPostDetailQuery';
+import { useLikeCreateMutation } from '@/hooks/api/useLikeCreateMutation';
+import { useLikeDeleteMutation } from '@/hooks/api/useLikeDeleteMutation';
+import { idAtom, tokenAtom } from '@/store/auth';
 import * as Style from './index.style';
 
-function PrePost() {
+function PrePost({ postId }) {
   const [temporaryContent, setTemporaryContent] = useState([
     {
       user: '최익',
@@ -46,10 +51,29 @@ function PrePost() {
     }
   ]);
 
-  const [likeCount, setLikeCount] = useState(0);
+  const JWTtoken = useAtomValue(tokenAtom);
+  const userId = useAtomValue(idAtom);
+  const { mutationLikeCreate } = useLikeCreateMutation(postId); // 특정 포스트 좋아요 추가
+  const { mutationLikeDelete } = useLikeDeleteMutation(postId); // 특정 포스트 좋아요 제거
 
-  const handleLikeCountClick = () => {
-    setLikeCount((count) => (count === 0 ? 1 : 0));
+  const { data: likeData } = useGetPostDetailQuery(postId);
+
+  /** 포스트 좋아요 추가 함수 */
+  const handleLikeCreateClick = async () => {
+    /** 특정 포스트 상세 보기*/
+    const isUserId = likeData?.likes.find(({ user }) => user === userId);
+
+    if (!isUserId) {
+      mutationLikeCreate({
+        JWTtoken,
+        postId
+      });
+    } else {
+      mutationLikeDelete({
+        JWTtoken,
+        id: isUserId._id
+      });
+    }
   };
 
   return (
@@ -61,9 +85,9 @@ function PrePost() {
           <Style.PrePostContent>기본 내용</Style.PrePostContent>
         </Style.PrePostContainer>
         <Style.LikeCommentContainer>
-          <Style.LikeLogoContainer onClick={handleLikeCountClick}>
+          <Style.LikeLogoContainer onClick={handleLikeCreateClick}>
             <Style.LikeLogo src="/src/assets/Like.svg" />
-            <Style.ListCount>{likeCount}</Style.ListCount>
+            <Style.ListCount>{likeData?.likes.length}</Style.ListCount>
           </Style.LikeLogoContainer>
           <Style.CommentCountText>
             총{' '}

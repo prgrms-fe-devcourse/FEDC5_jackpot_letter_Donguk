@@ -29,11 +29,6 @@ export interface useFormProps {
 }
 
 function Post() {
-  /** 특정 포스트 상세 보기*/
-  // const { data: detailData } = useGetPostDetailQuery(
-  //   '6596a8c47bff35223a55215d'
-  // );
-
   const {
     register,
     formState: { errors, isSubmitting },

@@ -15,7 +15,7 @@ const axiosInstance = axios.create({
 
 export default async function request(req: VercelRequest, res: VercelResponse) {
   const { method, url, data, headers } = req.body as RequestType;
-  console.log(method, '\n', url, '\n', data, '\n', headers);
+
   try {
     const { data: responseData } = await axiosInstance({
       method,

@@ -44,7 +44,9 @@ function PostComment() {
   const userId = useAtomValue(idAtom);
   const { postId } = useParams() as { postId: string };
   const { mutationCommentCreate } = usePostCommentCreateMutation();
+
   const { data, isError, isPending } = useUserInfomationQuery(userId);
+  // console.log('유저 정보 데이터:', data);
 
   /** 댓글 작성 시 서버로 전송 */
   const onSubmit = (data: useFormProps) => {
@@ -77,7 +79,7 @@ function PostComment() {
         <Style.CommentContainer>
           <Header />
           <Style.GroudImage src="/src/assets/ShortLogo.svg" />
-          <PrePost />
+          <PrePost postId={postId} />
           <Comment
             register={register}
             userId={userId}

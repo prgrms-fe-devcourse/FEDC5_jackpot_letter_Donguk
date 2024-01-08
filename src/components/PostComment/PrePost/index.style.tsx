@@ -74,6 +74,7 @@ export const LikeLogoContainer = styled.span`
   border: solid 1.5px gray;
   border-radius: 15px;
   box-sizing: border-box;
+  cursor: pointer;
 `;
 export const LikeLogo = styled.img`
   width: 1.5rem;
