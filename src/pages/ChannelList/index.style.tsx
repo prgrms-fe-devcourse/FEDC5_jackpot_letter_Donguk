@@ -6,7 +6,6 @@ export const Header = styled.div`
 `;
 export const Title = styled.div`
   padding: 2rem;
-  color: white;
   font-weight: 600;
   & h1 {
     ${({ theme }) => theme.typography.title2};
