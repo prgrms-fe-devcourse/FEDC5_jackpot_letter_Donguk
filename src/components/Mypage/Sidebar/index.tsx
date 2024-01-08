@@ -31,6 +31,10 @@ function Sidebar({
       {
         text: '작성한 댓글',
         link: '/mypage/comment-list'
+      },
+      {
+        text: '나에게 온 주머니',
+        link: '/mypage/received-post-list'
       }
     ]
   };

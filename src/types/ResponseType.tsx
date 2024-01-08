@@ -136,6 +136,7 @@ export interface AuthenticationUser {
 
 export interface UserPost extends Post {
   channelName: string;
+  content: string;
 }
 
 export interface UserComment extends Post {

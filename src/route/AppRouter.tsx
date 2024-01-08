@@ -12,6 +12,7 @@ import FollowPage from '@/pages/FollowPage';
 import LikeListPage from '@/pages/LikeListPage';
 import Mypage from '@/pages/Mypage';
 import PostListPage from '@/pages/PostListPage';
+import ReceivedPostListPage from '@/pages/ReceivedPostListPage';
 import SignInPage from '@/pages/SignInPage';
 import SignUpPage from '@/pages/SignUpPage';
 
@@ -48,7 +49,7 @@ const userRoutes: userRoutes = {
     {
       path: PATH.MYPGE_RECEIVED_POST_LIST,
       exact: true,
-      component: <LikeListPage />
+      component: <ReceivedPostListPage />
     },
     {
       path: PATH.MYPGE_COMMNET_LIST,

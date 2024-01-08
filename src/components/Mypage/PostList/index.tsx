@@ -2,12 +2,8 @@ import { UserPost } from '@/types/ResponseType';
 import * as Style from './indext.style';
 
 interface PostListProps {
-  posts: PostType[];
+  posts: UserPost[];
   type: 'post' | 'like';
-}
-
-interface PostType extends UserPost {
-  content?: string;
 }
 
 function PostList({ posts, type }: PostListProps) {
