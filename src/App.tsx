@@ -18,19 +18,22 @@ function App() {
           <Route
             path={route.path}
             element={<SignIn>{route.component}</SignIn>}
-            key={idx}></Route>
+            key={idx}
+          ></Route>
         ))}
         {userRoutes.map((route, idx) => (
           <Route
             path={route.path}
             element={<AuthMiddleware>{route.component}</AuthMiddleware>}
-            key={idx}></Route>
+            key={idx}
+          ></Route>
         ))}
         {commonRoutes.map((route, idx) => (
           <Route
             path={route.path}
             element={<>{route.component}</>}
-            key={idx}></Route>
+            key={idx}
+          ></Route>
         ))}
       </Routes>
 

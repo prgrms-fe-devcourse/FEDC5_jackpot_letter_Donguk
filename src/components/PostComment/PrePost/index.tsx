@@ -54,7 +54,6 @@ function PrePost() {
 
   console.log('커밋을 위한 임시 출력', setTemporaryContent);
 
-
   return (
     <>
       <Style.PrePostAndCommentContainer>

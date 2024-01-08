@@ -1,14 +1,11 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import axios from 'axios';
 
-interface RequestType {
+interface RequestType<T> {
   method: 'GET' | 'POST';
   url: string;
-  headers?: {
-    Authorization: string;
-  };
+  data?: T;
   params: string;
-  data?: object;
   headers?: Record<string, string>;
 }
 
@@ -16,16 +13,19 @@ const axiosInstance = axios.create({
   baseURL: process.env.BASE_URL
 });
 
-export default async function request(req: VercelRequest, res: VercelResponse) {
-
-  const { method, url, data, headers } = req.body as RequestType;
+export default async function request<T>(
+  req: VercelRequest,
+  res: VercelResponse
+) {
+  const { method, url, data, headers } = req.body as RequestType<T>;
   try {
     const { data: responseData } = await axiosInstance({
       method,
       url,
       data,
-      headers
+      headers: { ...headers }
     });
+
     res.status(200).json(responseData);
   } catch (error) {
     //에러핸들링 interceptor
