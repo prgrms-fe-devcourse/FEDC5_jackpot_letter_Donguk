@@ -12,11 +12,16 @@ function useUserLikeList(userData: User) {
               return getPostDetail(like.post);
             },
             select: (data: Post): UserPost => {
+              const { title, content } = JSON.parse(data.title);
               const response = {
                 ...data,
                 _id: like._id,
-                channelName: data.channel.name
+                title,
+                content,
+                channelName: data.author.fullName
               };
+              console.log(response);
+
               return response;
             },
             staleTime: Infinity
