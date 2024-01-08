@@ -2,10 +2,6 @@ import { END_POINTS } from '@/constants/api';
 import { Authentication, AuthenticationUser } from '@/types/ResponseType';
 import { axiosInstance } from './axiosInstance';
 
-export interface PostSignIn extends Authentication {
-  signInData: object;
-}
-
 export const getConfirmAuth = async () => {
   const { data } = await axiosInstance.get<AuthenticationUser>(
     END_POINTS.AUTH_USER
@@ -27,7 +23,7 @@ export const postSignUp = async (signUpData: object) => {
 
 export const postSignIn = async (signInData: object) => {
   const { data } = await axiosInstance.post<Authentication>(
-    '/login',
+    END_POINTS.SIGNIN,
     signInData,
     {
       authorization: false
