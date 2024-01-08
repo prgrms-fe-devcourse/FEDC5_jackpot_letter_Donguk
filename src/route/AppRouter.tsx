@@ -11,6 +11,7 @@ import CommentListPage from '@/pages/CommentListPage';
 import FollowPage from '@/pages/FollowPage';
 import LikeListPage from '@/pages/LikeListPage';
 import Mypage from '@/pages/Mypage';
+import PostCreate from '@/pages/PostCreate';
 import PostListPage from '@/pages/PostListPage';
 import SignInPage from '@/pages/SignInPage';
 import SignUpPage from '@/pages/SignUpPage';
@@ -60,6 +61,7 @@ const commonRoutes: Array<RouteProps> = [
   { path: PATH.ROOT, exact: true, component: <ChannelList /> },
   { path: `${PATH.CHANNEL}/:channelId`, exact: false, component: <Channel /> },
   { path: PATH.POST, exact: true, component: <Post /> },
+  { path: PATH.POST_CREATE, exact: true, component: <PostCreate /> },
   { path: PATH.COMMENT, exact: true, component: <Comment /> }
 ];
 

@@ -12,7 +12,7 @@ export const Background = styled.div<{ selectedValue: BgName }>`
     BgType[selectedValue] === 'dark' ? 'white' : 'black'};
 `;
 
-export const Item = styled.img`
+export const Item = styled.div`
   margin: 0.5rem;
   width: 5.625rem;
   height: 5.625rem;
