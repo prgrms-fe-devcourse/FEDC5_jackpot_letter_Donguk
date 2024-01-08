@@ -1,14 +1,17 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAtomValue } from 'jotai';
 import { Item } from '@/components/ChannelTemplate/SelectBackground/index.style';
 import {
   ColorName,
   ColorType
 } from '@/components/ChannelTemplate/SelectColor/type';
+import Button from '@/components/Common/Button';
 import { channelNameAtom } from '@/store/auth';
 import { theme } from '@/theme';
 import { css } from '@emotion/react';
 import { ChannelIconList, Title } from '../ChannelList/index.style';
+import { ChannelButton } from '../ChannelTemplate/index.style';
 
 export const selectedStyle = css`
   width: calc(4.325rem - 7px);
@@ -16,6 +19,7 @@ export const selectedStyle = css`
   border: 3px solid ${theme.palette.main};
 `;
 function PostCreate() {
+  const navigate = useNavigate();
   const channelName = useAtomValue(channelNameAtom);
   const [color, setColor] = useState<ColorName>('red');
   return (
@@ -42,6 +46,20 @@ function PostCreate() {
           />
         ))}
       </ChannelIconList>
+      <ChannelButton>
+        <Button
+          content="취소"
+          kind={'outlined'}
+          size={'sm'}
+          onClick={() => navigate(-1)}
+        />
+        <Button
+          content={'다음'}
+          kind={'primary'}
+          size="lg"
+          onClick={() => navigate('/post', { state: { color: color } })}
+        />
+      </ChannelButton>
     </>
   );
 }

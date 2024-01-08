@@ -18,6 +18,6 @@ export const Item = styled.img<{ styleOption: { [key: string]: string } }>`
   height: 5.625rem;
   border-radius: 10px;
   object-fit: fill;
-  box-shadow: 1px 1px 10px ${({ theme }) => theme.palette.gray_2};
+  box-shadow: 1px 1px 7px ${({ theme }) => theme.palette.gray_2};
   ${({ styleOption }) => styleOption}
 `;
