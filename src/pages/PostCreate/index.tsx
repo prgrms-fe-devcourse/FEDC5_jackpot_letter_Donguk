@@ -1,16 +1,23 @@
+import { useState } from 'react';
 import { useAtomValue } from 'jotai';
 import { Item } from '@/components/ChannelTemplate/SelectBackground/index.style';
 import {
   ColorName,
   ColorType
 } from '@/components/ChannelTemplate/SelectColor/type';
-import CustomChannelIcon from '@/components/Common/CustomChannelIcon';
 import { channelNameAtom } from '@/store/auth';
+import { theme } from '@/theme';
+import { css } from '@emotion/react';
 import { ChannelIconList, Title } from '../ChannelList/index.style';
 
+export const selectedStyle = css`
+  width: calc(4.325rem - 7px);
+  height: calc(4.325rem - 7px);
+  border: 3px solid ${theme.palette.main};
+`;
 function PostCreate() {
   const channelName = useAtomValue(channelNameAtom);
-
+  const [color, setColor] = useState<ColorName>('red');
   return (
     <>
       <Title>
@@ -20,15 +27,19 @@ function PostCreate() {
         <span>주머니 색상을 선택해주세요</span>
       </Title>
       <ChannelIconList>
-        {Object.keys(ColorType).map((color) => (
+        {Object.keys(ColorType).map((colorName) => (
           <Item
             role="button"
-            key={`channel-color${color}`}
-            // css={option.color === color && selectedStyle}
-            // onClick={() => setOption({ ...option, color: color as ColorName })}
-          >
-            <img />
-          </Item>
+            key={`letter-color${colorName}`}
+            src={`/src/assets/letter/${colorName}.png`}
+            css={colorName === color && selectedStyle}
+            onClick={() => setColor(colorName as ColorName)}
+            styleOption={{
+              padding: '1rem',
+              width: '4.325rem',
+              height: '4.325rem'
+            }}
+          />
         ))}
       </ChannelIconList>
     </>
