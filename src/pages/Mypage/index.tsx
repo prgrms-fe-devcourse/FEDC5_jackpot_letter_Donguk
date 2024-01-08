@@ -1,15 +1,18 @@
 import { useEffect, useState } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import { useSetAtom } from 'jotai';
+import Header from '@/components/Mypage/Header';
 import Sidebar from '@/components/Mypage/Sidebar';
 import useUser from '@/hooks/api/useUser';
 import { ACCESS_USER_ID } from '@/constants/api';
+import { PATHNAME } from '@/constants/sidebar';
 import { userAtom } from '@/store/user';
 import { getStorage } from '@/utils/LocalStorage';
 import * as Style from './index.style';
 
 function Mypage() {
   const [isMypage, setIsMypage] = useState(false);
+  const [title, setTitle] = useState('');
 
   const location = useLocation();
 
@@ -19,9 +22,12 @@ function Mypage() {
 
   const { data: userData } = useUser(userId);
 
+  const { pathname } = location;
+
   useEffect(() => {
-    setIsMypage(location.pathname.replace('/mypage', '').length <= 1);
-  }, [location]);
+    setIsMypage(pathname.replace('/mypage', '').length <= 1);
+    setTitle(PATHNAME[pathname]);
+  }, [location, pathname]);
 
   useEffect(() => {
     if (userData) {
@@ -43,6 +49,7 @@ function Mypage() {
         />
       </div>
       <main className="main">
+        <Header title={title} />
         <Outlet />
       </main>
     </Style.Container>
