@@ -1,13 +1,11 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAtomValue } from 'jotai';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Item } from '@/components/ChannelTemplate/SelectBackground/index.style';
 import {
   ColorName,
   ColorType
 } from '@/components/ChannelTemplate/SelectColor/type';
 import Button from '@/components/Common/Button';
-import { channelNameAtom } from '@/store/auth';
 import { theme } from '@/theme';
 import { css } from '@emotion/react';
 import { ChannelIconList, Title } from '../ChannelList/index.style';
@@ -19,14 +17,16 @@ export const selectedStyle = css`
   border: 3px solid ${theme.palette.main};
 `;
 function PostCreate() {
+  const { state } = useLocation();
   const navigate = useNavigate();
-  const channelName = useAtomValue(channelNameAtom);
+
   const [color, setColor] = useState<ColorName>('red');
+
   return (
     <>
       <Title>
         <h1>
-          <span>{channelName}</span>님께 보내는 주머니
+          <span>{state.name ?? '프룽'}</span>님께 보내는 주머니
         </h1>
         <span>주머니 색상을 선택해주세요</span>
       </Title>
