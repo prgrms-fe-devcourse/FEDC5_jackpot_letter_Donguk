@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const OpenIcon = styled.img`
+export const OpenIcon = styled.div`
   position: absolute;
   top: 0px;
   left: calc(50vw - 11rem);

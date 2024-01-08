@@ -4,7 +4,7 @@ export const CoveredAnimation = styled.img`
   position: fixed;
   top: 0px;
   z-index: 1;
-  left: -3rem;
+  left: -1rem;
   animation: wave 2s linear;
   animation-fill-mode: forwards;
   @keyframes wave {

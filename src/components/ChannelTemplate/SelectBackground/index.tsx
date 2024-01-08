@@ -1,10 +1,11 @@
 import { Dispatch, SetStateAction } from 'react';
 import { useAtomValue } from 'jotai';
 import { ChannelIconList, Title } from '@/pages/ChannelList/index.style.tsx';
-import { ChannelOptionType } from '@/pages/ChannelTemplate';
 import { channelNameAtom } from '@/store/auth';
+import { ChannelOptionType } from '@/types/channel';
 import { selectedStyle } from '../SelectColor';
 import { Background, Item } from './index.style';
+import { BgName, BgType } from './type';
 
 interface Props {
   option: ChannelOptionType;
@@ -15,7 +16,7 @@ function SelectBackground({ option, setOption }: Props) {
   const channelName = useAtomValue(channelNameAtom);
 
   return (
-    <Background selectedNumber={option.background}>
+    <Background selectedValue={option.background}>
       <Title>
         <h1>
           <span>{channelName}</span>님의 배경
@@ -23,13 +24,15 @@ function SelectBackground({ option, setOption }: Props) {
         <span>내 채널의 배경을 선택해주세요</span>
       </Title>
       <ChannelIconList>
-        {[0, 1, 2, 3, 4, 5, 6, 7].map((index) => (
-          <div key={`channel-background${index}`}>
+        {Object.keys(BgType).map((item) => (
+          <div key={`channel-background${item}`}>
             <Item
-              css={option.background === index && selectedStyle}
-              src={`/src/assets/background/background${index}.png`}
+              css={option.background === item && selectedStyle}
+              src={`/src/assets/background/${item}.png`}
               alt="background-img"
-              onClick={() => setOption({ ...option, background: index })}
+              onClick={() =>
+                setOption({ ...option, background: item as BgName })
+              }
             />
           </div>
         ))}
