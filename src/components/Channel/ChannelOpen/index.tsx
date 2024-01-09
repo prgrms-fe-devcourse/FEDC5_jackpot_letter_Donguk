@@ -1,20 +1,26 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Button from '@/components/Common/Button';
-import OpenChannelImg from '@/assets/OpenChannel.svg';
+import OpenChannel from '@/components/Common/CustomChannelIcon/OpenChannel';
+import useChannelQuery from '@/hooks/api/useChannelQuery';
+import { parsedColor } from '@/utils/parse';
 import { ChannelButton, OpenIcon } from './index.style';
 
-function ChannelOpen() {
+function ChannelOpen({ channelId }: Record<string, string>) {
   const navigate = useNavigate();
+  const { channelId } = useParams();
+  const { data: channelInfo } = useChannelQuery(channelId ?? '');
+  const channelColor = parsedColor(channelInfo?.description);
   return (
     <>
-      <OpenIcon
-        src={OpenChannelImg}
-        alt="OpenChannel-img"
-      />
+      <OpenIcon>
+        <OpenChannel color={channelColor} />
+      </OpenIcon>
       {/* post 위치 */}
       <ChannelButton>
         <Button
-          onClick={() => console.log('포스트 페이지 전환')}
+          onClick={() =>
+            navigate('/post/new', { state: { name: channelInfo.name } })
+          }
           content="마음 전달하기"
           size="md"
           kind={'assistant'}

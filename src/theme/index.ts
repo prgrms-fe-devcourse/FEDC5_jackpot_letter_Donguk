@@ -6,7 +6,9 @@ const palette = {
   sub: '#F0ECE5',
   gray_1: '#0F172A', //** Input 라벨 */
   gray_2: '#9f9f9f', //** Input border */
-  error: '#FF0000'
+  error: '#FF0000',
+  dark_font: '#ffffff',
+  light_font: '#000000'
 };
 
 const typography = {

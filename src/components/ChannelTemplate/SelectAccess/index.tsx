@@ -2,8 +2,8 @@ import { Dispatch, SetStateAction } from 'react';
 import { useAtomValue } from 'jotai';
 import AccessCandidate from '@/components/ChannelTemplate/AccessCandidate';
 import { Title } from '@/pages/ChannelList/index.style.tsx';
-import { ChannelOptionType } from '@/pages/ChannelTemplate';
 import { channelNameAtom } from '@/store/auth';
+import { ChannelOptionType } from '@/types/channel';
 import { Background } from '../SelectBackground/index.style';
 import { CadidateContainer } from './index.style';
 
@@ -16,7 +16,7 @@ function SelectAccess({ option, setOption }: Props) {
   const channelName = useAtomValue(channelNameAtom);
 
   return (
-    <Background selectedNumber={option.background}>
+    <Background selectedValue={option.background}>
       <Title>
         <h1>
           <span>{channelName}</span>님의 박

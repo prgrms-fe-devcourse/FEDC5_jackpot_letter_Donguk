@@ -3,11 +3,17 @@ import { Navigate, useParams } from 'react-router-dom';
 import ChannelAnimation from '@/components/Channel/ChannelAnimation';
 import ChannelClose from '@/components/Channel/ChannelClose';
 import ChannelOpen from '@/components/Channel/ChannelOpen';
+import { Background } from '@/components/ChannelTemplate/SelectBackground/index.style';
 import useChannelQuery from '@/hooks/api/useChannelQuery';
+import { parsedBackground } from '@/utils/parse';
 import { Title } from '../ChannelList/index.style';
 
 function Channel() {
-  const [data, setData] = useState({ name: '프룽', posts: [] });
+  const [data, setData] = useState({
+    name: '프룽',
+    posts: [],
+    description: ''
+  });
   const [isOpened, setIsOpened] = useState(false);
   const { channelId } = useParams();
   const { data: channelInfo } = useChannelQuery(channelId ?? '');
@@ -19,13 +25,13 @@ function Channel() {
   if (channelId === undefined) {
     return <Navigate to="/" />;
   }
-
   const handleIconClick = (): void => {
     setIsOpened(true);
   };
 
   return (
-    <>
+    <Background
+      selectedValue={data.description && parsedBackground(data.description)}>
       <Title>
         <h1>
           <span>{data.name}</span>님의 박
@@ -35,12 +41,12 @@ function Channel() {
       {isOpened ? (
         <>
           <ChannelAnimation />
-          <ChannelOpen />
+          <ChannelOpen channelId={channelId} />
         </>
       ) : (
         <ChannelClose handleIconClick={handleIconClick} />
       )}
-    </>
+    </Background>
   );
 }
 
