@@ -33,6 +33,7 @@ export const Container = styled.div<{ isMypage: boolean }>`
     flex-direction: column;
     justify-content: flex-start;
     flex-grow: 1;
+    width: 100%;
 
     .container {
       width: 100%;

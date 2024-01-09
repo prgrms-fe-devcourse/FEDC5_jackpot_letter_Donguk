@@ -8,7 +8,7 @@ export interface User {
   isOnline: boolean;
   posts: Post[];
   likes: Like[];
-  comments: string[];
+  comments: Comment[];
   followers: Follow[];
   following: Follow[];
   notifications: Notification[];
@@ -139,8 +139,11 @@ export interface UserPost extends Post {
   content: string;
 }
 
-export interface UserComment extends Post {
-  postTitle: string;
+export interface UserComment extends Comment {
+  commentAuthor: string;
+  postAuthor: string;
+  postContent: string;
+  image?: string;
 }
 
 export interface FollowType extends Follow {
