@@ -3,6 +3,7 @@ import * as Style from './index.style';
 
 function Header() {
   const [userName, setUserName] = useState('최익');
+  console.log(setUserName);
   return (
     <Style.HeaderContainer>
       <Style.HeaderInnerText>

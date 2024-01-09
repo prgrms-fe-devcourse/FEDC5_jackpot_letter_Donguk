@@ -2,6 +2,15 @@ import axios from 'axios';
 import { END_POINTS } from '@/constants/api';
 import { Comment, Like, Post } from '@/types/ResponseType';
 
+export const getAuthorPost = async (authorId: string) => {
+  const { data } = await axios.post<Post[]>('/api', {
+    method: 'GET',
+    url: `${END_POINTS.AUTHOR_POST_LIST}/${authorId}`
+  });
+
+  return data;
+};
+
 /** 특정 채널에 포스트 작성하기. 아직 response data 아직 알 수 없음 */
 export const postPostCreate = async (
   JWTtoken: string,
@@ -33,7 +42,7 @@ export const postPostCreate = async (
 export const getPostDetail = async (postId: string) => {
   const { data } = await axios.post<Post>('/api', {
     method: 'GET',
-    url: `${END_POINTS.POSTS}${postId}`
+    url: `${END_POINTS.POSTS}/${postId}`
   });
 
   return data;

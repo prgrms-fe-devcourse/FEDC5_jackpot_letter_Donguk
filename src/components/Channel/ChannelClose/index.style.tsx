@@ -55,7 +55,7 @@ export const Pointer = styled.img`
   }
 `;
 
-export const ChannelIcon = styled.img`
+export const ChannelIcon = styled.div`
   position: absolute;
   top: 0px;
   left: calc(50vw - 7rem);

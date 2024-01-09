@@ -25,6 +25,7 @@ function ChannelList() {
             key={`channel-${channel._id}`}
             role="button">
             <Link to={`/channel/${channel._id}`}>
+
               <ChannelIcon channel={channel} />
             </Link>
           </div>

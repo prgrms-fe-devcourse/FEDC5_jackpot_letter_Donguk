@@ -1,6 +1,14 @@
 import '@emotion/react';
 
-type palette = 'dark' | 'sub' | 'main' | 'gray_1' | 'gray_2' | 'error';
+type palette =
+  | 'dark'
+  | 'sub'
+  | 'main'
+  | 'gray_1'
+  | 'gray_2'
+  | 'error'
+  | 'dark_font'
+  | 'light_font';
 type typography =
   | 'title1'
   | 'label'

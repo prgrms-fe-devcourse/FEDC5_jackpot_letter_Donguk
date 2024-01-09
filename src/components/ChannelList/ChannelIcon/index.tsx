@@ -1,6 +1,6 @@
-import { IconColor } from '@/components/ChannelTemplate/SelectColor/type';
 import CustomChannelIcon from '@/components/Common/CustomChannelIcon';
 import { Channel } from '@/types/ResponseType';
+import { parsedColor } from '@/utils/parse';
 import { ChannelIconContainer } from './index.style';
 
 interface Prop {
@@ -8,10 +8,10 @@ interface Prop {
 }
 
 function ChannelIcon({ channel }: Prop) {
-  const { name } = channel;
+  const { name, description } = channel;
   return (
     <ChannelIconContainer>
-      <CustomChannelIcon color={IconColor.red} />
+      <CustomChannelIcon color={parsedColor(description)} />
       <span>{name}</span>
     </ChannelIconContainer>
   );

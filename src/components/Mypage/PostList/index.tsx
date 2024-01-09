@@ -1,4 +1,4 @@
-import { Post } from '@/types/ResponseType';
+import { UserPost } from '@/types/ResponseType';
 import * as Style from './indext.style';
 
 interface PostListProps {
@@ -6,19 +6,19 @@ interface PostListProps {
   type: 'post' | 'like';
 }
 
-interface PostType extends Post {
-  content: string;
+interface PostType extends UserPost {
+  content?: string;
 }
 
 function PostList({ posts, type }: PostListProps) {
   return (
     <div className="container">
-      {posts.map(({ title, channel, content, likes, comments, _id }) => (
+      {posts.map(({ title, channelName, content, likes, comments, _id }) => (
         <Style.PostItem key={_id}>
           <span className="post-title">{title}</span>
           <span className="post-content">{content}</span>
           <Style.PostInfo>
-            <span className="channel-name">{channel.name}</span>
+            <span className="channel-name">{channelName}</span>
             <div className="reaction-container">
               <div className="reaction-wrap">
                 <svg

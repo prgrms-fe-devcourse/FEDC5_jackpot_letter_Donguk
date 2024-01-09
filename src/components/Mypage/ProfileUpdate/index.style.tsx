@@ -10,6 +10,7 @@ export const Container = styled.div`
   box-sizing: border-box;
 
   .warning-text {
+    margin-top: 0.8rem;
     font-size: ${theme.typography.mypage_small.fontSize};
     color: ${theme.palette.error};
   }
