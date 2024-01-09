@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom';
+import SearchBar from '@/components/Common/SearchBar';
 import useChannelListQuery from '@/hooks/api/useChannelListQuery';
 import ChannelImg from '@/assets/channelWithLongLine.svg';
 import { Channel } from '@/types/ResponseType';
 import ChannelIcon from '../../components/ChannelList/ChannelIcon';
-import { ChannelIconList, Header, Title } from './index.style';
+import { Body, ChannelIconList, Header, Title } from './index.style';
 
 function ChannelList() {
   const { data: channelList } = useChannelListQuery();
@@ -19,18 +20,20 @@ function ChannelList() {
           alt="background-channel-icon"
         />
       </Header>
-      <ChannelIconList>
-        {channelList?.map((channel: Channel) => (
-          <div
-            key={`channel-${channel._id}`}
-            role="button"
-          >
-            <Link to={`/channel/${channel.name}`}>
-              <ChannelIcon channel={channel} />
-            </Link>
-          </div>
-        ))}
-      </ChannelIconList>
+      <Body>
+        <SearchBar />
+        <ChannelIconList>
+          {channelList?.map((channel: Channel) => (
+            <div
+              key={`channel-${channel._id}`}
+              role="button">
+              <Link to={`/channel/${channel.name}`}>
+                <ChannelIcon channel={channel} />
+              </Link>
+            </div>
+          ))}
+        </ChannelIconList>
+      </Body>
     </>
   );
 }
