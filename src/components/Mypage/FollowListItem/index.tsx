@@ -2,7 +2,7 @@ import { useState } from 'react';
 import useCreateFollow from '@/hooks/api/useCreateFollow';
 import useDeleteFollow from '@/hooks/api/useDeleteFollow';
 import { theme } from '@/theme';
-import ProfileImg from '../ProfileImg';
+import ProfileImg from '../../Common/ProfileImg';
 import * as Style from './index.style';
 
 interface FollowListItemProps {

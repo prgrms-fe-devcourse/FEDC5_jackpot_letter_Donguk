@@ -1,5 +1,5 @@
 import { Comment } from '@/types/ResponseType';
-import ProfileImg from '../ProfileImg';
+import ProfileImg from '../../Common/ProfileImg';
 import * as Style from './index.style';
 
 interface CommentsProps {

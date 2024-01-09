@@ -5,7 +5,7 @@ import Button from '@/components/Common/Button';
 import Input from '@/components/Common/Input';
 import useUpdateUser from '@/hooks/api/useUpdateUser';
 import { theme } from '@/theme';
-import ProfileImg from '../ProfileImg';
+import ProfileImg from '../../Common/ProfileImg';
 import * as Style from './index.style';
 
 export interface FormValue {

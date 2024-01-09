@@ -1,7 +1,7 @@
 import { SyntheticEvent } from 'react';
+import empty_user from '@/assets/images/empty_user.png';
 import { css } from '@emotion/react';
 import { ProfilePhoto } from './index.style';
-import empty_user from '@/assets/images/empty_user.png';
 
 interface ProfileImgProps {
   image: string;
