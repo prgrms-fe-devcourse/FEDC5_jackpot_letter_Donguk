@@ -3,19 +3,24 @@ import styled from '@emotion/styled';
 
 export const Container = styled.header`
   display: flex;
-  align-items: center;
+  justify-content: space-between;
 
-  .back-btn {
-    width: 1.875rem;
-    height: 1.875rem;
-    padding: 0;
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
+  .back-btn-wrap {
+    display: flex;
+    align-items: center;
 
-    svg {
+    .back-btn {
       width: 1.875rem;
       height: 1.875rem;
+      padding: 0;
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+
+      svg {
+        width: 1.875rem;
+        height: 1.875rem;
+      }
     }
   }
 `;
