@@ -1,6 +1,9 @@
 import * as Style from './index.style';
 
-function Loading({ loadingSize }) {
+interface loadingProps {
+  loadingSize: number | string;
+}
+function Loading({ loadingSize }: loadingProps) {
   return (
     <Style.LoadingImg
       src="/src/assets/loading.svg"

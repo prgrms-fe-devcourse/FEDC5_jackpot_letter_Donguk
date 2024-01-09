@@ -44,6 +44,7 @@ export const postPostUpdate = async (
   JWTtoken: string,
   postId: string,
   title: string,
+  content: string,
   image: string | null,
   imageToDeletePublicId = '',
   channelId: string
@@ -56,7 +57,10 @@ export const postPostUpdate = async (
     },
     data: {
       postId,
-      title,
+      title: JSON.stringify({
+        title,
+        content
+      }),
       image,
       imageToDeletePublicId,
       channelId

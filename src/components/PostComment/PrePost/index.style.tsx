@@ -61,9 +61,46 @@ export const PrePostContent = styled.div`
   border-color: transparent;
   outline: none;
   resize: none;
-  margin: 0.5rem auto;
+  margin: 0.5rem auto 2rem auto;
   padding: 0 0.6rem;
   box-sizing: border-box;
+`;
+
+export const PrePostEditContent = styled.textarea`
+  flex-grow: 1;
+  font-size: 0.7rem;
+  width: 95%;
+  background-color: transparent;
+  border-color: transparent;
+  outline: none;
+  resize: none;
+  margin: 0.5rem auto 2rem auto;
+  padding: 0 0.6rem;
+  box-sizing: border-box;
+`;
+
+export const EditImg = styled.img`
+  position: absolute;
+  right: 2.5rem;
+  bottom: 0.5rem;
+  width: 1.2rem;
+  cursor: pointer;
+`;
+
+export const DeleteImg = styled.img`
+  position: absolute;
+  right: 1rem;
+  bottom: 0.5rem;
+  width: 1.2rem;
+  cursor: pointer;
+`;
+
+export const CompleteImg = styled.img`
+  position: absolute;
+  right: 2.5rem;
+  bottom: 0.5rem;
+  width: 1.2rem;
+  cursor: pointer;
 `;
 
 export const LikeCommentContainer = styled.div`

@@ -4,8 +4,8 @@ import { Toaster } from 'react-hot-toast';
 import { toast } from 'react-hot-toast';
 import { useParams } from 'react-router-dom';
 import { useAtomValue } from 'jotai';
-import useChannelListQuery from '@/hooks/api/useChannelListQuery';
-import { useGetPostDetailQuery } from '@/hooks/api/useGetPostDetailQuery';
+// import useChannelListQuery from '@/hooks/api/useChannelListQuery';
+// import { useGetPostDetailQuery } from '@/hooks/api/useGetPostDetailQuery';
 import { usePostCreateMutation } from '@/hooks/api/usePostCreateMutation';
 import { tokenAtom } from '@/store/auth';
 import Footer from './Footer';
@@ -42,8 +42,7 @@ function Post() {
   const { mutationPostCreate } = usePostCreateMutation();
 
   /** 채널 리스트 */
-  const { data: channelListData } = useChannelListQuery();
-  console.log(channelListData);
+  // const { data: channelListData } = useChannelListQuery();
 
   /** 포스트 작성 시 서버로 전송 */
   const onSubmit = (submitData: useFormProps) => {

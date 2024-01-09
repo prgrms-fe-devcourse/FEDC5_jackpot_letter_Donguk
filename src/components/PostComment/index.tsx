@@ -25,6 +25,12 @@ interface useFormProps {
 }
 
 function PostComment() {
+  const JWTtoken = useAtomValue(tokenAtom);
+  const userId = useAtomValue(idAtom);
+  const { postId } = useParams() as { postId: string };
+  const { mutationCommentCreate } = usePostCommentCreateMutation(postId);
+  const { data, isPending } = useUserInfomationQuery(userId);
+
   const {
     register,
     formState: { errors, isSubmitting, isSubmitSuccessful },
@@ -33,22 +39,13 @@ function PostComment() {
   } = useForm<useFormProps>({
     mode: 'onSubmit',
     defaultValues: {
-      commentTitle: '',
+      commentTitle: userId ? (data ? data.fullName : '') : '',
       commentContent: ''
     }
   });
 
-  const JWTtoken = useAtomValue(tokenAtom);
-  const userId = useAtomValue(idAtom);
-  const { postId } = useParams() as { postId: string };
-  const { mutationCommentCreate } = usePostCommentCreateMutation(postId);
-  const { data, isError, isPending } = useUserInfomationQuery(userId);
-  console.log('유저 정보 데이터:', data);
-
   /** 댓글 작성 시 서버로 전송 */
   const onSubmit = (data: useFormProps) => {
-    console.log('최종 데이터', data);
-
     mutationCommentCreate({
       JWTtoken,
       title: data.commentTitle,
@@ -81,7 +78,6 @@ function PostComment() {
           register={register}
           userId={userId}
           data={data}
-          isError={isError}
           isPending={isPending}
         />
         <Style.Form onSubmit={handleSubmit(onSubmit)}>
