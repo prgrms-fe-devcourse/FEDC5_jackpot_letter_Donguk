@@ -31,7 +31,8 @@ function Channel() {
 
   return (
     <Background
-      selectedValue={data.description && parsedBackground(data.description)}>
+      selectedValue={data.description && parsedBackground(data.description)}
+    >
       <Title>
         <h1>
           <span>{data.name}</span>님의 박
@@ -41,7 +42,7 @@ function Channel() {
       {isOpened ? (
         <>
           <ChannelAnimation />
-          <ChannelOpen />
+          <ChannelOpen channelId={channelId} />
         </>
       ) : (
         <ChannelClose handleIconClick={handleIconClick} />

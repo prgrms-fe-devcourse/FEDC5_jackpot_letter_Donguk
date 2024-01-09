@@ -1,6 +1,15 @@
+import { UseFormRegister } from 'react-hook-form';
 import * as Style from './index.style';
 
-function Letter({ register }) {
+export interface useFormProps {
+  letterTitle: string;
+  letterComment: string;
+}
+interface letterProps {
+  register: UseFormRegister<useFormProps>;
+}
+
+function Letter({ register }: letterProps) {
   return (
     <Style.LetterContainer>
       <Style.LetterTitle

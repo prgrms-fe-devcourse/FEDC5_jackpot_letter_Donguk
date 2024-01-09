@@ -11,6 +11,18 @@ const palette = {
   light_font: '#000000'
 };
 
+const lightTheme = {
+  bgColor: palette.sub,
+  textColor: palette.dark,
+  mainColor: palette.main
+};
+
+const darkTheme = {
+  bgColor: palette.dark,
+  textColor: palette.sub,
+  mainColor: palette.main
+};
+
 const typography = {
   //** 로그인, 회원가입에서 사용하는 프로젝트명 */
   title1: {
@@ -49,5 +61,7 @@ const typography = {
 
 export const theme: Theme = {
   palette,
-  typography
+  typography,
+  lightTheme,
+  darkTheme
 };

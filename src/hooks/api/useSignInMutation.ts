@@ -1,5 +1,7 @@
+import toast from 'react-hot-toast';
 import { useMutation } from '@tanstack/react-query';
 import { useSetAtom } from 'jotai';
+import { ErrorResponseData } from '@/api/axiosInstance';
 import { postSignIn } from '@/api/member';
 import {
   channelNameAtom,
@@ -16,14 +18,22 @@ export const useSignInMutation = () => {
 
   const signInMutation = useMutation({
     mutationFn: postSignIn,
-    onSuccess: ({ token, user }) => {
+    onSuccess: ({ user, token }) => {
+      const { _id, fullName } = user;
+
       setTokenState(token);
+      setIdState(_id);
+      setNameState(fullName);
+
       setIsLoggedIn(true);
-      setIdState(user._id);
-      setNameState(user.fullName);
+      toast.success('로그인 성공');
     },
-    onError: () => {
+    onError: (error: ErrorResponseData) => {
+      if (error.customMessage) {
+        toast.error(error.customMessage);
+      }
       setIsLoggedIn(false);
+      toast.error('로그인 실패');
     }
   });
 
