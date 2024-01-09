@@ -3,6 +3,7 @@ export const END_POINTS = {
   SIGNUP: '/signup',
   AUTH_USER: '/auth-user',
   USER_LIST: '/users/get-users',
+  USER_INFOMATION: '/users',
   USER: '/users',
   AUTHOR_POST_LIST: '/posts/author',
   POSTS: '/posts',
@@ -19,6 +20,8 @@ export const END_POINTS = {
   POST_COMMENT_DELETE: '/comments/delete',
   CREATE_CHANNEL: '/channels/create',
   CHANNEL: '/channels',
+  LIKE_CREATE: '/likes/create',
+  LIKE_DELETE: '/likes/delete',
   DELETE_FOLLOW: '/follow/delete',
   CREATE_FOLLOW: '/follow/create'
 };

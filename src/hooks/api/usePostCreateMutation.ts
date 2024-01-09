@@ -21,7 +21,7 @@ export const usePostCreateMutation = () => {
     }: mutationProps) =>
       postPostCreate(JWTtoken, title, content, image, channelId),
     onSuccess: () => console.log('편지가 정상적으로 전달되었습니다.'),
-    onError: () => console.log('편지가 전달되지 못하였습니다.')
+    onError: (error) => console.log('편지가 전달되지 못하였습니다.', error)
   });
 
   return { mutationPostCreate: postCreateMutation.mutate };

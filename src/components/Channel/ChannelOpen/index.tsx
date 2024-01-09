@@ -5,9 +5,8 @@ import useChannelQuery from '@/hooks/api/useChannelQuery';
 import { parsedColor } from '@/utils/parse';
 import { ChannelButton, OpenIcon } from './index.style';
 
-function ChannelOpen() {
+function ChannelOpen({ channelId }: Record<string, string>) {
   const navigate = useNavigate();
-
   const { channelId } = useParams();
   const { data: channelInfo } = useChannelQuery(channelId ?? '');
   const channelColor = parsedColor(channelInfo?.description);
