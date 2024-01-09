@@ -5,9 +5,8 @@ import useChannelQuery from '@/hooks/api/useChannelQuery';
 import { parsedColor } from '@/utils/parse';
 import { ChannelButton, OpenIcon } from './index.style';
 
-function ChannelOpen() {
+function ChannelOpen({ channelId }: Record<string, string>) {
   const navigate = useNavigate();
-
   const { channelId } = useParams();
   const { data: channelInfo } = useChannelQuery(channelId ?? '');
   const channelColor = parsedColor(channelInfo?.description);
@@ -19,7 +18,9 @@ function ChannelOpen() {
       {/* post 위치 */}
       <ChannelButton>
         <Button
-          onClick={() => console.log('포스트 페이지 전환')}
+          onClick={() =>
+            navigate('/post/new', { state: { name: channelInfo.name } })
+          }
           content="마음 전달하기"
           size="md"
           kind={'assistant'}
