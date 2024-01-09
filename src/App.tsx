@@ -1,3 +1,4 @@
+import { CSSProperties } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { Route, Routes } from 'react-router-dom';
 import SignIn from '@components/Common/SignIn';
@@ -11,11 +12,18 @@ import { darkAtom } from './store/theme';
 import reset from './styles/_reset';
 import global from './styles/global';
 
+interface ToastStyleProps extends CSSProperties {
+  textAlign: 'center';
+  wordBreak: 'keep-all';
+}
+
 function App() {
-  const toastStyle = {
+  const toastStyle: ToastStyleProps = {
     fontWeight: 600,
     padding: '0.75rem 1rem',
-    marginTop: '0.5rem'
+    marginTop: '0.5rem',
+    textAlign: 'center',
+    wordBreak: 'keep-all'
   };
 
   const darkMode = useAtomValue(darkAtom);
@@ -46,7 +54,6 @@ function App() {
             key={idx}></Route>
         ))}
       </Routes>
-
       <Toaster
         toastOptions={{
           style: { ...toastStyle }
