@@ -6,6 +6,7 @@ import { useAtomValue } from 'jotai';
 import { theme } from '@/theme';
 import { Global } from '@emotion/react';
 import DarkMode from './components/Common/DarkMode';
+import NotFoundPage from './pages/NotFoundPage';
 import { authRoutes, commonRoutes, userRoutes } from './route/AppRouter';
 import AuthMiddleware from './route/AuthMiddleware';
 import { darkAtom } from './store/theme';
@@ -53,6 +54,10 @@ function App() {
             element={<>{route.component}</>}
             key={idx}></Route>
         ))}
+        <Route
+          path="/*"
+          element={<NotFoundPage />}
+        />
       </Routes>
       <Toaster
         toastOptions={{
