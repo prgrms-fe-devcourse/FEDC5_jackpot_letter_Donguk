@@ -19,10 +19,12 @@ export const Container = styled.div`
     flex-grow: 1;
     display: flex;
     flex-direction: column;
+    align-items: center;
     width: 100%;
 
     .input-wrap {
       flex-grow: 1;
+      width: 100%;
     }
   }
 `;
@@ -31,6 +33,22 @@ export const ProfileImgWrap = styled.div`
   position: relative;
   width: 9.375rem;
   margin-bottom: 2.5rem;
+
+  .file-input-wrap {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    width: 2rem;
+    height: 2rem;
+
+    #profile {
+      position: absolute;
+      width: 2rem;
+      height: 2rem;
+      visibility: hidden;
+      z-index: 10;
+    }
+  }
 
   .camera-button {
     display: flex;
@@ -43,6 +61,8 @@ export const ProfileImgWrap = styled.div`
     height: 2rem;
     border: none;
     border-radius: 50%;
+    background-color: white;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     cursor: pointer;
 
     svg {

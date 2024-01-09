@@ -43,13 +43,13 @@ function Mypage() {
       <div className="sidebar-container">
         <Sidebar
           fullName={userData?.fullName ?? ''}
-          followersCount={userData?.followers.length ?? 0}
-          followingCount={userData?.following.length ?? 0}
-          image={userData?.image ?? ''}
+          followersCount={userData?.followers.length || 0}
+          followingCount={userData?.following.length || 0}
+          image={userData?.image || ''}
         />
       </div>
       <main className="main">
-        <Header title={title} />
+        {!isMypage ? <Header title={title} /> : null}
         <Outlet />
       </main>
     </Style.Container>

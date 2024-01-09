@@ -32,3 +32,27 @@ export const updatePassword = async <T>(password: string, headers: T) => {
 
   return data;
 };
+
+export const updateUserPhoto = async <T>(
+  headers: T,
+  isCover: boolean,
+  image: File
+) => {
+  const formData = new FormData();
+  formData.append('isCover', String(isCover));
+  formData.append('image', image);
+
+  const BASE_URL = import.meta.env.VITE_BASE_URL;
+  const { data } = await axios.post(
+    `${BASE_URL}${END_POINTS.UPLOAD_PHOTO}`,
+    formData,
+    {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        ...headers
+      }
+    }
+  );
+
+  return data;
+};
