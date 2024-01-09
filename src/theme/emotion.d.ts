@@ -20,6 +20,7 @@ type typography =
   | 'description'
   | 'description2';
 
+type customTheme = 'bgColor' | 'textColor' | 'mainColor';
 declare module '@emotion/react' {
   export interface Theme {
     palette: {
@@ -31,6 +32,12 @@ declare module '@emotion/react' {
         lineHeight?: string;
         fontSize: string;
       };
+    };
+    darkTheme: {
+      [key in customTheme]: string;
+    };
+    lightTheme: {
+      [key in customTheme]: string;
     };
   }
 }

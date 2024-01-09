@@ -30,6 +30,8 @@ export const ACCESS_TOKEN_KEY = 'ACCESS_TOKEN';
 export const ACCESS_USER_ID = 'ACCESS_USER_ID';
 export const ACCESS_CHANNEL_NAME = 'ACCESS_CHANNEL_NAME';
 
+export const DARKMODE = 'DARK_MODE';
+
 export const ERROR_MESSAGE = {
   'Your email and password combination does not match an account.':
     '등록되지 않은 아이디이거나 아이디 또는 비밀번호를 잘못 입력했습니다',

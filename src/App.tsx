@@ -2,8 +2,15 @@ import { CSSProperties } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { Route, Routes } from 'react-router-dom';
 import SignIn from '@components/Common/SignIn';
+import { useAtomValue } from 'jotai';
+import { theme } from '@/theme';
+import { Global } from '@emotion/react';
+import DarkMode from './components/Common/DarkMode';
 import { authRoutes, commonRoutes, userRoutes } from './route/AppRouter';
 import AuthMiddleware from './route/AuthMiddleware';
+import { darkAtom } from './store/theme';
+import reset from './styles/_reset';
+import global from './styles/global';
 
 interface ToastStyleProps extends CSSProperties {
   textAlign: 'center';
@@ -19,8 +26,14 @@ function App() {
     wordBreak: 'keep-all'
   };
 
+  const darkMode = useAtomValue(darkAtom);
+
   return (
     <>
+      <Global
+        styles={[reset, global(darkMode ? theme.darkTheme : theme.lightTheme)]}
+      />
+      <DarkMode darkMode={darkMode} />
       <Routes>
         {authRoutes.map((route, idx) => (
           <Route
