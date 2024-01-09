@@ -1,8 +1,15 @@
 import { Toaster } from 'react-hot-toast';
 import { Route, Routes } from 'react-router-dom';
 import SignIn from '@components/Common/SignIn';
+import { useAtomValue } from 'jotai';
+import { theme } from '@/theme';
+import { Global } from '@emotion/react';
+import DarkMode from './components/Common/DarkMode';
 import { authRoutes, commonRoutes, userRoutes } from './route/AppRouter';
 import AuthMiddleware from './route/AuthMiddleware';
+import { darkAtom } from './store/theme';
+import reset from './styles/_reset';
+import global from './styles/global';
 
 function App() {
   const toastStyle = {
@@ -11,29 +18,32 @@ function App() {
     marginTop: '0.5rem'
   };
 
+  const darkMode = useAtomValue(darkAtom);
+
   return (
     <>
+      <Global
+        styles={[reset, global(darkMode ? theme.darkTheme : theme.lightTheme)]}
+      />
+      <DarkMode darkMode={darkMode} />
       <Routes>
         {authRoutes.map((route, idx) => (
           <Route
             path={route.path}
             element={<SignIn>{route.component}</SignIn>}
-            key={idx}
-          ></Route>
+            key={idx}></Route>
         ))}
         {userRoutes.map((route, idx) => (
           <Route
             path={route.path}
             element={<AuthMiddleware>{route.component}</AuthMiddleware>}
-            key={idx}
-          ></Route>
+            key={idx}></Route>
         ))}
         {commonRoutes.map((route, idx) => (
           <Route
             path={route.path}
             element={<>{route.component}</>}
-            key={idx}
-          ></Route>
+            key={idx}></Route>
         ))}
       </Routes>
 
