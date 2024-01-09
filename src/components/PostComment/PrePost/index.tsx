@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast, { Toaster } from 'react-hot-toast';
 import { useAtomValue } from 'jotai';
+import { useCommentDeleteMutation } from '@/hooks/api/useCommentDeleteMutation';
 import { useGetPostDetailQuery } from '@/hooks/api/useGetPostDetailQuery';
 import { useLikeCreateMutation } from '@/hooks/api/useLikeCreateMutation';
 import { useLikeDeleteMutation } from '@/hooks/api/useLikeDeleteMutation';
@@ -32,7 +33,9 @@ function PrePost({ postId }: PrePostProps) {
   const { mutationLikeDelete } = useLikeDeleteMutation(postId); // 특정 포스트 좋아요 제거
   const { mutationPostDelete } = usePostDeleteMutation(); // 특정 포스트 제거
   const { mutationPostUpdate } = usePostUpdateMutation(); // 특정 포스트 수정
+  const { mutationCommentDelete } = useCommentDeleteMutation(postId); // 특정 댓글 제거
   const { data, isPending } = useGetPostDetailQuery(postId);
+  console.log(data);
 
   const {
     register,
@@ -91,6 +94,17 @@ function PrePost({ postId }: PrePostProps) {
       mutationPostDelete({
         JWTtoken,
         id: postId
+      });
+    }
+  };
+
+  const handleDeleteCommentClick = (e) => {
+    const deleteCheck = confirm('댓글 삭제하시겠습니까?');
+
+    if (deleteCheck) {
+      mutationCommentDelete({
+        JWTtoken,
+        id: e.target.dataset.id
       });
     }
   };
@@ -170,13 +184,18 @@ function PrePost({ postId }: PrePostProps) {
         </Style.LikeCommentContainer>
         <Style.PreCommentContainer>
           {data?.comments.map(
-            ({ comment }, idx) =>
+            ({ comment, _id }, idx) =>
               titleAndCommentParsing(comment) && (
                 <Style.PrePostComment key={idx}>
                   <Style.PrePostUserName>
                     {`${titleAndCommentParsing(comment).title} `}
                   </Style.PrePostUserName>
                   {titleAndCommentParsing(comment).comment}
+                  <Style.CommentDeleteImg
+                    src="/src/assets/delete.svg"
+                    data-id={_id}
+                    onClick={handleDeleteCommentClick}
+                  />
                 </Style.PrePostComment>
               )
           )}
