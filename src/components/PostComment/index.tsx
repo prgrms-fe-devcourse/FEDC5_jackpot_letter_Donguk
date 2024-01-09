@@ -27,6 +27,7 @@ interface useFormProps {
 function PostComment() {
   const JWTtoken = useAtomValue(tokenAtom);
   const userId = useAtomValue(idAtom);
+
   const { postId } = useParams() as { postId: string };
   const { mutationCommentCreate } = usePostCommentCreateMutation(postId);
   const { data, isPending } = useUserInfomationQuery(userId);
@@ -35,7 +36,8 @@ function PostComment() {
     register,
     formState: { errors, isSubmitting, isSubmitSuccessful },
     handleSubmit,
-    reset
+    reset,
+    setValue
   } = useForm<useFormProps>({
     mode: 'onSubmit',
     defaultValues: {
@@ -46,6 +48,7 @@ function PostComment() {
 
   /** 댓글 작성 시 서버로 전송 */
   const onSubmit = (data: useFormProps) => {
+    console.log(data);
     mutationCommentCreate({
       JWTtoken,
       title: data.commentTitle,
@@ -53,6 +56,10 @@ function PostComment() {
       postId
     });
   };
+
+  useEffect(() => {
+    setValue('commentTitle', userId ? (data ? data.fullName : '') : '');
+  }, [userId, data]);
 
   useEffect(() => {
     if (isSubmitSuccessful) reset();

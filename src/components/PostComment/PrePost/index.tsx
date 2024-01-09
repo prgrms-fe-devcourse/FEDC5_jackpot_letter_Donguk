@@ -116,7 +116,6 @@ function PrePost({ postId }: PrePostProps) {
     }
   }, [isSubmitting]);
 
-
   return (
     <>
       <Style.PrePostAndCommentContainer>
