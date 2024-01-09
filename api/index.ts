@@ -5,13 +5,14 @@ interface RequestType<T> {
   method: 'GET' | 'POST';
   url: string;
   data?: T;
-  params: string;
+  params:Record<string, string>;
   headers?: Record<string, string>;
 }
 
 const axiosInstance = axios.create({
   baseURL: process.env.BASE_URL
 });
+
 
 export default async function request<T>(
   req: VercelRequest,
