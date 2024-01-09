@@ -1,15 +1,20 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Button from '@/components/Common/Button';
 import OpenChannel from '@/components/Common/CustomChannelIcon/OpenChannel';
 import useChannelQuery from '@/hooks/api/useChannelQuery';
 import { parsedColor } from '@/utils/parse';
 import { ChannelButton, OpenIcon } from './index.style';
 
-function ChannelOpen({ channelId }: Record<string, string>) {
+interface channelOpenProps {
+  channelId: string;
+  channelName: string;
+}
+
+function ChannelOpen({ channelId, channelName }: channelOpenProps) {
   const navigate = useNavigate();
-  const { channelId } = useParams();
-  const { data: channelInfo } = useChannelQuery(channelId ?? '');
+  const { data: channelInfo } = useChannelQuery(channelName ?? '');
   const channelColor = parsedColor(channelInfo?.description);
+
   return (
     <>
       <OpenIcon>
@@ -19,7 +24,9 @@ function ChannelOpen({ channelId }: Record<string, string>) {
       <ChannelButton>
         <Button
           onClick={() =>
-            navigate('/post/new', { state: { name: channelInfo.name } })
+            navigate('/post/new', {
+              state: { channelName, channelId }
+            })
           }
           content="마음 전달하기"
           size="md"
