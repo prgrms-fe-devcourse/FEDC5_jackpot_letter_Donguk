@@ -15,6 +15,13 @@ function ChannelList() {
     setChannels(channelList);
   }, [channelList]);
 
+  const handleChangeKeyword = (keyword: string) => {
+    const filteredChannels = channelList?.filter((channel: Channel) =>
+      channel.name.includes(keyword)
+    );
+    setChannels(filteredChannels);
+  };
+
   return (
     <>
       <Header>
@@ -29,10 +36,8 @@ function ChannelList() {
       </Header>
       <Body>
         <SearchBar
-          total={channelList}
           placeholder="채널명을 검색해주세요."
-          option="users"
-          setContent={setChannels}
+          handleChangeKeyword={handleChangeKeyword}
         />
         <ChannelIconList>
           {channels?.map((channel: Channel) => (
