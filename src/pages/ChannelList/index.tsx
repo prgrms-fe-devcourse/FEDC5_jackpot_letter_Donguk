@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import SearchBar from '@/components/Common/SearchBar';
 import useChannelListQuery from '@/hooks/api/useChannelListQuery';
@@ -8,6 +9,12 @@ import { Body, ChannelIconList, Header, Title } from './index.style';
 
 function ChannelList() {
   const { data: channelList } = useChannelListQuery();
+  const [channels, setChannels] = useState<Channel[]>(channelList);
+
+  useEffect(() => {
+    setChannels(channelList);
+  }, [channelList]);
+
   return (
     <>
       <Header>
@@ -21,9 +28,14 @@ function ChannelList() {
         />
       </Header>
       <Body>
-        <SearchBar />
+        <SearchBar
+          total={channelList}
+          placeholder="채널명을 검색해주세요."
+          option="users"
+          setContent={setChannels}
+        />
         <ChannelIconList>
-          {channelList?.map((channel: Channel) => (
+          {channels?.map((channel: Channel) => (
             <div
               key={`channel-${channel._id}`}
               role="button">

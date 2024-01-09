@@ -40,3 +40,13 @@ export const createChannel = async (channelOption: MutationProps) => {
   });
   return data;
 };
+export const getSearchResult = async (
+  keyword: string,
+  option: 'users' | 'all'
+) => {
+  const { data } = await axios.post('/api', {
+    method: 'GET',
+    url: `${END_POINTS.CHANNEL_SEARCH}/${option}/${keyword}`
+  });
+  return data;
+};

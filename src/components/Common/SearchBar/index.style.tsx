@@ -4,7 +4,7 @@ export const SearchBarContainer = styled.div`
   margin: auto;
   display: flex;
   justify-content: space-between;
-  width: 16rem;
+  width: 70%;
   height: 2rem;
   padding: 0.5rem 2rem;
   border-radius: 10px;
