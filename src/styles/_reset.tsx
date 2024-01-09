@@ -113,10 +113,6 @@ const resetStyle = css`
   }
   html,
   body,
-  #root {
-    height: 100%;
-    background-color: #261b3e;
-  }
   ol,
   ul {
     list-style: none;
@@ -138,7 +134,6 @@ const resetStyle = css`
   }
   a {
     text-decoration-line: none;
-    color: white;
   }
   input {
     box-sizing: border-box;
