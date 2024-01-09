@@ -18,7 +18,9 @@ function ChannelOpen({ channelId }: Record<string, string>) {
       {/* post 위치 */}
       <ChannelButton>
         <Button
-          onClick={() => navigate(`/post/${channelId}`)}
+          onClick={() =>
+            navigate('/post/new', { state: { name: channelInfo.name } })
+          }
           content="마음 전달하기"
           size="md"
           kind={'assistant'}
