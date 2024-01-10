@@ -30,9 +30,3 @@ export const FormTitle = styled.p`
   font-weight: 700;
   text-align: center;
 `;
-
-export const InputName = styled.div`
-  display: flex;
-  align-items: flex-end;
-  gap: 10px;
-`;

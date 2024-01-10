@@ -13,6 +13,7 @@ function PostListPage() {
     <>
       <PostList
         type="post"
+        isLoading={isLoading}
         posts={!isLoading ? (data as UserPost[]) : []}
       />
     </>

@@ -11,13 +11,23 @@ export const getAuthorPost = async (authorId: string) => {
   return data;
 };
 
+export const getChannelPost = async (channelId: string) => {
+  const { data } = await axios.post<Post[]>('/api', {
+    method: 'GET',
+    url: `${END_POINTS.CHANNEL_POST_LIST}/${channelId}`
+  });
+
+  return data;
+};
+
 /** 특정 채널에 포스트 작성하기. 아직 response data 아직 알 수 없음 */
 export const postPostCreate = async (
   JWTtoken: string,
   title: string,
   content: string,
   image: string | null,
-  channelId: string
+  channelId: string,
+  color: string
 ) => {
   const { data } = await axios.post('/api', {
     method: 'POST',
@@ -28,7 +38,8 @@ export const postPostCreate = async (
     data: {
       title: JSON.stringify({
         title,
-        content
+        content,
+        color
       }),
       image,
       channelId
@@ -53,6 +64,7 @@ export const postPostUpdate = async (
   JWTtoken: string,
   postId: string,
   title: string,
+  content: string,
   image: string | null,
   imageToDeletePublicId = '',
   channelId: string
@@ -65,7 +77,10 @@ export const postPostUpdate = async (
     },
     data: {
       postId,
-      title,
+      title: JSON.stringify({
+        title,
+        content
+      }),
       image,
       imageToDeletePublicId,
       channelId
@@ -126,6 +141,7 @@ export const postPostLikeDelete = async (JWTtoken: string, id: string) => {
 /** 특정 포스트에 댓글 달기 */
 export const postPostCommentCreate = async (
   JWTtoken: string,
+  title: string,
   comment: string,
   postId: string
 ) => {
@@ -136,7 +152,10 @@ export const postPostCommentCreate = async (
       Authorization: `bearer ${JWTtoken}`
     },
     data: {
-      comment,
+      comment: JSON.stringify({
+        title,
+        comment
+      }),
       postId
     }
   });

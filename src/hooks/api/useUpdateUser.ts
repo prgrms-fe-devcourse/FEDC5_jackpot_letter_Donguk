@@ -15,11 +15,11 @@ function useUpdateUser() {
     },
     onError: (context) => {
       console.log(context);
-      toast.error('변경에 실패했습니다.');
+      toast.error('이름 변경에 실패했습니다.');
     },
     onSuccess: (data) => {
       console.log(data);
-      toast.success('성공적으로 변경됐습니다.');
+      toast.success('이름 변경 완료');
       queryClient.invalidateQueries({ queryKey: ['user'] });
     }
   });

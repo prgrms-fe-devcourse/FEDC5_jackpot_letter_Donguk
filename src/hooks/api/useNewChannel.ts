@@ -11,7 +11,7 @@ export const useNewChannel = () => {
   const navigate = useNavigate();
 
   const createChannelMutation = useMutation({
-    mutationFn: createChannel,
+    mutationFn: (channelOption: MutationProps) => createChannel(channelOption),
     onSuccess: () => {
       toast.success('채널을 생성하였습니다.');
       return navigate('/');

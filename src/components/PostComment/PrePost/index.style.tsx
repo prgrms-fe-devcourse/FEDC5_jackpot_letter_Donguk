@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 const ContainerMixin = css`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  // align-items: center;
   width: 19.375rem;
   border-radius: 20px;
 `;
@@ -27,6 +27,7 @@ export const PrePostAndCommentContainer = styled.div`
 
 export const PrePostContainer = styled.div`
   ${ContainerMixin}
+  position: relative;
   background-color: ${(props) => props.theme.palette.sub};
   height: 13.3125rem;
   margin-bottom: 0.2rem;
@@ -40,6 +41,7 @@ export const PrePostInnerTitle = styled.div`
   font-weight: 500;
   background-color: transparent;
   border-color: transparent;
+  margin: 0 auto;
   padding: 1rem 1rem 0 0.5rem;
   box-sizing: border-box;
 `;
@@ -47,6 +49,7 @@ export const PrePostInnerTitle = styled.div`
 export const PrePostUnnerline = styled.div`
   width: 90%;
   height: 1px;
+  margin: 0 auto;
   background-color: #aca3a3;
 `;
 
@@ -58,9 +61,46 @@ export const PrePostContent = styled.div`
   border-color: transparent;
   outline: none;
   resize: none;
-  margin: 0.6rem 0;
+  margin: 0.5rem auto 2rem auto;
   padding: 0 0.6rem;
   box-sizing: border-box;
+`;
+
+export const PrePostEditContent = styled.textarea`
+  flex-grow: 1;
+  font-size: 0.7rem;
+  width: 95%;
+  background-color: transparent;
+  border-color: transparent;
+  outline: none;
+  resize: none;
+  margin: 0.5rem auto 2rem auto;
+  padding: 0 0.6rem;
+  box-sizing: border-box;
+`;
+
+export const EditImg = styled.img`
+  position: absolute;
+  right: 2.5rem;
+  bottom: 0.5rem;
+  width: 1.2rem;
+  cursor: pointer;
+`;
+
+export const DeleteImg = styled.img`
+  position: absolute;
+  right: 1rem;
+  bottom: 0.5rem;
+  width: 1.2rem;
+  cursor: pointer;
+`;
+
+export const CompleteImg = styled.img`
+  position: absolute;
+  right: 2.5rem;
+  bottom: 0.5rem;
+  width: 1.2rem;
+  cursor: pointer;
 `;
 
 export const LikeCommentContainer = styled.div`
@@ -74,6 +114,7 @@ export const LikeLogoContainer = styled.span`
   border: solid 1.5px gray;
   border-radius: 15px;
   box-sizing: border-box;
+  cursor: pointer;
 `;
 export const LikeLogo = styled.img`
   width: 1.5rem;
@@ -97,14 +138,17 @@ export const CommentCountText = styled.span`
   font-size: 0.8rem;
 `;
 
+// ${ContainerMixin}
 export const PreCommentContainer = styled.div`
-  ${ContainerMixin}
+  width: 19.375rem;
+  border-radius: 20px;
   position: relative;
   height: 13.5625rem;
   margin-top: 0.5rem;
 `;
 
 export const PrePostComment = styled.div`
+  position: relative;
   margin: auto 0;
   background-color: ${(props) => props.theme.palette.sub};
   font-size: 0.8rem;
@@ -113,11 +157,18 @@ export const PrePostComment = styled.div`
   height: auto;
   line-height: 1rem;
   margin-bottom: 0.6rem;
-  padding: 1rem 0.7rem;
+  padding: 1rem 2.5rem 1rem 0.7rem;
   box-sizing: border-box;
   border-radius: 10px;
 `;
 
 export const PrePostUserName = styled.span`
   font-weight: 800;
+`;
+
+export const CommentDeleteImg = styled.img`
+  position: absolute;
+  right: 1rem;
+  width: 1.2rem;
+  cursor: pointer;
 `;

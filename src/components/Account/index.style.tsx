@@ -19,11 +19,9 @@ export const TitleContainer = styled.div`
   justify-content: flex-end;
   text-align: center;
   gap: 1.25rem;
-  color: white;
 
   a {
     text-decoration: none;
-    color: white;
     align-self: flex-start;
   }
 `;

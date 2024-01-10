@@ -1,87 +1,212 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import toast, { Toaster } from 'react-hot-toast';
+import { useAtomValue } from 'jotai';
+import { useCommentDeleteMutation } from '@/hooks/api/useCommentDeleteMutation';
+import { useGetPostDetailQuery } from '@/hooks/api/useGetPostDetailQuery';
+import { useLikeCreateMutation } from '@/hooks/api/useLikeCreateMutation';
+import { useLikeDeleteMutation } from '@/hooks/api/useLikeDeleteMutation';
+import { usePostDeleteMutation } from '@/hooks/api/usePostDeleteMutation';
+import { usePostUpdateMutation } from '@/hooks/api/usePostUpdateMutation';
+import { idAtom, tokenAtom } from '@/store/auth';
+import Loading from '../Loading';
 import * as Style from './index.style';
 
-function PrePost() {
-  const [temporaryContent, setTemporaryContent] = useState([
-    {
-      user: '최익',
-      comment:
-        '1번째 댓글1번째 댓글1번째 댓글1번째 댓글1번째 댓글1번째 댓글1번째 댓글1번째 댓글1번째 댓글1번째 댓글1번째 댓글1번째 댓글1번째 댓글1번째 댓글1번째 댓글1번째 댓글1번째 댓글1번째 댓글1번째 댓글1번째 댓글1번째 댓글1번째 댓글1번째 댓글1번째 댓글1번째 댓글'
-    },
-    {
-      user: '머쓱이',
-      comment: '2번째 댓글'
-    },
-    {
-      user: '최익',
-      comment: '1번째 댓글'
-    },
-    {
-      user: '머쓱이',
-      comment: '2번째 댓글'
-    },
-    {
-      user: '최익',
-      comment: '1번째 댓글'
-    },
-    {
-      user: '머쓱이',
-      comment: '2번째 댓글'
-    },
-    {
-      user: '최익',
-      comment: '1번째 댓글'
-    },
-    {
-      user: '머쓱이',
-      comment: '2번째 댓글'
-    },
-    {
-      user: '최익',
-      comment: '1번째 댓글'
-    },
-    {
-      user: '머쓱이',
-      comment: '2번째 댓글'
+interface PrePostProps {
+  postId: string;
+}
+
+interface userFormProps {
+  prePostContent: string;
+}
+
+const toastStyle = {
+  fontWeight: 600,
+  padding: '0.75rem 1rem',
+  marginTop: '0.5rem'
+};
+
+function PrePost({ postId }: PrePostProps) {
+  const JWTtoken = useAtomValue(tokenAtom);
+  const userId = useAtomValue(idAtom);
+  const { mutationLikeCreate } = useLikeCreateMutation(postId); // 특정 포스트 좋아요 추가
+  const { mutationLikeDelete } = useLikeDeleteMutation(postId); // 특정 포스트 좋아요 제거
+  const { mutationPostDelete } = usePostDeleteMutation(); // 특정 포스트 제거
+  const { mutationPostUpdate } = usePostUpdateMutation(); // 특정 포스트 수정
+  const { mutationCommentDelete } = useCommentDeleteMutation(postId); // 특정 댓글 제거
+  const { data, isPending } = useGetPostDetailQuery(postId);
+  console.log(data);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting }
+  } = useForm<userFormProps>({
+    mode: 'onSubmit',
+    defaultValues: {
+      prePostContent: data && JSON.parse(data.title).content
     }
-  ]);
+  });
 
-  const [likeCount, setLikeCount] = useState(0);
+  const [postState, setPostState] = useState(false); // 상단 포스트 편집 여부 상태
 
-  const handleLikeCountClick = () => {
-    setLikeCount((count) => (count === 0 ? 1 : 0));
+  /** 포스트 좋아요 추가 함수 */
+  const handleLikeCreateClick = async () => {
+    /** 특정 포스트 상세 보기*/
+    const isUserId = data?.likes.find(({ user }) => user === userId);
+
+    if (!isUserId) {
+      mutationLikeCreate({
+        JWTtoken,
+        postId
+      });
+    } else {
+      mutationLikeDelete({
+        JWTtoken,
+        id: isUserId._id
+      });
+    }
   };
 
-  console.log('커밋을 위한 임시 출력', setTemporaryContent);
+  /** 댓글 리스트 제목 및 댓글 parsing 함수 */
+  const titleAndCommentParsing = (comment: string) => {
+    try {
+      return JSON.parse(comment);
+    } catch (error) {
+      return false;
+    }
+  };
+
+  /** 특정 포스트 수정 함수 */
+  const handlePostToggleClick = () => {
+    setPostState((state) => !state);
+  };
+
+  /** */
+
+  /** 특정 포스트 삭제 함수 */
+  const handleDeletePostClick = () => {
+    const deleteCheck = confirm(
+      '편지를 삭제 하시겠습니까? 편지를 삭제하시면 편지를 포함한 모든 댓글도 함께 삭제됩니다.'
+    );
+
+    if (deleteCheck) {
+      mutationPostDelete({
+        JWTtoken,
+        id: postId
+      });
+    }
+  };
+
+  const handleDeleteCommentClick = (e) => {
+    const deleteCheck = confirm('댓글 삭제하시겠습니까?');
+
+    if (deleteCheck) {
+      mutationCommentDelete({
+        JWTtoken,
+        id: e.target.dataset.id
+      });
+    }
+  };
+
+  /** 포스트 수정 내용 서버 전송 함수 */
+  const onSubmit = (submitData: userFormProps) => {
+    mutationPostUpdate({
+      JWTtoken,
+      postId,
+      title: data ? JSON.parse(data.title).title : '',
+      content: submitData.prePostContent,
+      channelId: data?.channel._id as string
+    });
+
+    handlePostToggleClick();
+  };
+
+  useEffect(() => {
+    if (isSubmitting) {
+      errors.prePostContent
+        ? toast.error(errors.prePostContent.message as string)
+        : null;
+    }
+  }, [isSubmitting]);
 
   return (
     <>
       <Style.PrePostAndCommentContainer>
         <Style.PrePostContainer>
-          <Style.PrePostInnerTitle>기본 제목</Style.PrePostInnerTitle>
+          {isPending && <Loading loadingSize={32} />}
+          {data && (
+            <Style.PrePostInnerTitle>
+              {JSON.parse(data.title).title}
+            </Style.PrePostInnerTitle>
+          )}
           <Style.PrePostUnnerline />
-          <Style.PrePostContent>기본 내용</Style.PrePostContent>
+          {isPending && <Loading loadingSize={32} />}
+          {postState ? (
+            <Style.PrePostEditContent
+              defaultValue={data && JSON.parse(data.title).content}
+              {...register('prePostContent', {
+                required: '편지 내용은 반드시 입력해야 합니다.'
+              })}
+            />
+          ) : (
+            <Style.PrePostContent>
+              {data && JSON.parse(data.title).content}
+            </Style.PrePostContent>
+          )}
+          {postState ? (
+            <Style.CompleteImg
+              src="/src/assets/complete.svg"
+              onClick={handleSubmit(onSubmit)}
+            />
+          ) : (
+            <Style.EditImg
+              src="/src/assets/edit.svg"
+              onClick={handlePostToggleClick}
+            />
+          )}
+
+          <Style.DeleteImg
+            src="/src/assets/delete.svg"
+            onClick={handleDeletePostClick}
+          />
         </Style.PrePostContainer>
         <Style.LikeCommentContainer>
-          <Style.LikeLogoContainer onClick={handleLikeCountClick}>
+          <Style.LikeLogoContainer onClick={handleLikeCreateClick}>
             <Style.LikeLogo src="/src/assets/Like.svg" />
-            <Style.ListCount>{likeCount}</Style.ListCount>
+            <Style.ListCount>{data?.likes.length}</Style.ListCount>
           </Style.LikeLogoContainer>
           <Style.CommentCountText>
             총{' '}
-            <Style.CommentCount>{temporaryContent.length}개</Style.CommentCount>
-            의 댓글이 있습니다.
+            <Style.CommentCount>{data?.comments.length}개</Style.CommentCount>의
+            댓글이 있습니다.
           </Style.CommentCountText>
         </Style.LikeCommentContainer>
         <Style.PreCommentContainer>
-          {temporaryContent.map(({ comment }, idx) => (
-            <Style.PrePostComment key={idx}>
-              <Style.PrePostUserName>사용자 명: </Style.PrePostUserName>
-              {comment}
-            </Style.PrePostComment>
-          ))}
+          {data?.comments.map(
+            ({ comment, _id }, idx) =>
+              titleAndCommentParsing(comment) && (
+                <Style.PrePostComment key={idx}>
+                  <Style.PrePostUserName>
+                    {`${titleAndCommentParsing(comment).title} `}
+                  </Style.PrePostUserName>
+                  {titleAndCommentParsing(comment).comment}
+                  <Style.CommentDeleteImg
+                    src="/src/assets/delete.svg"
+                    data-id={_id}
+                    onClick={handleDeleteCommentClick}
+                  />
+                </Style.PrePostComment>
+              )
+          )}
         </Style.PreCommentContainer>
       </Style.PrePostAndCommentContainer>
+      <Toaster
+        toastOptions={{
+          style: toastStyle,
+          duration: 1000
+        }}
+      />
     </>
   );
 }
