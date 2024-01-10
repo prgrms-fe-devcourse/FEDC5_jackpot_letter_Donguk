@@ -23,6 +23,7 @@ export const END_POINTS = {
   CHANNEL: '/channels',
   LIKE_CREATE: '/likes/create',
   LIKE_DELETE: '/likes/delete',
+  CHANNEL_POST: '/posts/channel',
   DELETE_FOLLOW: '/follow/delete',
   CREATE_FOLLOW: '/follow/create'
 };
