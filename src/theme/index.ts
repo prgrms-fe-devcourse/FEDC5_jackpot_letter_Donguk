@@ -44,7 +44,8 @@ const typography = {
   mypage_small: { fontSize: '0.75rem' }, // 12px
   description2: {
     fontSize: ' 0.875rem', // 14px
-    fontWeight: 600
+    fontWeight: 600,
+    lineHeight: '1rem'
   }
 };
 

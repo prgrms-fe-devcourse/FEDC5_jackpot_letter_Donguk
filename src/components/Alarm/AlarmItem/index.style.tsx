@@ -10,6 +10,9 @@ export const Notification = styled.div`
 export const Content = styled.div`
   display: flex;
   gap: 1rem;
+  div {
+    ${({ theme }) => theme.typography.description2};
+  }
   img {
     box-shadow: 1px 2px 5px ${({ theme }) => theme.palette.gray_3};
     border-radius: 5px;
@@ -17,8 +20,8 @@ export const Content = styled.div`
     padding: 0.1rem;
   }
   span {
-    font-size: small;
     color: ${({ theme }) => theme.palette.gray_1};
+    ${({ theme }) => theme.typography.mypage_small};
   }
 `;
 

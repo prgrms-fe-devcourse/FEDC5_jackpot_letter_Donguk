@@ -6,4 +6,8 @@ export const NotificationContainer = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
+  h1 {
+    ${({ theme }) => theme.typography.mypage_large};
+    padding-bottom: 1rem;
+  }
 `;
