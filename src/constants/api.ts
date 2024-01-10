@@ -1,6 +1,7 @@
 export const END_POINTS = {
   SIGNIN: '/login',
   SIGNUP: '/signup',
+  SIGNOUT: '/logout',
   AUTH_USER: '/auth-user',
   USER_LIST: '/users/get-users',
   USER_INFOMATION: '/users',

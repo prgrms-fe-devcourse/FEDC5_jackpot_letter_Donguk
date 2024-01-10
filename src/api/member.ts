@@ -32,15 +32,12 @@ export const postSignIn = async (signInData: object) => {
   return data;
 };
 
-export const getUserList = async () => {
-  const { data } = await axiosInstance.get<AuthenticationUser[]>(
-    END_POINTS.USER_LIST,
-    {
-      authorization: false
-    }
-  );
+export const postSignOut = async () => {
+  const { data } = await axiosInstance.post(END_POINTS.SIGNOUT);
+
   return data;
 };
+export const getUserList = async () => {};
 
 export const getUserInfomation = async (userId: string) => {
   // 로컬 스토리지에 ACCESS_ID가 비어있을 경우
