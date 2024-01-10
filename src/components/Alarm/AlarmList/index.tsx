@@ -1,12 +1,16 @@
+import useNotifycations from '@/hooks/api/useNotifycations';
+import { Notification } from '@/types/ResponseType';
 import AlarmItem from '../AlarmItem';
 import { NotificationContainer } from './index.style';
 
-const TEST = [1, 2, 3, 4];
 function AlarmList() {
+  const { data } = useNotifycations();
   return (
     <NotificationContainer>
-      {TEST.map((item) => (
-        <AlarmItem />
+      {data?.map((item: Notification, index: number) => (
+        <div key={`alarm${index}`}>
+          <AlarmItem info={item} />
+        </div>
       ))}
     </NotificationContainer>
   );

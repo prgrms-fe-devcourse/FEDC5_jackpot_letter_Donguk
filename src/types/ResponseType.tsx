@@ -74,6 +74,7 @@ export interface Notification {
   follow?: string; // 사용자 id
   comment?: Comment;
   message?: string; // 메시지 id
+  like?: string;
   createdAt: string;
   updatedAt: string;
 }

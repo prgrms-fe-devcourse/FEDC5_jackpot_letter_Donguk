@@ -20,7 +20,8 @@ export const END_POINTS = {
   CREATE_CHANNEL: '/channels/create',
   CHANNEL: '/channels',
   DELETE_FOLLOW: '/follow/delete',
-  CREATE_FOLLOW: '/follow/create'
+  CREATE_FOLLOW: '/follow/create',
+  NOTIFICATION: '/notifications'
 };
 
 export const ACCESS_TOKEN_KEY = 'ACCESS_TOKEN';

@@ -13,7 +13,8 @@ export const Content = styled.div`
   img {
     box-shadow: 1px 2px 5px ${({ theme }) => theme.palette.gray_3};
     border-radius: 5px;
-    width: 2rem;
+    width: 1.8rem;
+    padding: 0.1rem;
   }
   span {
     font-size: small;

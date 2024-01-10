@@ -14,12 +14,13 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
-    "@hookform/resolvers": "^3.3.3",
     "@hookform/error-message": "^2.0.1",
+    "@hookform/resolvers": "^3.3.3",
     "@tanstack/react-query": "^5.14.6",
     "@tanstack/react-query-devtools": "^5.14.7",
     "@types/react-router-dom": "^5.3.3",
     "axios": "^1.6.2",
+    "dayjs": "^1.11.10",
     "jotai": "^2.6.0",
     "lottie-react": "^2.4.0",
     "react": "^18.2.0",
