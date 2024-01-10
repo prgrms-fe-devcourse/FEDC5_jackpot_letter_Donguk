@@ -7,6 +7,21 @@ export const Notification = styled.div`
   justify-content: space-between;
   border-bottom: 1px solid ${({ theme }) => theme.palette.gray_3};
 `;
+export const Info = styled.div<{ seen: boolean }>`
+  display: flex;
+  gap: 0.5rem;
+  img {
+    visibility: ${({ seen }) => (seen ? 'hidden' : 'block')};
+    width: 5px;
+    height: 10px;
+  }
+  div {
+    padding: '0.5rem';
+    display: 'block';
+    color: ${({ theme }) => theme.palette.gray_2};
+    ${({ theme }) => theme.typography.label};
+  }
+`;
 export const Content = styled.div`
   display: flex;
   gap: 1rem;
@@ -24,10 +39,3 @@ export const Content = styled.div`
     ${({ theme }) => theme.typography.mypage_small};
   }
 `;
-
-export const Time = styled.div(({ theme }) => ({
-  padding: '0.5rem',
-  display: 'block',
-  color: theme.palette.gray_2,
-  ...theme.typography.label
-}));

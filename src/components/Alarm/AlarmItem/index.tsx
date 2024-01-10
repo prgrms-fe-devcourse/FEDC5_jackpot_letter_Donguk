@@ -1,4 +1,5 @@
 import dayjs from 'dayjs';
+import New from '@/assets/New.svg';
 import { Notification } from '@/types/ResponseType';
 import * as Style from './index.style';
 
@@ -13,7 +14,7 @@ const Type: { [key: number]: string } = {
 };
 
 function AlarmItem({ info }: Prop) {
-  const { author, createdAt, comment, message, follow, like } = info;
+  const { author, createdAt, comment, message, follow, like, seen } = info;
   const optionalVariables = [comment, message, follow, like];
   const optinalNumber = optionalVariables.findIndex(
     (variable) => variable !== undefined
@@ -27,7 +28,10 @@ function AlarmItem({ info }: Prop) {
           <span>{Type[optinalNumber]}가 도착했어요.</span>
         </div>
       </Style.Content>
-      <Style.Time>{dayjs(createdAt).format('MM-DD')}</Style.Time>
+      <Style.Info seen={seen}>
+        <div>{dayjs(createdAt).format('MM-DD')}</div>
+        <img src={New} />
+      </Style.Info>
     </Style.Notification>
   );
 }
