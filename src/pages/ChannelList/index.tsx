@@ -22,9 +22,8 @@ function ChannelList() {
       <ChannelIconList>
         {channelList?.map((channel: Channel) => (
           <div
-            key={`channel-${channel._id}`}
-            role="button"
-          >
+            key={`channel-${channel.name}`}
+            role="button">
             <Link to={`/channel/${channel.name}`}>
               <ChannelIcon channel={channel} />
             </Link>

@@ -1,8 +1,10 @@
 import { ReactElement } from 'react';
 import { Link } from 'react-router-dom';
-import LongLogo from '@/assets/images/LongLogo.svg';
-import ShortLogo from '@/assets/images/ShortLogo.svg';
+import { useAtomValue } from 'jotai';
 import { PATH } from '@/constants/path';
+import { darkAtom } from '@/store/theme';
+import LongLogo from '../Common/Logo/LongLogo';
+import ShortLogo from '../Common/Logo/ShortLogo';
 import * as Style from './index.style';
 
 interface AccountProps {
@@ -10,11 +12,13 @@ interface AccountProps {
 }
 
 function Account({ children }: AccountProps) {
+  const darkMode = useAtomValue(darkAtom);
+
   return (
     <Style.SignInContainer>
       <Style.HeaderContainer>
         <Style.ImageContainer>
-          <img src={LongLogo} />
+          <LongLogo darkMode={darkMode} />
         </Style.ImageContainer>
         <Style.TitleContainer>
           <Style.Description>
@@ -25,7 +29,7 @@ function Account({ children }: AccountProps) {
           </Style.Title>
         </Style.TitleContainer>
         <Style.ImageContainer>
-          <img src={ShortLogo} />
+          <ShortLogo darkMode={darkMode} />
         </Style.ImageContainer>
       </Style.HeaderContainer>
       {children}

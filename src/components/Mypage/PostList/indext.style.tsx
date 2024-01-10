@@ -7,6 +7,7 @@ export const PostItem = styled.div`
   gap: 0.4rem;
   padding: 0.7rem 0;
   border-bottom: 1px solid #d2d2d2;
+  cursor: pointer;
 
   .post-title {
     font-size: ${theme.typography.mypage_regular.fontSize};

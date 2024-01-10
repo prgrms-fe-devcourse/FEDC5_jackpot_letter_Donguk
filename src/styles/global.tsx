@@ -2,21 +2,22 @@ import { css } from '@emotion/react';
 import PretendardBold from '../../public/assets/fonts/Pretendard-Bold.woff2';
 import PretendardMedium from '../../public/assets/fonts/Pretendard-Medium.woff2';
 import PretendardRegular from '../../public/assets/fonts/Pretendard-Regular.woff2';
-import { theme } from '../theme/index';
 
-const global = css`
+interface ThemeProps {
+  [key: string]: string;
+}
+const global = (theme: ThemeProps) => css`
   *,
   body {
     font-family: 'PretendardRegular';
   }
-
   html {
-    background-color: ${theme.palette.dark};
-    color: ${theme.palette.dark_font};
+    height: 100%;
+    background-color: ${theme.bgColor};
+    color: ${theme.textColor};
   }
-
   a {
-    color: ${theme.palette.dark_font};
+    color: ${theme.textColor};
   }
 
   .main .container,
@@ -24,7 +25,7 @@ const global = css`
     &::-webkit-scrollbar-thumb {
       background-color: transparent;
       border-radius: 10px;
-      border: 7px solid ${theme.palette.dark};
+      border: 7px solid ${theme.bgColor};
     }
   }
 
