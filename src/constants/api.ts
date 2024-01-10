@@ -7,6 +7,7 @@ export const END_POINTS = {
   USER_INFOMATION: '/users',
   USER: '/users',
   AUTHOR_POST_LIST: '/posts/author',
+  CHANNEL_POST_LIST: '/posts/channel',
   POSTS: '/posts',
   UPLOAD_PHOTO: '/users/upload-photo',
   UPDATE_USER: '/settings/update-user',

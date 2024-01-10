@@ -58,7 +58,9 @@ function PostCreate() {
           kind={'primary'}
           size="lg"
           onClick={() =>
-            navigate(`/post/${state.channelId}`, { state: { color: color } })
+            navigate(`/post/${state.channelId}`, {
+              state: { color: color, channelName: state.channelName }
+            })
           }
         />
       </ChannelButton>

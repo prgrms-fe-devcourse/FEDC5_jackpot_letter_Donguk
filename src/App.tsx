@@ -6,6 +6,7 @@ import { useAtomValue } from 'jotai';
 import { theme } from '@/theme';
 import { Global } from '@emotion/react';
 import HamburgerMenu from './components/Common/HamburgerMenu';
+import Mypage from './pages/Mypage';
 import NotFoundPage from './pages/NotFoundPage';
 import { authRoutes, commonRoutes, userRoutes } from './route/AppRouter';
 import AuthMiddleware from './route/AuthMiddleware';
@@ -41,7 +42,7 @@ function App() {
             element={<SignIn>{route.component}</SignIn>}
             key={idx}></Route>
         ))}
-        {userRoutes.map((route, idx) => (
+        {userRoutes.page.map((route, idx) => (
           <Route
             path={route.path}
             element={
@@ -54,6 +55,30 @@ function App() {
             }
             key={idx}></Route>
         ))}
+        <Route
+          path="/mypage"
+          element={
+            <AuthMiddleware>
+              <>
+                <HamburgerMenu />
+                <Mypage />
+              </>
+            </AuthMiddleware>
+          }>
+          {userRoutes.mypage.map((route, idx) => (
+            <Route
+              path={route.path}
+              element={
+                <AuthMiddleware>
+                  <>
+                    <HamburgerMenu />
+                    {route.component}
+                  </>
+                </AuthMiddleware>
+              }
+              key={idx}></Route>
+          ))}
+        </Route>
         {commonRoutes.map((route, idx) => (
           <Route
             path={route.path}

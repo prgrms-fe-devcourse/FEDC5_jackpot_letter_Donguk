@@ -11,13 +11,23 @@ export const getAuthorPost = async (authorId: string) => {
   return data;
 };
 
+export const getChannelPost = async (channelId: string) => {
+  const { data } = await axios.post<Post[]>('/api', {
+    method: 'GET',
+    url: `${END_POINTS.CHANNEL_POST_LIST}/${channelId}`
+  });
+
+  return data;
+};
+
 /** 특정 채널에 포스트 작성하기. 아직 response data 아직 알 수 없음 */
 export const postPostCreate = async (
   JWTtoken: string,
   title: string,
   content: string,
   image: string | null,
-  channelId: string
+  channelId: string,
+  color: string
 ) => {
   const { data } = await axios.post('/api', {
     method: 'POST',
@@ -28,7 +38,8 @@ export const postPostCreate = async (
     data: {
       title: JSON.stringify({
         title,
-        content
+        content,
+        color
       }),
       image,
       channelId

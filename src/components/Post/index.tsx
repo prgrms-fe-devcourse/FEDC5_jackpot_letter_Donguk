@@ -2,9 +2,9 @@ import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { Toaster } from 'react-hot-toast';
 import { toast } from 'react-hot-toast';
-import { useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useAtomValue } from 'jotai';
-// import useChannelListQuery from '@/hooks/api/useChannelListQuery';
+import useChannelListQuery from '@/hooks/api/useChannelListQuery';
 // import { useGetPostDetailQuery } from '@/hooks/api/useGetPostDetailQuery';
 import { usePostCreateMutation } from '@/hooks/api/usePostCreateMutation';
 import { tokenAtom } from '@/store/auth';
@@ -28,7 +28,7 @@ export interface useFormProps {
 function Post() {
   const {
     register,
-    formState: { errors, isSubmitting },
+    formState: { errors, isSubmitting, isSubmitSuccessful },
     handleSubmit
   } = useForm<useFormProps>({
     mode: 'onSubmit',
@@ -40,9 +40,12 @@ function Post() {
   const JWTtoken = useAtomValue(tokenAtom);
   const { channelId } = useParams();
   const { mutationPostCreate } = usePostCreateMutation();
+  const navigate = useNavigate();
+  const { state } = useLocation();
 
   /** 채널 리스트 */
-  // const { data: channelListData } = useChannelListQuery();
+  const { data: channelListData } = useChannelListQuery();
+  console.log(channelListData);
 
   /** 포스트 작성 시 서버로 전송 */
   const onSubmit = (submitData: useFormProps) => {
@@ -52,7 +55,8 @@ function Post() {
         title: submitData.letterTitle,
         content: submitData.letterComment,
         image: null,
-        channelId
+        channelId,
+        color: state.color
       });
   };
 
@@ -66,7 +70,13 @@ function Post() {
         ? toast.error(errors.letterTitle.message as string)
         : null;
     }
-  }, [isSubmitting]);
+
+    if (isSubmitSuccessful) {
+      toast.success('편지 작성에 성공하였습니다!');
+
+      navigate(`/channel/${state.channelName}`);
+    }
+  }, [isSubmitting, isSubmitSuccessful]);
 
   return (
     <>
