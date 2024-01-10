@@ -26,7 +26,8 @@ export const postPostCreate = async (
   title: string,
   content: string,
   image: string | null,
-  channelId: string
+  channelId: string,
+  color: string
 ) => {
   const { data } = await axios.post('/api', {
     method: 'POST',
@@ -37,7 +38,8 @@ export const postPostCreate = async (
     data: {
       title: JSON.stringify({
         title,
-        content
+        content,
+        color
       }),
       image,
       channelId

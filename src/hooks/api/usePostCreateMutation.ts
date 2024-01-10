@@ -7,6 +7,7 @@ interface mutationProps {
   content: string;
   image: string | null;
   channelId: string;
+  color: string;
 }
 
 /** 포스트 생성 mutation */
@@ -17,9 +18,10 @@ export const usePostCreateMutation = () => {
       title,
       content,
       image,
-      channelId
+      channelId,
+      color
     }: mutationProps) =>
-      postPostCreate(JWTtoken, title, content, image, channelId),
+      postPostCreate(JWTtoken, title, content, image, channelId, color),
     onSuccess: () => console.log('편지가 정상적으로 전달되었습니다.'),
     onError: (error) => console.log('편지가 전달되지 못하였습니다.', error)
   });
