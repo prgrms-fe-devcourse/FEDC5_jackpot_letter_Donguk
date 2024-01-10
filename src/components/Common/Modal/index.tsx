@@ -58,13 +58,11 @@ function Modal({
     <Container
       className={type}
       visible={visible}
-      onClick={(e: React.MouseEvent<HTMLDivElement>) => handleModalClose(e)}
-    >
+      onClick={(e: React.MouseEvent<HTMLDivElement>) => handleModalClose(e)}>
       <ModalContainer
         id="modal"
         className={type}
-        {...modalProps}
-      >
+        {...modalProps}>
         {children}
       </ModalContainer>
     </Container>,
