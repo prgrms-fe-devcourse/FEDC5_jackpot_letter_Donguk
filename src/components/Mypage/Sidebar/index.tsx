@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import ProfileImg from '../../Common/ProfileImg';
 import SidebarItem from '../SidebarItem';
-import { Container, GoButton, ProfileContainer } from './index.style';
+import * as Style from './index.style';
 
 interface SidebarProps {
   fullName: string;
@@ -54,8 +54,8 @@ function Sidebar({
   };
 
   return (
-    <Container>
-      <ProfileContainer>
+    <Style.Container>
+      <Style.ProfileContainer>
         <ProfileImg
           image={image}
           alt="user profile image"
@@ -106,22 +106,22 @@ function Sidebar({
             </svg>
           </button>
         </div>
-        <div className="follow-wrapper">
+        <Style.FollowWrapper>
           <Link
-            className="followers"
+            className="follow followers"
             to="/mypage/follow"
           >
             팔로워 {followersCount}
           </Link>
           <Link
-            className="following"
+            className="follow following"
             to="/mypage/follow"
           >
             팔로잉 {followingCount}
           </Link>
-        </div>
-      </ProfileContainer>
-      <GoButton onClick={() => navigate('/')}>
+        </Style.FollowWrapper>
+      </Style.ProfileContainer>
+      <Style.GoButton onClick={() => navigate('/')}>
         내 박 보러가기
         <svg
           viewBox="0 0 24 24"
@@ -148,7 +148,7 @@ function Sidebar({
             ></path>{' '}
           </g>
         </svg>
-      </GoButton>
+      </Style.GoButton>
       <SidebarItem
         title={sidebarItemActive.title}
         items={sidebarItemActive.item}
@@ -157,7 +157,7 @@ function Sidebar({
         title={sidebarItemAccount.title}
         items={sidebarItemAccount.item}
       />
-    </Container>
+    </Style.Container>
   );
 }
 

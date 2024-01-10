@@ -21,6 +21,7 @@
     "@types/react-router-dom": "^5.3.3",
     "axios": "^1.6.2",
     "jotai": "^2.6.0",
+    "lottie-react": "^2.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.49.2",
