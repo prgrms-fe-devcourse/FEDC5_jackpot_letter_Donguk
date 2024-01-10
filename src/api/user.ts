@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { NewNotificationProps } from '@/hooks/api/useNewNotification';
 import { END_POINTS } from '@/constants/api';
 import { User } from '@/types/ResponseType';
 import { getStorage } from '@/utils/LocalStorage';
@@ -66,6 +67,18 @@ export const updateUserPhoto = async <T>(
       }
     }
   );
+};
 
+export const createNotification = async (
+  notificationOption: NewNotificationProps
+) => {
+  const { data } = await axios.post('/api', {
+    method: 'POST',
+    url: END_POINTS.POST_NOTIFICATION,
+    data: notificationOption,
+    headers: {
+      Authorization: `bearer ${ACCESS_TOKEN}`
+    }
+  });
   return data;
 };

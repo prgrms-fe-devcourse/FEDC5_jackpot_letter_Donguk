@@ -25,7 +25,9 @@ export const END_POINTS = {
   LIKE_DELETE: '/likes/delete',
   DELETE_FOLLOW: '/follow/delete',
   CREATE_FOLLOW: '/follow/create',
-  NOTIFICATION: '/notifications'
+  NOTIFICATION: '/notifications',
+  PUT_NOTIFICATION: '/notifications/seen',
+  POST_NOTIFICATION: '/notifications/create'
 };
 
 export const ACCESS_TOKEN_KEY = 'ACCESS_TOKEN';
