@@ -2,9 +2,7 @@ import React, { useCallback, useState } from 'react';
 
 type useModalResult = [
   visible: boolean,
-  handleModalClick: (
-    e: React.MouseEvent<HTMLDivElement | HTMLButtonElement>
-  ) => void,
+  handleModalClick: (e: React.MouseEvent<HTMLElement>) => void,
   top: number,
   left: number
 ];
@@ -15,8 +13,8 @@ function useModal(): useModalResult {
   const [left, setLeft] = useState(0);
 
   const handleModalClick = useCallback(
-    (e: React.MouseEvent<HTMLDivElement | HTMLButtonElement>) => {
-      const target = e.target as HTMLDivElement | HTMLButtonElement;
+    (e: React.MouseEvent<HTMLElement>) => {
+      const target = e.target as HTMLElement;
 
       if (target.closest('#modal')) return;
 

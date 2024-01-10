@@ -69,6 +69,17 @@ export const updateUserPhoto = async <T>(
   );
 };
 
+export const updateNotification = async () => {
+  const { data } = await axios.post('/api', {
+    method: 'PUT',
+    url: END_POINTS.PUT_NOTIFICATION,
+    headers: {
+      Authorization: `bearer ${ACCESS_TOKEN}`
+    }
+  });
+  return data;
+};
+
 export const createNotification = async (
   notificationOption: NewNotificationProps
 ) => {
