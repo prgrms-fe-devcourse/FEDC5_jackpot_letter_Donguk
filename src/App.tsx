@@ -5,7 +5,7 @@ import SignIn from '@components/Common/SignIn';
 import { useAtomValue } from 'jotai';
 import { theme } from '@/theme';
 import { Global } from '@emotion/react';
-import DarkMode from './components/Common/DarkMode';
+import HamburgerMenu from './components/Common/HamburgerMenu';
 import NotFoundPage from './pages/NotFoundPage';
 import { authRoutes, commonRoutes, userRoutes } from './route/AppRouter';
 import AuthMiddleware from './route/AuthMiddleware';
@@ -34,7 +34,6 @@ function App() {
       <Global
         styles={[reset, global(darkMode ? theme.darkTheme : theme.lightTheme)]}
       />
-      <DarkMode darkMode={darkMode} />
       <Routes>
         {authRoutes.map((route, idx) => (
           <Route
@@ -45,13 +44,25 @@ function App() {
         {userRoutes.map((route, idx) => (
           <Route
             path={route.path}
-            element={<AuthMiddleware>{route.component}</AuthMiddleware>}
+            element={
+              <AuthMiddleware>
+                <>
+                  <HamburgerMenu />
+                  {route.component}
+                </>
+              </AuthMiddleware>
+            }
             key={idx}></Route>
         ))}
         {commonRoutes.map((route, idx) => (
           <Route
             path={route.path}
-            element={<>{route.component}</>}
+            element={
+              <>
+                <HamburgerMenu />
+                {route.component}
+              </>
+            }
             key={idx}></Route>
         ))}
         <Route
