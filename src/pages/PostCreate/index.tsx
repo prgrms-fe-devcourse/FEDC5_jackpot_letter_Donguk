@@ -26,7 +26,7 @@ function PostCreate() {
     <>
       <Title>
         <h1>
-          <span>{state.name ?? '프룽'}</span>님께 보내는 주머니
+          <span>{state.channelName ?? '프룽'}</span>님께 보내는 주머니
         </h1>
         <span>주머니 색상을 선택해주세요</span>
       </Title>
@@ -57,7 +57,9 @@ function PostCreate() {
           content={'다음'}
           kind={'primary'}
           size="lg"
-          onClick={() => navigate('/post', { state: { color: color } })}
+          onClick={() =>
+            navigate(`/post/${state.channelId}`, { state: { color: color } })
+          }
         />
       </ChannelButton>
     </>

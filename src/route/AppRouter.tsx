@@ -74,7 +74,11 @@ const authRoutes: Array<RouteProps> = [
 // 모든 상태에서 접근 가능
 const commonRoutes: Array<RouteProps> = [
   { path: PATH.ROOT, exact: true, component: <ChannelList /> },
-  { path: `${PATH.CHANNEL}/:channelId`, exact: false, component: <Channel /> },
+  {
+    path: `${PATH.CHANNEL}/:channelName`,
+    exact: false,
+    component: <Channel />
+  },
   { path: PATH.POST_CREATE, exact: true, component: <PostCreate /> },
   { path: `${PATH.POST}/:channelId`, exact: true, component: <Post /> },
   { path: `${PATH.COMMENT}/:postId`, exact: true, component: <Comment /> }

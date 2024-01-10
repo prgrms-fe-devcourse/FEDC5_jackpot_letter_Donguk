@@ -148,6 +148,7 @@ export const PreCommentContainer = styled.div`
 `;
 
 export const PrePostComment = styled.div`
+  position: relative;
   margin: auto 0;
   background-color: ${(props) => props.theme.palette.sub};
   font-size: 0.8rem;
@@ -156,11 +157,18 @@ export const PrePostComment = styled.div`
   height: auto;
   line-height: 1rem;
   margin-bottom: 0.6rem;
-  padding: 1rem 0.7rem;
+  padding: 1rem 2.5rem 1rem 0.7rem;
   box-sizing: border-box;
   border-radius: 10px;
 `;
 
 export const PrePostUserName = styled.span`
   font-weight: 800;
+`;
+
+export const CommentDeleteImg = styled.img`
+  position: absolute;
+  right: 1rem;
+  width: 1.2rem;
+  cursor: pointer;
 `;

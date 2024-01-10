@@ -15,14 +15,14 @@ function Channel() {
     description: ''
   });
   const [isOpened, setIsOpened] = useState(false);
-  const { channelId } = useParams();
-  const { data: channelInfo } = useChannelQuery(channelId ?? '');
+  const { channelName } = useParams();
+  const { data: channelInfo } = useChannelQuery(channelName ?? '');
 
   useEffect(() => {
     if (channelInfo) setData(channelInfo);
   }, [channelInfo]);
 
-  if (channelId === undefined) {
+  if (channelName === undefined) {
     return <Navigate to="/" />;
   }
   const handleIconClick = (): void => {
@@ -42,7 +42,10 @@ function Channel() {
       {isOpened ? (
         <>
           <ChannelAnimation />
-          <ChannelOpen channelId={channelId} />
+          <ChannelOpen
+            channelId={channelInfo._id}
+            channelName={channelName}
+          />
         </>
       ) : (
         <ChannelClose handleIconClick={handleIconClick} />

@@ -7,6 +7,7 @@ import { theme } from '@/theme';
 import { Global } from '@emotion/react';
 import DarkMode from './components/Common/DarkMode';
 import Mypage from './pages/Mypage';
+import NotFoundPage from './pages/NotFoundPage';
 import { authRoutes, commonRoutes, userRoutes } from './route/AppRouter';
 import AuthMiddleware from './route/AuthMiddleware';
 import { darkAtom } from './store/theme';
@@ -73,6 +74,10 @@ function App() {
             key={idx}
           ></Route>
         ))}
+        <Route
+          path="/*"
+          element={<NotFoundPage />}
+        />
       </Routes>
       <Toaster
         toastOptions={{
