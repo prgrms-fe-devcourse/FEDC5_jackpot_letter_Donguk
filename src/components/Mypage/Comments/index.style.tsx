@@ -16,6 +16,7 @@ export const PostTexInfoWrap = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.3rem;
+  width: 100%;
 
   .author {
     font-weight: bold;
@@ -23,7 +24,11 @@ export const PostTexInfoWrap = styled.div`
   }
 
   .content {
+    display: -webkit-box;
+    overflow: hidden;
     font-size: ${theme.typography.mypage_small.fontSize};
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
   }
 
   .comment-info-wrap {

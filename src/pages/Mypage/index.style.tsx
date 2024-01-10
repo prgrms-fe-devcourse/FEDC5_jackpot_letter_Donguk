@@ -30,8 +30,10 @@ export const Container = styled.div<{ isMypage: boolean }>`
 
   .main {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
     flex-grow: 1;
+    width: 100%;
 
     .container {
       width: 100%;

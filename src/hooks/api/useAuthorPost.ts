@@ -10,8 +10,12 @@ function useAuthorPost(authorId: string) {
     },
     select: (data: Post[]): UserPost[] => {
       const response = data.map((post) => {
+        const { title, content } = JSON.parse(post.title);
+
         return {
           ...post,
+          title,
+          content,
           channelName: post.channel.name
         };
       });

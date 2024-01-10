@@ -8,7 +8,8 @@ function ShortLogo({ darkMode }: DarkModeProps) {
       height="130"
       viewBox="0 0 40 130"
       fill="none"
-      xmlns="http://www.w3.org/2000/svg">
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <line
         x1="20.5688"
         y1="-0.00495334"

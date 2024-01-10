@@ -11,6 +11,7 @@ export const PATH = {
   MYPGE_LIKE_LIST: '/mypage/like-list',
   MYPGE_COMMNET_LIST: '/mypage/comment-list',
   MYPGE_PASSWORD_UPDATE: '/mypage/password-update',
+  MYPGE_RECEIVED_POST_LIST: '/mypage/received-post-list',
   POST_CREATE: '/post/new',
   POST: '/post',
   COMMENT: '/comment'

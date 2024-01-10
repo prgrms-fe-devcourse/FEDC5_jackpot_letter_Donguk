@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
-import ProfileImg from '../ProfileImg';
+import ProfileImg from '../../Common/ProfileImg';
 import SidebarItem from '../SidebarItem';
 import { Container, GoButton, ProfileContainer } from './index.style';
 
@@ -31,6 +31,10 @@ function Sidebar({
       {
         text: '작성한 댓글',
         link: '/mypage/comment-list'
+      },
+      {
+        text: '나에게 온 주머니',
+        link: '/mypage/received-post-list'
       }
     ]
   };

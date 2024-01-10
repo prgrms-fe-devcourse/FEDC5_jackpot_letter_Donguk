@@ -11,7 +11,8 @@ function LongLogo({ darkMode }: DarkModeProps) {
       height="189"
       viewBox="0 0 40 189"
       fill="none"
-      xmlns="http://www.w3.org/2000/svg">
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <g id="Group 2614">
         <line
           id="Line 2"

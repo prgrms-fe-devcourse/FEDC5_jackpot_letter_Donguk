@@ -13,6 +13,7 @@ import LikeListPage from '@/pages/LikeListPage';
 import Mypage from '@/pages/Mypage';
 import PostCreate from '@/pages/PostCreate';
 import PostListPage from '@/pages/PostListPage';
+import ReceivedPostListPage from '@/pages/ReceivedPostListPage';
 import SignInPage from '@/pages/SignInPage';
 import SignUpPage from '@/pages/SignUpPage';
 
@@ -22,33 +23,47 @@ interface RouteProps {
   exact: boolean;
 }
 
+interface userRoutes {
+  page: Array<RouteProps>;
+  mypage: Array<RouteProps>;
+}
+
 // 로그인 상태 접근
-const userRoutes: Array<RouteProps> = [
-  { path: PATH.MYPAGE, exact: true, component: <Mypage /> },
-  {
-    path: PATH.MYPAGE_PROFILE_UPDATE,
-    exact: true,
-    component: <ProfileUpdate />
-  },
-  { path: PATH.MYPAGE_FOLLOW, exact: true, component: <FollowPage /> },
-  { path: PATH.MYPGE_POST_LIST, exact: true, component: <PostListPage /> },
-  { path: PATH.MYPGE_LIKE_LIST, exact: true, component: <LikeListPage /> },
-  {
-    path: PATH.MYPGE_COMMNET_LIST,
-    exact: true,
-    component: <CommentListPage />
-  },
-  {
-    path: PATH.MYPGE_PASSWORD_LIST,
-    exact: true,
-    component: <PasswordUpdate />
-  },
-  {
-    path: PATH.CHANNEL_CREATE,
-    exact: true,
-    component: <ChannelTemplate />
-  }
-];
+const userRoutes: userRoutes = {
+  page: [
+    { path: PATH.MYPAGE, exact: true, component: <Mypage /> },
+    {
+      path: PATH.CHANNEL_CREATE,
+      exact: true,
+      component: <ChannelTemplate />
+    }
+  ],
+  mypage: [
+    {
+      path: PATH.MYPAGE_PROFILE_UPDATE,
+      exact: true,
+      component: <ProfileUpdate />
+    },
+    { path: PATH.MYPAGE_FOLLOW, exact: true, component: <FollowPage /> },
+    { path: PATH.MYPGE_POST_LIST, exact: true, component: <PostListPage /> },
+    { path: PATH.MYPGE_LIKE_LIST, exact: true, component: <LikeListPage /> },
+    {
+      path: PATH.MYPGE_RECEIVED_POST_LIST,
+      exact: true,
+      component: <ReceivedPostListPage />
+    },
+    {
+      path: PATH.MYPGE_COMMNET_LIST,
+      exact: true,
+      component: <CommentListPage />
+    },
+    {
+      path: PATH.MYPGE_PASSWORD_UPDATE,
+      exact: true,
+      component: <PasswordUpdate />
+    }
+  ]
+};
 
 // 로그인 상태x 접근
 const authRoutes: Array<RouteProps> = [
