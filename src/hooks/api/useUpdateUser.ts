@@ -1,17 +1,13 @@
 import toast from 'react-hot-toast';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { updateUser } from '@/api/user';
-import { getStorage } from '@/utils/LocalStorage';
 
 function useUpdateUser() {
-  const ACCESS_TOKEN = getStorage('ACCESS_TOKEN', '');
   const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: async (updatedFullName: string) => {
-      return await updateUser(updatedFullName, {
-        Authorization: `Bearer ${ACCESS_TOKEN}`
-      });
+      return await updateUser(updatedFullName);
     },
     onError: (context) => {
       console.log(context);
