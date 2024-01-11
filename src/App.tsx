@@ -68,14 +68,7 @@ function App() {
           {userRoutes.mypage.map((route, idx) => (
             <Route
               path={route.path}
-              element={
-                <AuthMiddleware>
-                  <>
-                    <HamburgerMenu />
-                    {route.component}
-                  </>
-                </AuthMiddleware>
-              }
+              element={<AuthMiddleware>{route.component}</AuthMiddleware>}
               key={idx}></Route>
           ))}
         </Route>
