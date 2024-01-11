@@ -4,7 +4,7 @@ import Lottie from 'lottie-react';
 import Button from '@/components/Common/Button';
 import LongLogo from '@/components/Common/Logo/LongLogo';
 import ShortLogo from '@/components/Common/Logo/ShortLogo';
-import loadingLottie from '@/assets/Animation - 1704792709727.json';
+import loadingLottie from '@/assets/Animation_404.json';
 import { PATH } from '@/constants/path';
 import { darkAtom } from '@/store/theme';
 import * as Style from './index.style';
