@@ -8,7 +8,7 @@ export const AnnounceBox = styled.div`
   padding: 2rem;
   width: 14.75rem;
   text-align: center;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.5);
   color: white;
   font-weight: 600;
   animation: fade 3s;
