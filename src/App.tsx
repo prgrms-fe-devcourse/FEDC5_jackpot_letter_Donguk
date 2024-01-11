@@ -5,6 +5,7 @@ import SignIn from '@components/Common/SignIn';
 import { useAtomValue } from 'jotai';
 import { theme } from '@/theme';
 import { Global } from '@emotion/react';
+import HamburgerMenu from './components/Common/HamburgerMenu';
 import Mypage from './pages/Mypage';
 import NotFoundPage from './pages/NotFoundPage';
 import { authRoutes, commonRoutes, userRoutes } from './route/AppRouter';
@@ -44,14 +45,24 @@ function App() {
         {userRoutes.page.map((route, idx) => (
           <Route
             path={route.path}
-            element={<AuthMiddleware>{route.component}</AuthMiddleware>}
+            element={
+              <AuthMiddleware>
+                <>
+                  <HamburgerMenu />
+                  {route.component}
+                </>
+              </AuthMiddleware>
+            }
             key={idx}></Route>
         ))}
         <Route
           path="/mypage"
           element={
             <AuthMiddleware>
-              <Mypage />
+              <>
+                <HamburgerMenu />
+                <Mypage />
+              </>
             </AuthMiddleware>
           }>
           {userRoutes.mypage.map((route, idx) => (
@@ -64,7 +75,13 @@ function App() {
         {commonRoutes.map((route, idx) => (
           <Route
             path={route.path}
-            element={<>{route.component}</>}
+
+            element={
+              <>
+                <HamburgerMenu />
+                {route.component}
+              </>
+            }
             key={idx}></Route>
         ))}
         <Route
