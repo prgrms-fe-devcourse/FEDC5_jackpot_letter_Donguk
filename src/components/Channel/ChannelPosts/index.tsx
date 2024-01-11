@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ColorName } from '@/components/ChannelTemplate/SelectColor/type';
 import Pagenation from '@/components/Common/Pagenation';
 import { PATH } from '@/constants/path';
@@ -21,6 +21,7 @@ interface FilteredPost {
 function ChannelPosts({ posts }: Prop) {
   const [post, setPost] = useState<FilteredPost[][]>([]);
   const [page, setPage] = useState<number>(0);
+  const navigate = useNavigate();
   useEffect(() => {
     const channelPosts: FilteredPost[] = parsedPosts(posts);
     const pagesPost = Array.from(
@@ -36,11 +37,10 @@ function ChannelPosts({ posts }: Prop) {
         post[page]?.map(({ title, color, postId }, index) => (
           <Letter
             key={`channel-letter${index}`}
+            onClick={() => navigate(`${PATH.COMMENT}/${postId}`)}
             position={position[index]}>
-            <Link to={`${PATH.COMMENT}/${postId}`}>
-              <img src={`/src/assets/letter/${color}.png`} />
-              <span>{title}</span>
-            </Link>
+            <img src={`/src/assets/letter/${color}.png`} />
+            <span>{title}</span>
           </Letter>
         ))}
       <Pagenation
