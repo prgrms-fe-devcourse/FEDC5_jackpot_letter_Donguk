@@ -42,4 +42,10 @@ export const Container = styled.div<{ isMypage: boolean }>`
       ${scrollbar}
     }
   }
+
+  .loading-wrap {
+    display: flex;
+    justify-content: center;
+    width: calc(100% - 18rem - 1.75rem);
+  }
 `;

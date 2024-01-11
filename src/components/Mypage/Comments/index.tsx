@@ -6,15 +6,14 @@ import * as Style from './index.style';
 
 interface CommentsProps {
   comments: UserComment[];
-  isLoading: boolean;
 }
 
-function Comments({ comments, isLoading }: CommentsProps) {
+function Comments({ comments }: CommentsProps) {
   const selectedSideMenu = PATHNAME[location.pathname];
 
   return (
     <>
-      {isLoading && comments.length === 0 ? (
+      {comments.length === 0 ? (
         <Empty text={`${selectedSideMenu}이`} />
       ) : (
         <div className="container">

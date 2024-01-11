@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import { useSetAtom } from 'jotai';
 import Header from '@/components/Mypage/Header';
 import Sidebar from '@/components/Mypage/Sidebar';
+import Loading from '@/components/PostComment/Loading';
 import useUser from '@/hooks/api/useUser';
 import { ACCESS_USER_ID } from '@/constants/api';
 import { PATHNAME } from '@/constants/sidebar';
@@ -48,10 +49,19 @@ function Mypage() {
           image={userData?.image || ''}
         />
       </div>
-      <main className="main">
-        {!isMypage ? <Header title={title} /> : null}
-        <Outlet />
-      </main>
+
+      <Suspense
+        fallback={
+          <div className="loading-wrap">
+            <Loading loadingSize={60} />
+          </div>
+        }
+      >
+        <main className="main">
+          {!isMypage ? <Header title={title} /> : null}
+          <Outlet />
+        </main>
+      </Suspense>
     </Style.Container>
   );
 }

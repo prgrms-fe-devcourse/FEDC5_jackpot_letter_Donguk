@@ -1,8 +1,8 @@
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 import { getChannel } from '@/api/channel';
 
 const useChannelQuery = (channelName: string) => {
-  return useQuery({
+  return useSuspenseQuery({
     queryKey: ['channel', channelName],
     queryFn: () => getChannel(channelName)
   });

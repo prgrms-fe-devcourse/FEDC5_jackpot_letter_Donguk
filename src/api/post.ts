@@ -56,10 +56,12 @@ export const postPostCreate = async (
 
 /** 특정 포스트 상세 보기 */
 export const getPostDetail = async (postId: string) => {
-  const { data } = await axios.post<Post>('/api', {
-    method: 'GET',
-    url: `${END_POINTS.POSTS}/${postId}`
-  });
+  const { data } = await axiosInstance.get<Post>(
+    `${END_POINTS.POSTS}/${postId}`,
+    {
+      authorization: false
+    }
+  );
 
   return data;
 };
