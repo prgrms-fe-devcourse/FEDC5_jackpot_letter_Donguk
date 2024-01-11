@@ -1,11 +1,11 @@
 import styled from '@emotion/styled';
 
-export const Container = styled.div`
+export const Container = styled.div<{
+  visible: boolean;
+}>`
   position: absolute;
   bottom: 5rem;
   left: calc(50% - 4rem);
-  display: flex;
-  color: white;
   width: 5rem;
   padding: 1rem;
   border-radius: 10px;
@@ -16,6 +16,7 @@ export const Container = styled.div`
     gap: 0.5rem;
     margin: 0rem 1rem;
   }
+  display: ${({ visible }) => (visible ? 'flex' : 'none')};
 `;
 export const Image = styled.img<{
   visible: boolean;

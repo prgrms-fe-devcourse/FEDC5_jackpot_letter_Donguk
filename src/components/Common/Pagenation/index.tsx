@@ -15,13 +15,12 @@ function Pagenation(props: Props) {
     setPageNumber(pageNumber - 1);
     setPage(pageNumber - 2);
   };
-
   const handleClickRightButton = () => {
     setPageNumber(pageNumber + 1);
     setPage(pageNumber);
   };
   return (
-    <Container>
+    <Container visible={totalPage > 1}>
       <Image
         visible={pageNumber !== 1}
         src={ArrowLeft}
