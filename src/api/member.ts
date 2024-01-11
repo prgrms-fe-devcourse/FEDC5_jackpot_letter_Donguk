@@ -37,8 +37,15 @@ export const postSignOut = async () => {
 
   return data;
 };
-export const getUserList = async () => {};
-
+export const getUserList = async () => {
+  const { data } = await axiosInstance.get<AuthenticationUser[]>(
+    END_POINTS.USER_LIST,
+    {
+      authorization: false
+    }
+  );
+  return data;
+};
 export const getUserInfomation = async (userId: string) => {
   // 로컬 스토리지에 ACCESS_ID가 비어있을 경우
   if (!userId) return false;
