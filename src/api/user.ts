@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { NewNotificationProps } from '@/hooks/api/useNewNotification';
 import { END_POINTS } from '@/constants/api';
-import { User } from '@/types/ResponseType';
+import { AuthenticationUser, User } from '@/types/ResponseType';
 import { getStorage } from '@/utils/LocalStorage';
 import { axiosInstance } from './axiosInstance';
 
@@ -50,7 +50,7 @@ export const updateUserPhoto = async (isCover: boolean, image: File) => {
   const { data } = await axiosInstance.post(END_POINTS.UPLOAD_PHOTO, formData, {
     headers: {
       'Content-Type': 'multipart/form-data'
-     }
+    }
   });
   return data;
 };
@@ -77,5 +77,15 @@ export const createNotification = async (
       Authorization: `bearer ${ACCESS_TOKEN}`
     }
   });
+  return data;
+};
+
+export const getUserList = async () => {
+  const { data } = await axiosInstance.get<AuthenticationUser[]>(
+    END_POINTS.USER_LIST,
+    {
+      authorization: false
+    }
+  );
   return data;
 };

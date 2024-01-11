@@ -1,8 +1,8 @@
 import toast from 'react-hot-toast';
 import { useMutation } from '@tanstack/react-query';
 import { useSetAtom } from 'jotai';
+import { signUp } from '@/api/auth';
 import { ErrorResponseData } from '@/api/axiosInstance';
-import { postSignUp } from '@/api/member';
 import {
   channelNameAtom,
   idAtom,
@@ -10,14 +10,14 @@ import {
   tokenAtom
 } from '@/store/auth';
 
-export const useSignUpMutation = () => {
+export const useSignUp = () => {
   const setTokenState = useSetAtom(tokenAtom);
   const setIsLoggedIn = useSetAtom(isLoggedInAtom);
   const setIdState = useSetAtom(idAtom);
   const setNameState = useSetAtom(channelNameAtom);
 
   const signUpMutation = useMutation({
-    mutationFn: postSignUp,
+    mutationFn: signUp,
     onSuccess: ({ token, user }) => {
       const { _id, fullName } = user;
 
