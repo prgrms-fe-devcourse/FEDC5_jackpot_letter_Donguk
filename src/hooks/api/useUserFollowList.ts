@@ -14,6 +14,7 @@ function useUserFollowList(followList: Follow[], queryKey: string) {
             select: (data: User): FollowType => {
               const response = {
                 ...follow,
+                userId: data._id,
                 name: data.fullName,
                 image: data.image
               };

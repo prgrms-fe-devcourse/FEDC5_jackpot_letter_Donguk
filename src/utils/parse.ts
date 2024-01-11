@@ -1,5 +1,6 @@
 import { BgType } from '@/components/ChannelTemplate/SelectBackground/type';
 import { ColorType } from '@/components/ChannelTemplate/SelectColor/type';
+import { Post } from '@/types/ResponseType';
 
 const parsedDescription = (description: string) => {
   try {
@@ -17,4 +18,8 @@ export const parsedColor = (description: string) => {
 };
 export const parsedBackground = (description: string) => {
   return parsedDescription(description)?.background ?? BgType.original;
+};
+
+export const parsedPosts = (posts: Post[]) => {
+  return posts?.map((post) => parsedDescription(post.title));
 };

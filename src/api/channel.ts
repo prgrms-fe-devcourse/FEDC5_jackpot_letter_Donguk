@@ -11,10 +11,10 @@ export const getChannelList = async () => {
   return data;
 };
 
-export const getChannel = async (channelId: string) => {
+export const getChannel = async (channelName: string) => {
   const { data } = await axios.post('/api', {
     method: 'GET',
-    url: `${END_POINTS.CHANNEL}/${channelId}`
+    url: `${END_POINTS.CHANNEL}/${channelName}`
   });
 
   return data;
@@ -40,13 +40,12 @@ export const createChannel = async (channelOption: MutationProps) => {
   });
   return data;
 };
-export const getSearchResult = async (
-  keyword: string,
-  option: 'users' | 'all'
-) => {
+
+
+export const getChannelPosts = async (channelId: string) => {
   const { data } = await axios.post('/api', {
     method: 'GET',
-    url: `${END_POINTS.CHANNEL_SEARCH}/${option}/${keyword}`
+    url: `${END_POINTS.CHANNEL_POST}/${channelId}`
   });
   return data;
 };

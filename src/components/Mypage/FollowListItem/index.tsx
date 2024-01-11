@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import useCreateFollow from '@/hooks/api/useCreateFollow';
 import useDeleteFollow from '@/hooks/api/useDeleteFollow';
 import { theme } from '@/theme';
@@ -10,10 +11,18 @@ interface FollowListItemProps {
   image?: string;
   name: string;
   type: string;
+  userId: string;
 }
 
-function FollowListItem({ _id, image, name, type }: FollowListItemProps) {
+function FollowListItem({
+  _id,
+  image,
+  name,
+  type,
+  userId
+}: FollowListItemProps) {
   const [color, setColor] = useState('#d9d9d9');
+  const navigate = useNavigate();
 
   const { mutate: deleteMutate } = useDeleteFollow();
   const { mutate: createMutate } = useCreateFollow();
@@ -30,12 +39,18 @@ function FollowListItem({ _id, image, name, type }: FollowListItemProps) {
   return (
     <>
       <li className="follow-item">
-        <ProfileImg
-          image={image ?? ''}
-          alt="user profile image"
-          width={2.5}
-          height={2.5}
-        />
+        <div
+          onClick={() => {
+            navigate('/user', { state: { userId: userId } });
+          }}
+        >
+          <ProfileImg
+            image={image ?? ''}
+            alt="user profile image"
+            width={2.5}
+            height={2.5}
+          />
+        </div>
         <span>{name}</span>
         <Style.FollowBtn
           color={color}

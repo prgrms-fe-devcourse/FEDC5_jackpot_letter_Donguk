@@ -109,6 +109,7 @@ const resetStyle = css`
     display: block;
   }
   body {
+    overflow: hidden;
     line-height: 1;
   }
   html,

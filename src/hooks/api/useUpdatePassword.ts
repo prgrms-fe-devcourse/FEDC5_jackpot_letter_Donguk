@@ -2,17 +2,12 @@ import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import { updatePassword } from '@/api/user';
-import { getStorage } from '@/utils/LocalStorage';
 
 function useUpdatePassword() {
-  const ACCESS_TOKEN = getStorage('ACCESS_TOKEN', '');
-
   const navigate = useNavigate();
   return useMutation({
     mutationFn: async (updatedPassword: string) => {
-      return await updatePassword(updatedPassword, {
-        Authorization: `Bearer ${ACCESS_TOKEN}`
-      });
+      return await updatePassword(updatedPassword);
     },
     onError: (context) => {
       console.log(context);

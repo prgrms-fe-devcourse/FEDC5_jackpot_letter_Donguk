@@ -1,15 +1,10 @@
-import { Follow as FollowDefaultType } from '@/types/ResponseType';
+import { FollowType } from '@/types/ResponseType';
 import FollowListItem from '../FollowListItem';
 import * as Style from './index.style';
 
 interface FollowListProps {
   type: 'follower' | 'following';
   followList: FollowType[];
-}
-
-interface FollowType extends FollowDefaultType {
-  name: string;
-  image?: string;
 }
 
 function FollowList({ type, followList }: FollowListProps) {
@@ -23,6 +18,7 @@ function FollowList({ type, followList }: FollowListProps) {
             name={follow.name}
             _id={follow._id}
             type={type}
+            userId={follow.userId}
           />
         ))}
       </Style.FollowItemList>

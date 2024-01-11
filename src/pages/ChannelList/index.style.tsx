@@ -24,6 +24,11 @@ export const Body = styled.div`
   border-top: 1px solid rgba(255, 255, 255, 0.2);
 `;
 export const ChannelIconList = styled.ul`
+  overflow: scroll;
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  height: 60vh;
   color: white;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
