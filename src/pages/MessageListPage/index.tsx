@@ -27,6 +27,7 @@ function MessageListPage() {
       />
       {userListData && (
         <UserList
+          userName={userData?.fullName}
           filteringData={userFilterData ? userFilterData : userListData}
         />
       )}
