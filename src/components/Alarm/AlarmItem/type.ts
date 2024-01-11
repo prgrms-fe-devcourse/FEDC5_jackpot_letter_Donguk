@@ -1,28 +1,33 @@
 interface AlarmType {
-  en: 'Comment' | 'Message' | 'Follow' | 'Like';
-  ko: string;
-  onClick: (link: string) => void;
+  type: 'Comment' | 'Message' | 'Follow' | 'Like';
+  annouce: string;
+  url_path: string;
+  url_id: number;
 }
 
 export const Type: { [key: number]: AlarmType } = {
   0: {
-    en: 'Comment',
-    ko: '댓글이 도착했어요',
-    onClick: (link) => `/post/${link}`
+    type: 'Comment',
+    annouce: '댓글이 도착했어요',
+    url_path: 'post',
+    url_id: 4
   },
   1: {
-    en: 'Message',
-    ko: '메시지가 도착했어요',
-    onClick: (link) => `/message/${link}`
+    type: 'Message',
+    annouce: '메시지가 도착했어요',
+    url_path: 'message',
+    url_id: 1
   },
   2: {
-    en: 'Follow',
-    ko: '나를 팔로우하기 시작했어요',
-    onClick: (link) => `/message/${link}`
+    type: 'Follow',
+    annouce: '나를 팔로우하기 시작했어요',
+    url_path: 'message',
+    url_id: 1
   },
   3: {
-    en: 'Like',
-    ko: '내 포스트를 좋아해요',
-    onClick: (link) => `/post/${link}`
+    type: 'Like',
+    annouce: '내 포스트를 좋아해요',
+    url_path: 'post',
+    url_id: 4
   }
 };
