@@ -75,6 +75,7 @@ function App() {
         {commonRoutes.map((route, idx) => (
           <Route
             path={route.path}
+
             element={
               <>
                 <HamburgerMenu />
