@@ -8,10 +8,16 @@ export const Title = styled.div`
   padding: 2rem;
   font-weight: 600;
   & h1 {
+    display: flex;
     ${({ theme }) => theme.typography.title2};
     & span {
+      max-width: 10rem;
+      display: block;
       ${({ theme }) => theme.typography.title2};
       color: ${({ theme }) => theme.palette.main};
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
     }
   }
   & span {
@@ -20,10 +26,12 @@ export const Title = styled.div`
   }
 `;
 export const Body = styled.div`
-  padding: 1rem 0.5rem;
+  padding: 0.5rem;
+  padding-top: 1rem;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
 `;
 export const ChannelIconList = styled.ul`
+  margin: 0.5rem;
   overflow: scroll;
   ::-webkit-scrollbar {
     display: none;

@@ -29,7 +29,7 @@ function SelectBackground({ option, setOption }: Props) {
             <Item
               css={option.background === item && selectedStyle}
               src={`/src/assets/background/${item}.png`}
-              alt="background-img"
+              alt={`background-image-${item}`}
               onClick={() =>
                 setOption({ ...option, background: item as BgName })
               }
