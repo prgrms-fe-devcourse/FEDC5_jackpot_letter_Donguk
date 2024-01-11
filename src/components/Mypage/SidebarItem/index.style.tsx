@@ -22,7 +22,8 @@ export const Container = styled.div`
       font-size: ${theme.typography.mypage_regular.fontSize};
       cursor: pointer;
 
-      a {
+      a,
+      span {
         width: 100%;
         height: 100%;
         line-height: 4rem;

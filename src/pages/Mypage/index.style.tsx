@@ -15,7 +15,7 @@ export const scrollbar = css`
 `;
 
 export const Container = styled.div<{ isMypage: boolean }>`
-  height: 100%;
+  height: 100svh;
   padding: 2.5rem 1.75rem;
 
   display: ${(props) => (props.isMypage ? 'block' : 'flex')};
