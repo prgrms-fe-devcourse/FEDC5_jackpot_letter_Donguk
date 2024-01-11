@@ -1,7 +1,6 @@
 import toast from 'react-hot-toast';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { updateUserPhoto } from '@/api/user';
-import { getStorage } from '@/utils/LocalStorage';
 
 interface FormData {
   isCover: boolean;
@@ -9,19 +8,11 @@ interface FormData {
 }
 
 function useCreateUserPhoto() {
-  const ACCESS_TOKEN = getStorage('ACCESS_TOKEN', '');
   const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: async (data: FormData) => {
-      const res = await updateUserPhoto(
-        {
-          Authorization: `Bearer ${ACCESS_TOKEN}`,
-          'Content-Type': 'multipart/form-data'
-        },
-        data.isCover,
-        data.image
-      );
+      const res = await updateUserPhoto(data.isCover, data.image);
       return res;
     },
     onError: (context) => {

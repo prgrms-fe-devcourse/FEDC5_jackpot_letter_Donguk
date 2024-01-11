@@ -1,16 +1,13 @@
 import toast from 'react-hot-toast';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { createFollow } from '@/api/follow';
-import { getStorage } from '@/utils/LocalStorage';
 
 function useCreateFollow() {
-  const ACCESS_TOKEN = getStorage('ACCESS_TOKEN', '');
+  const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: async (userId: string) => {
-      const res = await createFollow(userId, {
-        Authorization: `Bearer ${ACCESS_TOKEN}`
-      });
+      const res = await createFollow(userId);
       return res;
     },
     onError: (context) => {
@@ -19,6 +16,7 @@ function useCreateFollow() {
     },
     onSuccess: (data) => {
       console.log(data);
+      queryClient.invalidateQueries({ queryKey: ['user'] });
       toast.success('성공적으로 변경됐습니다.');
     }
   });
