@@ -37,7 +37,7 @@ export const ModalContainer = styled.div<{
     0 10px 20px rgba(0, 0, 0, 0.19),
     0 6px 6px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
-
+  color: black;
   &.relative {
     position: absolute;
     /* 해당 요소의 좌표가 px로 받아와지기 때문에 단위를 px로 표현 */
