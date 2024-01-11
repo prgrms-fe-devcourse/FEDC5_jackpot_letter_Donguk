@@ -24,5 +24,8 @@ export const parsedBackground = (description: string) => {
 };
 
 export const parsedPosts = (posts: Post[]) => {
-  return posts?.map((post) => parsedDescription(post.title));
+  return posts?.map((post) => {
+    const postInfo = parsedDescription(post.title);
+    return { ...postInfo, postId: post._id };
+  });
 };

@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { ColorName } from '@/components/ChannelTemplate/SelectColor/type';
 import Pagenation from '@/components/Common/Pagenation';
+import { PATH } from '@/constants/path';
 import { Post } from '@/types/ResponseType';
 import { parsedPosts } from '@/utils/parse';
 import { Letter, LetterContainer } from './index.style';
@@ -13,12 +15,12 @@ interface FilteredPost {
   title: string;
   content: string;
   color: ColorName;
+  postId: string;
 }
 
 function ChannelPosts({ posts }: Prop) {
   const [post, setPost] = useState<FilteredPost[][]>([]);
   const [page, setPage] = useState<number>(0);
-
   useEffect(() => {
     const channelPosts: FilteredPost[] = parsedPosts(posts);
     const pagesPost = Array.from(
@@ -31,12 +33,14 @@ function ChannelPosts({ posts }: Prop) {
   return (
     <LetterContainer>
       {post &&
-        post[page]?.map(({ title, color }, index) => (
+        post[page]?.map(({ title, color, postId }, index) => (
           <Letter
             key={`channel-letter${index}`}
             position={position[index]}>
-            <img src={`/src/assets/letter/${color}.png`} />
-            <span>{title}</span>
+            <Link to={`${PATH.COMMENT}/${postId}`}>
+              <img src={`/src/assets/letter/${color}.png`} />
+              <span>{title}</span>
+            </Link>
           </Letter>
         ))}
       <Pagenation
