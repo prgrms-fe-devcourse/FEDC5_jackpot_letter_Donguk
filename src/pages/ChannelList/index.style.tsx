@@ -8,10 +8,16 @@ export const Title = styled.div`
   padding: 2rem;
   font-weight: 600;
   & h1 {
+    display: flex;
     ${({ theme }) => theme.typography.title2};
     & span {
+      max-width: 10rem;
+      display: block;
       ${({ theme }) => theme.typography.title2};
       color: ${({ theme }) => theme.palette.main};
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
     }
   }
   & span {

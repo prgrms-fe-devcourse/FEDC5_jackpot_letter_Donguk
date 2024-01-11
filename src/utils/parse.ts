@@ -14,7 +14,6 @@ const parsedDescription = (description: string) => {
 };
 
 export const parsedColor = (description: string) => {
-  console.log(parsedDescription(description));
   const parsedColor: ColorName = parsedDescription(description)?.color;
   if (!parsedColor || typeof parsedColor === 'number') return ColorType.orange;
   return ColorType[parsedColor];
