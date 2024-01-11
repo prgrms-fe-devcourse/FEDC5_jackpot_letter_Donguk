@@ -1,25 +1,21 @@
-import axios from 'axios';
 import { END_POINTS } from '@/constants/api';
 import { Follow } from '@/types/ResponseType';
+import { axiosInstance } from './axiosInstance';
 
-export const deleteFollow = async <T>(id: string, headers: T) => {
-  const { data } = await axios.post<Follow>('/api', {
-    method: 'DELETE',
-    url: `${END_POINTS.DELETE_FOLLOW}`,
-    data: { id },
-    headers
-  });
+export const deleteFollow = async (id: string) => {
+  const { data } = await axiosInstance.delete<Follow>(
+    END_POINTS.DELETE_FOLLOW,
+    {
+      data: { id }
+    }
+  );
 
   return data;
 };
 
-export const createFollow = async <T>(userId: string, headers: T) => {
-  const { data } = await axios.post<Follow>('/api', {
-    method: 'POST',
-    url: `${END_POINTS.CREATE_FOLLOW}`,
-    data: { userId },
-    headers
+export const createFollow = async (userId: string) => {
+  const { data } = await axiosInstance.post<Follow>(END_POINTS.CREATE_FOLLOW, {
+    userId: userId
   });
-
   return data;
 };

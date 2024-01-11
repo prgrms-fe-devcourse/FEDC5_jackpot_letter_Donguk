@@ -26,6 +26,7 @@ function Channel() {
 
   useEffect(() => {
     if (channelInfo) setData(channelInfo);
+    console.log(channelInfo);
   }, [channelInfo]);
 
   if (channelName === undefined) {
@@ -54,7 +55,7 @@ function Channel() {
         <>
           <ChannelAnimation />
           <ChannelOpen
-            channelId={channelInfo._id}
+            channelId={channelInfo?._id}
             channelName={channelName}
           />
         </>

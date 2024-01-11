@@ -1,9 +1,11 @@
 import { useNavigate } from 'react-router-dom';
+import ChannelPosts from '@/components/Channel/ChannelPosts';
 import Button from '@/components/Common/Button';
 import OpenChannel from '@/components/Common/CustomChannelIcon/OpenChannel';
+import useChannelPostsQuery from '@/hooks/api/useChannelPostsQuery';
 import useChannelQuery from '@/hooks/api/useChannelQuery';
 import { parsedColor } from '@/utils/parse';
-import { ChannelButton, OpenIcon } from './index.style';
+import { Body, ChannelButton, OpenIcon } from './index.style';
 
 interface channelOpenProps {
   channelId: string;
@@ -13,14 +15,14 @@ interface channelOpenProps {
 function ChannelOpen({ channelId, channelName }: channelOpenProps) {
   const navigate = useNavigate();
   const { data: channelInfo } = useChannelQuery(channelName ?? '');
+  const { data: postList } = useChannelPostsQuery(channelInfo?._id ?? '');
   const channelColor = parsedColor(channelInfo?.description);
-
   return (
-    <>
+    <Body>
       <OpenIcon>
         <OpenChannel color={channelColor} />
       </OpenIcon>
-      {/* post 위치 */}
+      <ChannelPosts posts={postList} />
       <ChannelButton>
         <Button
           onClick={() =>
@@ -38,7 +40,7 @@ function ChannelOpen({ channelId, channelName }: channelOpenProps) {
           size="md"
         />
       </ChannelButton>
-    </>
+    </Body>
   );
 }
 

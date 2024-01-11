@@ -150,4 +150,5 @@ export interface UserComment extends Comment {
 export interface FollowType extends Follow {
   name: string;
   image?: string;
+  userId: string;
 }

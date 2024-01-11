@@ -14,5 +14,6 @@ export const PATH = {
   MYPGE_RECEIVED_POST_LIST: '/mypage/received-post-list',
   POST_CREATE: '/post/new',
   POST: '/post',
-  COMMENT: '/comment'
+  COMMENT: '/comment',
+  USER: 'user'
 };
