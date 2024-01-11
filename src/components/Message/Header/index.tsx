@@ -1,7 +1,12 @@
 import ProfileImg from '@components/Common/ProfileImg';
 import * as Style from './index.style';
 
-function Header() {
+interface headerProps {
+  fullName: string;
+  userImage: string;
+  isOnline: boolean;
+}
+function Header({ fullName, userImage, isOnline }: headerProps) {
   return (
     <>
       <Style.MoveBack
@@ -13,11 +18,11 @@ function Header() {
           width={2}
           height={2}
           alt="messageList userProfile Image"
-          image=""
+          image={userImage ? userImage : ''}
         />
-        <Style.UserOnline isColor={true} />
+        <Style.UserOnline isColor={isOnline} />
       </Style.UserProfile>
-      <Style.UserName>닉네임</Style.UserName>
+      <Style.UserName>{fullName}</Style.UserName>
     </>
   );
 }
