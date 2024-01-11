@@ -16,5 +16,6 @@ export const PATH = {
   POST: '/post',
   COMMENT: '/comment',
   MESSAGELIST: '/messageList',
+  MESSAGE: '/message',
   USER: 'user'
 };
