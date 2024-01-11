@@ -192,10 +192,12 @@ function DM() {
           누구누구 님에게 인사를 건네보세요!
         </Style.IntroduceText>
       </Style.IntroduceContainer>
-      {DUMMY_DATA.map(({ sender, receiver, message }) => (
+      {DUMMY_DATA.map(({ sender, receiver, message }, idx) => (
         <>
           {userId && sender._id !== userId ? (
-            <Style.MessageContainer isOrder={true}>
+            <Style.MessageContainer
+              isOrder={true}
+              key={idx}>
               <Style.UserProfile isSize={2}>
                 <ProfileImg
                   width={2}
@@ -207,9 +209,11 @@ function DM() {
               <Style.Message>{message}</Style.Message>
             </Style.MessageContainer>
           ) : (
-            <Style.MessageContainer isOrder={false}>
+            <Style.MessageContainer
+              isOrder={false}
+              key={idx}>
               <Style.Message>{message}</Style.Message>
-              <Style.UserProfile>
+              <Style.UserProfile isSize={2}>
                 <ProfileImg
                   width={2}
                   height={2}

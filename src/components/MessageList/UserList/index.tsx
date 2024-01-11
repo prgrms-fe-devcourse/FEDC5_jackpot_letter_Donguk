@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import ProfileImg from '@components/Common/ProfileImg';
 import { User } from '@/types/ResponseType';
 import * as Style from './index.style';
@@ -8,13 +9,17 @@ interface userListProps {
 }
 
 function UserList({ userName, filteringData }: userListProps) {
+  const navigate = useNavigate();
+
   return (
     <>
       <Style.UserListContainer>
         {filteringData.map(
           ({ fullName, image, isOnline, _id }) =>
             fullName !== userName && (
-              <Style.UserList key={_id}>
+              <Style.UserList
+                key={_id}
+                onClick={() => navigate(`/message/${_id}`)}>
                 <Style.UserProfile>
                   <ProfileImg
                     width={2}

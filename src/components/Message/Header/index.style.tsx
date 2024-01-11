@@ -7,7 +7,7 @@ export const HeaderContainer = styled.div`
   height: 4rem;
 `;
 
-export const MoveBack = styled.img`
+export const MoveBack = styled.img<{ isSize: number }>`
   width: ${(props) => props.isSize}rem;
   margin-left: 1rem;
 `;
@@ -24,7 +24,7 @@ export const UserProfile = styled.div`
   border: 1px solid gray;
 `;
 
-export const UserOnline = styled.div`
+export const UserOnline = styled.div<{ isColor: boolean }>`
   position: absolute;
   right: 0.2rem;
   bottom: 0;

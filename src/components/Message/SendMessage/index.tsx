@@ -5,7 +5,9 @@ function SendMessage() {
   const [text, setText] = useState('');
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
 
-  const handleTextareaOnChange = (e) => {
+  const handleTextareaOnChange = (
+    e: React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
     setText(e.currentTarget.value);
 
     if (textareaRef && textareaRef.current) {

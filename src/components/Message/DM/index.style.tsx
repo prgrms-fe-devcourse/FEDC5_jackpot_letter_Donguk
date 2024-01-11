@@ -14,7 +14,7 @@ export const IntroduceContainer = styled.div`
   align-items: center;
 `;
 
-export const MessageContainer = styled.div`
+export const MessageContainer = styled.div<{ isOrder: boolean }>`
   display: flex;
   justify-content: ${(props) => (props.isOrder ? 'flex-start' : 'flex-end')};
   width: 100%;
@@ -29,7 +29,7 @@ export const IntroduceText = styled.div`
   font-size: 1rem;
 `;
 
-export const UserProfile = styled.div`
+export const UserProfile = styled.div<{ isSize: number }>`
   display: flex;
   justify-content: center;
   align-items: center;

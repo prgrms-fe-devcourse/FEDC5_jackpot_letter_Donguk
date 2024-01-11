@@ -87,7 +87,7 @@ const commonRoutes: Array<RouteProps> = [
   { path: `${PATH.COMMENT}/:postId`, exact: true, component: <Comment /> },
   { path: PATH.MESSAGELIST, exact: true, component: <MessageListPage /> },
   { path: `${PATH.USER}`, exact: true, component: <UserPage /> },
-  { path: `${PATH.MESSAGE}`, exact: true, component: <Message /> }
+  { path: `${PATH.MESSAGE}/:receiverId`, exact: true, component: <Message /> }
 ];
 
 export { userRoutes, authRoutes, commonRoutes };
