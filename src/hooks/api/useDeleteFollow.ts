@@ -1,17 +1,13 @@
 import toast from 'react-hot-toast';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { deleteFollow } from '@/api/follow';
-import { getStorage } from '@/utils/LocalStorage';
 
 function useDeleteFollow() {
-  const ACCESS_TOKEN = getStorage('ACCESS_TOKEN', '');
+  const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: async (id: string) => {
-      console.log('id:', id);
-      const res = await deleteFollow(id, {
-        Authorization: `Bearer ${ACCESS_TOKEN}`
-      });
+      const res = await deleteFollow(id);
       return res;
     },
     onError: (context) => {
@@ -20,6 +16,7 @@ function useDeleteFollow() {
     },
     onSuccess: (data) => {
       console.log(data);
+      queryClient.invalidateQueries({ queryKey: ['user'] });
       toast.success('성공적으로 변경됐습니다.');
     }
   });

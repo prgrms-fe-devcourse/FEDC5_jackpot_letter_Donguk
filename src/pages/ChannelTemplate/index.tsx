@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAtomValue } from 'jotai';
 import SelectAccess from '@/components/ChannelTemplate/SelectAccess';
 import SelectBackground from '@/components/ChannelTemplate/SelectBackground';
@@ -46,7 +47,8 @@ function ChannelTemplate() {
   const [phase, setPhase] = useState<number>(0);
 
   const isSubmit = phase === 2;
-
+  const isInit = phase === 0;
+  const navigate = useNavigate();
   const handleNextButtonClick = () => {
     isSubmit
       ? mutateNewChannel({
@@ -56,13 +58,16 @@ function ChannelTemplate() {
       : setPhase(phase + 1);
   };
 
+  const handlePrevButtonClick = () => {
+    isInit ? navigate(-1) : setPhase(phase - 1);
+  };
   return (
     <div>
       <div>{PhaseInfo[phase]}</div>
       <ChannelButton>
         <Button
           content="이전"
-          onClick={() => setPhase(phase - 1)}
+          onClick={handlePrevButtonClick}
           kind={'outlined'}
           size="sm"
         />

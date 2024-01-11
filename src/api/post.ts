@@ -1,21 +1,26 @@
 import axios from 'axios';
 import { END_POINTS } from '@/constants/api';
 import { Comment, Like, Post } from '@/types/ResponseType';
+import { axiosInstance } from './axiosInstance';
 
 export const getAuthorPost = async (authorId: string) => {
-  const { data } = await axios.post<Post[]>('/api', {
-    method: 'GET',
-    url: `${END_POINTS.AUTHOR_POST_LIST}/${authorId}`
-  });
+  const { data } = await axiosInstance.get<Post[]>(
+    `${END_POINTS.AUTHOR_POST_LIST}/${authorId}`,
+    {
+      authorization: false
+    }
+  );
 
   return data;
 };
 
 export const getChannelPost = async (channelId: string) => {
-  const { data } = await axios.post<Post[]>('/api', {
-    method: 'GET',
-    url: `${END_POINTS.CHANNEL_POST_LIST}/${channelId}`
-  });
+  const { data } = await axiosInstance.get<Post[]>(
+    `${END_POINTS.CHANNEL_POST_LIST}/${channelId}`,
+    {
+      authorization: false
+    }
+  );
 
   return data;
 };

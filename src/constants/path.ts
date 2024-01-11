@@ -15,5 +15,6 @@ export const PATH = {
   POST_CREATE: '/post/new',
   POST: '/post',
   COMMENT: '/comment',
-  MESSAGELIST: '/messageList'
+  MESSAGELIST: '/messageList',
+  USER: 'user'
 };

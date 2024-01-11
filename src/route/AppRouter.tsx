@@ -17,6 +17,7 @@ import PostListPage from '@/pages/PostListPage';
 import ReceivedPostListPage from '@/pages/ReceivedPostListPage';
 import SignInPage from '@/pages/SignInPage';
 import SignUpPage from '@/pages/SignUpPage';
+import UserPage from '@/pages/UserPage';
 
 interface RouteProps {
   path: string;
@@ -83,7 +84,8 @@ const commonRoutes: Array<RouteProps> = [
   { path: PATH.POST_CREATE, exact: true, component: <PostCreate /> },
   { path: `${PATH.POST}/:channelId`, exact: true, component: <Post /> },
   { path: `${PATH.COMMENT}/:postId`, exact: true, component: <Comment /> },
-  { path: PATH.MESSAGELIST, exact: true, component: <MessageListPage /> }
+  { path: PATH.MESSAGELIST, exact: true, component: <MessageListPage /> },
+  { path: `${PATH.USER}`, exact: true, component: <UserPage /> }
 ];
 
 export { userRoutes, authRoutes, commonRoutes };

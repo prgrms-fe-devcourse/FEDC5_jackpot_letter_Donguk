@@ -74,6 +74,7 @@ export interface Notification {
   follow?: string; // 사용자 id
   comment?: Comment;
   message?: string; // 메시지 id
+  like?: string;
   createdAt: string;
   updatedAt: string;
 }
@@ -149,4 +150,5 @@ export interface UserComment extends Comment {
 export interface FollowType extends Follow {
   name: string;
   image?: string;
+  userId: string;
 }

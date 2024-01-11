@@ -1,6 +1,7 @@
 export const END_POINTS = {
   SIGNIN: '/login',
   SIGNUP: '/signup',
+  SIGNOUT: '/logout',
   AUTH_USER: '/auth-user',
   USER_LIST: '/users/get-users',
   USER_INFOMATION: '/users',
@@ -24,8 +25,13 @@ export const END_POINTS = {
   CHANNEL: '/channels',
   LIKE_CREATE: '/likes/create',
   LIKE_DELETE: '/likes/delete',
+  CHANNEL_POST: '/posts/channel',
   DELETE_FOLLOW: '/follow/delete',
-  CREATE_FOLLOW: '/follow/create'
+  CREATE_FOLLOW: '/follow/create',
+  CHANNEL_SEARCH: '/search',
+  NOTIFICATION: '/notifications',
+  PUT_NOTIFICATION: '/notifications/seen',
+  POST_NOTIFICATION: '/notifications/create'
 };
 
 export const ACCESS_TOKEN_KEY = 'ACCESS_TOKEN';

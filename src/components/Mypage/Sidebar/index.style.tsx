@@ -49,25 +49,25 @@ export const ProfileContainer = styled.div`
     width: 1.875rem;
     height: 1.875rem;
   }
+`;
 
-  .follow-wrapper {
-    font-size: ${theme.typography.mypage_small.fontSize};
-    text-align: left;
+export const FollowWrapper = styled.div<{ size?: string }>`
+  font-size: ${(props) => props.size || theme.typography.mypage_small.fontSize};
+  text-align: left;
 
-    a {
-      color: #717171;
-      cursor: pointer;
-    }
+  .follow {
+    color: #717171;
+    cursor: pointer;
+  }
 
-    .following::before {
-      display: inline-block;
-      width: 1px;
-      height: 0.75rem;
-      margin: 0 0.625rem;
-      background-color: #717171;
-      content: '';
-      vertical-align: -1px;
-    }
+  .following::before {
+    display: inline-block;
+    width: 1px;
+    height: 0.75rem;
+    margin: 0 0.625rem;
+    background-color: #717171;
+    content: '';
+    vertical-align: -1px;
   }
 `;
 

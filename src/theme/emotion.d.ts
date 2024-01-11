@@ -6,6 +6,7 @@ type palette =
   | 'main'
   | 'gray_1'
   | 'gray_2'
+  | 'gray_3'
   | 'error'
   | 'dark_font'
   | 'light_font';
