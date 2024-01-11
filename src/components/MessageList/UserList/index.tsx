@@ -1,42 +1,27 @@
 import ProfileImg from '@components/Common/ProfileImg';
+import { User } from '@/types/ResponseType';
 import * as Style from './index.style';
 
-function UserList() {
-  const a = [
-    '123',
-    '245',
-    '1231',
-    '123',
-    '245',
-    '1231',
-    '123',
-    '245',
-    '1231',
-    '123',
-    '245',
-    '1231',
-    '123',
-    '245',
-    '1231',
-    '123',
-    '245',
-    '1231'
-  ];
+interface userListProps {
+  filteringData: User[];
+}
+
+function UserList({ filteringData }: userListProps) {
   return (
     <>
       <Style.UserListContainer>
-        {a.map((item) => (
-          <Style.UserList>
+        {filteringData.map(({ fullName, image, isOnline, _id }) => (
+          <Style.UserList key={_id}>
             <Style.UserProfile>
               <ProfileImg
                 width={2}
                 height={2}
                 alt="messageList userProfile Image"
-                image=""
+                image={image ? image : ''}
               />
-              <Style.UserOnline isColor={true} />
+              <Style.UserOnline isColor={isOnline} />
             </Style.UserProfile>
-            <Style.UserName>{item}</Style.UserName>
+            <Style.UserName>{fullName}</Style.UserName>
           </Style.UserList>
         ))}
       </Style.UserListContainer>

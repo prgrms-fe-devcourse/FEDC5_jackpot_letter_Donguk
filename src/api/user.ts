@@ -2,6 +2,16 @@ import axios from 'axios';
 import { END_POINTS } from '@/constants/api';
 import { User } from '@/types/ResponseType';
 
+/** 전체 유저 리스트 */
+export const getUserList = async () => {
+  const { data } = await axios.post<User[]>('/api', {
+    method: 'GET',
+    url: `${END_POINTS.USER_LIST}`
+  });
+
+  return data;
+};
+
 export const getUser = async (userId: string) => {
   const { data } = await axios.post<User>('/api', {
     method: 'GET',
@@ -53,6 +63,16 @@ export const updateUserPhoto = async <T>(
       }
     }
   );
+
+  return data;
+};
+
+/** 유저 온라인 정보 */
+export const getUserOnline = async () => {
+  const { data } = await axios.post<User[]>('/api', {
+    method: 'GET',
+    url: `${END_POINTS.USER_ONLINE}`
+  });
 
   return data;
 };
