@@ -30,8 +30,7 @@ const DefaultModal = (args: ModalProps) => {
         onClick={(e: React.MouseEvent<HTMLButtonElement>) =>
           handleModalClick(e)
         }
-        style={{ float: 'right' }}
-      >
+        style={{ float: 'right' }}>
         모달오픈
       </button>
       <Modal
@@ -41,8 +40,7 @@ const DefaultModal = (args: ModalProps) => {
         handleModalClose={(e: React.MouseEvent<HTMLDivElement>) =>
           handleModalClick(e)
         }
-        {...args}
-      >
+        {...args}>
         <h1>dd</h1>
       </Modal>
     </>
