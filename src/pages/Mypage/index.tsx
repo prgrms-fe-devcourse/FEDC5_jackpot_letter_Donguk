@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
-import { useSetAtom } from 'jotai';
+import { useAtomValue, useSetAtom } from 'jotai';
 import Header from '@/components/Mypage/Header';
 import Sidebar from '@/components/Mypage/Sidebar';
 import useUser from '@/hooks/api/useUser';
 import { ACCESS_USER_ID } from '@/constants/api';
 import { PATHNAME } from '@/constants/sidebar';
+import { darkAtom } from '@/store/theme';
 import { userAtom } from '@/store/user';
 import { getStorage } from '@/utils/LocalStorage';
 import * as Style from './index.style';
@@ -24,6 +25,8 @@ function Mypage() {
 
   const { pathname } = location;
 
+  const darkMode = useAtomValue(darkAtom);
+
   useEffect(() => {
     setIsMypage(pathname.replace('/mypage', '').length <= 1);
     setTitle(PATHNAME[pathname]);
@@ -37,9 +40,9 @@ function Mypage() {
 
   return (
     <Style.Container
+      darkMode={darkMode}
       id="mypage"
-      isMypage={isMypage}
-    >
+      isMypage={isMypage}>
       <div className="sidebar-container">
         <Sidebar
           fullName={userData?.fullName ?? ''}
