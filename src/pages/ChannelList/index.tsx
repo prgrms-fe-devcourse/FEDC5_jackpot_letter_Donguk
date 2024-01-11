@@ -1,12 +1,27 @@
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import SearchBar from '@/components/Common/SearchBar';
 import useChannelListQuery from '@/hooks/api/useChannelListQuery';
 import ChannelImg from '@/assets/channelWithLongLine.svg';
 import { Channel } from '@/types/ResponseType';
 import ChannelIcon from '../../components/ChannelList/ChannelIcon';
-import { ChannelIconList, Header, Title } from './index.style';
+import { Body, ChannelIconList, Header, Title } from './index.style';
 
 function ChannelList() {
   const { data: channelList } = useChannelListQuery();
+  const [channels, setChannels] = useState<Channel[]>(channelList);
+
+  useEffect(() => {
+    setChannels(channelList);
+  }, [channelList]);
+
+  const handleChangeKeyword = (keyword: string) => {
+    const filteredChannels = channelList?.filter((channel: Channel) =>
+      channel.name.includes(keyword)
+    );
+    setChannels(filteredChannels);
+  };
+
   return (
     <>
       <Header>
@@ -19,17 +34,23 @@ function ChannelList() {
           alt="background-channel-icon"
         />
       </Header>
-      <ChannelIconList>
-        {channelList?.map((channel: Channel) => (
-          <div
-            key={`channel-${channel.name}`}
-            role="button">
-            <Link to={`/channel/${channel.name}`}>
-              <ChannelIcon channel={channel} />
-            </Link>
-          </div>
-        ))}
-      </ChannelIconList>
+      <Body>
+        <SearchBar
+          placeholder="채널명을 검색해주세요."
+          handleChangeKeyword={handleChangeKeyword}
+        />
+        <ChannelIconList>
+          {channels?.map((channel: Channel) => (
+            <div
+              key={`channel-${channel._id}`}
+              role="button">
+              <Link to={`/channel/${channel.name}`}>
+                <ChannelIcon channel={channel} />
+              </Link>
+            </div>
+          ))}
+        </ChannelIconList>
+      </Body>
     </>
   );
 }

@@ -41,11 +41,11 @@ export const createChannel = async (channelOption: MutationProps) => {
   return data;
 };
 
+
 export const getChannelPosts = async (channelId: string) => {
   const { data } = await axios.post('/api', {
     method: 'GET',
     url: `${END_POINTS.CHANNEL_POST}/${channelId}`
   });
-
   return data;
 };

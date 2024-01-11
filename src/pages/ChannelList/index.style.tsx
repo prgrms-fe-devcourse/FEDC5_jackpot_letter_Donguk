@@ -19,6 +19,10 @@ export const Title = styled.div`
     opacity: 50%;
   }
 `;
+export const Body = styled.div`
+  padding: 1rem 0.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+`;
 export const ChannelIconList = styled.ul`
   overflow: scroll;
   ::-webkit-scrollbar {
@@ -28,6 +32,4 @@ export const ChannelIconList = styled.ul`
   color: white;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  padding: 0.5rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
 `;

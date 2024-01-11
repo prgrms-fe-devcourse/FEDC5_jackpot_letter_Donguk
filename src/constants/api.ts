@@ -27,6 +27,7 @@ export const END_POINTS = {
   CHANNEL_POST: '/posts/channel',
   DELETE_FOLLOW: '/follow/delete',
   CREATE_FOLLOW: '/follow/create',
+  CHANNEL_SEARCH: '/search'
   NOTIFICATION: '/notifications',
   PUT_NOTIFICATION: '/notifications/seen',
   POST_NOTIFICATION: '/notifications/create'
