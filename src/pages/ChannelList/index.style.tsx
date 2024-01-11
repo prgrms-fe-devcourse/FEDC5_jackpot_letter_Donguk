@@ -20,10 +20,12 @@ export const Title = styled.div`
   }
 `;
 export const Body = styled.div`
-  padding: 1rem 0.5rem;
+  padding: 0.5rem;
+  padding-top: 1rem;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
 `;
 export const ChannelIconList = styled.ul`
+  margin: 0.5rem;
   overflow: scroll;
   ::-webkit-scrollbar {
     display: none;

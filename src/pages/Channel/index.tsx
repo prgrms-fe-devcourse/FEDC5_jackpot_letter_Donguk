@@ -26,12 +26,12 @@ function Channel() {
 
   useEffect(() => {
     if (channelInfo) setData(channelInfo);
-    console.log(channelInfo);
   }, [channelInfo]);
 
   if (channelName === undefined) {
     return <Navigate to="/" />;
   }
+
   const handleIconClick = (): void => {
     setIsOpened(true);
   };
