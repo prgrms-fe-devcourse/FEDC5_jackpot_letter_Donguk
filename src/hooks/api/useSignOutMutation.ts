@@ -24,6 +24,7 @@ export const useSignOutMutation = () => {
       setTokenState('');
       setIsLoggedIn(false);
       toast.success('로그아웃 성공');
+      location.reload();
     },
     onError: (error) => {
       console.log(error);

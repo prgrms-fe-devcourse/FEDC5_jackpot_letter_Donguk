@@ -28,11 +28,6 @@ function HamburgerMenu() {
 
   const handleLogOut = () => {
     mutateSignOut();
-    console.log(pathname);
-    // 현재 페이지가 권한이 필요한 경우에만 메인 페이지로 이동
-    if (pathname.startsWith(`${PATH.MYPAGE}`)) {
-      navigate(PATH.ROOT);
-    }
     setToggle(!toggle);
   };
 
