@@ -77,7 +77,7 @@ const USER_MENU = [
   {
     id: 2,
     menu: '쪽지함',
-    link: '/'
+    link: '/messageList'
   },
   {
     id: 3,
