@@ -1,3 +1,4 @@
+import toast from 'react-hot-toast';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { postPostCommentCreate } from '@/api/post';
 
@@ -16,10 +17,10 @@ export const usePostCommentCreateMutation = (postId: string) => {
     mutationFn: ({ JWTtoken, title, comment, postId }: mutationProps) =>
       postPostCommentCreate(JWTtoken, title, comment, postId),
     onSuccess: () => {
-      console.log('댓글이 성공적으로 달렸습니다.');
+      toast.success('댓글을 성공적으로 작성하였습니다.');
       queryClient.invalidateQueries({ queryKey: ['postDetail', postId] });
     },
-    onError: () => console.log('댓글이 전달되지 못하였습니다')
+    onError: () => toast.error('댓글을 작성하는데 실패하였습니다.')
   });
 
   return { mutationCommentCreate: postCommentCreateMutation.mutate };

@@ -1,3 +1,4 @@
+import toast from 'react-hot-toast';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { deleteLikeDelete } from '@/api/like';
 
@@ -14,10 +15,9 @@ export const useLikeDeleteMutation = (postId: string) => {
     mutationFn: ({ JWTtoken, id }: mutationProps) =>
       deleteLikeDelete(JWTtoken, id),
     onSuccess: () => {
-      console.log('좋아요 취소가 정상적으로 전달되었습니다');
       queryClient.invalidateQueries({ queryKey: ['postDetail', postId] });
     },
-    onError: () => console.log('좋아요 취소가 실패하였습니다')
+    onError: () => toast.error('좋아요 취소를 실패하였습니다.')
   });
 
   return { mutationLikeDelete: likeDeleteMutation.mutate };

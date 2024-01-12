@@ -1,3 +1,4 @@
+import toast from 'react-hot-toast';
 import { useMutation } from '@tanstack/react-query';
 import { postPostCreate } from '@/api/post';
 
@@ -22,8 +23,8 @@ export const usePostCreateMutation = () => {
       color
     }: mutationProps) =>
       postPostCreate(JWTtoken, title, content, image, channelId, color),
-    onSuccess: () => console.log('편지가 정상적으로 전달되었습니다.'),
-    onError: (error) => console.log('편지가 전달되지 못하였습니다.', error)
+    onSuccess: () => toast.success('포스트가 정상적으로 작성되었습니다.'),
+    onError: () => toast.error('포스트 작성에 실패하였습니다.')
   });
 
   return { mutationPostCreate: postCreateMutation.mutate };

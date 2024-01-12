@@ -1,3 +1,4 @@
+import toast from 'react-hot-toast';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { postPostCommentDelete } from '@/api/post';
 
@@ -13,10 +14,11 @@ export const useCommentDeleteMutation = (postId: string) => {
     mutationFn: ({ JWTtoken, id }: mutationProprs) =>
       postPostCommentDelete(JWTtoken, id),
     onSuccess: () => {
-      console.log('댓글이 정상적으로 삭제되었습니다.');
+      toast.success('댓글이 정상적으로 삭제 되었습니다.');
       queryClient.invalidateQueries({ queryKey: ['postDetail', postId] });
     },
-    onError: () => console.log('댓글이 정상적으로 삭제 되지 않았습니다.')
+    onError: () =>
+      toast.error('본인이 작성한 댓글이 아니라면 삭제할 수 없습니다.')
   });
 
   return { mutationCommentDelete: commentDeleteMutation.mutate };
