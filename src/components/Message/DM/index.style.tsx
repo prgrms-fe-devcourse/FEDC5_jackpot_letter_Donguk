@@ -40,9 +40,12 @@ export const UserProfile = styled.div<{ isSize: number }>`
 `;
 
 export const Message = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   max-width: 80%;
   word-break: break-all;
-  padding: 0.3rem 0.5rem;
+  padding: 0.3rem 0.6rem;
   margin: 0 0.5rem;
   border-radius: 10px;
   color: black;

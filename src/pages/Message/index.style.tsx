@@ -21,8 +21,5 @@ export const MessageBody = styled.div`
 `;
 
 export const MessageFooter = styled.div`
-  position: relative;
   width: 100%;
-  display: flex;
-  justify-content: center;
 `;

@@ -17,12 +17,15 @@ export default async function request<T>(
   req: VercelRequest,
   res: VercelResponse
 ) {
-  const { method, url, data, headers } = req.body as RequestType<T>;
+  const { method, url, data, headers, params } = req.body as RequestType<T>;
+
+  console.log(method, url, data, headers, params);
   try {
     const { data: responseData } = await axiosInstance({
       method,
       url,
       data,
+      params,
       headers: { ...headers }
     });
 

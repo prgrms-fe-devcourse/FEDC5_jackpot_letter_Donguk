@@ -1,11 +1,20 @@
 import styled from '@emotion/styled';
 
+export const Form = styled.form`
+  width: 100%;
+
+  position: relative;
+  display: flex;
+  justify-content: center;
+`;
+
 export const sendMessage = styled.textarea`
-  bottom: 0;
   width: 90%;
+  height: 2.5rem;
   border-radius: 10px;
   outline: none;
-  line-height: 1rem;
+  line-height: 1.5rem;
+  font-size: 1rem;
   resize: none;
   word-break: break-all;
   margin: 0.7rem 0 1rem 0;
@@ -13,7 +22,7 @@ export const sendMessage = styled.textarea`
   box-sizing: border-box;
 `;
 
-export const IconWrapper = styled.div`
+export const IconButton = styled.button`
   position: absolute;
   right: 1.5rem;
   bottom: 1.2rem;
