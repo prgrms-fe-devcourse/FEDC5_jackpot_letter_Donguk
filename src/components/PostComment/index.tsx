@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { Toaster } from 'react-hot-toast';
 import { toast } from 'react-hot-toast';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { useAtomValue } from 'jotai';
 import { usePostCommentCreateMutation } from '@/hooks/api/usePostCommentCreateMutation';
 import { useUserInfomationQuery } from '@/hooks/api/useUserInfomationQuery';
@@ -31,6 +31,8 @@ function PostComment() {
   const { postId } = useParams() as { postId: string };
   const { mutationCommentCreate } = usePostCommentCreateMutation(postId);
   const { data, isPending } = useUserInfomationQuery(userId);
+  const { state } = useLocation();
+  console.log('복주머니에서 넘겨준 데이터:', state);
 
   const {
     register,
@@ -80,7 +82,12 @@ function PostComment() {
       <Style.CommentContainer>
         <Header />
         <Style.GroudImage src="/src/assets/ShortLogo.svg" />
-        <PrePost postId={postId} />
+        <PrePost
+          postId={postId}
+          color={state.color}
+          title={state.title}
+          content={state.content}
+        />
         <Comment
           register={register}
           userId={userId}

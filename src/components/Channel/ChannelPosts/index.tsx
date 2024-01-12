@@ -18,7 +18,6 @@ interface FilteredPost {
 }
 
 function ChannelPosts({ posts }: Prop) {
-  console.log(posts);
   const [post, setPost] = useState<FilteredPost[][]>([]);
   const [page, setPage] = useState<number>(0);
   const navigator = useNavigate();
@@ -35,11 +34,19 @@ function ChannelPosts({ posts }: Prop) {
   return (
     <LetterContainer>
       {post &&
-        post[page]?.map(({ title, color, postId }, index) => (
+        post[page]?.map(({ title, content, color, postId }, index) => (
           <Letter
             key={`channel-letter${index}`}
             position={position[index]}
-            onClick={() => navigator(`/comment/${postId}`)}>
+            onClick={() =>
+              navigator(`/comment/${postId}`, {
+                state: {
+                  title,
+                  color,
+                  content
+                }
+              })
+            }>
             <img src={`/src/assets/letter/${color}.png`} />
             <span>{title}</span>
           </Letter>

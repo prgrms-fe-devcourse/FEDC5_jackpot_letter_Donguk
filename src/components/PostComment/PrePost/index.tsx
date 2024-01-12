@@ -9,11 +9,14 @@ import { useLikeDeleteMutation } from '@/hooks/api/useLikeDeleteMutation';
 import { usePostDeleteMutation } from '@/hooks/api/usePostDeleteMutation';
 import { usePostUpdateMutation } from '@/hooks/api/usePostUpdateMutation';
 import { idAtom, tokenAtom } from '@/store/auth';
-import Loading from '../Loading';
+// import Loading from '../Loading';
 import * as Style from './index.style';
 
 interface PrePostProps {
   postId: string;
+  color: string;
+  title: string;
+  content: string;
 }
 
 interface userFormProps {
@@ -26,7 +29,8 @@ const toastStyle = {
   marginTop: '0.5rem'
 };
 
-function PrePost({ postId }: PrePostProps) {
+function PrePost({ postId, color, title, content }: PrePostProps) {
+  console.log(postId, color, title, content);
   const JWTtoken = useAtomValue(tokenAtom);
   const userId = useAtomValue(idAtom);
   const { mutationLikeCreate } = useLikeCreateMutation(postId); // 특정 포스트 좋아요 추가
@@ -98,7 +102,7 @@ function PrePost({ postId }: PrePostProps) {
     }
   };
 
-  const handleDeleteCommentClick = (e) => {
+  const handleDeleteCommentClick = (e: React.MouseEvent<HTMLImageElement>) => {
     const deleteCheck = confirm('댓글 삭제하시겠습니까?');
 
     if (deleteCheck) {
@@ -134,24 +138,27 @@ function PrePost({ postId }: PrePostProps) {
     <>
       <Style.PrePostAndCommentContainer>
         <Style.PrePostContainer>
-          {isPending && <Loading loadingSize={32} />}
-          {data && (
-            <Style.PrePostInnerTitle>
-              {JSON.parse(data.title).title}
-            </Style.PrePostInnerTitle>
-          )}
+          {/* {isPending && <Loading loadingSize={32} />} */}
+          {/* {data && ( */}
+          <Style.PrePostInnerTitle>
+            {title}
+            {/* {JSON.parse(data.title).title} */}
+          </Style.PrePostInnerTitle>
+          {/* )} */}
           <Style.PrePostUnnerline />
-          {isPending && <Loading loadingSize={32} />}
+          {/* {isPending && <Loading loadingSize={32} />} */}
           {postState ? (
             <Style.PrePostEditContent
-              defaultValue={data && JSON.parse(data.title).content}
+              // defaultValue={data && JSON.parse(data.title).content}
+              defaultValue={content}
               {...register('prePostContent', {
                 required: '편지 내용은 반드시 입력해야 합니다.'
               })}
             />
           ) : (
             <Style.PrePostContent>
-              {data && JSON.parse(data.title).content}
+              {/* {data && JSON.parse(data.title).content} */}
+              {content}
             </Style.PrePostContent>
           )}
           {postState ? (
