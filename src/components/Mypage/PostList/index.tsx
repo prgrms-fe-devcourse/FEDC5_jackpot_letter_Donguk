@@ -24,7 +24,7 @@ function PostList({ posts, type }: PostListProps) {
                 to={`${PATH.COMMENT}/${_id}`}
                 key={_id}
               >
-                <Style.PostItem id={_id}>
+                <Style.PostItem>
                   <span className="post-title">{title}</span>
                   <span className="post-content">{content}</span>
                   <Style.PostInfo>

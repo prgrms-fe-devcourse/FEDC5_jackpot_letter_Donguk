@@ -22,7 +22,8 @@ function useUserComment(userData: User) {
                   comment,
                   image: data.author.image,
                   postAuthor,
-                  postContent: content
+                  postContent: content,
+                  postId: data._id
                 };
 
                 return response;
