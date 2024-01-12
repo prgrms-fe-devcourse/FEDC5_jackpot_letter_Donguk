@@ -2,7 +2,6 @@ import styled from '@emotion/styled';
 
 export const DmContainer = styled.div`
   width: 100%;
-
   margin: 0 auto;
   margin-top: 1rem;
   overflow-y: scroll;
@@ -12,6 +11,8 @@ export const IntroduceContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-top: 1rem;
+  box-sizing: border-box;
 `;
 
 export const MessageContainer = styled.div<{ isOrder: boolean }>`

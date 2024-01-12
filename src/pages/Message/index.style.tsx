@@ -13,10 +13,12 @@ export const HeaderContainer = styled.div`
   align-items: center;
   width: 100%;
   height: 7rem;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 `;
 
 export const MessageBody = styled.div`
   width: 95%;
+  height: 100%;
   overflow-y: scroll;
 `;
 
