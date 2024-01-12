@@ -15,14 +15,19 @@ export const getAuthorPost = async (authorId: string) => {
 };
 
 export const getChannelPost = async (channelId: string) => {
-  const { data } = await axiosInstance.get<Post[]>(
-    `${END_POINTS.CHANNEL_POST_LIST}/${channelId}`,
-    {
-      authorization: false
-    }
-  );
+  try {
+    const { data } = await axiosInstance.get<Post[]>(
+      `${END_POINTS.CHANNEL_POST_LIST}/${channelId}`,
+      {
+        authorization: false
+      }
+    );
 
-  return data;
+    return data;
+  } catch (e) {
+    console.error(e);
+    return [];
+  }
 };
 
 /** 특정 채널에 포스트 작성하기. 아직 response data 아직 알 수 없음 */

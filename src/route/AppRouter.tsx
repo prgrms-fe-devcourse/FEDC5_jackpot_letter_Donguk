@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import { ReactElement, Suspense } from 'react';
 import PasswordUpdate from '@/components/Mypage/PasswordUpdate';
 import ProfileUpdate from '@/components/Mypage/ProfileUpdate';
 import Post from '@/components/Post';
@@ -27,6 +27,14 @@ interface RouteProps {
 interface userRoutes {
   page: Array<RouteProps>;
   mypage: Array<RouteProps>;
+}
+
+interface SuspenseCompProps {
+  children: ReactElement;
+}
+
+function SuspenseComponent({ children }: SuspenseCompProps) {
+  return <Suspense fallback={null}>{children}</Suspense>;
 }
 
 // 로그인 상태 접근
@@ -78,7 +86,11 @@ const commonRoutes: Array<RouteProps> = [
   {
     path: `${PATH.CHANNEL}/:channelName`,
     exact: false,
-    component: <Channel />
+    component: (
+      <SuspenseComponent>
+        <Channel />
+      </SuspenseComponent>
+    )
   },
   { path: PATH.POST_CREATE, exact: true, component: <PostCreate /> },
   { path: `${PATH.POST}/:channelId`, exact: true, component: <Post /> },
