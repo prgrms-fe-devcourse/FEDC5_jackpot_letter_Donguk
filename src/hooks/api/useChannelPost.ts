@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { getChannelPost } from '@/api/post';
+import { getChannelPosts } from '@/api/post';
 import { ACCESS_CHANNEL_NAME } from '@/constants/api';
 import { Post, UserPost } from '@/types/ResponseType';
 import { getStorage } from '@/utils/LocalStorage';
@@ -16,7 +16,7 @@ function useChannelPost() {
   return useQuery({
     queryKey: ['channelPost', channelId] as const,
     queryFn: () => {
-      return getChannelPost(channelId);
+      return getChannelPosts(channelId);
     },
     select: (data: Post[]): UserPost[] => {
       const response = data.map((post) => {

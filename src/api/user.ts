@@ -55,7 +55,7 @@ export const updateUserPhoto = async (isCover: boolean, image: File) => {
   return data;
 };
 
-export const updateNotification = async () => {
+export const checkNotification = async () => {
   const { data } = await axiosInstance.put(END_POINTS.PUT_NOTIFICATION);
   return data;
 };

@@ -1,5 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
-import { createNotification } from '@/api/user';
+import { createNotifications } from '@/api/user';
 
 export interface NewNotificationProps {
   notificationType: 'COMMENT' | 'FOLLOW' | 'LIKE' | 'MESSAGE';
@@ -11,7 +11,7 @@ export interface NewNotificationProps {
 export const useNewNotification = () => {
   const createNotificatioMutation = useMutation({
     mutationFn: (notificationOption: NewNotificationProps) =>
-      createNotification(notificationOption),
+      createNotifications(notificationOption),
     onError: (e) => {
       console.log(e);
     }
