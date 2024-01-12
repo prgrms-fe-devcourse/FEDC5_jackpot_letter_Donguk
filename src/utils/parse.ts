@@ -5,9 +5,9 @@ import {
 } from '@/components/ChannelTemplate/SelectColor/type';
 import { Post } from '@/types/ResponseType';
 
-const parsedDescription = (description: string) => {
+const parsedDescription = (description: string, postId: strig) => {
   try {
-    return JSON.parse(description);
+    return { ...JSON.parse(description), postId };
   } catch (e) {
     return undefined;
   }
@@ -24,5 +24,5 @@ export const parsedBackground = (description: string) => {
 };
 
 export const parsedPosts = (posts: Post[]) => {
-  return posts?.map((post) => parsedDescription(post.title));
+  return posts?.map((post) => parsedDescription(post.title, post._id));
 };

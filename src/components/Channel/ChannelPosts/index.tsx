@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ColorName } from '@/components/ChannelTemplate/SelectColor/type';
 import Pagenation from '@/components/Common/Pagenation';
 import { Post } from '@/types/ResponseType';
@@ -13,11 +14,14 @@ interface FilteredPost {
   title: string;
   content: string;
   color: ColorName;
+  postId: string;
 }
 
 function ChannelPosts({ posts }: Prop) {
+  console.log(posts);
   const [post, setPost] = useState<FilteredPost[][]>([]);
   const [page, setPage] = useState<number>(0);
+  const navigator = useNavigate();
 
   useEffect(() => {
     const channelPosts: FilteredPost[] = parsedPosts(posts);
@@ -31,10 +35,11 @@ function ChannelPosts({ posts }: Prop) {
   return (
     <LetterContainer>
       {post &&
-        post[page]?.map(({ title, color }, index) => (
+        post[page]?.map(({ title, color, postId }, index) => (
           <Letter
             key={`channel-letter${index}`}
-            position={position[index]}>
+            position={position[index]}
+            onClick={() => navigator(`/comment/${postId}`)}>
             <img src={`/src/assets/letter/${color}.png`} />
             <span>{title}</span>
           </Letter>
