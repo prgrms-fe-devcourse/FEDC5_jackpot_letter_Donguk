@@ -7,7 +7,6 @@ import { theme } from '@/theme';
 import { Global } from '@emotion/react';
 import HamburgerMenu from './components/Common/HamburgerMenu';
 import ResponsiveLayout from './components/Common/Responsive/ResponsiveLayout';
-import Mypage from './pages/Mypage';
 import NotFoundPage from './pages/NotFoundPage';
 import { authRoutes, commonRoutes, userRoutes } from './route/AppRouter';
 import AuthMiddleware from './route/AuthMiddleware';
@@ -47,36 +46,21 @@ function App() {
             }
             key={idx}></Route>
         ))}
-        {userRoutes.page.map((route, idx) => (
+        {userRoutes.map((route, idx) => (
           <Route
             path={route.path}
             element={
-              <AuthMiddleware>
-                <>
-                  <HamburgerMenu />
-                  {route.component}
-                </>
-              </AuthMiddleware>
+              <ResponsiveLayout>
+                <AuthMiddleware>
+                  <>
+                    <HamburgerMenu />
+                    {route.component}
+                  </>
+                </AuthMiddleware>
+              </ResponsiveLayout>
             }
             key={idx}></Route>
         ))}
-        <Route
-          path="/mypage"
-          element={
-            <AuthMiddleware>
-              <>
-                <HamburgerMenu />
-                <Mypage />
-              </>
-            </AuthMiddleware>
-          }>
-          {userRoutes.mypage.map((route, idx) => (
-            <Route
-              path={route.path}
-              element={<AuthMiddleware>{route.component}</AuthMiddleware>}
-              key={idx}></Route>
-          ))}
-        </Route>
         {commonRoutes.map((route, idx) => (
           <Route
             path={route.path}
