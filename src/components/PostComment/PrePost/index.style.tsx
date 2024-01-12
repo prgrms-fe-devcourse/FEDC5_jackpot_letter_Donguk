@@ -154,6 +154,7 @@ export const PreCommentContainer = styled.div`
 export const PrePostComment = styled.div`
   position: relative;
   margin: auto 0;
+  color: black;
   background-color: ${(props) => props.theme.palette.sub};
   font-size: 0.8rem;
   font-weight: 400;
@@ -167,7 +168,7 @@ export const PrePostComment = styled.div`
 `;
 
 export const PrePostUserName = styled.span`
-  font-weight: 800;
+  font-weight: 700;
 `;
 
 export const CommentDeleteImg = styled.img`

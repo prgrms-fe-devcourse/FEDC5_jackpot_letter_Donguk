@@ -5,8 +5,8 @@ import { toast } from 'react-hot-toast';
 import { useLocation, useParams } from 'react-router-dom';
 import { useAtomValue } from 'jotai';
 import { usePostCommentCreateMutation } from '@/hooks/api/usePostCommentCreateMutation';
-import { useUserInfomationQuery } from '@/hooks/api/useUserInfomationQuery';
-import { idAtom, tokenAtom } from '@/store/auth';
+// import { useUserInfomationQuery } from '@/hooks/api/useUserInfomationQuery';
+import { channelNameAtom, idAtom, tokenAtom } from '@/store/auth';
 import Comment from './Comment';
 import Footer from './Footer';
 import Header from './Header';
@@ -27,12 +27,11 @@ interface useFormProps {
 function PostComment() {
   const JWTtoken = useAtomValue(tokenAtom);
   const userId = useAtomValue(idAtom);
-
+  const userName = useAtomValue(channelNameAtom);
   const { postId } = useParams() as { postId: string };
   const { mutationCommentCreate } = usePostCommentCreateMutation(postId);
-  const { data, isPending } = useUserInfomationQuery(userId);
+  // const { data, isPending } = useUserInfomationQuery(userId);
   const { state } = useLocation();
-  console.log('복주머니에서 넘겨준 데이터:', state);
 
   const {
     register,
@@ -43,14 +42,13 @@ function PostComment() {
   } = useForm<useFormProps>({
     mode: 'onSubmit',
     defaultValues: {
-      commentTitle: userId ? (data ? data.fullName : '') : '',
+      commentTitle: userName,
       commentContent: ''
     }
   });
 
   /** 댓글 작성 시 서버로 전송 */
   const onSubmit = (data: useFormProps) => {
-    console.log(data);
     mutationCommentCreate({
       JWTtoken,
       title: data.commentTitle,
@@ -60,8 +58,8 @@ function PostComment() {
   };
 
   useEffect(() => {
-    setValue('commentTitle', userId ? (data ? data.fullName : '') : '');
-  }, [userId, data]);
+    setValue('commentTitle', userName);
+  }, [userName]);
 
   useEffect(() => {
     if (isSubmitSuccessful) reset();
@@ -90,9 +88,9 @@ function PostComment() {
         />
         <Comment
           register={register}
-          userId={userId}
-          data={data}
-          isPending={isPending}
+          userName={userName}
+          // data={data}
+          // isPending={isPending}
         />
         <Style.Form onSubmit={handleSubmit(onSubmit)}>
           <Footer />

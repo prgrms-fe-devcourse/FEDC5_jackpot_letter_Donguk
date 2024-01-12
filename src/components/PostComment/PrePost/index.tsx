@@ -30,7 +30,6 @@ const toastStyle = {
 };
 
 function PrePost({ postId, color, title, content }: PrePostProps) {
-  console.log(postId, color, title, content);
   const JWTtoken = useAtomValue(tokenAtom);
   const userId = useAtomValue(idAtom);
   const { mutationLikeCreate } = useLikeCreateMutation(postId); // 특정 포스트 좋아요 추가
@@ -38,8 +37,7 @@ function PrePost({ postId, color, title, content }: PrePostProps) {
   const { mutationPostDelete } = usePostDeleteMutation(); // 특정 포스트 제거
   const { mutationPostUpdate } = usePostUpdateMutation(); // 특정 포스트 수정
   const { mutationCommentDelete } = useCommentDeleteMutation(postId); // 특정 댓글 제거
-  const { data, isPending } = useGetPostDetailQuery(postId);
-  console.log(data);
+  const { data } = useGetPostDetailQuery(postId);
 
   const {
     register,
@@ -195,7 +193,7 @@ function PrePost({ postId, color, title, content }: PrePostProps) {
               titleAndCommentParsing(comment) && (
                 <Style.PrePostComment key={idx}>
                   <Style.PrePostUserName>
-                    {`${titleAndCommentParsing(comment).title} `}
+                    {`💬 ${titleAndCommentParsing(comment).title}: `}
                   </Style.PrePostUserName>
                   {titleAndCommentParsing(comment).comment}
                   <Style.CommentDeleteImg
