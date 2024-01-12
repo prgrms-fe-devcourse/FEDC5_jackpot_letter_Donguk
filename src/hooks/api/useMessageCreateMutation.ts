@@ -1,3 +1,4 @@
+import toast from 'react-hot-toast';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { postMessagesCreate } from '@/api/message';
 
@@ -15,10 +16,9 @@ export const useMessageCreateMutation = (receiverId: string) => {
     mutationFn: ({ JWTtoken, receiver, message }: mutationProps) =>
       postMessagesCreate(JWTtoken, message, receiver),
     onSuccess: () => {
-      console.log('메시지가 정상적으로 전달되었습니다');
       queryClient.invalidateQueries({ queryKey: ['messageList', receiverId] });
     },
-    onError: () => console.log('메시지 전송에 실패하였습니다')
+    onError: () => toast.error('메시지 전송에 실패하였습니다.')
   });
 
   return { mutationMessageCreate: messageCreateMutation.mutate };

@@ -16,9 +16,6 @@ function DM({ JWTtoken, receiverData }: DMprops) {
     receiverData?._id
   );
 
-  console.log(messageData);
-  // 소통한 사용자와의 대화를 불러온 후 sender는 내가 보낸, receiver는 받은 사람을 기준으로 양쪽 각각 정렬
-
   return (
     <>
       <Style.IntroduceContainer>
