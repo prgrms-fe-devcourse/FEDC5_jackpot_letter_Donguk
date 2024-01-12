@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { NewNotificationProps } from '@/hooks/api/useNewNotification';
+import { NewNotificationProps } from '@/hooks/api/useCreateNotification';
 import { END_POINTS } from '@/constants/api';
-import { User } from '@/types/ResponseType';
+import { AuthenticationUser, User } from '@/types/ResponseType';
 import { getStorage } from '@/utils/LocalStorage';
 import { axiosInstance } from './axiosInstance';
 
@@ -60,33 +60,33 @@ export const updateUserPhoto = async (isCover: boolean, image: File) => {
   const { data } = await axiosInstance.post(END_POINTS.UPLOAD_PHOTO, formData, {
     headers: {
       'Content-Type': 'multipart/form-data'
-     }
+    }
   });
   return data;
 };
 
-export const updateNotification = async () => {
-  const { data } = await axios.post('/api', {
-    method: 'PUT',
-    url: END_POINTS.PUT_NOTIFICATION,
-    headers: {
-      Authorization: `bearer ${ACCESS_TOKEN}`
-    }
-  });
+export const checkNotifications = async () => {
+  const { data } = await axiosInstance.put(END_POINTS.PUT_NOTIFICATION);
   return data;
 };
 
 export const createNotification = async (
   notificationOption: NewNotificationProps
 ) => {
-  const { data } = await axios.post('/api', {
-    method: 'POST',
-    url: END_POINTS.POST_NOTIFICATION,
-    data: notificationOption,
-    headers: {
-      Authorization: `bearer ${ACCESS_TOKEN}`
+  const { data } = await axiosInstance.post(
+    END_POINTS.POST_NOTIFICATION,
+    notificationOption
+  );
+  return data;
+};
+
+export const getUserList = async () => {
+  const { data } = await axiosInstance.get<AuthenticationUser[]>(
+    END_POINTS.USER_LIST,
+    {
+      authorization: false
     }
-  });
+  );
   return data;
 };
 

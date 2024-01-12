@@ -14,7 +14,7 @@ export const getAuthorPost = async (authorId: string) => {
   return data;
 };
 
-export const getChannelPost = async (channelId: string) => {
+export const getChannelPosts = async (channelId: string) => {
   const { data } = await axiosInstance.get<Post[]>(
     `${END_POINTS.CHANNEL_POST_LIST}/${channelId}`,
     {

@@ -1,5 +1,5 @@
 import toast from 'react-hot-toast';
-import { MutationProps } from '@/hooks/api/useNewChannel';
+import { MutationProps } from '@/hooks/api/useCreateChannel';
 import { END_POINTS } from '@/constants/api';
 import { axiosInstance } from './axiosInstance';
 
@@ -10,7 +10,7 @@ export const getChannelList = async () => {
   return data;
 };
 
-export const getChannel = async (channelName: string) => {
+export const getChennelInfo = async (channelName: string) => {
   const { data } = await axiosInstance.get(
     `${END_POINTS.CHANNEL}/${channelName}`,
     {
@@ -36,16 +36,6 @@ export const createChannel = async (channelOption: MutationProps) => {
       headers: {
         Authorization: `Bearer ${adminLogin.token}`
       }
-    }
-  );
-  return data;
-};
-
-export const getChannelPosts = async (channelId: string) => {
-  const { data } = await axiosInstance.get(
-    `${END_POINTS.CHANNEL_POST}/${channelId}`,
-    {
-      authorization: false
     }
   );
   return data;

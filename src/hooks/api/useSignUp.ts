@@ -1,8 +1,8 @@
 import toast from 'react-hot-toast';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import { useSetAtom } from 'jotai';
+import { signUp } from '@/api/auth';
 import { ErrorResponseData } from '@/api/axiosInstance';
-import { postSignIn } from '@/api/member';
 import {
   channelNameAtom,
   idAtom,
@@ -10,17 +10,15 @@ import {
   tokenAtom
 } from '@/store/auth';
 
-export const useSignInMutation = () => {
+export const useSignUp = () => {
   const setTokenState = useSetAtom(tokenAtom);
   const setIsLoggedIn = useSetAtom(isLoggedInAtom);
   const setIdState = useSetAtom(idAtom);
   const setNameState = useSetAtom(channelNameAtom);
 
-  const queryClient = useQueryClient();
-
-  const signInMutation = useMutation({
-    mutationFn: postSignIn,
-    onSuccess: ({ user, token }) => {
+  const signUpMutation = useMutation({
+    mutationFn: signUp,
+    onSuccess: ({ token, user }) => {
       const { _id, fullName } = user;
 
       setTokenState(token);
@@ -28,18 +26,16 @@ export const useSignInMutation = () => {
       setNameState(fullName);
 
       setIsLoggedIn(true);
-      toast.success('로그인 성공');
 
-      queryClient.invalidateQueries({ queryKey: ['userListData'] });
+      toast.success('회원가입 성공');
     },
     onError: (error: ErrorResponseData) => {
       if (error.customMessage) {
         toast.error(error.customMessage);
       }
       setIsLoggedIn(false);
-      toast.error('로그인 실패');
     }
   });
 
-  return { mutateSignIn: signInMutation.mutate };
+  return { mutateSignUp: signUpMutation.mutate };
 };

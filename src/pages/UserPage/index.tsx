@@ -5,9 +5,9 @@ import Button from '@/components/Common/Button';
 import ProfileImg from '@/components/Common/ProfileImg';
 import { FollowBtn } from '@/components/Mypage/FollowListItem/index.style';
 import { FollowWrapper } from '@/components/Mypage/Sidebar/index.style';
-import useChannelQuery from '@/hooks/api/useChannelQuery';
 import useCreateFollow from '@/hooks/api/useCreateFollow';
 import useDeleteFollow from '@/hooks/api/useDeleteFollow';
+import useGetChannelInfo from '@/hooks/api/useGetChannelInfo';
 import useUser from '@/hooks/api/useUser';
 import { ACCESS_USER_ID } from '@/constants/api';
 import { theme } from '@/theme';
@@ -24,7 +24,7 @@ function UserPage() {
 
   const { data: myUserData } = useUser(myUserId);
   const { data: userData } = useUser(userId);
-  const { data: channel } = useChannelQuery(userData?.fullName ?? '');
+  const { data: channel } = useGetChannelInfo(userData?.fullName ?? '');
 
   const { mutate: deleteMutate } = useDeleteFollow();
   const { mutate: createMutate } = useCreateFollow();
@@ -94,15 +94,13 @@ function UserPage() {
             width="40vw"
             height="2.5rem"
             color={color}
-            onClick={handleFollowClick}
-          >
+            onClick={handleFollowClick}>
             {color === '#d9d9d9' ? '팔로잉' : '팔로우'}
           </FollowBtn>
           <FollowBtn
             width="40vw"
             height="2.5rem"
-            onClick={handleMessageClick}
-          >
+            onClick={handleMessageClick}>
             메시지
           </FollowBtn>
         </div>

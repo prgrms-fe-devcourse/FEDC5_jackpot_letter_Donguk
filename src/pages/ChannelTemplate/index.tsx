@@ -5,7 +5,7 @@ import SelectAccess from '@/components/ChannelTemplate/SelectAccess';
 import SelectBackground from '@/components/ChannelTemplate/SelectBackground';
 import SelectColor from '@/components/ChannelTemplate/SelectColor';
 import Button from '@/components/Common/Button';
-import { useNewChannel } from '@/hooks/api/useNewChannel';
+import { useCreateChannel } from '@/hooks/api/useCreateChannel';
 import { channelNameAtom } from '@/store/auth';
 import { ChannelOptionType } from '@/types/channel';
 import { ChannelButton } from './index.style';
@@ -23,7 +23,7 @@ function ChannelTemplate() {
     allowViewAll: true,
     allowWriteAll: true
   });
-  const { mutateNewChannel } = useNewChannel();
+  const { mutate } = useCreateChannel();
   const PhaseInfo: PhaseType = {
     0: (
       <SelectBackground
@@ -51,7 +51,7 @@ function ChannelTemplate() {
   const navigate = useNavigate();
   const handleNextButtonClick = () => {
     isSubmit
-      ? mutateNewChannel({
+      ? mutate({
           name: `${channelName}`,
           description: JSON.stringify(channelOption)
         })

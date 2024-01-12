@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import SearchBar from '@/components/Common/SearchBar';
-import useChannelListQuery from '@/hooks/api/useChannelListQuery';
+import useGetChannelList from '@/hooks/api/useGetChannelList';
 import ChannelImg from '@/assets/channelWithLongLine.svg';
 import { Channel } from '@/types/ResponseType';
 import ChannelIcon from '../../components/ChannelList/ChannelIcon';
 import { Body, ChannelIconList, Header, Title } from './index.style';
 
 function ChannelList() {
-  const { data: channelList } = useChannelListQuery();
+  const { data: channelList } = useGetChannelList();
   const [channels, setChannels] = useState<Channel[]>(channelList);
 
   useEffect(() => {
