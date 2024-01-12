@@ -77,7 +77,7 @@ function PostComment() {
   return (
     <>
       <Style.CommentContainer>
-        <Header />
+        <Header channelName={state.channelName} />
         <Style.GroudImage src="/src/assets/ShortLogo.svg" />
         <PrePost
           postId={postId}

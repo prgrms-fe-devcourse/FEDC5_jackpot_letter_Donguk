@@ -17,12 +17,16 @@ function ChannelOpen({ channelId, channelName }: channelOpenProps) {
   const { data: channelInfo } = useChannelQuery(channelName ?? '');
   const { data: postList } = useChannelPostsQuery(channelInfo?._id ?? '');
   const channelColor = parsedColor(channelInfo?.description);
+
   return (
     <Body>
       <OpenIcon>
         <OpenChannel color={channelColor} />
       </OpenIcon>
-      <ChannelPosts posts={postList} />
+      <ChannelPosts
+        posts={postList}
+        channelName={channelInfo.name}
+      />
       <ChannelButton>
         <Button
           onClick={() =>
