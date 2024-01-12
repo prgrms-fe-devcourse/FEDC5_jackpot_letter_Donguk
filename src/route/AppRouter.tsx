@@ -10,6 +10,7 @@ import ChannelTemplate from '@/pages/ChannelTemplate';
 import CommentListPage from '@/pages/CommentListPage';
 import FollowPage from '@/pages/FollowPage';
 import LikeListPage from '@/pages/LikeListPage';
+import Message from '@/pages/Message';
 import MessageListPage from '@/pages/MessageListPage';
 import Mypage from '@/pages/Mypage';
 import PostCreate from '@/pages/PostCreate';
@@ -85,7 +86,8 @@ const commonRoutes: Array<RouteProps> = [
   { path: `${PATH.POST}/:channelId`, exact: true, component: <Post /> },
   { path: `${PATH.COMMENT}/:postId`, exact: true, component: <Comment /> },
   { path: PATH.MESSAGELIST, exact: true, component: <MessageListPage /> },
-  { path: `${PATH.USER}`, exact: true, component: <UserPage /> }
+  { path: `${PATH.USER}`, exact: true, component: <UserPage /> },
+  { path: `${PATH.MESSAGE}/:receiverId`, exact: true, component: <Message /> }
 ];
 
 export { userRoutes, authRoutes, commonRoutes };

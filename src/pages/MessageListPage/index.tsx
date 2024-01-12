@@ -12,7 +12,7 @@ function MessageListPage() {
   const userId = useAtomValue(idAtom);
   const { data: userListData } = useUserListQuery(); // 전체 데이터 리스트
   const [userFilterData, setUserFilterData] = useState<User[]>();
-  const { data: userData } = useUser(userId);
+  const { data: userData } = useUser(userId); // userId 가 없을때 오류가 생김
 
   useEffect(() => {
     if (userListData) setUserFilterData(userListData);
