@@ -1,7 +1,4 @@
-import { useEffect } from 'react';
 import { UseFormRegister } from 'react-hook-form';
-import { User } from '@/types/ResponseType';
-import Loading from '../Loading';
 import * as Style from './index.style';
 
 interface useFormProps {
@@ -12,16 +9,12 @@ interface useFormProps {
 interface CommentProps {
   register: UseFormRegister<useFormProps>;
   userName: string;
-  // data: false | User | undefined;
-  // isPending: boolean;
 }
 
 function Comment({ register, userName }: CommentProps) {
   return (
     <>
       <Style.CommentContainer>
-        {/* {isPending && <Loading loadingSize={32} />} */}
-
         <Style.CommentTitleInput
           placeholder={userName ? '' : '작성자명을 입력해주세요'}
           value={userName ? userName : undefined}

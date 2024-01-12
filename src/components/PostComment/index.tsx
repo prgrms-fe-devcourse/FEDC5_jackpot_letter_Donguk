@@ -6,7 +6,7 @@ import { useLocation, useParams } from 'react-router-dom';
 import { useAtomValue } from 'jotai';
 import { usePostCommentCreateMutation } from '@/hooks/api/usePostCommentCreateMutation';
 // import { useUserInfomationQuery } from '@/hooks/api/useUserInfomationQuery';
-import { channelNameAtom, idAtom, tokenAtom } from '@/store/auth';
+import { channelNameAtom, tokenAtom } from '@/store/auth';
 import Comment from './Comment';
 import Footer from './Footer';
 import Header from './Header';
@@ -26,7 +26,6 @@ interface useFormProps {
 
 function PostComment() {
   const JWTtoken = useAtomValue(tokenAtom);
-  const userId = useAtomValue(idAtom);
   const userName = useAtomValue(channelNameAtom);
   const { postId } = useParams() as { postId: string };
   const { mutationCommentCreate } = usePostCommentCreateMutation(postId);
@@ -89,8 +88,6 @@ function PostComment() {
         <Comment
           register={register}
           userName={userName}
-          // data={data}
-          // isPending={isPending}
         />
         <Style.Form onSubmit={handleSubmit(onSubmit)}>
           <Footer />
