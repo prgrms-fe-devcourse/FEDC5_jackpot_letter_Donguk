@@ -1,5 +1,5 @@
 import toast from 'react-hot-toast';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useSetAtom } from 'jotai';
 import { postSignOut } from '@/api/member';
 import {
@@ -13,6 +13,7 @@ import { removeStorage } from '@/utils/LocalStorage';
 export const useSignOutMutation = () => {
   const setTokenState = useSetAtom(tokenAtom);
   const setIsLoggedIn = useSetAtom(isLoggedInAtom);
+  const queryClient = useQueryClient();
 
   const signOutMutation = useMutation({
     mutationFn: postSignOut,
@@ -25,6 +26,8 @@ export const useSignOutMutation = () => {
       setIsLoggedIn(false);
       toast.success('로그아웃 성공');
       location.reload();
+
+      queryClient.invalidateQueries({ queryKey: ['userListData'] });
     },
     onError: (error) => {
       console.log(error);
