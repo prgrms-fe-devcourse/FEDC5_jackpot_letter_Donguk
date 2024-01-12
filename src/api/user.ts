@@ -60,7 +60,7 @@ export const updateUserPhoto = async (isCover: boolean, image: File) => {
   const { data } = await axiosInstance.post(END_POINTS.UPLOAD_PHOTO, formData, {
     headers: {
       'Content-Type': 'multipart/form-data'
-     }
+    }
   });
   return data;
 };
@@ -79,15 +79,16 @@ export const updateNotification = async () => {
 export const createNotification = async (
   notificationOption: NewNotificationProps
 ) => {
-  const { data } = await axios.post('/api', {
-    method: 'POST',
-    url: END_POINTS.POST_NOTIFICATION,
-    data: notificationOption,
-    headers: {
-      Authorization: `bearer ${ACCESS_TOKEN}`
-    }
-  });
-  return data;
+  try {
+    if (notificationOption.postId === undefined)
+      throw new Error('postId에 값이 없습니다.');
+
+    return await axiosInstance.post(END_POINTS.POST_NOTIFICATION, {
+      notificationOption
+    });
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 /** 유저 온라인 정보 */

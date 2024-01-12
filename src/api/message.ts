@@ -7,7 +7,7 @@ export const getMessages = async (userId: string) => {
   const { data } = await axiosInstance.get<Message[]>(END_POINTS.MESSAGES, {
     params: { userId }
   });
-  console.log(data);
+
   return data;
 };
 

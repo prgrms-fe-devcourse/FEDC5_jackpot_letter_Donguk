@@ -17,7 +17,7 @@ function SendMessage() {
   const JWTtoken = useAtomValue(tokenAtom);
   const userId = useAtomValue(idAtom);
   const { receiverId } = useParams() as { receiverId: string };
-  const { mutationMessageCreate } = useMessageCreateMutation(receiverId);
+  const { mutate, data: messageData } = useMessageCreateMutation(receiverId);
   const { mutateNewNotification } = useNewNotification();
 
   const {
@@ -47,19 +47,19 @@ function SendMessage() {
 
   /** textarea 메시지 서버 전송 */
   const handleTextareaOnSubmit = (data: useFormProps) => {
-    console.log(data);
     /** 메시지 전송 */
-    mutationMessageCreate({
+    mutate({
       JWTtoken,
       message: data.message,
       receiver: receiverId
     });
+
     /** 알림 생성 */
     mutateNewNotification({
       notificationType: 'MESSAGE',
       notificationTypeId: '새로운 메시지가 도착했어요!',
       userId,
-      postId: null
+      postId: messageData && messageData._id
     });
   };
 

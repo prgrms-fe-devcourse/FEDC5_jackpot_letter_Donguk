@@ -12,7 +12,7 @@ interface mutationProps {
 export const useMessageCreateMutation = (receiverId: string) => {
   const queryClient = useQueryClient();
 
-  const messageCreateMutation = useMutation({
+  return useMutation({
     mutationFn: ({ receiver, message }: mutationProps) =>
       postMessagesCreate(message, receiver),
     onSuccess: () => {
@@ -21,6 +21,4 @@ export const useMessageCreateMutation = (receiverId: string) => {
     },
     onError: () => toast.error('메시지 전송에 실패하였습니다.')
   });
-
-  return { mutationMessageCreate: messageCreateMutation.mutate };
 };
