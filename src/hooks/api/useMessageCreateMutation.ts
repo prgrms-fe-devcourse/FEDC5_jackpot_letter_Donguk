@@ -13,9 +13,10 @@ export const useMessageCreateMutation = (receiverId: string) => {
   const queryClient = useQueryClient();
 
   const messageCreateMutation = useMutation({
-    mutationFn: ({ JWTtoken, receiver, message }: mutationProps) =>
-      postMessagesCreate(JWTtoken, message, receiver),
+    mutationFn: ({ receiver, message }: mutationProps) =>
+      postMessagesCreate(message, receiver),
     onSuccess: () => {
+      toast.success('메세지 전송에 성공했습니다.');
       queryClient.invalidateQueries({ queryKey: ['messageList', receiverId] });
     },
     onError: () => toast.error('메시지 전송에 실패하였습니다.')

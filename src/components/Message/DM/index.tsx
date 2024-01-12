@@ -6,15 +6,12 @@ import { User } from '@/types/ResponseType';
 import * as Style from './index.style';
 
 interface DMprops {
-  JWTtoken: string;
   receiverData: User | undefined | '';
 }
-function DM({ JWTtoken, receiverData }: DMprops) {
+
+function DM({ receiverData }: DMprops) {
   const userId = useAtomValue(idAtom);
-  const { data: messageData } = useGetMessagesQuery(
-    JWTtoken,
-    receiverData?._id
-  );
+  const { data: messageData } = useGetMessagesQuery(receiverData?._id);
 
   return (
     <>

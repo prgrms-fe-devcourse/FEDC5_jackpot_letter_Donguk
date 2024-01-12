@@ -4,7 +4,8 @@ import toast from 'react-hot-toast';
 import { useParams } from 'react-router-dom';
 import { useAtomValue } from 'jotai';
 import { useMessageCreateMutation } from '@/hooks/api/useMessageCreateMutation';
-import { tokenAtom } from '@/store/auth';
+import { useNewNotification } from '@/hooks/api/useNewNotification';
+import { idAtom, tokenAtom } from '@/store/auth';
 import * as Style from './index.style';
 
 interface useFormProps {
@@ -14,14 +15,15 @@ interface useFormProps {
 function SendMessage() {
   const [text, setText] = useState('');
   const JWTtoken = useAtomValue(tokenAtom);
+  const userId = useAtomValue(idAtom);
   const { receiverId } = useParams() as { receiverId: string };
   const { mutationMessageCreate } = useMessageCreateMutation(receiverId);
+  const { mutateNewNotification } = useNewNotification();
 
   const {
     register,
     formState: { errors, isSubmitting, isSubmitSuccessful },
-    handleSubmit,
-    reset
+    handleSubmit
   } = useForm<useFormProps>({
     mode: 'onSubmit',
     defaultValues: {
@@ -45,10 +47,19 @@ function SendMessage() {
 
   /** textarea 메시지 서버 전송 */
   const handleTextareaOnSubmit = (data: useFormProps) => {
+    console.log(data);
+    /** 메시지 전송 */
     mutationMessageCreate({
       JWTtoken,
       message: data.message,
       receiver: receiverId
+    });
+    /** 알림 생성 */
+    mutateNewNotification({
+      notificationType: 'MESSAGE',
+      notificationTypeId: '새로운 메시지가 도착했어요!',
+      userId,
+      postId: null
     });
   };
 

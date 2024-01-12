@@ -44,8 +44,8 @@ function Post() {
   const { state } = useLocation();
 
   /** 채널 리스트 */
-  const { data: channelListData } = useChannelListQuery();
-  console.log(channelListData);
+  // const { data: channelListData } = useChannelListQuery();
+  // console.log(channelListData);
 
   /** 포스트 작성 시 서버로 전송 */
   const onSubmit = (submitData: useFormProps) => {
@@ -72,8 +72,7 @@ function Post() {
     }
 
     if (isSubmitSuccessful) {
-      toast.success('편지 작성에 성공하였습니다!');
-
+      // toast.success('편지 작성에 성공하였습니다!');
       navigate(`/channel/${state.channelName}`);
     }
   }, [isSubmitting, isSubmitSuccessful]);
@@ -81,7 +80,7 @@ function Post() {
   return (
     <>
       <Style.PostContainer>
-        <Header />
+        <Header channelName={state.channelName} />
         <Style.GroudImage src="/src/assets/ShortLogo.svg" />
         <Letter register={register} />
         <Warning />
