@@ -1,7 +1,8 @@
 import styled from '@emotion/styled';
 
 export const Container = styled.div`
-  max-width: 375px;
+  width: 23.438rem;
+  padding: 0 6.25rem;
 `;
 export const LogoContainer = styled.div`
   display: flex;

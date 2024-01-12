@@ -7,7 +7,7 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: space-between;
   height: 100vh;
-  padding: 0 2rem;
+  padding: 0 8.125rem;
 `;
 
 export const Logo = styled.div`

@@ -11,10 +11,12 @@ interface WrapperProps {
 export const Container = styled.div`
   display: flex;
   justify-content: center;
-  gap: 100px;
+  height: 100vh;
 `;
 
 export const Wrapper = styled.div<WrapperProps>`
+  width: 35.938rem;
+
   background-color: ${(props) =>
     props.darkMode ? theme.darkTheme.bgColor : theme.lightTheme.bgColor};
   ${(props) =>
@@ -22,6 +24,5 @@ export const Wrapper = styled.div<WrapperProps>`
     css`
       border-left: 0.5px solid;
       border-right: 0.5px solid;
-      padding: 0 2rem;
     `}
 `;
