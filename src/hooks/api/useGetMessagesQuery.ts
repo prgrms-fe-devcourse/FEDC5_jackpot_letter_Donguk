@@ -5,6 +5,7 @@ import { getMessages } from '@/api/message';
 export const useGetMessagesQuery = (JWTtoken: string, receiverId: string) => {
   return useQuery({
     queryKey: ['messageList', receiverId],
-    queryFn: () => getMessages(JWTtoken, receiverId)
+    queryFn: () => getMessages(JWTtoken, receiverId),
+    enabled: !!receiverId
   });
 };
