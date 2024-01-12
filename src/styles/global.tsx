@@ -13,7 +13,13 @@ const global = (theme: ThemeProps) => css`
   }
   html {
     height: 100%;
-    background-color: ${theme.bgColor};
+    background: linear-gradient(
+      180deg,
+      rgba(38, 27, 62, 0.8) 0%,
+      rgba(38, 27, 62, 0.6) 34.5%,
+      rgba(38, 27, 62, 0.4) 69.5%,
+      rgba(38, 27, 62, 0.2) 100%
+    );
     color: ${theme.textColor};
   }
   a {

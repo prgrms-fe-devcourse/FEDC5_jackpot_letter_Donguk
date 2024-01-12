@@ -6,7 +6,7 @@ import { useAtomValue } from 'jotai';
 import { theme } from '@/theme';
 import { Global } from '@emotion/react';
 import HamburgerMenu from './components/Common/HamburgerMenu';
-import Mypage from './pages/Mypage';
+import ResponsiveLayout from './components/Common/Responsive/ResponsiveLayout';
 import NotFoundPage from './pages/NotFoundPage';
 import { authRoutes, commonRoutes, userRoutes } from './route/AppRouter';
 import AuthMiddleware from './route/AuthMiddleware';
@@ -39,54 +39,51 @@ function App() {
         {authRoutes.map((route, idx) => (
           <Route
             path={route.path}
-            element={<SignIn>{route.component}</SignIn>}
-            key={idx}></Route>
+            element={
+              <ResponsiveLayout>
+                <SignIn>{route.component}</SignIn>
+              </ResponsiveLayout>
+            }
+            key={idx}
+          ></Route>
         ))}
-        {userRoutes.page.map((route, idx) => (
+        {userRoutes.map((route, idx) => (
           <Route
             path={route.path}
             element={
-              <AuthMiddleware>
+              <ResponsiveLayout>
+                <AuthMiddleware>
+                  <>
+                    <HamburgerMenu />
+                    {route.component}
+                  </>
+                </AuthMiddleware>
+              </ResponsiveLayout>
+            }
+            key={idx}
+          ></Route>
+        ))}
+        {commonRoutes.map((route, idx) => (
+          <Route
+            path={route.path}
+            element={
+              <ResponsiveLayout>
                 <>
                   <HamburgerMenu />
                   {route.component}
                 </>
-              </AuthMiddleware>
+              </ResponsiveLayout>
             }
-            key={idx}></Route>
-        ))}
-        <Route
-          path="/mypage"
-          element={
-            <AuthMiddleware>
-              <>
-                <HamburgerMenu />
-                <Mypage />
-              </>
-            </AuthMiddleware>
-          }>
-          {userRoutes.mypage.map((route, idx) => (
-            <Route
-              path={route.path}
-              element={<AuthMiddleware>{route.component}</AuthMiddleware>}
-              key={idx}></Route>
-          ))}
-        </Route>
-        {commonRoutes.map((route, idx) => (
-          <Route
-            path={route.path}
-
-            element={
-              <>
-                <HamburgerMenu />
-                {route.component}
-              </>
-            }
-            key={idx}></Route>
+            key={idx}
+          ></Route>
         ))}
         <Route
           path="/*"
-          element={<NotFoundPage />}
+          element={
+            <ResponsiveLayout>
+              <NotFoundPage />
+            </ResponsiveLayout>
+          }
         />
       </Routes>
       <Toaster

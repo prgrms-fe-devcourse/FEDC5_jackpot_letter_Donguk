@@ -5,7 +5,7 @@ function useUser(userId: string) {
   return useQuery({
     queryKey: ['user', userId] as const,
     queryFn: async () => {
-      return await getUser(userId);
+      return (await userId) && getUser(userId);
     }
   });
 }

@@ -1,3 +1,4 @@
+import { theme } from '@/theme';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
@@ -14,12 +15,14 @@ export const scrollbar = css`
   }
 `;
 
-export const Container = styled.div<{ isMypage: boolean }>`
+export const Container = styled.div<{ isMypage: boolean; darkMode: boolean }>`
   height: 100svh;
   padding: 2.5rem 1.75rem;
-
   display: ${(props) => (props.isMypage ? 'block' : 'flex')};
   box-sizing: border-box;
+
+  background-color: ${(props) =>
+    props.darkMode ? theme.darkTheme.bgColor : theme.lightTheme.bgColor};
 
   .sidebar-container {
     width: ${(props) => (props.isMypage ? '100%' : '18rem')};

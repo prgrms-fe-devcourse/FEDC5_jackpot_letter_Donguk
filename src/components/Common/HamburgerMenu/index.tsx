@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { IoMenu } from 'react-icons/io5';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import { useAtom, useAtomValue } from 'jotai';
 import { PATH } from '@/constants/path';
@@ -18,7 +18,6 @@ function HamburgerMenu() {
   const darkMode = useAtomValue(darkAtom);
 
   const { pathname } = useLocation();
-  const navigate = useNavigate();
 
   const { mutateSignOut } = useSignOutMutation();
 
@@ -45,7 +44,8 @@ function HamburgerMenu() {
             USER_MENU.map((data) => (
               <Link
                 to={data.link}
-                key={data.id}>
+                key={data.id}
+              >
                 <Menu>{data.menu}</Menu>
               </Link>
             ))}

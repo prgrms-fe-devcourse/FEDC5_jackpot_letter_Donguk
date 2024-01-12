@@ -26,19 +26,20 @@ function Channel() {
 
   useEffect(() => {
     if (channelInfo) setData(channelInfo);
-    console.log(channelInfo);
   }, [channelInfo]);
 
   if (channelName === undefined) {
     return <Navigate to="/" />;
   }
+
   const handleIconClick = (): void => {
     setIsOpened(true);
   };
 
   return (
     <Background
-      selectedValue={data.description && parsedBackground(data.description)}>
+      selectedValue={data.description && parsedBackground(data.description)}
+    >
       <Title>
         <h1>
           <span>{data.name}</span>님의 박
@@ -69,7 +70,8 @@ function Channel() {
         handleModalClose={(e: React.MouseEvent<HTMLDivElement>) =>
           handleModalClick(e)
         }
-        type={'center'}>
+        type={'center'}
+      >
         <AlarmList />
       </Modal>
     </Background>

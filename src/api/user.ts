@@ -7,6 +7,16 @@ import { axiosInstance } from './axiosInstance';
 
 const ACCESS_TOKEN = getStorage('ACCESS_TOKEN', '');
 
+/** 전체 유저 리스트 */
+export const getUserList = async () => {
+  const { data } = await axios.post<User[]>('/api', {
+    method: 'GET',
+    url: `${END_POINTS.USER_LIST}`
+  });
+
+  return data;
+};
+
 export const getUser = async (userId: string) => {
   const { data } = await axiosInstance.get<User>(
     `${END_POINTS.USER}/${userId}`,
@@ -50,7 +60,7 @@ export const updateUserPhoto = async (isCover: boolean, image: File) => {
   const { data } = await axiosInstance.post(END_POINTS.UPLOAD_PHOTO, formData, {
     headers: {
       'Content-Type': 'multipart/form-data'
-     }
+    }
   });
   return data;
 };
@@ -77,5 +87,15 @@ export const createNotification = async (
       Authorization: `bearer ${ACCESS_TOKEN}`
     }
   });
+  return data;
+};
+
+/** 유저 온라인 정보 */
+export const getUserOnline = async () => {
+  const { data } = await axios.post<User[]>('/api', {
+    method: 'GET',
+    url: `${END_POINTS.USER_ONLINE}`
+  });
+
   return data;
 };

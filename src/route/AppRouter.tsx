@@ -10,6 +10,8 @@ import ChannelTemplate from '@/pages/ChannelTemplate';
 import CommentListPage from '@/pages/CommentListPage';
 import FollowPage from '@/pages/FollowPage';
 import LikeListPage from '@/pages/LikeListPage';
+import Message from '@/pages/Message';
+import MessageListPage from '@/pages/MessageListPage';
 import Mypage from '@/pages/Mypage';
 import PostCreate from '@/pages/PostCreate';
 import PostListPage from '@/pages/PostListPage';
@@ -38,41 +40,37 @@ function SuspenseComponent({ children }: SuspenseCompProps) {
 }
 
 // 로그인 상태 접근
-const userRoutes: userRoutes = {
-  page: [
-    { path: PATH.MYPAGE, exact: true, component: <Mypage /> },
-    {
-      path: PATH.CHANNEL_CREATE,
-      exact: true,
-      component: <ChannelTemplate />
-    }
-  ],
-  mypage: [
-    {
-      path: PATH.MYPAGE_PROFILE_UPDATE,
-      exact: true,
-      component: <ProfileUpdate />
-    },
-    { path: PATH.MYPAGE_FOLLOW, exact: true, component: <FollowPage /> },
-    { path: PATH.MYPGE_POST_LIST, exact: true, component: <PostListPage /> },
-    { path: PATH.MYPGE_LIKE_LIST, exact: true, component: <LikeListPage /> },
-    {
-      path: PATH.MYPGE_RECEIVED_POST_LIST,
-      exact: true,
-      component: <ReceivedPostListPage />
-    },
-    {
-      path: PATH.MYPGE_COMMNET_LIST,
-      exact: true,
-      component: <CommentListPage />
-    },
-    {
-      path: PATH.MYPGE_PASSWORD_UPDATE,
-      exact: true,
-      component: <PasswordUpdate />
-    }
-  ]
-};
+const userRoutes: Array<RouteProps> = [
+  { path: PATH.MYPAGE, exact: true, component: <Mypage /> },
+  {
+    path: PATH.CHANNEL_CREATE,
+    exact: true,
+    component: <ChannelTemplate />
+  },
+  {
+    path: PATH.MYPAGE_PROFILE_UPDATE,
+    exact: true,
+    component: <ProfileUpdate />
+  },
+  { path: PATH.MYPAGE_FOLLOW, exact: true, component: <FollowPage /> },
+  { path: PATH.MYPGE_POST_LIST, exact: true, component: <PostListPage /> },
+  { path: PATH.MYPGE_LIKE_LIST, exact: true, component: <LikeListPage /> },
+  {
+    path: PATH.MYPGE_RECEIVED_POST_LIST,
+    exact: true,
+    component: <ReceivedPostListPage />
+  },
+  {
+    path: PATH.MYPGE_COMMNET_LIST,
+    exact: true,
+    component: <CommentListPage />
+  },
+  {
+    path: PATH.MYPGE_PASSWORD_UPDATE,
+    exact: true,
+    component: <PasswordUpdate />
+  }
+];
 
 // 로그인 상태x 접근
 const authRoutes: Array<RouteProps> = [
@@ -95,7 +93,9 @@ const commonRoutes: Array<RouteProps> = [
   { path: PATH.POST_CREATE, exact: true, component: <PostCreate /> },
   { path: `${PATH.POST}/:channelId`, exact: true, component: <Post /> },
   { path: `${PATH.COMMENT}/:postId`, exact: true, component: <Comment /> },
-  { path: `${PATH.USER}`, exact: true, component: <UserPage /> }
+  { path: PATH.MESSAGELIST, exact: true, component: <MessageListPage /> },
+  { path: `${PATH.USER}`, exact: true, component: <UserPage /> },
+  { path: `${PATH.MESSAGE}/:receiverId`, exact: true, component: <Message /> }
 ];
 
 export { userRoutes, authRoutes, commonRoutes };
