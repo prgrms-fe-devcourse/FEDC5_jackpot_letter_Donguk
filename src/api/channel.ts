@@ -1,5 +1,5 @@
 import toast from 'react-hot-toast';
-import { MutationProps } from '@/hooks/api/useNewChannel';
+import { MutationProps } from '@/hooks/api/useCreateChannel';
 import { END_POINTS } from '@/constants/api';
 import { axiosInstance } from './axiosInstance';
 

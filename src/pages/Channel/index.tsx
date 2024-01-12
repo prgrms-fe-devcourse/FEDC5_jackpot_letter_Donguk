@@ -6,7 +6,7 @@ import ChannelClose from '@/components/Channel/ChannelClose';
 import ChannelOpen from '@/components/Channel/ChannelOpen';
 import { Background } from '@/components/ChannelTemplate/SelectBackground/index.style';
 import Modal from '@/components/Common/Modal';
-import useChannelQuery from '@/hooks/api/useChannelQuery';
+import useGetChannelInfo from '@/hooks/api/useGetChannelInfo';
 import useModal from '@/hooks/useModal';
 import Alarm from '@/assets/Alarm.svg';
 import { parsedBackground } from '@/utils/parse';
@@ -22,7 +22,7 @@ function Channel() {
 
   const [isOpened, setIsOpened] = useState(false);
   const { channelName } = useParams();
-  const { data: channelInfo } = useChannelQuery(channelName ?? '');
+  const { data: channelInfo } = useGetChannelInfo(channelName ?? '');
 
   useEffect(() => {
     if (channelInfo) setData(channelInfo);

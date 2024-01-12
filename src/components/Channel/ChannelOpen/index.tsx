@@ -2,8 +2,8 @@ import { useNavigate } from 'react-router-dom';
 import ChannelPosts from '@/components/Channel/ChannelPosts';
 import Button from '@/components/Common/Button';
 import OpenChannel from '@/components/Common/CustomChannelIcon/OpenChannel';
-import useChannelPostsQuery from '@/hooks/api/useChannelPostsQuery';
-import useChannelQuery from '@/hooks/api/useChannelQuery';
+import useGetChannelInfo from '@/hooks/api/useGetChannelInfo';
+import useGetChannelPosts from '@/hooks/api/useGetChannelPosts';
 import { parsedColor } from '@/utils/parse';
 import { Body, ChannelButton, OpenIcon } from './index.style';
 
@@ -14,15 +14,15 @@ interface channelOpenProps {
 
 function ChannelOpen({ channelId, channelName }: channelOpenProps) {
   const navigate = useNavigate();
-  const { data: channelInfo } = useChannelQuery(channelName ?? '');
-  const { data: postList } = useChannelPostsQuery(channelInfo?._id ?? '');
+  const { data: channelInfo } = useGetChannelInfo(channelName ?? '');
+  const { data: postList } = useGetChannelPosts(channelInfo?._id ?? '');
   const channelColor = parsedColor(channelInfo?.description);
   return (
     <Body>
       <OpenIcon>
         <OpenChannel color={channelColor} />
       </OpenIcon>
-      <ChannelPosts posts={postList} />
+      <ChannelPosts posts={postList ?? []} />
       <ChannelButton>
         <Button
           onClick={() =>

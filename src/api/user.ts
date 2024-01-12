@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { NewNotificationProps } from '@/hooks/api/useNewNotification';
+import { NewNotificationProps } from '@/hooks/api/useCreateNotification';
 import { END_POINTS } from '@/constants/api';
-import { User } from '@/types/ResponseType';
+import { AuthenticationUser, User } from '@/types/ResponseType';
 import { getStorage } from '@/utils/LocalStorage';
 import { axiosInstance } from './axiosInstance';
 
@@ -66,6 +66,16 @@ export const createNotification = async (
   const { data } = await axiosInstance.post(
     END_POINTS.POST_NOTIFICATION,
     notificationOption
+  );
+  return data;
+};
+
+export const getUserList = async () => {
+  const { data } = await axiosInstance.get<AuthenticationUser[]>(
+    END_POINTS.USER_LIST,
+    {
+      authorization: false
+    }
   );
   return data;
 };

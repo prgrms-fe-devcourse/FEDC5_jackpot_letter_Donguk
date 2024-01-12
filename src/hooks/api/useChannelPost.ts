@@ -3,12 +3,12 @@ import { getChannelPosts } from '@/api/post';
 import { ACCESS_CHANNEL_NAME } from '@/constants/api';
 import { Post, UserPost } from '@/types/ResponseType';
 import { getStorage } from '@/utils/LocalStorage';
-import useChannelQuery from './useChannelQuery';
+import useGetChannelInfo from './useGetChannelInfo';
 
 function useChannelPost() {
   const channelName = getStorage(ACCESS_CHANNEL_NAME, '');
 
-  const { data: channel } = useChannelQuery(channelName ?? '');
+  const { data: channel } = useGetChannelInfo(channelName ?? '');
 
   const channelId = channel?._id;
 
