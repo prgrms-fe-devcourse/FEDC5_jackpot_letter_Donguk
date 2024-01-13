@@ -19,8 +19,7 @@ function SendMessage({ receiverId }: sendMessageProps) {
   const JWTtoken = useAtomValue(tokenAtom);
   const { mutate: messageMutate, data: messageData } =
     useMessageCreateMutation(receiverId);
-  const { mutate: notificationMutate, data: notificationData } =
-    useNewNotification();
+  const { mutate: notificationMutate } = useNewNotification();
 
   const {
     register,

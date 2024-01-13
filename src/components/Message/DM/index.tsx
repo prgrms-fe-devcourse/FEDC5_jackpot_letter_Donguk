@@ -13,7 +13,6 @@ function DM({ receiverData }: DMprops) {
   const userId = useAtomValue(idAtom);
   const { data: messageData } = useGetMessagesQuery(receiverData?._id);
 
-  console.log(receiverData, '와 나눈 메시지', messageData);
   return (
     <>
       <Style.IntroduceContainer>
@@ -22,7 +21,7 @@ function DM({ receiverData }: DMprops) {
             width={5}
             height={5}
             alt="messageList userProfile Image"
-            image=""
+            image={receiverData.image ? receiverData.messages : ''}
           />
         </Style.UserProfile>
         <Style.IntroduceText>
@@ -41,7 +40,7 @@ function DM({ receiverData }: DMprops) {
                     width={2}
                     height={2}
                     alt="messageList userProfile Image"
-                    image=""
+                    image={receiverData.image ? receiverData.image : ''}
                   />
                 </Style.UserProfile>
                 <Style.Message>{message}</Style.Message>
@@ -56,7 +55,15 @@ function DM({ receiverData }: DMprops) {
                     width={2}
                     height={2}
                     alt="messageList userProfile Image"
-                    image=""
+                    image={
+                      messageData[0].sender._id === userId
+                        ? messageData[0].sender.image
+                          ? messageData[0].sender.image
+                          : ''
+                        : messageData[0].receiver.image
+                          ? messageData[0].receiver.image
+                          : ''
+                    }
                   />
                 </Style.UserProfile>
               </Style.MessageContainer>
