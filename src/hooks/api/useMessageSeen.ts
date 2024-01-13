@@ -9,7 +9,6 @@ export const useMessageSeen = () => {
   return useMutation({
     mutationFn: (senderId: string) => putMessageUpdateSeen(senderId),
     onSuccess: () => {
-      toast.success(`메세지 읽음 처리 성공`);
       queryClient.invalidateQueries({ queryKey: ['notifycaitons'] });
     },
     onError: () => {

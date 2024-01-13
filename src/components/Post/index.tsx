@@ -1,11 +1,15 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Toaster } from 'react-hot-toast';
 import { toast } from 'react-hot-toast';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import Modal from '@components/Common/Modal';
+import { useAtomValue } from 'jotai';
 // import useChannelListQuery from '@/hooks/api/useChannelListQuery';
 // import { useGetPostDetailQuery } from '@/hooks/api/useGetPostDetailQuery';
 import { usePostCreateMutation } from '@/hooks/api/usePostCreateMutation';
+import { tokenAtom } from '@/store/auth';
+import Button from '../Common/Button';
 import Footer from './Footer';
 import Header from './Header';
 import Letter from './Letter';
@@ -23,6 +27,15 @@ export interface useFormProps {
   letterComment: string;
 }
 
+export interface channelInfo {
+  allowRangeData: {
+    allowViewAll: boolean;
+    allowWriteAll: boolean;
+    background: string;
+    color: string;
+  };
+}
+
 function Post() {
   const {
     register,
@@ -36,10 +49,14 @@ function Post() {
     }
   });
 
+  const JWTtoken = useAtomValue(tokenAtom);
   const { channelId } = useParams();
   const { mutationPostCreate } = usePostCreateMutation();
   const navigate = useNavigate();
   const { state } = useLocation();
+
+  const [modalState, setModalState] = useState(true);
+  const allowRangeData = JSON.parse(state.channelDescription);
 
   /** 채널 리스트 */
   // const { data: channelListData } = useChannelListQuery();
@@ -76,11 +93,44 @@ function Post() {
 
   return (
     <>
+      {!allowRangeData.allowWriteAll && !JWTtoken && (
+        <Modal
+          width={22}
+          height={10}
+          visible={modalState}>
+          <div style={{ textAlign: 'center', whiteSpace: 'pre-wrap' }}>
+            {`박 주인의 설정으로 인해 로그인 한 회원만 편지를 작성할 수 있습니다. 로그인 하시겠습니까?`}
+          </div>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-around',
+              marginTop: '2.5rem'
+            }}>
+            <Button
+              content="예"
+              size="md"
+              onClick={() => {
+                navigate('/signin');
+                setModalState(false);
+              }}
+            />
+            <Button
+              content="아니오"
+              size="md"
+              onClick={() => {
+                navigate('/');
+                setModalState(false);
+              }}
+            />
+          </div>
+        </Modal>
+      )}
       <Style.PostContainer>
         <Header channelName={state.channelName} />
         <Style.GroudImage src="/src/assets/ShortLogo.svg" />
         <Letter register={register} />
-        <Warning />
+        <Warning allowRangeData={allowRangeData} />
         <Style.Form onSubmit={handleSubmit(onSubmit)}>
           <Footer />
         </Style.Form>

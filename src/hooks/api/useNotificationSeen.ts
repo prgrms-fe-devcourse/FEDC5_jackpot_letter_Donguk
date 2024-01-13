@@ -16,7 +16,6 @@ export const useNotificationSeen = () => {
   return useMutation({
     mutationFn: updateNotification,
     onSuccess: () => {
-      toast.success(`읽음 처리 성공`);
       queryClient.invalidateQueries({ queryKey: ['notifycaitons'] });
     },
     onError: () => {

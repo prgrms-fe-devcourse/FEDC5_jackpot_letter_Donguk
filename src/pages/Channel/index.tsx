@@ -57,6 +57,7 @@ function Channel() {
           <ChannelOpen
             channelId={channelInfo?._id}
             channelName={channelName}
+            channelDescription={channelInfo.description}
           />
         </>
       ) : (

@@ -10,9 +10,14 @@ import { Body, ChannelButton, OpenIcon } from './index.style';
 interface channelOpenProps {
   channelId: string;
   channelName: string;
+  channelDescription: string;
 }
 
-function ChannelOpen({ channelId, channelName }: channelOpenProps) {
+function ChannelOpen({
+  channelId,
+  channelName,
+  channelDescription
+}: channelOpenProps) {
   const navigate = useNavigate();
   const { data: channelInfo } = useChannelQuery(channelName ?? '');
   const { data: postList } = useChannelPostsQuery(channelInfo?._id ?? '');
@@ -32,7 +37,7 @@ function ChannelOpen({ channelId, channelName }: channelOpenProps) {
         <Button
           onClick={() =>
             navigate('/post/new', {
-              state: { channelName, channelId }
+              state: { channelName, channelId, channelDescription }
             })
           }
           content="마음 전달하기"
