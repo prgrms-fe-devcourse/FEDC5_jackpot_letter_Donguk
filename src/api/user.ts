@@ -65,30 +65,23 @@ export const updateUserPhoto = async (isCover: boolean, image: File) => {
   return data;
 };
 
+/** 알림 확인 처리 */
 export const updateNotification = async () => {
-  const { data } = await axios.post('/api', {
-    method: 'PUT',
-    url: END_POINTS.PUT_NOTIFICATION,
-    headers: {
-      Authorization: `bearer ${ACCESS_TOKEN}`
-    }
-  });
-  return data;
+  await axiosInstance.put<void>(END_POINTS.PUT_NOTIFICATION);
 };
 
+/** 알림 생성 */
 export const createNotification = async (
   notificationOption: NewNotificationProps
 ) => {
-  try {
-    if (notificationOption.postId === undefined)
-      throw new Error('postId에 값이 없습니다.');
+  const { data } = await axiosInstance.post<Notification>(
+    END_POINTS.POST_NOTIFICATION,
+    {
+      ...notificationOption
+    }
+  );
 
-    return await axiosInstance.post(END_POINTS.POST_NOTIFICATION, {
-      notificationOption
-    });
-  } catch (error) {
-    console.error(error);
-  }
+  return data;
 };
 
 /** 유저 온라인 정보 */

@@ -9,6 +9,7 @@ export const UserListContainer = styled.div`
 `;
 
 export const UserList = styled.div`
+  position: relative;
   display: flex;
   align-items: center;
   width: 100%;
@@ -30,6 +31,19 @@ export const UserProfile = styled.div`
   border: 1px solid gray;
 `;
 
+export const MessageCount = styled.div`
+  position: absolute;
+  right: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1.5rem;
+  height: 1rem;
+  font-size: 0.7rem;
+  border-radius: 40px;
+  background-color: ${({ theme }) => theme.palette.main};
+`;
+
 export const UserOnline = styled.div<{ isColor: boolean }>`
   position: absolute;
   right: 0.2rem;
@@ -45,7 +59,7 @@ export const UserName = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  flex-grow: 1;
+
   height: 100%;
   padding-left: 1rem;
 `;

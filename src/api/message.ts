@@ -1,5 +1,5 @@
 import { END_POINTS } from '@/constants/api';
-import { Message } from '@/types/ResponseType';
+import { Conversation, Message } from '@/types/ResponseType';
 import { axiosInstance } from './axiosInstance';
 
 /** 특정 사용자와 소통한 메시지 목록 */
@@ -26,4 +26,20 @@ export const postMessagesCreate = async (
   );
 
   return data;
+};
+
+/** 특정 사용자와 소통한 메시지 목록 */
+export const getMessageConversations = async (userId: string) => {
+  const { data } = await axiosInstance.get<Conversation[]>(
+    END_POINTS.MESSAGES_CONVERSATIONS,
+    { params: { userId } }
+  );
+  return data;
+};
+
+/** 특정 사용자와 나눈 메시지 읽음처리 */
+export const putMessageUpdateSeen = async (sender: string) => {
+  await axiosInstance.put<void>(END_POINTS.MESSAGES_UPDATE_SEEN, {
+    sender
+  });
 };

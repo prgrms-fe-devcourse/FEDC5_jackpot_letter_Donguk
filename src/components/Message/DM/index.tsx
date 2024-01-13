@@ -13,6 +13,7 @@ function DM({ receiverData }: DMprops) {
   const userId = useAtomValue(idAtom);
   const { data: messageData } = useGetMessagesQuery(receiverData?._id);
 
+  console.log(receiverData, '와 나눈 메시지', messageData);
   return (
     <>
       <Style.IntroduceContainer>

@@ -1,24 +1,26 @@
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { useParams } from 'react-router-dom';
 import { useAtomValue } from 'jotai';
 import { useMessageCreateMutation } from '@/hooks/api/useMessageCreateMutation';
 import { useNewNotification } from '@/hooks/api/useNewNotification';
-import { idAtom, tokenAtom } from '@/store/auth';
+import { tokenAtom } from '@/store/auth';
 import * as Style from './index.style';
 
+interface sendMessageProps {
+  receiverId: string;
+}
 interface useFormProps {
   message: string;
 }
 
-function SendMessage() {
+function SendMessage({ receiverId }: sendMessageProps) {
   const [text, setText] = useState('');
   const JWTtoken = useAtomValue(tokenAtom);
-  const userId = useAtomValue(idAtom);
-  const { receiverId } = useParams() as { receiverId: string };
-  const { mutate, data: messageData } = useMessageCreateMutation(receiverId);
-  const { mutateNewNotification } = useNewNotification();
+  const { mutate: messageMutate, data: messageData } =
+    useMessageCreateMutation(receiverId);
+  const { mutate: notificationMutate, data: notificationData } =
+    useNewNotification();
 
   const {
     register,
@@ -48,20 +50,23 @@ function SendMessage() {
   /** textarea 메시지 서버 전송 */
   const handleTextareaOnSubmit = (data: useFormProps) => {
     /** 메시지 전송 */
-    mutate({
+    messageMutate({
       JWTtoken,
       message: data.message,
       receiver: receiverId
     });
-
-    /** 알림 생성 */
-    mutateNewNotification({
-      notificationType: 'MESSAGE',
-      notificationTypeId: '새로운 메시지가 도착했어요!',
-      userId,
-      postId: messageData && messageData._id
-    });
   };
+
+  useEffect(() => {
+    /** 알림 생성 */
+    messageData &&
+      notificationMutate({
+        notificationType: 'MESSAGE',
+        notificationTypeId: messageData._id,
+        userId: receiverId,
+        postId: null
+      });
+  }, [messageData]);
 
   useEffect(() => {
     /** react-hook-form validation */
