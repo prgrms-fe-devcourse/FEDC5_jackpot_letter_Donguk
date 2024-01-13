@@ -5,26 +5,22 @@ import * as Style from './index.style';
 
 interface userListProps {
   notificationData: Notification[];
-  userName: string;
+  userName: string | undefined;
   filteringData: User[];
 }
 
-function UserList({
-  notificationData,
-  userName,
-  filteringData
-}: userListProps) {
+function UserList({ userName, filteringData }: userListProps) {
   const navigate = useNavigate();
 
   console.log('전체 회원 정보 리스트: ', filteringData);
 
-  const notificationMatch = (notificationData: Notification[], id: string) => {
-    const notification = notificationData.find(
-      ({ author }) => id === author._id
-    );
+  // const notificationMatch = (notificationData: Notification[], id: string) => {
+  //   const notification = notificationData.find(
+  //     ({ author }) => id === author._id
+  //   );
 
-    return notification ? notification.author.messages.length : 0;
-  };
+  //   return notification ? notification.author.messages.length : 0;
+  // };
 
   return (
     <>
@@ -45,11 +41,7 @@ function UserList({
                   <Style.UserOnline isColor={isOnline} />
                 </Style.UserProfile>
                 <Style.UserName>{fullName}</Style.UserName>
-                {notificationMatch(notificationData, String(_id)) && (
-                  <Style.MessageCount>
-                    {notificationMatch(notificationData, String(_id))}
-                  </Style.MessageCount>
-                )}
+                <Style.MessageCount>1</Style.MessageCount>
               </Style.UserList>
             )
         )}

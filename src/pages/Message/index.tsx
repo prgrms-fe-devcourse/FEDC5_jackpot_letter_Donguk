@@ -14,6 +14,7 @@ function Message() {
   console.log(receiverData);
   const { mutate: notificationSeenMutate } = useNotificationSeen(); // 알림 읽음처리
   const { mutate: messageSeenMutate } = useMessageSeen();
+
   useEffect(() => {
     notificationSeenMutate();
     messageSeenMutate(receiverData?._id);

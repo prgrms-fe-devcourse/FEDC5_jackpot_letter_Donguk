@@ -1,7 +1,7 @@
 import * as Style from './index.style';
 
 interface headerProps {
-  userName: string;
+  userName: string | undefined;
 }
 function Header({ userName }: headerProps) {
   return (
