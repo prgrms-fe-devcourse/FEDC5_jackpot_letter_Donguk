@@ -10,6 +10,7 @@ import { position } from './position';
 interface Prop {
   posts: Post[];
   channelName: string;
+  channelId: string;
 }
 interface FilteredPost {
   title: string;
@@ -18,7 +19,7 @@ interface FilteredPost {
   postId: string;
 }
 
-function ChannelPosts({ posts, channelName }: Prop) {
+function ChannelPosts({ posts, channelName, channelId }: Prop) {
   const [post, setPost] = useState<FilteredPost[][]>([]);
   const [page, setPage] = useState<number>(0);
   const navigator = useNavigate();
@@ -45,7 +46,8 @@ function ChannelPosts({ posts, channelName }: Prop) {
                   title,
                   color,
                   content,
-                  channelName
+                  channelName,
+                  channelId
                 }
               })
             }>

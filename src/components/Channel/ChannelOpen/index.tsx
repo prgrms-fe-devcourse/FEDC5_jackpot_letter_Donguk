@@ -26,6 +26,7 @@ function ChannelOpen({ channelId, channelName }: channelOpenProps) {
       <ChannelPosts
         posts={postList}
         channelName={channelInfo.name}
+        channelId={channelId}
       />
       <ChannelButton>
         <Button

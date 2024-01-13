@@ -1,5 +1,5 @@
 import toast from 'react-hot-toast';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { postPostUpdate } from '@/api/post';
 
 interface mutationProps {
@@ -12,7 +12,9 @@ interface mutationProps {
 }
 
 /** 포스트 수정 mutataion */
-export const usePostUpdateMutation = () => {
+export const usePostUpdateMutation = (channelId: string) => {
+  const queryClient = useQueryClient();
+
   const postUpdateMutation = useMutation({
     mutationFn: ({
       postId,
@@ -30,7 +32,10 @@ export const usePostUpdateMutation = () => {
         imageToDeletePublicId,
         channelId
       ),
-    onSuccess: () => toast.success('포스트가 정상적으로 수정되었습니다.'),
+    onSuccess: () => {
+      toast.success('포스트가 정상적으로 수정되었습니다.');
+      queryClient.invalidateQueries({ queryKey: ['channelPosts', channelId] });
+    },
     onError: () =>
       toast.error('본인이 작성한 포스트가 아니라면 수정할 수 없습니다.')
   });

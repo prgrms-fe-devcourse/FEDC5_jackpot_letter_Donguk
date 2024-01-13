@@ -82,6 +82,7 @@ function PostComment() {
           color={state.color}
           title={state.title}
           content={state.content}
+          channelId={state.channelId}
         />
         <Comment
           register={register}

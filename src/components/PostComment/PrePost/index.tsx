@@ -8,8 +8,7 @@ import { useLikeCreateMutation } from '@/hooks/api/useLikeCreateMutation';
 import { useLikeDeleteMutation } from '@/hooks/api/useLikeDeleteMutation';
 import { usePostDeleteMutation } from '@/hooks/api/usePostDeleteMutation';
 import { usePostUpdateMutation } from '@/hooks/api/usePostUpdateMutation';
-import { idAtom, tokenAtom } from '@/store/auth';
-// import Loading from '../Loading';
+import { idAtom } from '@/store/auth';
 import * as Style from './index.style';
 
 interface PrePostProps {
@@ -17,6 +16,7 @@ interface PrePostProps {
   color: string;
   title: string;
   content: string;
+  channelId: string;
 }
 
 interface userFormProps {
@@ -29,13 +29,12 @@ const toastStyle = {
   marginTop: '0.5rem'
 };
 
-function PrePost({ postId, color, title, content }: PrePostProps) {
-  const JWTtoken = useAtomValue(tokenAtom);
+function PrePost({ postId, color, title, content, channelId }: PrePostProps) {
   const userId = useAtomValue(idAtom);
   const { mutationLikeCreate } = useLikeCreateMutation(postId); // 특정 포스트 좋아요 추가
   const { mutationLikeDelete } = useLikeDeleteMutation(postId); // 특정 포스트 좋아요 제거
   const { mutationPostDelete } = usePostDeleteMutation(); // 특정 포스트 제거
-  const { mutationPostUpdate } = usePostUpdateMutation(); // 특정 포스트 수정
+  const { mutationPostUpdate } = usePostUpdateMutation(channelId); // 특정 포스트 수정
   const { mutationCommentDelete } = useCommentDeleteMutation(postId); // 특정 댓글 제거
   const { data } = useGetPostDetailQuery(postId);
 
@@ -102,7 +101,6 @@ function PrePost({ postId, color, title, content }: PrePostProps) {
 
     if (deleteCheck) {
       mutationCommentDelete({
-        JWTtoken,
         id: e.target.dataset.id
       });
     }
@@ -110,6 +108,7 @@ function PrePost({ postId, color, title, content }: PrePostProps) {
 
   /** 포스트 수정 내용 서버 전송 함수 */
   const onSubmit = (submitData: userFormProps) => {
+    console.log(submitData);
     mutationPostUpdate({
       postId,
       title: data ? JSON.parse(data.title).title : '',
@@ -132,28 +131,17 @@ function PrePost({ postId, color, title, content }: PrePostProps) {
     <>
       <Style.PrePostAndCommentContainer>
         <Style.PrePostContainer>
-          {/* {isPending && <Loading loadingSize={32} />} */}
-          {/* {data && ( */}
-          <Style.PrePostInnerTitle>
-            {title}
-            {/* {JSON.parse(data.title).title} */}
-          </Style.PrePostInnerTitle>
-          {/* )} */}
+          <Style.PrePostInnerTitle>{title}</Style.PrePostInnerTitle>
           <Style.PrePostUnnerline />
-          {/* {isPending && <Loading loadingSize={32} />} */}
           {postState ? (
             <Style.PrePostEditContent
-              // defaultValue={data && JSON.parse(data.title).content}
               defaultValue={content}
               {...register('prePostContent', {
                 required: '편지 내용은 반드시 입력해야 합니다.'
               })}
             />
           ) : (
-            <Style.PrePostContent>
-              {/* {data && JSON.parse(data.title).content} */}
-              {content}
-            </Style.PrePostContent>
+            <Style.PrePostContent>{content}</Style.PrePostContent>
           )}
           {postState ? (
             <Style.CompleteImg
@@ -166,7 +154,6 @@ function PrePost({ postId, color, title, content }: PrePostProps) {
               onClick={handlePostToggleClick}
             />
           )}
-
           <Style.DeleteImg
             src="/src/assets/delete.svg"
             onClick={handleDeletePostClick}
