@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import ProfileImg from '@components/Common/ProfileImg';
 import { useAtomValue } from 'jotai';
 import { useGetMessagesQuery } from '@/hooks/api/useGetMessagesQuery';
@@ -12,7 +13,11 @@ interface DMprops {
 function DM({ receiverData }: DMprops) {
   const userId = useAtomValue(idAtom);
   const { data: messageData } = useGetMessagesQuery(receiverData?._id);
+  const underScrollRef = useRef<HTMLDivElement | null>(null);
 
+  useEffect(() => {
+    underScrollRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messageData]);
   return (
     <>
       <Style.IntroduceContainer>
@@ -70,6 +75,7 @@ function DM({ receiverData }: DMprops) {
             )}
           </>
         ))}
+      <div ref={underScrollRef}></div>
     </>
   );
 }

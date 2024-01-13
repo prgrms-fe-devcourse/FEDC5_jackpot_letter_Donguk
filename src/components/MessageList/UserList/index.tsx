@@ -11,7 +11,7 @@ interface userListProps {
 function UserList({ userName, filteringData }: userListProps) {
   const navigate = useNavigate();
 
-  console.log('전체 회원 정보 리스트: ', filteringData);
+  // console.log('전체 회원 정보 리스트: ', filteringData);
 
   // const notificationMatch = (notificationData: Notification[], id: string) => {
   //   const notification = notificationData.find(
