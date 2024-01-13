@@ -6,7 +6,7 @@ import { useLocation, useParams } from 'react-router-dom';
 import { useAtomValue } from 'jotai';
 import { usePostCommentCreateMutation } from '@/hooks/api/usePostCommentCreateMutation';
 // import { useUserInfomationQuery } from '@/hooks/api/useUserInfomationQuery';
-import { channelNameAtom, tokenAtom } from '@/store/auth';
+import { channelNameAtom } from '@/store/auth';
 import Comment from './Comment';
 import Footer from './Footer';
 import Header from './Header';
@@ -25,7 +25,6 @@ interface useFormProps {
 }
 
 function PostComment() {
-  const JWTtoken = useAtomValue(tokenAtom);
   const userName = useAtomValue(channelNameAtom);
   const { postId } = useParams() as { postId: string };
   const { mutationCommentCreate } = usePostCommentCreateMutation(postId);
@@ -49,7 +48,6 @@ function PostComment() {
   /** 댓글 작성 시 서버로 전송 */
   const onSubmit = (data: useFormProps) => {
     mutationCommentCreate({
-      JWTtoken,
       title: data.commentTitle,
       comment: data.commentContent,
       postId

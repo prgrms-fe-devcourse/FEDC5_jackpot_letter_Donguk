@@ -9,10 +9,7 @@ const ACCESS_TOKEN = getStorage('ACCESS_TOKEN', '');
 
 /** 전체 유저 리스트 */
 export const getUserList = async () => {
-  const { data } = await axios.post<User[]>('/api', {
-    method: 'GET',
-    url: `${END_POINTS.USER_LIST}`
-  });
+  const { data } = await axiosInstance.get<User[]>(`${END_POINTS.USER_LIST}`);
 
   return data;
 };

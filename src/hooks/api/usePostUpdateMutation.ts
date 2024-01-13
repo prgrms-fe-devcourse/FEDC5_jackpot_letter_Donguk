@@ -3,7 +3,6 @@ import { useMutation } from '@tanstack/react-query';
 import { postPostUpdate } from '@/api/post';
 
 interface mutationProps {
-  JWTtoken: string;
   title: string;
   content: string;
   postId: string;
@@ -16,7 +15,6 @@ interface mutationProps {
 export const usePostUpdateMutation = () => {
   const postUpdateMutation = useMutation({
     mutationFn: ({
-      JWTtoken,
       postId,
       title,
       content,
@@ -25,7 +23,6 @@ export const usePostUpdateMutation = () => {
       channelId
     }: mutationProps) =>
       postPostUpdate(
-        JWTtoken,
         postId,
         title,
         content,

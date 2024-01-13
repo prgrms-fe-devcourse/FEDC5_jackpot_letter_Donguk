@@ -29,10 +29,9 @@ export const postMessagesCreate = async (
 };
 
 /** 특정 사용자와 소통한 메시지 목록 */
-export const getMessageConversations = async (userId: string) => {
+export const getMessageConversations = async () => {
   const { data } = await axiosInstance.get<Conversation[]>(
-    END_POINTS.MESSAGES_CONVERSATIONS,
-    { params: { userId } }
+    END_POINTS.MESSAGES_CONVERSATIONS
   );
   return data;
 };

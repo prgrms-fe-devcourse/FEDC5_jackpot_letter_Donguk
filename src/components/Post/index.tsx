@@ -3,11 +3,9 @@ import { useForm } from 'react-hook-form';
 import { Toaster } from 'react-hot-toast';
 import { toast } from 'react-hot-toast';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import { useAtomValue } from 'jotai';
-import useChannelListQuery from '@/hooks/api/useChannelListQuery';
+// import useChannelListQuery from '@/hooks/api/useChannelListQuery';
 // import { useGetPostDetailQuery } from '@/hooks/api/useGetPostDetailQuery';
 import { usePostCreateMutation } from '@/hooks/api/usePostCreateMutation';
-import { tokenAtom } from '@/store/auth';
 import Footer from './Footer';
 import Header from './Header';
 import Letter from './Letter';
@@ -37,7 +35,7 @@ function Post() {
       letterComment: ''
     }
   });
-  const JWTtoken = useAtomValue(tokenAtom);
+
   const { channelId } = useParams();
   const { mutationPostCreate } = usePostCreateMutation();
   const navigate = useNavigate();
@@ -51,7 +49,6 @@ function Post() {
   const onSubmit = (submitData: useFormProps) => {
     if (channelId)
       mutationPostCreate({
-        JWTtoken,
         title: submitData.letterTitle,
         content: submitData.letterComment,
         image: null,

@@ -6,7 +6,7 @@ import { User } from '@/types/ResponseType';
 import * as Style from './index.style';
 
 interface DMprops {
-  receiverData: User | undefined;
+  receiverData: User;
 }
 
 function DM({ receiverData }: DMprops) {

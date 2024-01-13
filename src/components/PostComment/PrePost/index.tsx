@@ -59,12 +59,10 @@ function PrePost({ postId, color, title, content }: PrePostProps) {
 
     if (!isUserId) {
       mutationLikeCreate({
-        JWTtoken,
         postId
       });
     } else {
       mutationLikeDelete({
-        JWTtoken,
         id: isUserId._id
       });
     }
@@ -94,7 +92,6 @@ function PrePost({ postId, color, title, content }: PrePostProps) {
 
     if (deleteCheck) {
       mutationPostDelete({
-        JWTtoken,
         id: postId
       });
     }
@@ -114,7 +111,6 @@ function PrePost({ postId, color, title, content }: PrePostProps) {
   /** 포스트 수정 내용 서버 전송 함수 */
   const onSubmit = (submitData: userFormProps) => {
     mutationPostUpdate({
-      JWTtoken,
       postId,
       title: data ? JSON.parse(data.title).title : '',
       content: submitData.prePostContent,

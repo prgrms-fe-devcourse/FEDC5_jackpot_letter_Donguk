@@ -3,7 +3,6 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { deleteLikeDelete } from '@/api/like';
 
 interface mutationProps {
-  JWTtoken: string;
   id: string;
 }
 
@@ -12,8 +11,7 @@ export const useLikeDeleteMutation = (postId: string) => {
   const queryClient = useQueryClient();
 
   const likeDeleteMutation = useMutation({
-    mutationFn: ({ JWTtoken, id }: mutationProps) =>
-      deleteLikeDelete(JWTtoken, id),
+    mutationFn: ({ id }: mutationProps) => deleteLikeDelete(id),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['postDetail', postId] });
     },

@@ -1,10 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import ProfileImg from '@components/Common/ProfileImg';
-import { Notification, User } from '@/types/ResponseType';
+import { User } from '@/types/ResponseType';
 import * as Style from './index.style';
 
 interface userListProps {
-  notificationData: Notification[];
   userName: string | undefined;
   filteringData: User[];
 }

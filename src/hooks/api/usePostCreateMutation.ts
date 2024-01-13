@@ -3,7 +3,6 @@ import { useMutation } from '@tanstack/react-query';
 import { postPostCreate } from '@/api/post';
 
 interface mutationProps {
-  JWTtoken: string;
   title: string;
   content: string;
   image: string | null;
@@ -14,15 +13,8 @@ interface mutationProps {
 /** 포스트 생성 mutation */
 export const usePostCreateMutation = () => {
   const postCreateMutation = useMutation({
-    mutationFn: ({
-      JWTtoken,
-      title,
-      content,
-      image,
-      channelId,
-      color
-    }: mutationProps) =>
-      postPostCreate(JWTtoken, title, content, image, channelId, color),
+    mutationFn: ({ title, content, image, channelId, color }: mutationProps) =>
+      postPostCreate(title, content, image, channelId, color),
     onSuccess: () => toast.success('포스트가 정상적으로 작성되었습니다.'),
     onError: () => toast.error('포스트 작성에 실패하였습니다.')
   });

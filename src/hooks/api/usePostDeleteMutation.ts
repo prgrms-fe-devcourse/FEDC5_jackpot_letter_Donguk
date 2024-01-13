@@ -3,15 +3,13 @@ import { useMutation } from '@tanstack/react-query';
 import { postPostDelete } from '@/api/post';
 
 interface mutationProps {
-  JWTtoken: string;
   id: string;
 }
 
 /** 특정 포스트 삭제 mutation */
 export const usePostDeleteMutation = () => {
   const postDeleteMutation = useMutation({
-    mutationFn: ({ JWTtoken, id }: mutationProps) =>
-      postPostDelete(JWTtoken, id),
+    mutationFn: ({ id }: mutationProps) => postPostDelete(id),
     onSuccess: () => toast.success('포스트 삭제를 성공하였습니다.'),
     onError: () =>
       toast.error(
