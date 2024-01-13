@@ -16,6 +16,7 @@ function DM({ receiverData }: DMprops) {
   const underScrollRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
+    /** 대화 상자 맨 아래로 자동 스크롤 */
     underScrollRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messageData]);
   return (
