@@ -3,7 +3,7 @@ import ProfileImg from '@components/Common/ProfileImg';
 import { useAtomValue } from 'jotai';
 import { useGetMessagesQuery } from '@/hooks/api/useGetMessagesQuery';
 import { idAtom } from '@/store/auth';
-import { User } from '@/types/ResponseType';
+import { Message, User } from '@/types/ResponseType';
 import * as Style from './index.style';
 
 interface DMprops {
@@ -14,6 +14,15 @@ function DM({ receiverData }: DMprops) {
   const userId = useAtomValue(idAtom);
   const { data: messageData } = useGetMessagesQuery(receiverData?._id);
   const underScrollRef = useRef<HTMLDivElement | null>(null);
+
+  /** 상대가 가장 마지막에 읽은 쪽지 읽음 처리 함수 */
+  const readCheck = (idx: number, messageData: Message[]) => {
+    if (idx === messageData.length - 1)
+      return <Style.opponentCheck>읽음</Style.opponentCheck>;
+
+    if (messageData[idx].seen === true && messageData[idx + 1].seen === false)
+      return <Style.opponentCheck>읽음</Style.opponentCheck>;
+  };
 
   useEffect(() => {
     /** 대화 상자 맨 아래로 자동 스크롤 */
@@ -27,11 +36,12 @@ function DM({ receiverData }: DMprops) {
             width={5}
             height={5}
             alt="messageList userProfile Image"
-            image={receiverData.image ? receiverData.messages : ''}
+            image={receiverData.image ? receiverData.image : ''}
           />
         </Style.UserProfile>
         <Style.IntroduceText>
-          누구누구 님에게 인사를 건네보세요!
+          <Style.userName>{receiverData.fullName}</Style.userName>님에게 인사를
+          건네보세요!
         </Style.IntroduceText>
       </Style.IntroduceContainer>
       {messageData &&
@@ -55,6 +65,7 @@ function DM({ receiverData }: DMprops) {
               <Style.MessageContainer
                 isOrder={false}
                 key={idx}>
+                {readCheck(idx, messageData)}
                 <Style.Message>{message}</Style.Message>
                 <Style.UserProfile isSize={2}>
                   <ProfileImg
