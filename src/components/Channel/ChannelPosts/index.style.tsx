@@ -4,7 +4,7 @@ import { PositionType } from './position';
 export const LetterContainer = styled.div`
   position: absolute;
   height: 55vh;
-  width: 100vw;
+  width: 100%;
   bottom: 0;
 `;
 
@@ -55,8 +55,8 @@ export const AnnounceBox = styled.div<{
     top: 4em;
     left: 4rem;
   }
-  animation: topDown 1.1s infinite;
-  @keyframes topDown {
+  animation: topdown 1.1s infinite;
+  @keyframes topdown {
     0% {
       bottom: 7rem;
     }
