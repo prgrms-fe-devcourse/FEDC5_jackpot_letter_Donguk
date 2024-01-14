@@ -1,6 +1,8 @@
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ProfileImg from '@components/Common/ProfileImg';
-import { User } from '@/types/ResponseType';
+import { useListOfSpecificMessages } from '@/hooks/api/useListOfSpecificUsers';
+import { Message, User } from '@/types/ResponseType';
 import * as Style from './index.style';
 
 interface userListProps {
@@ -10,40 +12,58 @@ interface userListProps {
 
 function UserList({ userName, filteringData }: userListProps) {
   const navigate = useNavigate();
+  const specificMessageData = useListOfSpecificMessages(filteringData); // 특정 사용자와의 메세지 데이터
+  const [messageListData, setMessageListData] = useState();
 
-  // console.log('전체 회원 정보 리스트: ', filteringData);
+  /** 내가 읽지 않은 메세지 개수 */
+  const recentMessageCount = (receptionMessage: Message[]) => {
+    if (receptionMessage === undefined || receptionMessage.length === 0)
+      return 0;
 
-  // const notificationMatch = (notificationData: Notification[], id: string) => {
-  //   const notification = notificationData.find(
-  //     ({ author }) => id === author._id
-  //   );
+    return receptionMessage.filter(({ seen }) => seen === false).length;
+  };
 
-  //   return notification ? notification.author.messages.length : 0;
-  // };
+  // console.log(messageListData);
+
+  useEffect(() => {
+    setMessageListData(
+      filteringData.map((data, idx) => ({
+        ...data,
+        receptionMessage: specificMessageData[idx]
+      }))
+    );
+  }, [specificMessageData]);
 
   return (
     <>
       <Style.UserListContainer>
-        {filteringData.map(
-          ({ fullName, image, isOnline, _id }) =>
-            fullName !== userName && (
-              <Style.UserList
-                key={_id}
-                onClick={() => navigate(`/message/${_id}`)}>
-                <Style.UserProfile>
-                  <ProfileImg
-                    width={2}
-                    height={2}
-                    alt="messageList userProfile Image"
-                    image={image ? image : ''}
-                  />
-                  <Style.UserOnline isColor={isOnline} />
-                </Style.UserProfile>
-                <Style.UserName>{fullName}</Style.UserName>
-                <Style.MessageCount>1</Style.MessageCount>
-              </Style.UserList>
-            )
-        )}
+        {messageListData &&
+          messageListData.map(
+            ({ fullName, image, isOnline, _id, receptionMessage }) =>
+              fullName !== userName && (
+                <Style.UserList
+                  key={_id}
+                  onClick={() => navigate(`/message/${_id}`)}>
+                  <Style.UserProfile>
+                    <ProfileImg
+                      width={2}
+                      height={2}
+                      alt="messageList userProfile Image"
+                      image={image ? image : ''}
+                    />
+                    <Style.UserOnline isColor={isOnline} />
+                  </Style.UserProfile>
+                  <Style.UserName>{fullName}</Style.UserName>
+                  {recentMessageCount(receptionMessage) === 0 ? (
+                    false
+                  ) : (
+                    <Style.MessageCount>
+                      {recentMessageCount(receptionMessage)}
+                    </Style.MessageCount>
+                  )}
+                </Style.UserList>
+              )
+          )}
       </Style.UserListContainer>
     </>
   );

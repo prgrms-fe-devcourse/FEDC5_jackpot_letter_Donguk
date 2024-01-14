@@ -17,9 +17,10 @@ function MessageListPage() {
 
   // const { data } = useGetMessageConversations();
   // console.log('나와 대화한 사람들', data);
+
   useEffect(() => {
     if (userListData) setUserFilterData(userListData);
-  }, [userListData]);
+  }, []);
 
   return (
     <>
