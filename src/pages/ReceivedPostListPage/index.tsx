@@ -12,6 +12,7 @@ function ReceivedPostListPage() {
   const handleButtonClick = () => {
     navigate('/channel/new');
   };
+
   if (!data.length) {
     return (
       <Style.UnGeneratedWrap>
@@ -27,6 +28,7 @@ function ReceivedPostListPage() {
       </Style.UnGeneratedWrap>
     );
   }
+
   return (
     <>
       <PostList

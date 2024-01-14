@@ -1,5 +1,7 @@
 import { ReactElement, Suspense } from 'react';
+import CommentSkeleton from '@/components/Mypage/CommentSkeleton';
 import PasswordUpdate from '@/components/Mypage/PasswordUpdate';
+import PostSkeleton from '@/components/Mypage/PostSkeleton';
 import ProfileUpdate from '@/components/Mypage/ProfileUpdate';
 import Post from '@/components/Post';
 import Comment from '@/components/PostComment';
@@ -39,6 +41,10 @@ function SuspenseComponent({ children }: SuspenseCompProps) {
   return <Suspense fallback={null}>{children}</Suspense>;
 }
 
+function PostSuspenseComponent({ children }: SuspenseCompProps) {
+  return <Suspense fallback={<PostSkeleton />}>{children}</Suspense>;
+}
+
 // 로그인 상태 접근
 const userRoutes: userRoutes = {
   page: [
@@ -56,22 +62,46 @@ const userRoutes: userRoutes = {
       exact: true,
       component: <ProfileUpdate />
     },
-    { path: PATH.MYPAGE_FOLLOW, exact: true, component: <FollowPage /> },
+    {
+      path: PATH.MYPAGE_FOLLOW,
+      exact: true,
+      component: <FollowPage />
+    },
     {
       path: PATH.MYPGE_POST_LIST,
       exact: true,
-      component: <PostListPage />
+      component: (
+        <PostSuspenseComponent>
+          <PostListPage />
+        </PostSuspenseComponent>
+      )
     },
-    { path: PATH.MYPGE_LIKE_LIST, exact: true, component: <LikeListPage /> },
+    {
+      path: PATH.MYPGE_LIKE_LIST,
+      exact: true,
+      component: (
+        <PostSuspenseComponent>
+          <LikeListPage />
+        </PostSuspenseComponent>
+      )
+    },
     {
       path: PATH.MYPGE_RECEIVED_POST_LIST,
       exact: true,
-      component: <ReceivedPostListPage />
+      component: (
+        <PostSuspenseComponent>
+          <ReceivedPostListPage />
+        </PostSuspenseComponent>
+      )
     },
     {
       path: PATH.MYPGE_COMMNET_LIST,
       exact: true,
-      component: <CommentListPage />
+      component: (
+        <Suspense fallback={<CommentSkeleton />}>
+          <CommentListPage />
+        </Suspense>
+      )
     },
     {
       path: PATH.MYPGE_PASSWORD_UPDATE,
