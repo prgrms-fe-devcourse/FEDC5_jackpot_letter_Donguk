@@ -1,22 +1,15 @@
 import styled from '@emotion/styled';
 
-export const UserListContainer = styled.div`
-  width: 90%;
-  height: calc(100vh - 12.5625rem);
-  margin: 1rem auto 0.5rem auto;
-  box-sizing: border-box;
-  overflow-y: scroll;
-`;
-
-export const UserList = styled.div`
+export const HeaderContainer = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-  height: 2.5rem;
-  margin: 0.3rem 0;
-  &:hover {
-    background-color: ${({ theme }) => theme.palette.main};
-  }
+  height: 4rem;
+`;
+
+export const MoveBack = styled.img<{ isSize: number }>`
+  width: ${(props) => props.isSize}rem;
+  margin-left: 1rem;
 `;
 
 export const UserProfile = styled.div`
@@ -24,8 +17,9 @@ export const UserProfile = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 2rem;
-  height: 2rem;
+  width: 2.1rem;
+  height: 2.1rem;
+  margin-left: 0.7rem;
   border-radius: 100px;
   border: 1px solid gray;
 `;
@@ -42,10 +36,6 @@ export const UserOnline = styled.div<{ isColor: boolean }>`
 `;
 
 export const UserName = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  flex-grow: 1;
-  height: 100%;
-  padding-left: 1rem;
+  margin-left: 0.6rem;
+  font-size: 1rem;
 `;

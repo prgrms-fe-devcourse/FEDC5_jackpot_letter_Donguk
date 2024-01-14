@@ -14,7 +14,7 @@ function NotFoundPage() {
   const darkMode = useAtomValue(darkAtom);
 
   return (
-    <div>
+    <Style.Container>
       <Style.LogoContainer>
         <Style.ImageWrapper>
           <LongLogo darkMode={darkMode} />
@@ -42,7 +42,7 @@ function NotFoundPage() {
           />
         </Style.BtnWrapper>
       </Style.SubContainer>
-    </div>
+    </Style.Container>
   );
 }
 
