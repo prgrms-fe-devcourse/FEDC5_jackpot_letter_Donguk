@@ -97,34 +97,38 @@ function Post() {
         <Modal
           width={22}
           height={10}
-          visible={modalState}>
-          <div style={{ textAlign: 'center', whiteSpace: 'pre-wrap' }}>
-            {`박 주인의 설정으로 인해 로그인 한 회원만 편지를 작성할 수 있습니다. 로그인 하시겠습니까?`}
-          </div>
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'space-around',
-              marginTop: '2.5rem'
-            }}>
-            <Button
-              content="예"
-              size="md"
-              onClick={() => {
-                navigate('/signin');
-                setModalState(false);
-              }}
-            />
-            <Button
-              content="아니오"
-              size="md"
-              onClick={() => {
-                navigate('/');
-                setModalState(false);
-              }}
-            />
-          </div>
-        </Modal>
+          visible={modalState}
+          type="center"
+          children={
+            <div>
+              <div style={{ textAlign: 'center', whiteSpace: 'pre-wrap' }}>
+                {`박 주인의 설정으로 인해 로그인 한 회원만 편지를 작성할 수 있습니다. 로그인 하시겠습니까?`}
+              </div>
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-around',
+                  marginTop: '2.5rem'
+                }}>
+                <Button
+                  content="예"
+                  size="md"
+                  onClick={() => {
+                    navigate('/signin');
+                    setModalState(false);
+                  }}
+                />
+                <Button
+                  content="아니오"
+                  size="md"
+                  onClick={() => {
+                    navigate('/');
+                    setModalState(false);
+                  }}
+                />
+              </div>
+            </div>
+          }></Modal>
       )}
       <Style.PostContainer>
         <Header channelName={state.channelName} />
