@@ -19,18 +19,18 @@ function MessageListPage() {
   // console.log('나와 대화한 사람들', data);
   useEffect(() => {
     if (userListData) setUserFilterData(userListData);
-  }, []);
+  }, [userListData]);
 
   return (
     <>
-      <Header userName={userData?.fullName} />
+      {userData && <Header userName={userData?.fullName} />}
       {userListData && (
         <SearchBar
           userListData={userListData}
           setUserFilterData={setUserFilterData}
         />
       )}
-      {userListData && (
+      {userListData && userData && (
         <UserList
           userName={userData?.fullName}
           filteringData={userFilterData ? userFilterData : userListData}

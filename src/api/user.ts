@@ -15,6 +15,8 @@ export const getUserList = async () => {
 };
 
 export const getUser = async (userId: string) => {
+  if (!userId) return false;
+
   const { data } = await axiosInstance.get<User>(
     `${END_POINTS.USER}/${userId}`,
     { authorization: false }
