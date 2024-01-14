@@ -32,11 +32,10 @@ export const Body = styled.div`
 `;
 export const ChannelIconList = styled.ul`
   margin: 0.5rem;
-  overflow: scroll;
   ::-webkit-scrollbar {
     display: none;
   }
-  height: 80vh;
+  height: 70vh;
   color: white;
   display: grid;
   grid-template-columns: repeat(3, 1fr);

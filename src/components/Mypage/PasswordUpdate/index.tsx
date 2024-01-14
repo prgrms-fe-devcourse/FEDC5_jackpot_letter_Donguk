@@ -32,8 +32,7 @@ function PasswordUpdate() {
     <Style.Container className="container">
       <form
         onSubmit={handleSubmit(handleNameSubmit)}
-        className="name-form"
-      >
+        className="name-form">
         <div className="input-wrap">
           <Input
             width="100%"
@@ -67,7 +66,7 @@ function PasswordUpdate() {
           styleOption={{
             height: '3.5rem',
             width: '100%',
-            fontSize: theme.typography.mypage_regular.fontSize
+            'font-size': theme.typography.mypage_regular.fontSize
           }}
         />
       </form>
