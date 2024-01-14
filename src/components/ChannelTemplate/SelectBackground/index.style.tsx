@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { BgName, BgType } from './type';
 
 export const Background = styled.div<{ selectedValue: BgName }>`
-  width: 100vw;
+  position: relative;
   height: 100vh;
   background-image: ${({ selectedValue }) =>
     `url("/src/assets/background/${selectedValue}.png")`};

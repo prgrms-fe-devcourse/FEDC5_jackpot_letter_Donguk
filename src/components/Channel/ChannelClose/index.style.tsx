@@ -4,7 +4,7 @@ export const AnnounceBox = styled.div`
   border-radius: 10px;
   position: absolute;
   bottom: 30vh;
-  left: 10vw;
+  left: calc(50% - 9rem);
   padding: 2rem;
   width: 14.75rem;
   text-align: center;
@@ -34,23 +34,21 @@ export const AnnounceBox = styled.div`
 
 export const Pointer = styled.img`
   position: absolute;
-  top: calc(50vh - 14rem);
-  left: calc(50vw - 8rem);
   transform: rotate(90deg);
   animation: diagonal 1.1s infinite;
 
   @keyframes diagonal {
     0% {
-      top: calc(50vh - 14rem);
-      left: calc(50vw - 8rem);
+      top: 20%;
+      left: calc(50% - 9rem);
     }
     50% {
-      top: calc(50vh - 14.3rem);
-      left: calc(50vw - 8.3rem);
+      top: calc(20% - 0.3rem);
+      left: calc(50% - 9.3rem);
     }
     100% {
-      top: calc(50vh - 14rem);
-      left: calc(50vw - 8rem);
+      top: 20%;
+      left: calc(50% - 9rem);
     }
   }
 `;
@@ -58,7 +56,7 @@ export const Pointer = styled.img`
 export const ChannelIcon = styled.div`
   position: absolute;
   top: 0px;
-  left: calc(50vw - 7rem);
+  left:calc(50% - 7rem);
   transform-origin: 50% 0%;
   animation: shake 5s;
 

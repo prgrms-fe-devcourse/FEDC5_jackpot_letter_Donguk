@@ -28,6 +28,7 @@ function ChannelPosts({ posts }: Prop) {
   const { channelName } = useParams();
   const isMyChannel = userName === channelName;
   const navigate = useNavigate();
+
   useEffect(() => {
     const channelPosts: FilteredPost[] = parsedPosts(posts);
     const pagesPost = Array.from(
