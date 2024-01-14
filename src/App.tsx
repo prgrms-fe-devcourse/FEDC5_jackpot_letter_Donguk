@@ -8,6 +8,7 @@ import { Global } from '@emotion/react';
 import HamburgerMenu from './components/Common/HamburgerMenu';
 import ResponsiveLayout from './components/Common/Responsive/ResponsiveLayout';
 import MypageLayout from './components/Mypage/MypageLayout';
+import QueryErrorBoundary from './components/Mypage/QueryErrorBoundary';
 import NotFoundPage from './pages/NotFoundPage';
 import { authRoutes, commonRoutes, userRoutes } from './route/AppRouter';
 import AuthMiddleware from './route/AuthMiddleware';
@@ -81,9 +82,11 @@ function App() {
             <Route
               path={route.path}
               element={
-                <AuthMiddleware>
-                  <>{route.component}</>
-                </AuthMiddleware>
+                <QueryErrorBoundary>
+                  <AuthMiddleware>
+                    <>{route.component}</>
+                  </AuthMiddleware>
+                </QueryErrorBoundary>
               }
               key={idx}
             ></Route>

@@ -1,7 +1,9 @@
 import { useRef, useState } from 'react';
+import { Suspense } from 'react';
 import { FollowType } from '@/types/ResponseType';
 import { css } from '@emotion/react';
 import FollowList from '../FollowList';
+import FollowSkeleton from '../FollowSkeleton';
 import * as Style from './index.style';
 
 interface FollowProps {
@@ -52,16 +54,18 @@ function Follow({ followers, followings }: FollowProps) {
           overflow-x: hidden;
         `}
       >
-        <div className="follow-list-container">
-          <FollowList
-            type="follower"
-            followList={followers}
-          />
-          <FollowList
-            type="following"
-            followList={followings}
-          />
-        </div>
+        <Suspense fallback={<FollowSkeleton />}>
+          <div className="follow-list-container">
+            <FollowList
+              type="follower"
+              followList={followers}
+            />
+            <FollowList
+              type="following"
+              followList={followings}
+            />
+          </div>
+        </Suspense>
       </div>
     </Style.Container>
   );

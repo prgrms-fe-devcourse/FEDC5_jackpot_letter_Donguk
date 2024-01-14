@@ -3,7 +3,7 @@ import * as Style from './index.style';
 function PostSkeleton() {
   return (
     <div className="skeloton-container">
-      {[1, 2].map((index) => (
+      {[1, 2, 3, 4, 5, 6].map((index) => (
         <Style.PostItem key={index}>
           <Style.Item className="post-title"></Style.Item>
           <Style.Item className="post-content"></Style.Item>
