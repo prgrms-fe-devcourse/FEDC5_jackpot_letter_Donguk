@@ -37,9 +37,9 @@ export const Pointer = styled.img`
   top: calc(50vh - 14rem);
   left: calc(50vw - 8rem);
   transform: rotate(90deg);
-  animation: loop 1.1s infinite;
+  animation: diagonal 1.1s infinite;
 
-  @keyframes loop {
+  @keyframes diagonal {
     0% {
       top: calc(50vh - 14rem);
       left: calc(50vw - 8rem);
