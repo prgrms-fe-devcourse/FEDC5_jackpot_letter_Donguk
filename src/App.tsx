@@ -3,6 +3,7 @@ import { Toaster } from 'react-hot-toast';
 import { Route, Routes } from 'react-router-dom';
 import SignIn from '@components/Common/SignIn';
 import { useAtomValue } from 'jotai';
+import NotificationMenu from '@/components/Common/NotificationMenu';
 import { theme } from '@/theme';
 import { Global } from '@emotion/react';
 import HamburgerMenu from './components/Common/HamburgerMenu';
@@ -52,10 +53,11 @@ function App() {
             element={
               <ResponsiveLayout>
                 <AuthMiddleware>
-                  <>
+                  <div style={{ position: 'relative' }}>
+                    <NotificationMenu />
                     <HamburgerMenu />
                     {route.component}
-                  </>
+                  </div>
                 </AuthMiddleware>
               </ResponsiveLayout>
             }
@@ -66,10 +68,10 @@ function App() {
             path={route.path}
             element={
               <ResponsiveLayout>
-                <>
+                <div style={{ position: 'relative' }}>
                   <HamburgerMenu />
                   {route.component}
-                </>
+                </div>
               </ResponsiveLayout>
             }
             key={idx}></Route>

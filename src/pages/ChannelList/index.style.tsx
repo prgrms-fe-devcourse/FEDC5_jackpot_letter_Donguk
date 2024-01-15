@@ -35,7 +35,7 @@ export const ChannelIconList = styled.ul`
   ::-webkit-scrollbar {
     display: none;
   }
-  height: 70vh;
+  height: 70%;
   color: white;
   display: grid;
   grid-template-columns: repeat(3, 1fr);

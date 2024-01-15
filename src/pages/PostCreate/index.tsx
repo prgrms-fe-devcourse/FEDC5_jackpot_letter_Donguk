@@ -21,6 +21,7 @@ export const selectedStyle = css`
   }
   border: 3px solid ${theme.palette.main};
 `;
+
 function PostCreate() {
   const { state } = useLocation();
   const navigate = useNavigate();
