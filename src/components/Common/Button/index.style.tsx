@@ -1,12 +1,13 @@
 import styled from '@emotion/styled';
 import { buttonSize, buttonTypes } from './type';
 
-export const ButtonStyle = styled.button<{
+interface ButtonProps {
   disabled: boolean;
   kind: string;
   size: string;
   styleOption: { [key: string]: string };
-}>`
+}
+export const ButtonStyle = styled.button<ButtonProps>`
   font-weight: 700;
   overflow: hidden;
   border-radius: 10px;

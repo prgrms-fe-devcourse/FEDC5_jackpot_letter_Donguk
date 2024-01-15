@@ -8,6 +8,7 @@ import {
 import { ErrorMessage } from '@hookform/error-message';
 import Input from '@/components/Common/Input';
 import { ACCOUNT_DATA } from '@/constants/account';
+import { theme } from '@/theme';
 import Description from '../Description';
 
 type InputValue = 'email' | 'password';
@@ -29,6 +30,7 @@ function FormInput<T extends FieldValues>({
           <React.Fragment key={id}>
             <Input
               label={label}
+              labelColor={theme.palette.gray_1}
               value={value as Path<T>}
               type={type}
               height="2.47rem"

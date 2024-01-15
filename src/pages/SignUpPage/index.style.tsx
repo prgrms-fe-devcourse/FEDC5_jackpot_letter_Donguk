@@ -30,3 +30,9 @@ export const FormTitle = styled.p`
   font-weight: 700;
   text-align: center;
 `;
+
+export const SignUpLink = styled.div`
+  display: flex;
+  align-self: flex-start;
+  gap: 0.6rem;
+`;
