@@ -1,4 +1,5 @@
 import { ButtonStyle } from './index.style';
+import { SizeName, SortName } from './type';
 
 interface ButtonProps {
   content: string;
@@ -6,8 +7,8 @@ interface ButtonProps {
   disabled?: boolean;
   styleOption?: { [key: string]: string };
   type?: 'submit' | 'reset' | 'button';
-  kind?: 'primary' | 'outlined' | 'assistant' | 'secondary' | 'tertiary'; //button종류
-  size?: 'xl' | 'lg' | 'md' | 'sm' | 'xs';
+  kind?: SortName;
+  size?: SizeName;
 }
 
 function Button(props: ButtonProps) {

@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
-import PretendardBold from '../../public/assets/fonts/Pretendard-Bold.woff2';
-import PretendardMedium from '../../public/assets/fonts/Pretendard-Medium.woff2';
-import PretendardRegular from '../../public/assets/fonts/Pretendard-Regular.woff2';
+import PretendardBold from '/assets/fonts/Pretendard-Bold.woff2';
+import PretendardMedium from '/assets/fonts/Pretendard-Medium.woff2';
+import PretendardRegular from '/assets/fonts/Pretendard-Regular.woff2';
 
 interface ThemeProps {
   [key: string]: string;

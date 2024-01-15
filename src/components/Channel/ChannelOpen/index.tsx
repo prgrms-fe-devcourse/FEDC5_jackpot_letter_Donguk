@@ -27,7 +27,7 @@ function ChannelOpen({
         <OpenChannel color={channelColor} />
       </OpenIcon>
       <ChannelPosts
-        posts={postList}
+        posts={postList ?? []}
         channelName={channelInfo.name}
         channelId={channelId}
       />

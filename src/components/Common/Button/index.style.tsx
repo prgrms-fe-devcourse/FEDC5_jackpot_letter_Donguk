@@ -1,13 +1,12 @@
 import styled from '@emotion/styled';
-import { buttonSize, buttonTypes } from './type';
+import { BtnSize, BtnSort, SizeName, SortName } from './type';
 
-interface ButtonProps {
+export const ButtonStyle = styled.button<{
   disabled: boolean;
-  kind: string;
-  size: string;
-  styleOption: { [key: string]: string };
-}
-export const ButtonStyle = styled.button<ButtonProps>`
+  kind: SortName;
+  size: SizeName;
+  styleOption?: { [key: string]: string };
+}>`
   font-weight: 700;
   overflow: hidden;
   border-radius: 10px;
@@ -16,7 +15,7 @@ export const ButtonStyle = styled.button<ButtonProps>`
   outline: none;
   border: none;
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
-  ${({ kind }) => buttonTypes[kind]};
-  ${({ size }) => buttonSize[size]};
+  ${({ kind }) => BtnSort[kind]}
+  ${({ size }) => BtnSize[size]}
   ${({ styleOption }) => styleOption}
 `;

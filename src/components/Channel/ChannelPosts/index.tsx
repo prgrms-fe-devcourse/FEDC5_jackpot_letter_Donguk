@@ -7,7 +7,7 @@ import { channelNameAtom } from '@/store/auth';
 import { Post } from '@/types/ResponseType';
 import { parsedPosts } from '@/utils/parse';
 import { AnnounceBox, Letter, LetterContainer } from './index.style';
-import { position } from './position';
+import { positions } from './position';
 
 interface Prop {
   posts: Post[] | undefined;
@@ -46,7 +46,7 @@ function ChannelPosts({ posts, channelName, channelId }: Prop) {
         post[page]?.map(({ title, content, color, postId }, index) => (
           <Letter
             key={`channel-letter${index}`}
-            position={position[index]}
+            position={positions[index]}
             onClick={() =>
               navigator(`/comment/${postId}`, {
                 state: {

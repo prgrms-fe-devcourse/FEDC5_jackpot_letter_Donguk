@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { PositionType } from './position';
 
 export const LetterContainer = styled.div`
   position: absolute;
@@ -9,7 +8,7 @@ export const LetterContainer = styled.div`
 `;
 
 export const Letter = styled.div<{
-  position: PositionType;
+  position: { bottom: string; left: string };
 }>`
   position: absolute;
   width: 4rem;
