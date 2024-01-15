@@ -8,7 +8,7 @@ import { useAtomValue } from 'jotai';
 // import useChannelListQuery from '@/hooks/api/useChannelListQuery';
 // import { useGetPostDetailQuery } from '@/hooks/api/useGetPostDetailQuery';
 import { usePostCreateMutation } from '@/hooks/api/usePostCreateMutation';
-import { tokenAtom } from '@/store/auth';
+import { channelNameAtom, tokenAtom } from '@/store/auth';
 import Button from '../Common/Button';
 import Footer from './Footer';
 import Header from './Header';
@@ -37,6 +37,16 @@ export interface channelInfo {
 }
 
 function Post() {
+  const userName = useAtomValue(channelNameAtom);
+  const JWTtoken = useAtomValue(tokenAtom);
+
+  const { channelId } = useParams();
+  const { mutationPostCreate } = usePostCreateMutation();
+  const navigate = useNavigate();
+  const { state } = useLocation();
+  const [modalState, setModalState] = useState(true);
+  const allowRangeData = JSON.parse(state.channelDescription);
+
   const {
     register,
     formState: { errors, isSubmitting, isSubmitSuccessful },
@@ -44,20 +54,10 @@ function Post() {
   } = useForm<useFormProps>({
     mode: 'onSubmit',
     defaultValues: {
-      letterTitle: '',
+      letterTitle: userName ? userName : '',
       letterComment: ''
     }
   });
-
-  const JWTtoken = useAtomValue(tokenAtom);
-  const { channelId } = useParams();
-  const { mutationPostCreate } = usePostCreateMutation();
-  const navigate = useNavigate();
-  const { state } = useLocation();
-
-  const [modalState, setModalState] = useState(true);
-  const allowRangeData = JSON.parse(state.channelDescription);
-
   /** 채널 리스트 */
   // const { data: channelListData } = useChannelListQuery();
   // console.log(channelListData);
@@ -134,7 +134,10 @@ function Post() {
       <Style.PostContainer>
         <Header channelName={state.channelName} />
         <Style.GroudImage src="/src/assets/ShortLogo.svg" />
-        <Letter register={register} />
+        <Letter
+          userName={userName}
+          register={register}
+        />
         <Warning allowRangeData={allowRangeData} />
         <Style.Form onSubmit={handleSubmit(onSubmit)}>
           <Footer />

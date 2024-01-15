@@ -72,7 +72,6 @@ export const postPostUpdate = async (
   channelId: string,
   color: string
 ) => {
-  console.log(postId, title, content, image, imageToDeletePublicId, channelId);
   await axiosInstance.put<void>(END_POINTS.POST_UPDATE, {
     postId,
     title: JSON.stringify({
