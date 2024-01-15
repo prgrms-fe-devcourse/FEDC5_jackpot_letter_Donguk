@@ -7,8 +7,6 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-
-storybook-static*
 node_modules
 dist
 dist-ssr
@@ -25,5 +23,4 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-.vercel
 .env
