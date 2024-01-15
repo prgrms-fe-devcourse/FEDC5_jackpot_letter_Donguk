@@ -1,4 +1,10 @@
 import { Link, useNavigate } from 'react-router-dom';
+import EmptyChannel from '@/components/Common/EmptyChannel';
+import Modal from '@/components/Common/Modal';
+import useGetChannelInfo from '@/hooks/api/useGetChannelInfo';
+import useModal from '@/hooks/useModal';
+import { ACCESS_CHANNEL_NAME } from '@/constants/api';
+import { getStorage } from '@/utils/LocalStorage';
 import ProfileImg from '../../Common/ProfileImg';
 import SidebarItem from '../SidebarItem';
 import * as Style from './index.style';
@@ -17,6 +23,9 @@ function Sidebar({
   image
 }: SidebarProps) {
   const navigate = useNavigate();
+  const className = getStorage(ACCESS_CHANNEL_NAME, '');
+  const { data } = useGetChannelInfo(className);
+  const [visible, handleModalClick, top, left] = useModal();
 
   const sidebarItemActive = {
     title: '나의 활동',
@@ -122,7 +131,11 @@ function Sidebar({
           </Link>
         </Style.FollowWrapper>
       </Style.ProfileContainer>
-      <Style.GoButton onClick={() => navigate('/')}>
+      <Style.GoButton
+        onClick={(e) =>
+          data ? navigate(`/channel/${className}`) : handleModalClick(e)
+        }
+      >
         내 박 보러가기
         <svg
           viewBox="0 0 24 24"
@@ -158,6 +171,19 @@ function Sidebar({
         title={sidebarItemAccount.title}
         items={sidebarItemAccount.item}
       />
+      <Modal
+        width={15}
+        height={8}
+        visible={visible}
+        handleModalClose={(e: React.MouseEvent<HTMLDivElement>) =>
+          handleModalClick(e)
+        }
+        top={top}
+        left={left}
+        type={'center'}
+      >
+        <EmptyChannel />
+      </Modal>
     </Style.Container>
   );
 }
