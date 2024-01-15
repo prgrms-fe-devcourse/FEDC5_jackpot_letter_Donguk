@@ -4,6 +4,9 @@ import { getUserList } from '@/api/user';
 export const useUserList = () => {
   return useQuery({
     queryKey: ['userList'],
-    queryFn: getUserList
+    queryFn: getUserList,
+    staleTime: 1000,
+    gcTime: 1000,
+    refetchInterval: 1000
   });
 };

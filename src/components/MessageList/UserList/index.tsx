@@ -22,7 +22,6 @@ function UserList({ userName, filteringData }: userListProps) {
 
   /** 내가 읽지 않은 메세지 개수 */
   const recentMessageCount = (receptionMessage: Message[] | undefined) => {
-    console.log(receptionMessage);
     if (receptionMessage === undefined || receptionMessage.length === 0)
       return 0;
 
@@ -33,7 +32,6 @@ function UserList({ userName, filteringData }: userListProps) {
       return seen === false;
     }).length;
   };
-  console.log(messageListData);
 
   useEffect(() => {
     setMessageListData(
@@ -49,8 +47,9 @@ function UserList({ userName, filteringData }: userListProps) {
       <Style.UserListContainer>
         {messageListData &&
           messageListData.map(
-            ({ fullName, image, isOnline, _id, receptionMessage }) =>
-              fullName !== userName && (
+            ({ role, fullName, image, isOnline, _id, receptionMessage }) =>
+              fullName !== userName &&
+              role !== 'SuperAdmin' && (
                 <Style.UserList
                   key={_id}
                   onClick={() => navigate(`/message/${_id}`)}>
