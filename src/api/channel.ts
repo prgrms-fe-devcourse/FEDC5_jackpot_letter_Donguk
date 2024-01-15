@@ -10,7 +10,7 @@ export const getChannelList = async () => {
   return data;
 };
 
-export const getChennelInfo = async (channelName: string) => {
+export const getChannelInfo = async (channelName: string) => {
   const { data } = await axiosInstance.get(
     `${END_POINTS.CHANNEL}/${channelName}`,
     {

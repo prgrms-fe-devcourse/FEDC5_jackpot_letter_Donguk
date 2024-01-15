@@ -17,6 +17,7 @@ function Sidebar({
   image
 }: SidebarProps) {
   const navigate = useNavigate();
+
   const sidebarItemActive = {
     title: '나의 활동',
     item: [

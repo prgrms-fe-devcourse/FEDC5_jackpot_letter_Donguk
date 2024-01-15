@@ -18,7 +18,8 @@ function ChannelClose({ handleIconClick }: Props) {
     <>
       <ChannelIcon
         role="button"
-        onClick={handleIconClick}>
+        onClick={handleIconClick}
+      >
         <CustomChannelIcon
           color={channelColor}
           size={240}

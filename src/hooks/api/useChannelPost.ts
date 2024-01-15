@@ -1,5 +1,5 @@
-import { useQuery } from '@tanstack/react-query';
-import { getChannelPosts } from '@/api/post';
+import { useSuspenseQuery } from '@tanstack/react-query';
+import { getChannelPost } from '@/api/post';
 import { ACCESS_CHANNEL_NAME } from '@/constants/api';
 import { Post, UserPost } from '@/types/ResponseType';
 import { getStorage } from '@/utils/LocalStorage';
@@ -13,10 +13,10 @@ function useChannelPost() {
   const channelId = channel?._id;
 
   // channelId 종속 쿼리
-  return useQuery({
+  return useSuspenseQuery({
     queryKey: ['channelPost', channelId] as const,
     queryFn: () => {
-      return getChannelPosts(channelId);
+      return getChannelPost(channelId);
     },
     select: (data: Post[]): UserPost[] => {
       const response = data.map((post) => {
@@ -30,8 +30,7 @@ function useChannelPost() {
       });
       return response;
     },
-    staleTime: Infinity,
-    enabled: !!channelId
+    staleTime: Infinity
   });
 }
 

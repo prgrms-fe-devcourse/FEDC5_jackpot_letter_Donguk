@@ -8,6 +8,8 @@ import { theme } from '@/theme';
 import { Global } from '@emotion/react';
 import HamburgerMenu from './components/Common/HamburgerMenu';
 import ResponsiveLayout from './components/Common/Responsive/ResponsiveLayout';
+import MypageLayout from './components/Mypage/MypageLayout';
+import QueryErrorBoundary from './components/Mypage/QueryErrorBoundary';
 import NotFoundPage from './pages/NotFoundPage';
 import { authRoutes, commonRoutes, userRoutes } from './route/AppRouter';
 import AuthMiddleware from './route/AuthMiddleware';
@@ -45,9 +47,10 @@ function App() {
                 <SignIn>{route.component}</SignIn>
               </ResponsiveLayout>
             }
-            key={idx}></Route>
+            key={idx}
+          ></Route>
         ))}
-        {userRoutes.map((route, idx) => (
+        {userRoutes.page.map((route, idx) => (
           <Route
             path={route.path}
             element={
@@ -61,8 +64,36 @@ function App() {
                 </AuthMiddleware>
               </ResponsiveLayout>
             }
-            key={idx}></Route>
+            key={idx}
+          ></Route>
         ))}
+        <Route
+          path="/mypage"
+          element={
+            <ResponsiveLayout>
+              <AuthMiddleware>
+                <>
+                  <HamburgerMenu />
+                  <MypageLayout />
+                </>
+              </AuthMiddleware>
+            </ResponsiveLayout>
+          }
+        >
+          {userRoutes.mypage.map((route, idx) => (
+            <Route
+              path={route.path}
+              element={
+                <QueryErrorBoundary>
+                  <AuthMiddleware>
+                    <>{route.component}</>
+                  </AuthMiddleware>
+                </QueryErrorBoundary>
+              }
+              key={idx}
+            ></Route>
+          ))}
+        </Route>
         {commonRoutes.map((route, idx) => (
           <Route
             path={route.path}
@@ -74,7 +105,8 @@ function App() {
                 </div>
               </ResponsiveLayout>
             }
-            key={idx}></Route>
+            key={idx}
+          ></Route>
         ))}
         <Route
           path="/*"

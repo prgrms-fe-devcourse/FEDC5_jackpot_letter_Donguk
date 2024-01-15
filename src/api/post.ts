@@ -14,15 +14,19 @@ export const getAuthorPost = async (authorId: string) => {
   return data;
 };
 
-export const getChannelPosts = async (channelId: string) => {
-  const { data } = await axiosInstance.get<Post[]>(
-    `${END_POINTS.CHANNEL_POST_LIST}/${channelId}`,
-    {
-      authorization: false
-    }
-  );
-
-  return data;
+export const getChannelPost = async (channelId: string) => {
+  try {
+    const { data } = await axiosInstance.get<Post[]>(
+      `${END_POINTS.CHANNEL_POST_LIST}/${channelId}`,
+      {
+        authorization: false
+      }
+    );
+    return data;
+  } catch (e) {
+    console.error(e);
+    return [];
+  }
 };
 
 /** 특정 채널에 포스트 작성하기. 아직 response data 아직 알 수 없음 */
@@ -56,10 +60,12 @@ export const postPostCreate = async (
 
 /** 특정 포스트 상세 보기 */
 export const getPostDetail = async (postId: string) => {
-  const { data } = await axios.post<Post>('/api', {
-    method: 'GET',
-    url: `${END_POINTS.POSTS}/${postId}`
-  });
+  const { data } = await axiosInstance.get<Post>(
+    `${END_POINTS.POSTS}/${postId}`,
+    {
+      authorization: false
+    }
+  );
 
   return data;
 };

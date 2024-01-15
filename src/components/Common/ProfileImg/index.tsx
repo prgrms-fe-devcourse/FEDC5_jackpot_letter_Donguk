@@ -4,7 +4,7 @@ import { css } from '@emotion/react';
 import { ProfilePhoto } from './index.style';
 
 interface ProfileImgProps {
-  image: string;
+  image?: string;
   alt: string;
   width: number;
   height: number;
@@ -26,7 +26,7 @@ function ProfileImg(
         height: ${height}rem;
         width: ${width}rem;
       `}
-      src={image}
+      src={image || empty_user}
       alt={alt}
       onError={(e: SyntheticEvent<HTMLImageElement, Event>) =>
         handleImgError(e)

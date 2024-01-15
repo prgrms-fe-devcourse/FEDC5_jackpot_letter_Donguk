@@ -19,7 +19,8 @@ function UserList({ userName, filteringData }: userListProps) {
             fullName !== userName && (
               <Style.UserList
                 key={_id}
-                onClick={() => navigate(`/message/${_id}`)}>
+                onClick={() => navigate(`/message/${_id}`)}
+              >
                 <Style.UserProfile>
                   <ProfileImg
                     width={2}

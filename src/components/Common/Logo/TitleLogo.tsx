@@ -9,11 +9,13 @@ function TitleLogo({ darkMode }: DarkModeProps) {
       width="100.000000pt"
       height="40.000000pt"
       viewBox="0 0 512.000000 182.000000"
-      preserveAspectRatio="xMidYMid meet">
+      preserveAspectRatio="xMidYMid meet"
+    >
       <g
         transform="translate(0.000000,182.000000) scale(0.100000,-0.100000)"
         fill={darkMode ? theme.palette.dark : theme.palette.sub}
-        stroke="none">
+        stroke="none"
+      >
         <path
           d="M2186 1656 c-71 -13 -106 -38 -106 -76 0 -34 61 -446 71 -476 15 -48
 45 -56 150 -43 114 15 139 32 139 96 0 36 6 52 30 80 33 37 35 54 20 153 -16

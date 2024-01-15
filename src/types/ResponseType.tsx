@@ -143,6 +143,7 @@ export interface UserPost extends Post {
 export interface UserComment extends Comment {
   commentAuthor: string;
   postAuthor: string;
+  postId: string;
   postContent: string;
   image?: string;
 }

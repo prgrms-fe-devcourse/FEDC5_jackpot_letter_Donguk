@@ -1,11 +1,9 @@
 import { useEffect, useState } from 'react';
-import { Outlet, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useAtomValue, useSetAtom } from 'jotai';
-import Header from '@/components/Mypage/Header';
 import Sidebar from '@/components/Mypage/Sidebar';
 import useUser from '@/hooks/api/useUser';
 import { ACCESS_USER_ID } from '@/constants/api';
-import { PATHNAME } from '@/constants/sidebar';
 import { darkAtom } from '@/store/theme';
 import { userAtom } from '@/store/user';
 import { getStorage } from '@/utils/LocalStorage';
@@ -13,7 +11,6 @@ import * as Style from './index.style';
 
 function Mypage() {
   const [isMypage, setIsMypage] = useState(false);
-  const [title, setTitle] = useState('');
 
   const location = useLocation();
 
@@ -29,7 +26,6 @@ function Mypage() {
 
   useEffect(() => {
     setIsMypage(pathname.replace('/mypage', '').length <= 1);
-    setTitle(PATHNAME[pathname]);
   }, [location, pathname]);
 
   useEffect(() => {
@@ -42,7 +38,8 @@ function Mypage() {
     <Style.Container
       darkMode={darkMode}
       id="mypage"
-      isMypage={isMypage}>
+      isMypage={isMypage}
+    >
       <div className="sidebar-container">
         <Sidebar
           fullName={userData?.fullName ?? ''}
@@ -51,10 +48,6 @@ function Mypage() {
           image={userData?.image || ''}
         />
       </div>
-      <main className="main">
-        {!isMypage ? <Header title={title} /> : null}
-        <Outlet />
-      </main>
     </Style.Container>
   );
 }

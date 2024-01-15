@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { useSignOutMutation } from '@/hooks/api/useSignOutMutation';
 import { Container } from './index.style';
 
 interface SidebarItemProps {
@@ -12,6 +13,11 @@ type itemsType = {
 };
 
 function SidebarItem({ title, items }: SidebarItemProps) {
+  const { mutateSignOut } = useSignOutMutation();
+
+  const handleLogOut = () => {
+    mutateSignOut();
+  };
   return (
     <Container>
       <p className="sidebar-items-title">{title}</p>
@@ -21,7 +27,11 @@ function SidebarItem({ title, items }: SidebarItemProps) {
             className="sidebar-item"
             key={index}
           >
-            <Link to={link}>{text}</Link>
+            {text === '로그아웃' ? (
+              <span onClick={handleLogOut}>{text}</span>
+            ) : (
+              <Link to={link}>{text}</Link>
+            )}
           </li>
         ))}
       </div>
