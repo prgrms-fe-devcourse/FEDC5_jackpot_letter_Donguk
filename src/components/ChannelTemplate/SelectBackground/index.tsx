@@ -3,6 +3,7 @@ import { useAtomValue } from 'jotai';
 import { ChannelIconList, Title } from '@/pages/ChannelList/index.style.tsx';
 import { channelNameAtom } from '@/store/auth';
 import { ChannelOptionType } from '@/types/channel';
+import { getImageUrl } from '@/utils/parse';
 import { selectedStyle } from '../SelectColor';
 import { Background, Item } from './index.style';
 import { BgName, BgType } from './type';
@@ -29,7 +30,7 @@ function SelectBackground({ option, setOption }: Props) {
             <Item
               size={'5.5rem'}
               css={option.background === item && selectedStyle}
-              src={`/src/assets/background/${item}.png`}
+              src={getImageUrl('assets/background', item)}
               alt={`background-image-${item}`}
               onClick={() =>
                 setOption({ ...option, background: item as BgName })
