@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import Button from '@/components/Common/Button';
+import { useSignIn } from '@/hooks/api/useSignIn';
 import { PATH } from '@/constants/path';
 
 interface ButtonType {
@@ -7,8 +8,13 @@ interface ButtonType {
 }
 function SignInBtn({ onClick }: ButtonType) {
   const navigate = useNavigate();
+  const { mutateSignIn } = useSignIn();
 
   const startAnonymousExperience = () => {
+    mutateSignIn({
+      email: import.meta.env.VITE_ANONYMOUS_EMAIL_KEY,
+      password: import.meta.env.VITE_ANONYMOUS_PASSWORD_KEY
+    });
     navigate(PATH.ROOT);
   };
 

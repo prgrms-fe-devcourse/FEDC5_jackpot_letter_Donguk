@@ -31,7 +31,10 @@ function ChannelButton({
     const channelNames = channelListData.map(
       (channel: Channel) => channel.name
     );
-
+    if (userName === '익명')
+      return toast.error(
+        '익명 사용자는 채널을 생성할 수 없습니다. 회원가입을 진행해주세요.'
+      );
     if (channelNames.includes(userName))
       return toast.error('이미 채널을 생성했습니다.');
     navigate('/channel/new');
