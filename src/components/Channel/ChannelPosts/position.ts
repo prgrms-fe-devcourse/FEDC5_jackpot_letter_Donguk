@@ -1,9 +1,4 @@
-export interface PositionType {
-  left: string;
-  bottom: string;
-}
-
-export const position: PositionType[] = [
+export const positions = [
   { bottom: '53%', left: '5%' },
   { bottom: '70%', left: '28%' },
   { bottom: '35%', left: '42%' },

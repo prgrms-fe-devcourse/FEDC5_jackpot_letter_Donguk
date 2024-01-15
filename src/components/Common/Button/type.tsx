@@ -1,17 +1,4 @@
-interface buttonSortType {
-  backgroundColor: string;
-  color: string;
-  fontWeight?: number;
-  border?: string;
-  boxShadow?: string;
-}
-
-interface buttonSizeType {
-  width: string;
-  height: string;
-}
-
-export const buttonSize: { [key: string]: buttonSizeType } = {
+export const BtnSize = {
   xl: {
     width: '90%',
     height: '3.5rem'
@@ -33,8 +20,14 @@ export const buttonSize: { [key: string]: buttonSizeType } = {
     height: '2.4rem'
   }
 };
-
-export const buttonTypes: { [key: string]: buttonSortType } = {
+export type SortName =
+  | 'primary'
+  | 'outlined'
+  | 'assistant'
+  | 'secondary'
+  | 'tertiary';
+export type SizeName = 'xl' | 'lg' | 'md' | 'sm' | 'xs';
+export const BtnSort = {
   primary: {
     backgroundColor: '#0EB29A',
     color: '#ffffff'
