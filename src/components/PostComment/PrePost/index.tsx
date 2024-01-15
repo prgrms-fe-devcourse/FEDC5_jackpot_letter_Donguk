@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast, { Toaster } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 import { useAtomValue } from 'jotai';
 import { useCommentDeleteMutation } from '@/hooks/api/useCommentDeleteMutation';
 // import { useGetPostDetailQuery } from '@/hooks/api/useGetPostDetailQuery';
@@ -35,6 +36,7 @@ function PrePost({ postId, postDetail }: PrePostProps) {
   const { mutationPostDelete } = usePostDeleteMutation(); // 특정 포스트 제거
   const { mutationPostUpdate } = usePostUpdateMutation(postId); // 특정 포스트 수정
   const { mutationCommentDelete } = useCommentDeleteMutation(postId); // 특정 댓글 제거
+  const navigator = useNavigate();
 
   const {
     register,
@@ -90,6 +92,8 @@ function PrePost({ postId, postDetail }: PrePostProps) {
         id: postId
       });
     }
+
+    navigator(`/channel/${postDetail.channel.name}`);
   };
 
   /** 특정 댓글 삭제하는 함수 */
