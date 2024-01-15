@@ -1,9 +1,11 @@
-import { User } from '@/types/ResponseType';
+import { AuthenticationUser } from '@/types/ResponseType';
 import * as Style from './index.style';
 
 interface searchBar {
-  userListData: User[];
-  setUserFilterData: React.Dispatch<React.SetStateAction<User[] | undefined>>;
+  userListData: AuthenticationUser[];
+  setUserFilterData: React.Dispatch<
+    React.SetStateAction<AuthenticationUser[] | undefined>
+  >;
 }
 function SearchBar({ userListData, setUserFilterData }: searchBar) {
   /** 검색바 입력 데이타 변경 함수 */
@@ -19,7 +21,10 @@ function SearchBar({ userListData, setUserFilterData }: searchBar) {
   };
 
   /** 데이터 필터링 함수 */
-  const userDataFiltering = (userData: User[], inputData: string) => {
+  const userDataFiltering = (
+    userData: AuthenticationUser[],
+    inputData: string
+  ) => {
     return userData.filter(({ fullName }) => fullName.includes(inputData));
   };
 

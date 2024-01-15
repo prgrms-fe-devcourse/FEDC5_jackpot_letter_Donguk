@@ -29,7 +29,7 @@ const toastStyle = {
   marginTop: '0.5rem'
 };
 
-function PrePost({ postId, color, title, content, channelId }: PrePostProps) {
+function PrePost({ postId, title, content, channelId }: PrePostProps) {
   const userId = useAtomValue(idAtom);
   const { mutationLikeCreate } = useLikeCreateMutation(postId); // 특정 포스트 좋아요 추가
   const { mutationLikeDelete } = useLikeDeleteMutation(postId); // 특정 포스트 좋아요 제거
@@ -100,9 +100,13 @@ function PrePost({ postId, color, title, content, channelId }: PrePostProps) {
     const deleteCheck = confirm('댓글 삭제하시겠습니까?');
 
     if (deleteCheck) {
-      mutationCommentDelete({
-        id: e.target.dataset.id
-      });
+      const targetElement = e.target as HTMLElement;
+      const commentId = targetElement.dataset.id;
+
+      if (commentId)
+        mutationCommentDelete({
+          id: commentId
+        });
     }
   };
 
