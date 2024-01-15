@@ -22,10 +22,16 @@ function UserList({ userName, filteringData }: userListProps) {
 
   /** 내가 읽지 않은 메세지 개수 */
   const recentMessageCount = (receptionMessage: Message[] | undefined) => {
+    console.log(receptionMessage);
     if (receptionMessage === undefined || receptionMessage.length === 0)
       return 0;
 
-    return receptionMessage.filter(({ seen }) => seen === false).length;
+    // 상대방이 보낸 메세지만 카운팅
+    return receptionMessage.filter(({ seen, sender }) => {
+      if (sender.fullName === userName) return false;
+
+      return seen === false;
+    }).length;
   };
   console.log(messageListData);
 
