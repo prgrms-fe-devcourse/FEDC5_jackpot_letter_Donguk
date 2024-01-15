@@ -1,6 +1,4 @@
 import { UseFormRegister } from 'react-hook-form';
-import { useAtomValue } from 'jotai';
-import { channelNameAtom } from '@/store/auth';
 import * as Style from './index.style';
 
 export interface useFormProps {
