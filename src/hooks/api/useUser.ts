@@ -4,9 +4,7 @@ import { getUser } from '@/api/user';
 function useUser(userId: string) {
   return useQuery({
     queryKey: ['user', userId] as const,
-    queryFn: () => {
-      return getUser(userId);
-    }
+    queryFn: () => getUser(userId)
   });
 }
 

@@ -2,11 +2,11 @@ import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { Toaster } from 'react-hot-toast';
 import { toast } from 'react-hot-toast';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { useAtomValue } from 'jotai';
 import { usePostCommentCreateMutation } from '@/hooks/api/usePostCommentCreateMutation';
-import { useUserInfomationQuery } from '@/hooks/api/useUserInfomationQuery';
-import { idAtom, tokenAtom } from '@/store/auth';
+// import { useUserInfomationQuery } from '@/hooks/api/useUserInfomationQuery';
+import { channelNameAtom } from '@/store/auth';
 import Comment from './Comment';
 import Footer from './Footer';
 import Header from './Header';
@@ -25,12 +25,11 @@ interface useFormProps {
 }
 
 function PostComment() {
-  const JWTtoken = useAtomValue(tokenAtom);
-  const userId = useAtomValue(idAtom);
-
+  const userName = useAtomValue(channelNameAtom);
   const { postId } = useParams() as { postId: string };
   const { mutationCommentCreate } = usePostCommentCreateMutation(postId);
-  const { data, isPending } = useUserInfomationQuery(userId);
+  // const { data, isPending } = useUserInfomationQuery(userId);
+  const { state } = useLocation();
 
   const {
     register,
@@ -41,16 +40,14 @@ function PostComment() {
   } = useForm<useFormProps>({
     mode: 'onSubmit',
     defaultValues: {
-      commentTitle: userId ? (data ? data.fullName : '') : '',
+      commentTitle: userName,
       commentContent: ''
     }
   });
 
   /** 댓글 작성 시 서버로 전송 */
   const onSubmit = (data: useFormProps) => {
-    console.log(data);
     mutationCommentCreate({
-      JWTtoken,
       title: data.commentTitle,
       comment: data.commentContent,
       postId
@@ -58,8 +55,8 @@ function PostComment() {
   };
 
   useEffect(() => {
-    setValue('commentTitle', userId ? (data ? data.fullName : '') : '');
-  }, [userId, data]);
+    setValue('commentTitle', userName);
+  }, [userName]);
 
   useEffect(() => {
     if (isSubmitSuccessful) reset();
@@ -78,14 +75,18 @@ function PostComment() {
   return (
     <>
       <Style.CommentContainer>
-        <Header />
+        <Header channelName={state.channelName} />
         <Style.GroudImage src="/src/assets/ShortLogo.svg" />
-        <PrePost postId={postId} />
+        <PrePost
+          postId={postId}
+          color={state.color}
+          title={state.title}
+          content={state.content}
+          channelId={state.channelId}
+        />
         <Comment
           register={register}
-          userId={userId}
-          data={data}
-          isPending={isPending}
+          userName={userName}
         />
         <Style.Form onSubmit={handleSubmit(onSubmit)}>
           <Footer />

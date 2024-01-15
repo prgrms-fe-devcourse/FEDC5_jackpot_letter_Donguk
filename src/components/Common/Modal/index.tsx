@@ -14,7 +14,7 @@ interface ModalProps {
   top?: number;
   left?: number;
   marginTop?: number;
-  handleModalClose: (e: React.MouseEvent<HTMLDivElement>) => void;
+  handleModalClose?: (e: React.MouseEvent<HTMLDivElement>) => void;
 }
 
 function Modal({

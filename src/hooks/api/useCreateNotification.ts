@@ -1,20 +1,25 @@
-import { useMutation } from '@tanstack/react-query';
+import toast from 'react-hot-toast';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { createNotification } from '@/api/user';
 
 export interface NewNotificationProps {
   notificationType: 'COMMENT' | 'FOLLOW' | 'LIKE' | 'MESSAGE';
-  notificationTypeId: string;
+  notificationTypeId: string | undefined;
   userId: string;
   postId: string | null;
 }
-export const useCreateNotification = () => {
-  const mutation = useMutation({
+
+export const useNewNotification = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
     mutationFn: (notificationOption: NewNotificationProps) =>
       createNotification(notificationOption),
-    onError: (e) => {
-      console.log(e);
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['userListData'] });
+    },
+    onError: () => {
+      toast.error('알림 전송에 실패하였습니다');
     }
   });
-
-  return { mutate: mutation.mutate };
 };

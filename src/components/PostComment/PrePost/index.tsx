@@ -8,12 +8,15 @@ import { useLikeCreateMutation } from '@/hooks/api/useLikeCreateMutation';
 import { useLikeDeleteMutation } from '@/hooks/api/useLikeDeleteMutation';
 import { usePostDeleteMutation } from '@/hooks/api/usePostDeleteMutation';
 import { usePostUpdateMutation } from '@/hooks/api/usePostUpdateMutation';
-import { idAtom, tokenAtom } from '@/store/auth';
-import Loading from '../Loading';
+import { idAtom } from '@/store/auth';
 import * as Style from './index.style';
 
 interface PrePostProps {
   postId: string;
+  color: string;
+  title: string;
+  content: string;
+  channelId: string;
 }
 
 interface userFormProps {
@@ -26,16 +29,14 @@ const toastStyle = {
   marginTop: '0.5rem'
 };
 
-function PrePost({ postId }: PrePostProps) {
-  const JWTtoken = useAtomValue(tokenAtom);
+function PrePost({ postId, color, title, content, channelId }: PrePostProps) {
   const userId = useAtomValue(idAtom);
   const { mutationLikeCreate } = useLikeCreateMutation(postId); // 특정 포스트 좋아요 추가
   const { mutationLikeDelete } = useLikeDeleteMutation(postId); // 특정 포스트 좋아요 제거
   const { mutationPostDelete } = usePostDeleteMutation(); // 특정 포스트 제거
-  const { mutationPostUpdate } = usePostUpdateMutation(); // 특정 포스트 수정
+  const { mutationPostUpdate } = usePostUpdateMutation(channelId); // 특정 포스트 수정
   const { mutationCommentDelete } = useCommentDeleteMutation(postId); // 특정 댓글 제거
-  const { data, isPending } = useGetPostDetailQuery(postId);
-  console.log(data);
+  const { data } = useGetPostDetailQuery(postId);
 
   const {
     register,
@@ -57,12 +58,10 @@ function PrePost({ postId }: PrePostProps) {
 
     if (!isUserId) {
       mutationLikeCreate({
-        JWTtoken,
         postId
       });
     } else {
       mutationLikeDelete({
-        JWTtoken,
         id: isUserId._id
       });
     }
@@ -92,18 +91,16 @@ function PrePost({ postId }: PrePostProps) {
 
     if (deleteCheck) {
       mutationPostDelete({
-        JWTtoken,
         id: postId
       });
     }
   };
 
-  const handleDeleteCommentClick = (e) => {
+  const handleDeleteCommentClick = (e: React.MouseEvent<HTMLImageElement>) => {
     const deleteCheck = confirm('댓글 삭제하시겠습니까?');
 
     if (deleteCheck) {
       mutationCommentDelete({
-        JWTtoken,
         id: e.target.dataset.id
       });
     }
@@ -111,8 +108,8 @@ function PrePost({ postId }: PrePostProps) {
 
   /** 포스트 수정 내용 서버 전송 함수 */
   const onSubmit = (submitData: userFormProps) => {
+    console.log(submitData);
     mutationPostUpdate({
-      JWTtoken,
       postId,
       title: data ? JSON.parse(data.title).title : '',
       content: submitData.prePostContent,
@@ -134,25 +131,17 @@ function PrePost({ postId }: PrePostProps) {
     <>
       <Style.PrePostAndCommentContainer>
         <Style.PrePostContainer>
-          {isPending && <Loading loadingSize={32} />}
-          {data && (
-            <Style.PrePostInnerTitle>
-              {JSON.parse(data.title).title}
-            </Style.PrePostInnerTitle>
-          )}
+          <Style.PrePostInnerTitle>{title}</Style.PrePostInnerTitle>
           <Style.PrePostUnnerline />
-          {isPending && <Loading loadingSize={32} />}
           {postState ? (
             <Style.PrePostEditContent
-              defaultValue={data && JSON.parse(data.title).content}
+              defaultValue={content}
               {...register('prePostContent', {
                 required: '편지 내용은 반드시 입력해야 합니다.'
               })}
             />
           ) : (
-            <Style.PrePostContent>
-              {data && JSON.parse(data.title).content}
-            </Style.PrePostContent>
+            <Style.PrePostContent>{content}</Style.PrePostContent>
           )}
           {postState ? (
             <Style.CompleteImg
@@ -165,7 +154,6 @@ function PrePost({ postId }: PrePostProps) {
               onClick={handlePostToggleClick}
             />
           )}
-
           <Style.DeleteImg
             src="/src/assets/delete.svg"
             onClick={handleDeletePostClick}
@@ -188,7 +176,7 @@ function PrePost({ postId }: PrePostProps) {
               titleAndCommentParsing(comment) && (
                 <Style.PrePostComment key={idx}>
                   <Style.PrePostUserName>
-                    {`${titleAndCommentParsing(comment).title} `}
+                    {`💬 ${titleAndCommentParsing(comment).title}: `}
                   </Style.PrePostUserName>
                   {titleAndCommentParsing(comment).comment}
                   <Style.CommentDeleteImg

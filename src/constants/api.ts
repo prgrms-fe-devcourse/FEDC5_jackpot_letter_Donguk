@@ -33,7 +33,9 @@ export const END_POINTS = {
   PUT_NOTIFICATION: '/notifications/seen',
   POST_NOTIFICATION: '/notifications/create',
   MESSAGES: '/messages',
-  MESSAGES_CREATE: '/messages/create'
+  MESSAGES_CREATE: '/messages/create',
+  MESSAGES_CONVERSATIONS: '/messages/conversations',
+  MESSAGES_UPDATE_SEEN: '/messages/update-seen'
 };
 
 export const ACCESS_TOKEN_KEY = 'ACCESS_TOKEN';

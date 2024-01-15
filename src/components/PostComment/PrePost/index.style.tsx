@@ -33,12 +33,14 @@ export const PrePostContainer = styled.div`
   margin-bottom: 0.2rem;
 `;
 
+// 다크모드라 이전 포스트의 배경색이 밝은데 폰트색도 밝아서 안보임.
 export const PrePostInnerTitle = styled.div`
   flex-grow: 0;
   width: 95%;
   height: 2.5rem;
   font-size: 1rem;
   font-weight: 500;
+  color: black;
   background-color: transparent;
   border-color: transparent;
   margin: 0 auto;
@@ -57,6 +59,7 @@ export const PrePostContent = styled.div`
   flex-grow: 1;
   font-size: 0.7rem;
   width: 95%;
+  color: black;
   background-color: transparent;
   border-color: transparent;
   outline: none;
@@ -70,6 +73,7 @@ export const PrePostEditContent = styled.textarea`
   flex-grow: 1;
   font-size: 0.7rem;
   width: 95%;
+  color: black;
   background-color: transparent;
   border-color: transparent;
   outline: none;
@@ -150,6 +154,7 @@ export const PreCommentContainer = styled.div`
 export const PrePostComment = styled.div`
   position: relative;
   margin: auto 0;
+  color: black;
   background-color: ${(props) => props.theme.palette.sub};
   font-size: 0.8rem;
   font-weight: 400;
@@ -163,7 +168,7 @@ export const PrePostComment = styled.div`
 `;
 
 export const PrePostUserName = styled.span`
-  font-weight: 800;
+  font-weight: 700;
 `;
 
 export const CommentDeleteImg = styled.img`

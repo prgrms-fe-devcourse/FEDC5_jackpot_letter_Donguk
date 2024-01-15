@@ -1,14 +1,15 @@
-import { useState } from 'react';
 import * as Style from './index.style';
 
-function Header() {
-  const [userName, setUserName] = useState('최익');
+interface headerProps {
+  channelName: string;
+}
 
+function Header({ channelName }: headerProps) {
   return (
     <>
       <Style.HeaderContainer>
         <Style.HeaderInnerText>
-          <Style.HeaderUserName>{userName}</Style.HeaderUserName>님에게
+          <Style.HeaderUserName>{channelName}</Style.HeaderUserName>님에게
           <br />
           따뜻한 메시지를 남겨주세요
         </Style.HeaderInnerText>

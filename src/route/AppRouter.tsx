@@ -52,7 +52,10 @@ const userRoutes: userRoutes = {
       path: PATH.CHANNEL_CREATE,
       exact: true,
       component: <ChannelTemplate />
-    }
+    },
+    { path: `${PATH.COMMENT}/:postId`, exact: true, component: <Comment /> },
+    { path: PATH.MESSAGELIST, exact: true, component: <MessageListPage /> },
+    { path: `${PATH.MESSAGE}/:receiverId`, exact: true, component: <Message /> }
   ],
   mypage: [
     { path: PATH.MYPAGE, exact: true, component: <Mypage /> },
@@ -130,11 +133,8 @@ const commonRoutes: Array<RouteProps> = [
     )
   },
   { path: PATH.POST_CREATE, exact: true, component: <PostCreate /> },
-  { path: `${PATH.POST}/:channelId`, exact: true, component: <Post /> },
-  { path: `${PATH.COMMENT}/:postId`, exact: true, component: <Comment /> },
-  { path: PATH.MESSAGELIST, exact: true, component: <MessageListPage /> },
   { path: `${PATH.USER}`, exact: true, component: <UserPage /> },
-  { path: `${PATH.MESSAGE}/:receiverId`, exact: true, component: <Message /> }
+  { path: `${PATH.POST}/:channelId`, exact: true, component: <Post /> }
 ];
 
 export { userRoutes, authRoutes, commonRoutes };

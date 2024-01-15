@@ -7,7 +7,7 @@ import { Post } from '@/types/ResponseType';
 
 const parsedDescription = (description: string) => {
   try {
-    return JSON.parse(description);
+    return { ...JSON.parse(description) };
   } catch (e) {
     return undefined;
   }

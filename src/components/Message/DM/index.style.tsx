@@ -30,6 +30,11 @@ export const IntroduceText = styled.div`
   font-size: 1rem;
 `;
 
+export const userName = styled.span`
+  font-weight: 700;
+  color: ${({ theme }) => theme.palette.main};
+`;
+
 export const UserProfile = styled.div<{ isSize: number }>`
   display: flex;
   justify-content: center;
@@ -51,4 +56,11 @@ export const Message = styled.div`
   border-radius: 10px;
   color: black;
   background-color: ${({ theme }) => theme.palette.sub};
+`;
+
+export const opponentCheck = styled.div`
+  display: flex;
+  align-items: end;
+  color: gray;
+  font-size: 0.5rem;
 `;

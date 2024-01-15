@@ -25,7 +25,6 @@ export const selectedStyle = css`
 function PostCreate() {
   const { state } = useLocation();
   const navigate = useNavigate();
-
   const [color, setColor] = useState<ColorName>('red');
 
   return (
@@ -64,7 +63,11 @@ function PostCreate() {
           size="lg"
           onClick={() =>
             navigate(`/post/${state.channelId}`, {
-              state: { color: color, channelName: state.channelName }
+              state: {
+                color: color,
+                channelName: state.channelName,
+                channelDescription: state.channelDescription
+              }
             })
           }
         />

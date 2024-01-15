@@ -19,7 +19,6 @@ export default async function request<T>(
 ) {
   const { method, url, data, headers, params } = req.body as RequestType<T>;
 
-  console.log(method, url, data, headers, params);
   try {
     const { data: responseData } = await axiosInstance({
       method,

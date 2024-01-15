@@ -1,14 +1,11 @@
-import axios from 'axios';
-import { NewNotificationProps } from '@/hooks/api/useCreateNotification';
-import { END_POINTS } from '@/constants/api';
-import { AuthenticationUser, User } from '@/types/ResponseType';
-import { getStorage } from '@/utils/LocalStorage';
 import { NewNotificationProps } from '@/hooks/api/useCreateNotification';
 import { END_POINTS } from '@/constants/api';
 import { AuthenticationUser, User } from '@/types/ResponseType';
 import { axiosInstance } from './axiosInstance';
 
 export const getUser = async (userId: string) => {
+  if (!userId) return false;
+
   const { data } = await axiosInstance.get<User>(
     `${END_POINTS.USER}/${userId}`,
     { authorization: false }
@@ -55,6 +52,12 @@ export const checkNotifications = async () => {
   return data;
 };
 
+/** 알림 확인 처리 */
+export const updateNotification = async () => {
+  await axiosInstance.put<void>(END_POINTS.PUT_NOTIFICATION);
+};
+
+/** 알림 생성 */
 export const createNotification = async (
   notificationOption: NewNotificationProps
 ) => {

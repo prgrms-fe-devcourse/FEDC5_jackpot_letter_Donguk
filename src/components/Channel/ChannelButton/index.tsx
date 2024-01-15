@@ -8,7 +8,11 @@ import { Channel } from '@/types/ResponseType';
 import { channelOpenProps } from '../ChannelOpen';
 import * as Style from './index.style';
 
-function ChannelButton({ channelName, channelId }: channelOpenProps) {
+function ChannelButton({
+  channelName,
+  channelId,
+  channelDescription
+}: channelOpenProps) {
   const navigate = useNavigate();
   const location = useLocation();
   const userName = useAtomValue(channelNameAtom);
@@ -46,7 +50,7 @@ function ChannelButton({ channelName, channelId }: channelOpenProps) {
           <Button
             onClick={() =>
               navigate('/post/new', {
-                state: { channelName, channelId }
+                state: { channelName, channelId, channelDescription }
               })
             }
             content="마음 전달하기"

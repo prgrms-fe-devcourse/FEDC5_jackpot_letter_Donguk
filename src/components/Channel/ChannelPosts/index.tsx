@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useAtomValue } from 'jotai';
 import { ColorName } from '@/components/ChannelTemplate/SelectColor/type';
 import Pagenation from '@/components/Common/Pagenation';
-import { PATH } from '@/constants/path';
 import { channelNameAtom } from '@/store/auth';
 import { Post } from '@/types/ResponseType';
 import { parsedPosts } from '@/utils/parse';
@@ -12,6 +11,8 @@ import { position } from './position';
 
 interface Prop {
   posts: Post[];
+  channelName: string;
+  channelId: string;
 }
 interface FilteredPost {
   title: string;
@@ -20,14 +21,13 @@ interface FilteredPost {
   postId: string;
 }
 
-function ChannelPosts({ posts }: Prop) {
+function ChannelPosts({ posts, channelName, channelId }: Prop) {
   const [post, setPost] = useState<FilteredPost[][]>([]);
   const [page, setPage] = useState<number>(0);
+  const navigator = useNavigate();
 
   const userName = useAtomValue(channelNameAtom);
-  const { channelName } = useParams();
   const isMyChannel = userName === channelName;
-  const navigate = useNavigate();
 
   useEffect(() => {
     const channelPosts: FilteredPost[] = parsedPosts(posts);
@@ -41,11 +41,21 @@ function ChannelPosts({ posts }: Prop) {
   return (
     <LetterContainer>
       {post &&
-        post[page]?.map(({ title, color, postId }, index) => (
+        post[page]?.map(({ title, content, color, postId }, index) => (
           <Letter
             key={`channel-letter${index}`}
-            onClick={() => navigate(`${PATH.COMMENT}/${postId}`)}
-            position={position[index]}>
+            position={position[index]}
+            onClick={() =>
+              navigator(`/comment/${postId}`, {
+                state: {
+                  title,
+                  color,
+                  content,
+                  channelName,
+                  channelId
+                }
+              })
+            }>
             <img src={`/src/assets/letter/${color}.png`} />
             <span>{title}</span>
           </Letter>
