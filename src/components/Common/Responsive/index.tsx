@@ -1,12 +1,20 @@
 import { useAtomValue } from 'jotai';
+import useModal from '@/hooks/useModal';
 import { darkAtom } from '@/store/theme';
 import Button from '../Button';
 import ShortLogo from '../Logo/ShortLogo';
 import TitleLogo from '../Logo/TitleLogo';
+import Modal from '../Modal';
+import ServiceInformation from './ServiceInformation';
 import * as Style from './index.style';
 
 function Responsive() {
   const darkMode = useAtomValue(darkAtom);
+  const [visible, handleModalClick] = useModal();
+
+  const handleBtnClick = (e: React.MouseEvent<HTMLElement>) => {
+    handleModalClick(e);
+  };
 
   return (
     <Style.Container>
@@ -30,8 +38,18 @@ function Responsive() {
         </Style.Sub>
         <Button
           content="대박사건이 궁금하신가요?"
+          onClick={handleBtnClick}
           styleOption={{ 'border-radius': '20px;', 'font-size': '1rem' }}
         />
+        <Modal
+          width={42}
+          height={38}
+          padding={3}
+          visible={visible}
+          handleModalClose={handleBtnClick}
+          type={'center'}>
+          <ServiceInformation />
+        </Modal>
       </Style.Description>
       <Style.Pocket>
         {LETTER_COLOR.map((color, index) => (
