@@ -1,8 +1,3 @@
-import axios from 'axios';
-import { NewNotificationProps } from '@/hooks/api/useCreateNotification';
-import { END_POINTS } from '@/constants/api';
-import { AuthenticationUser, User } from '@/types/ResponseType';
-import { getStorage } from '@/utils/LocalStorage';
 import { NewNotificationProps } from '@/hooks/api/useCreateNotification';
 import { END_POINTS } from '@/constants/api';
 import { AuthenticationUser, User } from '@/types/ResponseType';

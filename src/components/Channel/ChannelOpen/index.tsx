@@ -17,9 +17,8 @@ function ChannelOpen({
   channelName,
   channelDescription
 }: channelOpenProps) {
-  const navigate = useNavigate();
-  const { data: channelInfo } = useChannelQuery(channelName ?? '');
-  const { data: postList } = useChannelPostsQuery(channelInfo?._id ?? '');
+  const { data: channelInfo } = useGetChannelInfo(channelName ?? '');
+  const { data: postList } = useGetChannelPosts(channelInfo?._id ?? '');
   const channelColor = parsedColor(channelInfo?.description);
 
   return (
@@ -32,10 +31,10 @@ function ChannelOpen({
         channelName={channelInfo.name}
         channelId={channelId}
       />
-      <ChannelButton>
+      <ChannelButton
         channelId={channelId}
         channelName={channelName}
-      </ChannelButton>
+        channelDescription={channelDescription}></ChannelButton>
     </Body>
   );
 }
