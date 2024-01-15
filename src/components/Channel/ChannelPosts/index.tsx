@@ -10,7 +10,7 @@ import { AnnounceBox, Letter, LetterContainer } from './index.style';
 import { position } from './position';
 
 interface Prop {
-  posts: Post[];
+  posts: Post[] | undefined;
   channelName: string;
   channelId: string;
 }
@@ -30,12 +30,14 @@ function ChannelPosts({ posts, channelName, channelId }: Prop) {
   const isMyChannel = userName === channelName;
 
   useEffect(() => {
-    const channelPosts: FilteredPost[] = parsedPosts(posts);
-    const pagesPost = Array.from(
-      { length: Math.ceil(channelPosts?.length / 6) },
-      (_, index) => channelPosts?.slice(index * 6, index * 6 + 6)
-    );
-    setPost(pagesPost);
+    if (posts) {
+      const channelPosts: FilteredPost[] = parsedPosts(posts);
+      const pagesPost = Array.from(
+        { length: Math.ceil(channelPosts?.length / 6) },
+        (_, index) => channelPosts?.slice(index * 6, index * 6 + 6)
+      );
+      setPost(pagesPost);
+    }
   }, [posts]);
 
   return (
