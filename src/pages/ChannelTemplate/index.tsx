@@ -8,6 +8,7 @@ import Button from '@/components/Common/Button';
 import { useCreateChannel } from '@/hooks/api/useCreateChannel';
 import { channelNameAtom } from '@/store/auth';
 import { ChannelOptionType } from '@/types/channel';
+import { Body } from '../PostCreate/index.style';
 import { ChannelButton } from './index.style';
 
 interface PhaseType {
@@ -62,7 +63,7 @@ function ChannelTemplate() {
     isInit ? navigate(-1) : setPhase(phase - 1);
   };
   return (
-    <div>
+    <Body>
       <div>{PhaseInfo[phase]}</div>
       <ChannelButton>
         <Button
@@ -78,7 +79,7 @@ function ChannelTemplate() {
           size="lg"
         />
       </ChannelButton>
-    </div>
+    </Body>
   );
 }
 

@@ -10,12 +10,18 @@ import { theme } from '@/theme';
 import { css } from '@emotion/react';
 import { ChannelIconList, Title } from '../ChannelList/index.style';
 import { ChannelButton } from '../ChannelTemplate/index.style';
+import { Body } from './index.style';
 
 export const selectedStyle = css`
-  width: calc(4.325rem - 7px);
-  height: calc(4.325rem - 7px);
+  width: calc(6rem - 7px);
+  height: calc(6rem - 7px);
+  @media (max-width: 767px) {
+    width: calc(3rem - 7px);
+    height: calc(3rem - 7px);
+  }
   border: 3px solid ${theme.palette.main};
 `;
+
 function PostCreate() {
   const { state } = useLocation();
   const navigate = useNavigate();
@@ -23,7 +29,7 @@ function PostCreate() {
   const [color, setColor] = useState<ColorName>('red');
 
   return (
-    <>
+    <Body>
       <Title>
         <h1>
           <span>{state.channelName ?? '프룽'}</span>님에게
@@ -33,15 +39,14 @@ function PostCreate() {
       <ChannelIconList>
         {Object.keys(ColorType).map((colorName) => (
           <Item
+            size={'3rem'}
             role="button"
             key={`letter-color${colorName}`}
             src={`/src/assets/letter/${colorName}.png`}
             css={colorName === color && selectedStyle}
             onClick={() => setColor(colorName as ColorName)}
             styleOption={{
-              padding: '1rem',
-              width: '4.325rem',
-              height: '4.325rem'
+              padding: '2rem'
             }}
           />
         ))}
@@ -64,7 +69,7 @@ function PostCreate() {
           }
         />
       </ChannelButton>
-    </>
+    </Body>
   );
 }
 

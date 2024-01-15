@@ -40,15 +40,16 @@ function ChannelList() {
           handleChangeKeyword={handleChangeKeyword}
         />
         <ChannelIconList>
-          {channels?.map((channel: Channel) => (
-            <div
-              key={`channel-${channel._id}`}
-              role="button">
-              <Link to={`/channel/${channel.name}`}>
-                <ChannelIcon channel={channel} />
-              </Link>
-            </div>
-          ))}
+          {channels &&
+            [...channels].reverse().map((channel: Channel) => (
+              <div
+                key={`channel-${channel._id}`}
+                role="button">
+                <Link to={`/channel/${channel.name}`}>
+                  <ChannelIcon channel={channel} />
+                </Link>
+              </div>
+            ))}
         </ChannelIconList>
       </Body>
     </>
