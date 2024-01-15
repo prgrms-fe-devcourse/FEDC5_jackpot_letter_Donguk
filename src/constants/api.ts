@@ -6,6 +6,7 @@ export const END_POINTS = {
   USER_LIST: '/users/get-users',
   USER_INFOMATION: '/users',
   USER: '/users',
+  USER_ONLINE: '/users/online-users',
   AUTHOR_POST_LIST: '/posts/author',
   CHANNEL_POST_LIST: '/posts/channel',
   POSTS: '/posts',
@@ -30,7 +31,9 @@ export const END_POINTS = {
   CHANNEL_SEARCH: '/search',
   NOTIFICATION: '/notifications',
   PUT_NOTIFICATION: '/notifications/seen',
-  POST_NOTIFICATION: '/notifications/create'
+  POST_NOTIFICATION: '/notifications/create',
+  MESSAGES: '/messages',
+  MESSAGES_CREATE: '/messages/create'
 };
 
 export const ACCESS_TOKEN_KEY = 'ACCESS_TOKEN';

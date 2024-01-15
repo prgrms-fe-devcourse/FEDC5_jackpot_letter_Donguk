@@ -1,5 +1,5 @@
 import toast from 'react-hot-toast';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useSetAtom } from 'jotai';
 import { signIn } from '@/api/auth';
 import { ErrorResponseData } from '@/api/axiosInstance';
@@ -16,6 +16,8 @@ export const useSignIn = () => {
   const setIdState = useSetAtom(idAtom);
   const setNameState = useSetAtom(channelNameAtom);
 
+  const queryClient = useQueryClient();
+
   const signInMutation = useMutation({
     mutationFn: signIn,
     onSuccess: ({ user, token }) => {
@@ -27,6 +29,8 @@ export const useSignIn = () => {
 
       setIsLoggedIn(true);
       toast.success('로그인 성공');
+
+      queryClient.invalidateQueries({ queryKey: ['userListData'] });
     },
     onError: (error: ErrorResponseData) => {
       if (error.customMessage) {

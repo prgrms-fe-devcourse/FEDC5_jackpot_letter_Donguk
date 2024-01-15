@@ -69,3 +69,11 @@ export const getUserList = async () => {
   );
   return data;
 };
+
+/** 유저 온라인 정보 */
+export const getUserOnline = async () => {
+  const { data } = await axiosInstance.get<User[]>(END_POINTS.USER_ONLINE, {
+    authorization: false
+  });
+  return data;
+};

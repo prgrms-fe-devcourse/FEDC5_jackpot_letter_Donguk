@@ -1,5 +1,8 @@
 import { BgType } from '@/components/ChannelTemplate/SelectBackground/type';
-import { ColorType } from '@/components/ChannelTemplate/SelectColor/type';
+import {
+  ColorName,
+  ColorType
+} from '@/components/ChannelTemplate/SelectColor/type';
 import { Post } from '@/types/ResponseType';
 
 const parsedDescription = (description: string) => {
@@ -11,11 +14,11 @@ const parsedDescription = (description: string) => {
 };
 
 export const parsedColor = (description: string) => {
-  const parsedColor = parsedDescription(description)?.color;
-
+  const parsedColor: ColorName = parsedDescription(description)?.color;
   if (!parsedColor || typeof parsedColor === 'number') return ColorType.orange;
-  return parsedColor;
+  return ColorType[parsedColor];
 };
+
 export const parsedBackground = (description: string) => {
   return parsedDescription(description)?.background ?? BgType.original;
 };
