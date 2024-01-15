@@ -12,7 +12,7 @@ function Message() {
   const { receiverId } = useParams() as { receiverId: string };
   const { data: receiverData } = useUser(receiverId); // 대화 상대의 데이터
   const { mutate: notificationSeenMutate } = useNotificationSeen(); // 알림 읽음처리
-  const { mutate: messageSeenMutate } = useMessageSeen(); // 메시지 읽음 처리
+  const { mutate: messageSeenMutate } = useMessageSeen(receiverId); // 메시지 읽음 처리
 
   useEffect(() => {
     if (receiverData) {
