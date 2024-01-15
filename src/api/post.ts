@@ -14,7 +14,7 @@ export const getAuthorPost = async (authorId: string) => {
   return data;
 };
 
-export const getChannelPosts = async (channelId: string) => {
+export const getChannelPost = async (channelId: string) => {
   try {
     const { data } = await axiosInstance.get<Post[]>(
       `${END_POINTS.CHANNEL_POST_LIST}/${channelId}`,
@@ -22,7 +22,6 @@ export const getChannelPosts = async (channelId: string) => {
         authorization: false
       }
     );
-
     return data;
   } catch (e) {
     console.error(e);
