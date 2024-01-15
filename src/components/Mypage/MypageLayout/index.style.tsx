@@ -12,5 +12,7 @@ export const Container = styled.div`
   .container {
     width: 100%;
     overflow-y: auto;
+    padding: 0 1rem;
+    box-sizing: border-box;
   }
 `;
