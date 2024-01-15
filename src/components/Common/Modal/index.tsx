@@ -14,7 +14,7 @@ interface ModalProps {
   top?: number;
   left?: number;
   marginTop?: number;
-  handleModalClose?: (e: React.MouseEvent<HTMLDivElement>) => void;
+  handleModalClose: (e: React.MouseEvent<HTMLDivElement>) => void;
 }
 
 function Modal({
@@ -58,11 +58,13 @@ function Modal({
     <Container
       className={type}
       visible={visible}
-      onClick={(e: React.MouseEvent<HTMLDivElement>) => handleModalClose(e)}>
+      onClick={(e: React.MouseEvent<HTMLDivElement>) => handleModalClose(e)}
+    >
       <ModalContainer
         id="modal"
         className={type}
-        {...modalProps}>
+        {...modalProps}
+      >
         {children}
       </ModalContainer>
     </Container>,
