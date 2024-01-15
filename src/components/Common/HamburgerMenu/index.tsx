@@ -44,8 +44,7 @@ function HamburgerMenu() {
             USER_MENU.map((data) => (
               <Link
                 to={data.link}
-                key={data.id}
-              >
+                key={data.id}>
                 <Menu>{data.menu}</Menu>
               </Link>
             ))}
