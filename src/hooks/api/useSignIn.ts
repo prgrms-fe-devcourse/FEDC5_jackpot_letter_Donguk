@@ -30,7 +30,7 @@ export const useSignIn = () => {
       setIsLoggedIn(true);
       toast.success('로그인 성공');
 
-      queryClient.invalidateQueries({ queryKey: ['userListData'] });
+      queryClient.invalidateQueries({ queryKey: ['userList'] });
     },
     onError: (error: ErrorResponseData) => {
       if (error.customMessage) {
