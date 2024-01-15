@@ -29,7 +29,7 @@ const toastStyle = {
   marginTop: '0.5rem'
 };
 
-function PrePost({ postId, title, content, channelId }: PrePostProps) {
+function PrePost({ postId, title, color, content, channelId }: PrePostProps) {
   const userId = useAtomValue(idAtom);
   const { mutationLikeCreate } = useLikeCreateMutation(postId); // 특정 포스트 좋아요 추가
   const { mutationLikeDelete } = useLikeDeleteMutation(postId); // 특정 포스트 좋아요 제거
@@ -112,12 +112,12 @@ function PrePost({ postId, title, content, channelId }: PrePostProps) {
 
   /** 포스트 수정 내용 서버 전송 함수 */
   const onSubmit = (submitData: userFormProps) => {
-    console.log(submitData);
     mutationPostUpdate({
       postId,
       title: data ? JSON.parse(data.title).title : '',
       content: submitData.prePostContent,
-      channelId: data?.channel._id as string
+      channelId: data?.channel._id as string,
+      color: color
     });
 
     handlePostToggleClick();

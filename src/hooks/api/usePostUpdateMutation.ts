@@ -9,6 +9,7 @@ interface mutationProps {
   image?: string | null;
   imageToDeletePublicId?: string;
   channelId: string;
+  color: string;
 }
 
 /** 포스트 수정 mutataion */
@@ -22,7 +23,8 @@ export const usePostUpdateMutation = (channelId: string) => {
       content,
       image = null,
       imageToDeletePublicId = '',
-      channelId
+      channelId,
+      color
     }: mutationProps) =>
       postPostUpdate(
         postId,
@@ -30,7 +32,8 @@ export const usePostUpdateMutation = (channelId: string) => {
         content,
         image,
         imageToDeletePublicId,
-        channelId
+        channelId,
+        color
       ),
     onSuccess: () => {
       toast.success('포스트가 정상적으로 수정되었습니다.');
