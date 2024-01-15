@@ -133,7 +133,7 @@ const commonRoutes: Array<RouteProps> = [
     )
   },
   { path: PATH.POST_CREATE, exact: true, component: <PostCreate /> },
-  { path: `${PATH.USER}`, exact: true, component: <UserPage /> },
+  { path: `${PATH.USER}/:userId`, exact: true, component: <UserPage /> },
   { path: `${PATH.POST}/:channelId`, exact: true, component: <Post /> }
 ];
 

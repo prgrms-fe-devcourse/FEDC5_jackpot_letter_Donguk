@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Button from '@/components/Common/Button';
 import ProfileImg from '@/components/Common/ProfileImg';
 import { FollowBtn } from '@/components/Mypage/FollowListItem/index.style';
@@ -17,13 +18,12 @@ import * as Style from './index.style';
 function UserPage() {
   const [color, setColor] = useState(theme.palette.main);
   const myUserId = getStorage(ACCESS_USER_ID, '');
+  const { userId } = useParams();
 
-  const location = useLocation();
   const navigate = useNavigate();
-  const { userId } = location.state;
 
   const { data: myUserData } = useUser(myUserId);
-  const { data: userData } = useUser(userId);
+  const { data: userData } = useUser(userId!);
   const { data: channel } = useGetChannelInfo(userData?.fullName ?? '');
 
   const { mutate: deleteMutate } = useDeleteFollow();
@@ -94,13 +94,15 @@ function UserPage() {
             width="40vw"
             height="2.5rem"
             color={color}
-            onClick={handleFollowClick}>
+            onClick={handleFollowClick}
+          >
             {color === '#d9d9d9' ? '팔로잉' : '팔로우'}
           </FollowBtn>
           <FollowBtn
             width="40vw"
             height="2.5rem"
-            onClick={handleMessageClick}>
+            onClick={handleMessageClick}
+          >
             메시지
           </FollowBtn>
         </div>
