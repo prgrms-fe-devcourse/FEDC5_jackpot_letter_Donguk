@@ -7,14 +7,14 @@ import { useAtomValue } from 'jotai';
 import useUser from '@/hooks/api/useUser';
 import { useUserList } from '@/hooks/api/useUserList';
 import { idAtom } from '@/store/auth';
-import { User } from '@/types/ResponseType';
+import { AuthenticationUser } from '@/types/ResponseType';
 
 function MessageListPage() {
   const userId = useAtomValue(idAtom);
   const { data: userListData } = useUserList(); // 전체 데이터 리스트
-  const [userFilterData, setUserFilterData] = useState<User[]>();
+  const [userFilterData, setUserFilterData] = useState<AuthenticationUser[]>();
   const { data: userData } = useUser(userId); // userId 가 없을때 오류가 생김
-
+  console.log(userListData);
   // const { data } = useGetMessageConversations();
   // console.log('나와 대화한 사람들', data);
 
