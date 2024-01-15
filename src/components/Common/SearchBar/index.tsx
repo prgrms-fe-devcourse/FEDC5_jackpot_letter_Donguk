@@ -4,7 +4,6 @@ import { SearchBarContainer } from './index.style';
 
 interface Props {
   placeholder: string;
-  option?: 'all';
   handleChangeKeyword: (keyword: string) => void;
 }
 

@@ -1,16 +1,33 @@
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '@/components/Common/Button';
+import SearchBar from '@/components/Common/SearchBar';
 import PostList from '@/components/Mypage/PostList';
 import useChannelPost from '@/hooks/api/useChannelPost';
 import { theme } from '@/theme';
+import { UserPost } from '@/types/ResponseType';
 import * as Style from './index.style';
 
 function ReceivedPostListPage() {
   const { data } = useChannelPost();
   const navigate = useNavigate();
 
+  const [posts, setPosts] = useState<UserPost[]>(data);
+
+  useEffect(() => {
+    setPosts(data);
+  }, [data]);
+
   const handleButtonClick = () => {
     navigate('/channel/new');
+  };
+
+  const handleChangeKeyword = (keyword: string) => {
+    const filteredPosts = data?.filter(
+      (post: UserPost) =>
+        post.title.includes(keyword) || post.content.includes(keyword)
+    );
+    setPosts(filteredPosts);
   };
 
   if (!data.length) {
@@ -28,14 +45,17 @@ function ReceivedPostListPage() {
       </Style.UnGeneratedWrap>
     );
   }
-
   return (
-    <>
+    <Style.Container>
+      <SearchBar
+        placeholder={'작성자, 내용을 검색해보세요.'}
+        handleChangeKeyword={handleChangeKeyword}
+      />
       <PostList
         type="post"
-        posts={data}
+        posts={posts}
       />
-    </>
+    </Style.Container>
   );
 }
 export default ReceivedPostListPage;
