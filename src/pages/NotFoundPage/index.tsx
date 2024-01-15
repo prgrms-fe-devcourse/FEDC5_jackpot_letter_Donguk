@@ -37,6 +37,7 @@ function NotFoundPage() {
         </Style.SubText>
         <Style.BtnWrapper>
           <Button
+            styleOption={{ width: '280px' }}
             onClick={() => navigate(PATH.ROOT)}
             content="홈으로 돌아가기"
           />
