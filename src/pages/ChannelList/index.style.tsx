@@ -2,7 +2,6 @@ import styled from '@emotion/styled';
 
 export const Header = styled.div`
   display: flex;
-  padding-bottom: 1rem;
 `;
 export const Title = styled.div`
   padding: 2rem;
