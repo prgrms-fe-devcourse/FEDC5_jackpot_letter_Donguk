@@ -47,7 +47,8 @@ function App() {
                 <SignIn>{route.component}</SignIn>
               </ResponsiveLayout>
             }
-            key={idx}></Route>
+            key={idx}
+          ></Route>
         ))}
         {userRoutes.page.map((route, idx) => (
           <Route
@@ -63,7 +64,8 @@ function App() {
                 </AuthMiddleware>
               </ResponsiveLayout>
             }
-            key={idx}></Route>
+            key={idx}
+          ></Route>
         ))}
         <Route
           path="/mypage"
@@ -71,12 +73,16 @@ function App() {
             <ResponsiveLayout>
               <AuthMiddleware>
                 <>
-                  <HamburgerMenu />
-                  <MypageLayout />
+                  <div style={{ position: 'relative' }}>
+                    <NotificationMenu />
+                    <HamburgerMenu />
+                    <MypageLayout />
+                  </div>
                 </>
               </AuthMiddleware>
             </ResponsiveLayout>
-          }>
+          }
+        >
           {userRoutes.mypage.map((route, idx) => (
             <Route
               path={route.path}
@@ -87,7 +93,8 @@ function App() {
                   </AuthMiddleware>
                 </QueryErrorBoundary>
               }
-              key={idx}></Route>
+              key={idx}
+            ></Route>
           ))}
         </Route>
         {commonRoutes.map((route, idx) => (
@@ -101,7 +108,8 @@ function App() {
                 </div>
               </ResponsiveLayout>
             }
-            key={idx}></Route>
+            key={idx}
+          ></Route>
         ))}
         <Route
           path="/*"
