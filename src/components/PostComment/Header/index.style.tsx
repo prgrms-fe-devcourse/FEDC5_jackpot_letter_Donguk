@@ -9,7 +9,7 @@ export const HeaderContainer = styled.div`
 export const HeaderInnerText = styled.div`
   ${(props) => props.theme.typography.postTitle};
   line-height: 1.8rem;
-  color: white;
+  // color: white;
 `;
 
 export const HeaderUserName = styled.span`

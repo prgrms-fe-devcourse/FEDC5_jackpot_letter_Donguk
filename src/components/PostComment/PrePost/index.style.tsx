@@ -73,7 +73,7 @@ export const PrePostEditContent = styled.textarea`
   flex-grow: 1;
   font-size: 0.7rem;
   width: 95%;
-  color: black;
+  // color: black;
   background-color: transparent;
   border-color: transparent;
   outline: none;
