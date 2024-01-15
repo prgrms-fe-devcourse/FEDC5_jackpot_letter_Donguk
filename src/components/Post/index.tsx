@@ -95,6 +95,7 @@ function Post() {
     <>
       {!allowRangeData.allowWriteAll && !JWTtoken && (
         <Modal
+          handleModalClose={() => {}}
           width={22}
           height={10}
           visible={modalState}
@@ -109,7 +110,8 @@ function Post() {
                   display: 'flex',
                   justifyContent: 'space-around',
                   marginTop: '2.5rem'
-                }}>
+                }}
+              >
                 <Button
                   content="예"
                   size="md"
@@ -128,7 +130,8 @@ function Post() {
                 />
               </div>
             </div>
-          }></Modal>
+          }
+        ></Modal>
       )}
       <Style.PostContainer>
         <Header channelName={state.channelName} />
