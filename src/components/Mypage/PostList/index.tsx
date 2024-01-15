@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
 import { PATH } from '@/constants/path';
 import { PATHNAME } from '@/constants/sidebar';
-import { UserPost } from '@/types/ResponseType';
+import { UserLike } from '@/types/ResponseType';
 import Empty from '../Empty';
 import * as Style from './indext.style';
 
 interface PostListProps {
-  posts: UserPost[];
+  posts: UserLike[];
   type: 'post' | 'like';
 }
 
@@ -19,9 +19,13 @@ function PostList({ posts, type }: PostListProps) {
       ) : (
         <div className="container">
           {posts.map(
-            ({ title, channelName, content, likes, comments, _id }) => (
+            ({ title, channelName, content, likes, comments, _id, postId }) => (
               <Link
-                to={`${PATH.COMMENT}/${_id}`}
+                to={
+                  type === 'like'
+                    ? `${PATH.COMMENT}/${postId}`
+                    : `${PATH.COMMENT}/${_id}`
+                }
                 key={_id}
               >
                 <Style.PostItem>

@@ -1,6 +1,6 @@
 import { useSuspenseQueries } from '@tanstack/react-query';
 import { getPostDetail } from '@/api/post';
-import { Post, User, UserPost } from '@/types/ResponseType';
+import { Post, User, UserLike } from '@/types/ResponseType';
 
 function useUserLikeList(userData: User) {
   return useSuspenseQueries({
@@ -11,14 +11,15 @@ function useUserLikeList(userData: User) {
             queryFn: () => {
               return getPostDetail(like.post);
             },
-            select: (data: Post): UserPost => {
+            select: (data: Post): UserLike => {
               const { title, content } = JSON.parse(data.title);
               const response = {
                 ...data,
                 _id: like._id,
+                postId: like.post,
                 title,
                 content,
-                channelName: data.author.fullName
+                channelName: data.channel.name
               };
               console.log(response);
 

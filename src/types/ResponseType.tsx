@@ -140,6 +140,12 @@ export interface UserPost extends Post {
   content: string;
 }
 
+export interface UserLike extends Post {
+  channelName: string;
+  content: string;
+  postId: string;
+}
+
 export interface UserComment extends Comment {
   commentAuthor: string;
   postAuthor: string;
