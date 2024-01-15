@@ -6,7 +6,7 @@ import { useAtom, useAtomValue } from 'jotai';
 import { PATH } from '@/constants/path';
 import { darkAtom } from '@/store/theme';
 import { theme } from '@/theme';
-import { useSignOutMutation } from '../../../hooks/api/useSignOutMutation';
+import { useSignOut } from '../../../hooks/api/useSignOut';
 import { isLoggedInAtom } from '../../../store/auth';
 import DarkMode from '../../DarkMode';
 import { Button, Container, Menu, MenuContainer } from './index.style';
@@ -19,7 +19,7 @@ function HamburgerMenu() {
 
   const { pathname } = useLocation();
 
-  const { mutateSignOut } = useSignOutMutation();
+  const { mutateSignOut } = useSignOut();
 
   useEffect(() => {
     setToggle(false);

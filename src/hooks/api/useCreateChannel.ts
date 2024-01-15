@@ -7,10 +7,11 @@ export interface MutationProps {
   name: string;
   description: string;
 }
-export const useNewChannel = () => {
+
+export const useCreateChannel = () => {
   const navigate = useNavigate();
 
-  const createChannelMutation = useMutation({
+  const muataion = useMutation({
     mutationFn: (channelOption: MutationProps) => createChannel(channelOption),
     onSuccess: () => {
       toast.success('채널을 생성하였습니다.');
@@ -22,5 +23,5 @@ export const useNewChannel = () => {
     }
   });
 
-  return { mutateNewChannel: createChannelMutation.mutate };
+  return { mutate: muataion.mutate };
 };

@@ -1,11 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
 import { getChannelList } from '@/api/channel';
 
-const useChannelListQuery = () => {
+const useGetChannelList = () => {
   return useQuery({
     queryKey: ['channelList'],
     queryFn: getChannelList
   });
 };
 
-export default useChannelListQuery;
+export default useGetChannelList;

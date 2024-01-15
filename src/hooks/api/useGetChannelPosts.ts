@@ -1,11 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
-import { getChannelPosts } from '@/api/channel';
+import { getChannelPosts } from '@/api/post';
 
-const useChannelPostsQuery = (channelId: string) => {
+const useGetChannelPosts = (channelId: string) => {
   return useQuery({
     queryKey: ['channelPosts', channelId],
     queryFn: () => getChannelPosts(channelId)
   });
 };
 
-export default useChannelPostsQuery;
+export default useGetChannelPosts;

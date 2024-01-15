@@ -1,7 +1,7 @@
 import toast from 'react-hot-toast';
 import { useMutation } from '@tanstack/react-query';
 import { useSetAtom } from 'jotai';
-import { postSignOut } from '@/api/member';
+import { signOut } from '@/api/auth';
 import {
   ACCESS_CHANNEL_NAME,
   ACCESS_TOKEN_KEY,
@@ -10,12 +10,12 @@ import {
 import { isLoggedInAtom, tokenAtom } from '@/store/auth';
 import { removeStorage } from '@/utils/LocalStorage';
 
-export const useSignOutMutation = () => {
+export const useSignOut = () => {
   const setTokenState = useSetAtom(tokenAtom);
   const setIsLoggedIn = useSetAtom(isLoggedInAtom);
 
   const signOutMutation = useMutation({
-    mutationFn: postSignOut,
+    mutationFn: signOut,
     onSuccess: () => {
       removeStorage(ACCESS_TOKEN_KEY);
       removeStorage(ACCESS_CHANNEL_NAME);

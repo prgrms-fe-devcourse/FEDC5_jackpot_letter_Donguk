@@ -4,7 +4,7 @@ import { Toaster } from 'react-hot-toast';
 import { toast } from 'react-hot-toast';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useAtomValue } from 'jotai';
-import useChannelListQuery from '@/hooks/api/useChannelListQuery';
+import useGetChannelList from '@/hooks/api/useGetChannelList';
 // import { useGetPostDetailQuery } from '@/hooks/api/useGetPostDetailQuery';
 import { usePostCreateMutation } from '@/hooks/api/usePostCreateMutation';
 import { tokenAtom } from '@/store/auth';
@@ -44,7 +44,7 @@ function Post() {
   const { state } = useLocation();
 
   /** 채널 리스트 */
-  const { data: channelListData } = useChannelListQuery();
+  const { data: channelListData } = useGetChannelList();
   console.log(channelListData);
 
   /** 포스트 작성 시 서버로 전송 */

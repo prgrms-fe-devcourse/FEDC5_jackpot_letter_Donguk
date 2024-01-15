@@ -1,16 +1,16 @@
-import useNotifycations from '@/hooks/api/useNotifycations';
-import { useUpdateNotification } from '@/hooks/api/useUpdateNotification';
+import { useCheckNotifications } from '@/hooks/api/useCheckNotifications';
+import useGetNotifications from '@/hooks/api/useGetNotifications';
 import { Notification } from '@/types/ResponseType';
 import AlarmItem from '../AlarmItem';
 import { Header, NotificationContainer } from './index.style';
 
 function AlarmList() {
-  const { data } = useNotifycations();
+  const { data } = useGetNotifications();
 
-  const { mutateUpdateNotification } = useUpdateNotification();
+  const { mutate } = useCheckNotifications();
 
   const handleClickButton = () => {
-    mutateUpdateNotification();
+    mutate();
   };
 
   return (
