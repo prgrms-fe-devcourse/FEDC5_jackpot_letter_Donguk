@@ -17,7 +17,7 @@ function useDeleteFollow() {
     onSuccess: (data) => {
       console.log(data);
       queryClient.invalidateQueries({ queryKey: ['user'] });
-      toast.success('성공적으로 변경됐습니다.');
+      toast.success('팔로우가 취소됐습니다.');
     }
   });
 }
