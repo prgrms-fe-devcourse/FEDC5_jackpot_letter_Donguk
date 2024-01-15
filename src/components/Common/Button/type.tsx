@@ -13,23 +13,23 @@ interface buttonSizeType {
 
 export const buttonSize: { [key: string]: buttonSizeType } = {
   xl: {
-    width: '19.375rem',
+    width: '90%',
     height: '3.5rem'
   },
   lg: {
-    width: '12.7rem',
+    width: '70%',
     height: '3.5rem'
   },
   md: {
-    width: '9.375rem',
+    width: '40%',
     height: '3.5rem'
   },
   sm: {
-    width: '5.125rem',
+    width: '20%',
     height: '3.5rem'
   },
   xs: {
-    width: '5.125rem',
+    width: '20%',
     height: '2.4rem'
   }
 };

@@ -26,7 +26,8 @@ function ResponsiveLayout({ children }: LayoutProps) {
         <Wrapper
           isPc={isPc}
           isTablet={isTablet}
-          darkMode={darkMode}>
+          darkMode={darkMode}
+        >
           {children}
         </Wrapper>
       </>

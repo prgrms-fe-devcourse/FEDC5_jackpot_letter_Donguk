@@ -16,8 +16,12 @@ interface Props {
 }
 
 export const selectedStyle = css`
-  width: calc(5.625rem - 7px);
-  height: calc(5.625rem - 7px);
+  width: calc(8.625rem - 7px);
+  height: calc(8.625rem - 7px);
+  @media (max-width: 767px) {
+    width: calc(5.625rem - 7px);
+    height: calc(5.625rem - 7px);
+  }
   border: 3px solid ${theme.palette.main};
 `;
 
@@ -38,8 +42,7 @@ function SelectColor({ option, setOption }: Props) {
             role="button"
             key={`channel-color${color}`}
             css={option.color === color && selectedStyle}
-            onClick={() => setOption({ ...option, color: color as ColorName })}
-          >
+            onClick={() => setOption({ ...option, color: color as ColorName })}>
             <CustomChannelIcon color={ColorType[color as ColorName]} />
           </Item>
         ))}

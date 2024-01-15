@@ -1,9 +1,9 @@
-import { useQueries } from '@tanstack/react-query';
+import { useSuspenseQueries } from '@tanstack/react-query';
 import { getUser } from '@/api/user';
 import { Follow, FollowType, User } from '@/types/ResponseType';
 
 function useUserFollowList(followList: Follow[], queryKey: string) {
-  return useQueries({
+  return useSuspenseQueries({
     queries: followList
       ? followList.map((follow) => {
           return {
@@ -28,9 +28,6 @@ function useUserFollowList(followList: Follow[], queryKey: string) {
       return {
         data: results.map((result) => {
           return result.data;
-        }),
-        pending: results.some((result) => {
-          return result.isPending;
         })
       };
     }

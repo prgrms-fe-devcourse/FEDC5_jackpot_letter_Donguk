@@ -20,8 +20,7 @@ function SendMessage() {
   const {
     register,
     formState: { errors, isSubmitting, isSubmitSuccessful },
-    handleSubmit,
-    reset
+    handleSubmit
   } = useForm<useFormProps>({
     mode: 'onSubmit',
     defaultValues: {

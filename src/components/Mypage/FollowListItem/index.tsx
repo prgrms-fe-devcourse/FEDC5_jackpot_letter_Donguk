@@ -45,7 +45,7 @@ function FollowListItem({
           }}
         >
           <ProfileImg
-            image={image ?? ''}
+            image={image}
             alt="user profile image"
             width={2.5}
             height={2.5}

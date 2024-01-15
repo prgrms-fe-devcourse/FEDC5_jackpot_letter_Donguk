@@ -19,5 +19,5 @@ export const StyledInput = styled.input(({ theme, width, height, color }) => ({
     color === 'error'
       ? `1px solid ${theme.palette.error}`
       : `0.9px solid ${theme.palette.gray_2}`,
-  borderRadius: '3px'
+  'border-radius': '3px'
 }));

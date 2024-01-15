@@ -1,13 +1,13 @@
 export interface PositionType {
-  left: number;
-  bottom: number;
+  left: string;
+  bottom: string;
 }
 
 export const position: PositionType[] = [
-  { bottom: 230, left: 30 },
-  { bottom: 270, left: 130 },
-  { bottom: 120, left: 280 },
-  { bottom: 200, left: 200 },
-  { bottom: 250, left: 300 },
-  { bottom: 110, left: 50 }
+  { bottom: '53%', left: '5%' },
+  { bottom: '70%', left: '28%' },
+  { bottom: '35%', left: '42%' },
+  { bottom: '60%', left: '60%' },
+  { bottom: '38%', left: '74%' },
+  { bottom: '30%', left: '10%' }
 ];

@@ -40,7 +40,8 @@ function DM({ JWTtoken, receiverData }: DMprops) {
             {userId && sender._id !== userId ? (
               <Style.MessageContainer
                 isOrder={true}
-                key={idx}>
+                key={idx}
+              >
                 <Style.UserProfile isSize={2}>
                   <ProfileImg
                     width={2}
@@ -54,7 +55,8 @@ function DM({ JWTtoken, receiverData }: DMprops) {
             ) : (
               <Style.MessageContainer
                 isOrder={false}
-                key={idx}>
+                key={idx}
+              >
                 <Style.Message>{message}</Style.Message>
                 <Style.UserProfile isSize={2}>
                   <ProfileImg

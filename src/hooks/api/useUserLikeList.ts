@@ -1,9 +1,9 @@
-import { useQueries } from '@tanstack/react-query';
+import { useSuspenseQueries } from '@tanstack/react-query';
 import { getPostDetail } from '@/api/post';
 import { Post, User, UserPost } from '@/types/ResponseType';
 
 function useUserLikeList(userData: User) {
-  return useQueries({
+  return useSuspenseQueries({
     queries: userData
       ? userData.likes.map((like) => {
           return {

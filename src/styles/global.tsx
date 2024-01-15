@@ -26,10 +26,15 @@ const global = (theme: ThemeProps) => css`
     color: ${theme.textColor};
   }
 
-  .main .container,
-  .sidebar-container {
+  .main #mypage,
+  .main .container {
+    overflow-y: auto;
+    &::-webkit-scrollbar {
+      width: 1.25rem;
+      background: transparent;
+    }
     &::-webkit-scrollbar-thumb {
-      background-color: transparent;
+      background-color: #b7b7b7;
       border-radius: 10px;
       border: 7px solid ${theme.bgColor};
     }

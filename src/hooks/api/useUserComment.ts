@@ -1,9 +1,9 @@
-import { useQueries } from '@tanstack/react-query';
+import { useSuspenseQueries } from '@tanstack/react-query';
 import { getPostDetail } from '@/api/post';
 import { Post, User, UserComment } from '@/types/ResponseType';
 
 function useUserComment(userData: User) {
-  return useQueries({
+  return useSuspenseQueries({
     queries:
       userData && userData._id !== ''
         ? userData.comments.map((commentItem) => {
@@ -20,9 +20,10 @@ function useUserComment(userData: User) {
                   ...commentItem,
                   commentAuthor: title,
                   comment,
-                  image: data.author.image || '',
+                  image: data.author.image,
                   postAuthor,
-                  postContent: content
+                  postContent: content,
+                  postId: data._id
                 };
 
                 return response;
