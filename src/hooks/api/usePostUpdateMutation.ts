@@ -13,7 +13,7 @@ interface mutationProps {
 }
 
 /** 포스트 수정 mutataion */
-export const usePostUpdateMutation = (channelId: string) => {
+export const usePostUpdateMutation = (postId: string) => {
   const queryClient = useQueryClient();
 
   const postUpdateMutation = useMutation({
@@ -37,7 +37,7 @@ export const usePostUpdateMutation = (channelId: string) => {
       ),
     onSuccess: () => {
       toast.success('포스트가 정상적으로 수정되었습니다.');
-      queryClient.invalidateQueries({ queryKey: ['channelPosts', channelId] });
+      queryClient.invalidateQueries({ queryKey: ['channelPosts', postId] });
     },
     onError: () =>
       toast.error('본인이 작성한 포스트가 아니라면 수정할 수 없습니다.')

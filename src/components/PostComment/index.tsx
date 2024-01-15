@@ -77,13 +77,7 @@ function PostComment() {
       <Style.CommentContainer>
         <Header channelName={state.channelName} />
         <Style.GroudImage src="/src/assets/ShortLogo.svg" />
-        <PrePost
-          postId={postId}
-          color={state.color}
-          title={state.title}
-          content={state.content}
-          channelId={state.channelId}
-        />
+        <PrePost color={state.color} />
         <Comment
           register={register}
           userName={userName}
