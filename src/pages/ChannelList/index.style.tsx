@@ -25,6 +25,13 @@ export const Title = styled.div`
     opacity: 50%;
   }
 `;
+export const Img = styled.img`
+  position: absolute;
+  right: 22%;
+  @media (max-width: 500px) {
+    right: 10%;
+  }
+`;
 export const Body = styled.div`
   padding: 0.5rem;
   padding-top: 1rem;
