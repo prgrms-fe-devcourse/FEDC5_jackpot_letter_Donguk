@@ -2,8 +2,9 @@ import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { Toaster } from 'react-hot-toast';
 import { toast } from 'react-hot-toast';
-import { useLocation, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useAtomValue } from 'jotai';
+import { useGetPostDetailQuery } from '@/hooks/api/useGetPostDetailQuery';
 import { usePostCommentCreateMutation } from '@/hooks/api/usePostCommentCreateMutation';
 // import { useUserInfomationQuery } from '@/hooks/api/useUserInfomationQuery';
 import { channelNameAtom } from '@/store/auth';
@@ -27,9 +28,8 @@ interface useFormProps {
 function PostComment() {
   const userName = useAtomValue(channelNameAtom);
   const { postId } = useParams() as { postId: string };
+  const { data: postDetail } = useGetPostDetailQuery(postId);
   const { mutationCommentCreate } = usePostCommentCreateMutation(postId);
-  // const { data, isPending } = useUserInfomationQuery(userId);
-  const { state } = useLocation();
 
   const {
     register,
@@ -75,9 +75,14 @@ function PostComment() {
   return (
     <>
       <Style.CommentContainer>
-        <Header channelName={state.channelName} />
+        {postDetail && <Header channelName={postDetail?.channel.name} />}
         <Style.GroudImage src="/src/assets/ShortLogo.svg" />
-        <PrePost color={state.color} />
+        {postDetail && (
+          <PrePost
+            postId={postId}
+            postDetail={postDetail}
+          />
+        )}
         <Comment
           register={register}
           userName={userName}

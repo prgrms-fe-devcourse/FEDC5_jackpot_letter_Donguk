@@ -1,19 +1,20 @@
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast, { Toaster } from 'react-hot-toast';
-import { useParams } from 'react-router-dom';
 import { useAtomValue } from 'jotai';
 import { useCommentDeleteMutation } from '@/hooks/api/useCommentDeleteMutation';
-import { useGetPostDetailQuery } from '@/hooks/api/useGetPostDetailQuery';
+// import { useGetPostDetailQuery } from '@/hooks/api/useGetPostDetailQuery';
 import { useLikeCreateMutation } from '@/hooks/api/useLikeCreateMutation';
 import { useLikeDeleteMutation } from '@/hooks/api/useLikeDeleteMutation';
 import { usePostDeleteMutation } from '@/hooks/api/usePostDeleteMutation';
 import { usePostUpdateMutation } from '@/hooks/api/usePostUpdateMutation';
 import { idAtom } from '@/store/auth';
+import { Post } from '@/types/ResponseType';
 import * as Style from './index.style';
 
 interface PrePostProps {
-  color: string;
+  postId: string;
+  postDetail: Post;
 }
 
 interface userFormProps {
@@ -26,17 +27,14 @@ const toastStyle = {
   marginTop: '0.5rem'
 };
 
-function PrePost({ color }: PrePostProps) {
+function PrePost({ postId, postDetail }: PrePostProps) {
   const userId = useAtomValue(idAtom);
-  const { postId } = useParams() as { postId: string };
 
   const { mutationLikeCreate } = useLikeCreateMutation(postId); // 특정 포스트 좋아요 추가
   const { mutationLikeDelete } = useLikeDeleteMutation(postId); // 특정 포스트 좋아요 제거
   const { mutationPostDelete } = usePostDeleteMutation(); // 특정 포스트 제거
   const { mutationPostUpdate } = usePostUpdateMutation(postId); // 특정 포스트 수정
   const { mutationCommentDelete } = useCommentDeleteMutation(postId); // 특정 댓글 제거
-  const { data: postDetail } = useGetPostDetailQuery(postId);
-  console.log(postDetail);
 
   const {
     register,
@@ -117,7 +115,7 @@ function PrePost({ color }: PrePostProps) {
       title: postDetail ? JSON.parse(postDetail.title).title : '',
       content: submitData.prePostContent,
       channelId: postDetail?.channel._id as string,
-      color: color
+      color: postDetail ? JSON.parse(postDetail.title).color : ''
     });
 
     handlePostToggleClick();
