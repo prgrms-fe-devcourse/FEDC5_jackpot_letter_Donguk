@@ -110,8 +110,7 @@ function Post() {
                   display: 'flex',
                   justifyContent: 'space-around',
                   marginTop: '2.5rem'
-                }}
-              >
+                }}>
                 <Button
                   content="예"
                   size="md"
@@ -130,8 +129,7 @@ function Post() {
                 />
               </div>
             </div>
-          }
-        ></Modal>
+          }></Modal>
       )}
       <Style.PostContainer>
         <Header channelName={state.channelName} />
