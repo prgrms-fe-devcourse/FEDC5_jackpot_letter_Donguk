@@ -3,19 +3,10 @@ import { NewNotificationProps } from '@/hooks/api/useCreateNotification';
 import { END_POINTS } from '@/constants/api';
 import { AuthenticationUser, User } from '@/types/ResponseType';
 import { getStorage } from '@/utils/LocalStorage';
+import { NewNotificationProps } from '@/hooks/api/useCreateNotification';
+import { END_POINTS } from '@/constants/api';
+import { AuthenticationUser, User } from '@/types/ResponseType';
 import { axiosInstance } from './axiosInstance';
-
-const ACCESS_TOKEN = getStorage('ACCESS_TOKEN', '');
-
-/** 전체 유저 리스트 */
-export const getUserList = async () => {
-  const { data } = await axios.post<User[]>('/api', {
-    method: 'GET',
-    url: `${END_POINTS.USER_LIST}`
-  });
-
-  return data;
-};
 
 export const getUser = async (userId: string) => {
   const { data } = await axiosInstance.get<User>(
@@ -42,13 +33,7 @@ export const updatePassword = async (password: string) => {
   return data;
 };
 export const getNotifications = async () => {
-  const { data } = await axios.post('/api', {
-    method: 'GET',
-    url: END_POINTS.NOTIFICATION,
-    headers: {
-      Authorization: `bearer ${ACCESS_TOKEN}`
-    }
-  });
+  const { data } = await axiosInstance.get(END_POINTS.NOTIFICATION);
   return data;
 };
 
@@ -92,10 +77,8 @@ export const getUserList = async () => {
 
 /** 유저 온라인 정보 */
 export const getUserOnline = async () => {
-  const { data } = await axios.post<User[]>('/api', {
-    method: 'GET',
-    url: `${END_POINTS.USER_ONLINE}`
+  const { data } = await axiosInstance.get<User[]>(END_POINTS.USER_ONLINE, {
+    authorization: false
   });
-
   return data;
 };

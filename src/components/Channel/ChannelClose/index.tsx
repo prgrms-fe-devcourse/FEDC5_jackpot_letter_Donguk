@@ -12,6 +12,7 @@ type Props = {
 function ChannelClose({ handleIconClick }: Props) {
   const { channelName } = useParams();
   const { data: channelInfo } = useGetChannelInfo(channelName ?? '');
+
   const channelColor = parsedColor(channelInfo?.description);
   return (
     <>

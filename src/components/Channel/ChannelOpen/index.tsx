@@ -25,6 +25,7 @@ function ChannelOpen({ channelId, channelName }: channelOpenProps) {
         channelId={channelId}
         channelName={channelName}
       />
+
     </Body>
   );
 }
