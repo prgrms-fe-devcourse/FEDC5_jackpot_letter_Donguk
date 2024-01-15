@@ -21,7 +21,7 @@ export const Type: { [key: number]: AlarmType } = {
   2: {
     type: 'Follow',
     annouce: '나를 팔로우하기 시작했어요',
-    url_path: 'message',
+    url_path: 'user',
     url_id: 1
   },
   3: {
