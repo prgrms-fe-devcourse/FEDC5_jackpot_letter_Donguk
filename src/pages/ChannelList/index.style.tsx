@@ -36,12 +36,12 @@ export const ChannelIconList = styled.ul`
   ::-webkit-scrollbar {
     display: none;
   }
-  height: 70vh;
+  height: 74vh;
   @media (max-width: 767px) {
     height: 60vh;
   }
-
   color: white;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(auto-fill, minmax(8.5rem, auto));
 `;
