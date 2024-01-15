@@ -5,7 +5,16 @@ export const UserListContainer = styled.div`
   height: calc(100vh - 12.5625rem);
   margin: 1rem auto 0.5rem auto;
   box-sizing: border-box;
-  overflow-y: scroll;
+  overflow: overlay;
+
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: hsla(0, 0%, 42%, 0.3);
+    border-radius: 100px;
+  }
 `;
 
 export const UserList = styled.div`

@@ -3,7 +3,7 @@ import { SizeName, SortName } from './type';
 
 interface ButtonProps {
   content: string;
-  onClick?: () => void;
+  onClick?: (() => void) | ((e: React.MouseEvent<HTMLElement>) => void);
   disabled?: boolean;
   styleOption?: { [key: string]: string };
   type?: 'submit' | 'reset' | 'button';

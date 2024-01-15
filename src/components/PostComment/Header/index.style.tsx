@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 export const HeaderContainer = styled.div`
-  width: 19.375rem;
+  width: 100%;
   height: 3rem;
   margin-top: 2.0625rem;
 `;
@@ -9,7 +9,7 @@ export const HeaderContainer = styled.div`
 export const HeaderInnerText = styled.div`
   ${(props) => props.theme.typography.postTitle};
   line-height: 1.8rem;
-  color: white;
+  // color: white;
 `;
 
 export const HeaderUserName = styled.span`

@@ -18,8 +18,8 @@ export const LetterContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 19.375rem;
-  height: 13.3125rem;
+  width: 100%;
+  height: 20.3125rem;
   border-radius: 20px;
   margin-top: 1.625rem;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);

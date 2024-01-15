@@ -9,10 +9,11 @@ interface mutationProps {
   image?: string | null;
   imageToDeletePublicId?: string;
   channelId: string;
+  color: string;
 }
 
 /** 포스트 수정 mutataion */
-export const usePostUpdateMutation = (channelId: string) => {
+export const usePostUpdateMutation = (postId: string) => {
   const queryClient = useQueryClient();
 
   const postUpdateMutation = useMutation({
@@ -22,7 +23,8 @@ export const usePostUpdateMutation = (channelId: string) => {
       content,
       image = null,
       imageToDeletePublicId = '',
-      channelId
+      channelId,
+      color
     }: mutationProps) =>
       postPostUpdate(
         postId,
@@ -30,11 +32,12 @@ export const usePostUpdateMutation = (channelId: string) => {
         content,
         image,
         imageToDeletePublicId,
-        channelId
+        channelId,
+        color
       ),
     onSuccess: () => {
       toast.success('포스트가 정상적으로 수정되었습니다.');
-      queryClient.invalidateQueries({ queryKey: ['channelPosts', channelId] });
+      queryClient.invalidateQueries({ queryKey: ['postDetail', postId] });
     },
     onError: () =>
       toast.error('본인이 작성한 포스트가 아니라면 수정할 수 없습니다.')

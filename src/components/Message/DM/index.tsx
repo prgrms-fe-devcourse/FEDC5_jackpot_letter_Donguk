@@ -17,7 +17,7 @@ function DM({ receiverData }: DMprops) {
 
   /** 상대가 가장 마지막에 읽은 쪽지 읽음 처리 함수 */
   const readCheck = (idx: number, messageData: Message[]) => {
-    if (idx === messageData.length - 1)
+    if (idx === messageData.length - 1 && messageData[idx].seen === true)
       return <Style.opponentCheck key={idx}>읽음</Style.opponentCheck>;
 
     if (messageData[idx].seen === true && messageData[idx + 1].seen === false)
