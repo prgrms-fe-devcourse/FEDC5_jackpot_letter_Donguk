@@ -4,12 +4,12 @@ import styled from '@emotion/styled';
 const ContainerMixin = css`
   display: flex;
   flex-direction: column;
-  // align-items: center;
-  width: 19.375rem;
+  width: 100%;
   border-radius: 20px;
 `;
 
 export const PrePostAndCommentContainer = styled.div`
+  width: 100%;
   overflow: overlay;
 
   @media (max-height: 667px) {
@@ -142,24 +142,24 @@ export const CommentCountText = styled.span`
   font-size: 0.8rem;
 `;
 
-// ${ContainerMixin}
 export const PreCommentContainer = styled.div`
-  width: 19.375rem;
+  width: 100%;
+  height: 18rem;
+  flex-grow: 1;
   border-radius: 20px;
   position: relative;
-  height: 13.5625rem;
   margin-top: 0.5rem;
 `;
 
 export const PrePostComment = styled.div`
   position: relative;
+  width: 100%;
+  height: auto;
   margin: auto 0;
   color: black;
   background-color: ${(props) => props.theme.palette.sub};
   font-size: 0.8rem;
   font-weight: 400;
-  width: 100%;
-  height: auto;
   line-height: 1rem;
   margin-bottom: 0.6rem;
   padding: 1rem 2.5rem 1rem 0.7rem;

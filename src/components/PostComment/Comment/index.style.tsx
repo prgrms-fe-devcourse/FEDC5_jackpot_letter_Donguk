@@ -1,12 +1,12 @@
 import styled from '@emotion/styled';
 
 export const CommentContainer = styled.div`
-  position: absolute;
+  // position: absolute;
+  width: 100%;
   bottom: 5.2rem;
   background-color: ${(props) => props.theme.palette.sub};
   display: flex;
   flex-direction: column;
-  width: 19.375rem;
   height: 8.1875rem;
   border-radius: 10px;
   margin-top: 0.7rem;

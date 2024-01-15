@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 export const HeaderContainer = styled.div`
-  width: 19.375rem;
+  width: 100%;
   height: 3rem;
   margin-top: 2.0625rem;
 `;

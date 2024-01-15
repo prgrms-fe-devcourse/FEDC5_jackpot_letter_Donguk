@@ -4,7 +4,6 @@ export const DmContainer = styled.div`
   width: 100%;
   margin: 0 auto;
   margin-top: 1rem;
-  overflow-y: scroll;
 `;
 
 export const IntroduceContainer = styled.div`
