@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
 import { PATH } from '@/constants/path';
 import { PATHNAME } from '@/constants/sidebar';
-import { UserLike } from '@/types/ResponseType';
+import { UserPost } from '@/types/ResponseType';
 import Empty from '../Empty';
 import * as Style from './indext.style';
 
 interface PostListProps {
-  posts: UserLike[];
+  posts: UserPost[];
   type: 'post' | 'like';
 }
 
