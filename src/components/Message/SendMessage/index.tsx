@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useAtomValue } from 'jotai';
+import { useCreateNotification } from '@/hooks/api/useCreateNotification';
 import { useMessageCreateMutation } from '@/hooks/api/useMessageCreateMutation';
-import { useNewNotification } from '@/hooks/api/useNewNotification';
 import { tokenAtom } from '@/store/auth';
 import * as Style from './index.style';
 
@@ -19,7 +19,7 @@ function SendMessage({ receiverId }: sendMessageProps) {
   const JWTtoken = useAtomValue(tokenAtom);
   const { mutate: messageMutate, data: messageData } =
     useMessageCreateMutation(receiverId);
-  const { mutate: notificationMutate } = useNewNotification();
+  const { mutate: notificationMutate } = useCreateNotification();
 
   const {
     register,

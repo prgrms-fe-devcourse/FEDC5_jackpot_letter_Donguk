@@ -6,7 +6,7 @@ import Account from '@/components/Account';
 import Description from '@/components/Account/Description';
 import FormInput from '@/components/Account/FormInput';
 import SignInBtn from '@/components/Account/SignInBtn';
-import { useSignInMutation } from '@/hooks/api/useSignInMutation';
+import { useSignIn } from '@/hooks/api/useSignIn';
 import { PATH } from '@/constants/path';
 import * as Style from '@/pages/SignUpPage/index.style';
 import { SignInSchema } from '@/utils/validation';
@@ -20,7 +20,7 @@ function SignInPage() {
     formState: { errors }
   } = useForm<SignInSchemaType>({ resolver: zodResolver(SignInSchema) });
 
-  const { mutateSignIn } = useSignInMutation();
+  const { mutateSignIn } = useSignIn();
 
   const handleSignInSubmit: SubmitHandler<SignInSchemaType> = (signInData) => {
     mutateSignIn(signInData);

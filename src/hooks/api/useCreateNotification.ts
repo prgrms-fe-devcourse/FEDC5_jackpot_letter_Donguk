@@ -9,7 +9,7 @@ export interface NewNotificationProps {
   postId: string | null;
 }
 
-export const useNewNotification = () => {
+export const useCreateNotification = () => {
   const queryClient = useQueryClient();
 
   return useMutation({

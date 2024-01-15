@@ -5,13 +5,13 @@ import UserList from '@components/MessageList/UserList';
 import { useAtomValue } from 'jotai';
 // import { useGetMessageConversations } from '@/hooks/api/useGetMessageConversations.ts';
 import useUser from '@/hooks/api/useUser';
-import { useUserListQuery } from '@/hooks/api/useUserListDataQuery';
+import { useUserList } from '@/hooks/api/useUserList';
 import { idAtom } from '@/store/auth';
 import { User } from '@/types/ResponseType';
 
 function MessageListPage() {
   const userId = useAtomValue(idAtom);
-  const { data: userListData } = useUserListQuery(); // 전체 데이터 리스트
+  const { data: userListData } = useUserList(); // 전체 데이터 리스트
   const [userFilterData, setUserFilterData] = useState<User[]>();
   const { data: userData } = useUser(userId); // userId 가 없을때 오류가 생김
 

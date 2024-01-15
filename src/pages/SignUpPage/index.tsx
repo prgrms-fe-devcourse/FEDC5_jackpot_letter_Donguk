@@ -7,8 +7,8 @@ import Account from '@/components/Account';
 import FormInput from '@/components/Account/FormInput';
 import InputName from '@/components/Account/InputName';
 import Button from '@/components/Common/Button';
-import { useSignUpMutation } from '@/hooks/api/useSignUpMutation';
-import { useUserListQuery } from '@/hooks/api/useUserListQuery';
+import { useSignUp } from '@/hooks/api/useSignUp';
+import { useUserList } from '@/hooks/api/useUserList';
 import { SignUpSchema } from '@/utils/validation';
 import * as Style from './index.style';
 
@@ -25,8 +25,8 @@ function SignUpPage() {
   const [isDuplicate, setIsDuplicate] = useState(false);
   const [isDuplicateChecked, setIsDuplicateChecked] = useState(false);
 
-  const { mutateSignUp } = useSignUpMutation();
-  const { data: userList } = useUserListQuery();
+  const { mutateSignUp } = useSignUp();
+  const { data: userList } = useUserList();
 
   const fullNameValue = watch('fullName', '');
 
