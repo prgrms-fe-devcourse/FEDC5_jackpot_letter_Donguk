@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import CustomChannelIcon from '@/components/Common/CustomChannelIcon';
-import useChannelQuery from '@/hooks/api/useChannelQuery';
+import useGetChannelInfo from '@/hooks/api/useGetChannelInfo';
 import PointerImg from '@/assets/Pointer.svg';
 import { parsedColor } from '@/utils/parse';
 import { AnnounceBox, ChannelIcon, Pointer } from './index.style';
@@ -11,14 +11,15 @@ type Props = {
 
 function ChannelClose({ handleIconClick }: Props) {
   const { channelName } = useParams();
-  const { data: channelInfo } = useChannelQuery(channelName ?? '');
+  const { data: channelInfo } = useGetChannelInfo(channelName ?? '');
 
   const channelColor = parsedColor(channelInfo?.description);
   return (
     <>
       <ChannelIcon
         role="button"
-        onClick={handleIconClick}>
+        onClick={handleIconClick}
+      >
         <CustomChannelIcon
           color={channelColor}
           size={240}

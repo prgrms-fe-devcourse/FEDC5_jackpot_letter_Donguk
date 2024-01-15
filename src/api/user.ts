@@ -1,18 +1,12 @@
 import axios from 'axios';
-import { NewNotificationProps } from '@/hooks/api/useNewNotification';
+import { NewNotificationProps } from '@/hooks/api/useCreateNotification';
 import { END_POINTS } from '@/constants/api';
-import { User } from '@/types/ResponseType';
+import { AuthenticationUser, User } from '@/types/ResponseType';
 import { getStorage } from '@/utils/LocalStorage';
+import { NewNotificationProps } from '@/hooks/api/useCreateNotification';
+import { END_POINTS } from '@/constants/api';
+import { AuthenticationUser, User } from '@/types/ResponseType';
 import { axiosInstance } from './axiosInstance';
-
-const ACCESS_TOKEN = getStorage('ACCESS_TOKEN', '');
-
-/** 전체 유저 리스트 */
-export const getUserList = async () => {
-  const { data } = await axiosInstance.get<User[]>(`${END_POINTS.USER_LIST}`);
-
-  return data;
-};
 
 export const getUser = async (userId: string) => {
   if (!userId) return false;
@@ -41,13 +35,7 @@ export const updatePassword = async (password: string) => {
   return data;
 };
 export const getNotifications = async () => {
-  const { data } = await axios.post('/api', {
-    method: 'GET',
-    url: END_POINTS.NOTIFICATION,
-    headers: {
-      Authorization: `bearer ${ACCESS_TOKEN}`
-    }
-  });
+  const { data } = await axiosInstance.get(END_POINTS.NOTIFICATION);
   return data;
 };
 
@@ -64,6 +52,11 @@ export const updateUserPhoto = async (isCover: boolean, image: File) => {
   return data;
 };
 
+export const checkNotifications = async () => {
+  const { data } = await axiosInstance.put(END_POINTS.PUT_NOTIFICATION);
+  return data;
+};
+
 /** 알림 확인 처리 */
 export const updateNotification = async () => {
   await axiosInstance.put<void>(END_POINTS.PUT_NOTIFICATION);
@@ -73,22 +66,27 @@ export const updateNotification = async () => {
 export const createNotification = async (
   notificationOption: NewNotificationProps
 ) => {
-  const { data } = await axiosInstance.post<Notification>(
+  const { data } = await axiosInstance.post(
     END_POINTS.POST_NOTIFICATION,
+    notificationOption
+  );
+  return data;
+};
+
+export const getUserList = async () => {
+  const { data } = await axiosInstance.get<AuthenticationUser[]>(
+    END_POINTS.USER_LIST,
     {
-      ...notificationOption
+      authorization: false
     }
   );
-
   return data;
 };
 
 /** 유저 온라인 정보 */
 export const getUserOnline = async () => {
-  const { data } = await axios.post<User[]>('/api', {
-    method: 'GET',
-    url: `${END_POINTS.USER_ONLINE}`
+  const { data } = await axiosInstance.get<User[]>(END_POINTS.USER_ONLINE, {
+    authorization: false
   });
-
   return data;
 };

@@ -28,8 +28,7 @@ function Button(props: ButtonProps) {
       kind={kind}
       size={size}
       styleOption={styleOption}
-      onClick={onClick}
-    >
+      onClick={onClick}>
       {content}
     </ButtonStyle>
   );

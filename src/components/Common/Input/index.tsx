@@ -7,6 +7,7 @@ interface InputProps<T extends FieldValues> {
   color?: string;
   type: string;
   label: string;
+  labelColor?: string;
   value: Path<T>;
   register: UseFormRegister<T>;
   required: boolean;
@@ -18,13 +19,14 @@ function Input<T extends FieldValues>({
   type = 'text',
   color = '',
   label,
+  labelColor,
   value,
   register,
   required
 }: InputProps<T>) {
   return (
     <Style.InputContainer>
-      <Style.Label>{label}</Style.Label>
+      <Style.Label color={labelColor}>{label}</Style.Label>
       <Style.StyledInput
         width={width}
         height={height}

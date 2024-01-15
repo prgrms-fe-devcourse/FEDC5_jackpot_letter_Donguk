@@ -1,30 +1,66 @@
-import { useAtomValue } from 'jotai';
-import Follow from '@/components/Mypage/Follow';
-import useUserFollowList from '@/hooks/api/useUserFollowList';
-import { userAtom } from '@/store/user';
-import { FollowType } from '@/types/ResponseType';
+import { Suspense, useRef, useState } from 'react';
+import FollowLists from '@/components/Mypage/FollowLists';
+import FollowSkeleton from '@/components/Mypage/FollowSkeleton';
+import { css } from '@emotion/react';
+import * as Style from './index.style';
 
 function FollowPage() {
-  const userData = useAtomValue(userAtom);
+  const [selected, setSelected] = useState('follower');
+  const scrollRef = useRef<HTMLDivElement>(null);
 
-  const followings = useUserFollowList(userData.following, 'followings');
-  const followers = useUserFollowList(userData.followers, 'followers');
+  const handleFollowTypeClick = (type: string) => {
+    if (selected === type) return;
+    setSelected(type === 'follower' ? 'follower' : 'following');
+
+    const width = scrollRef.current?.getClientRects()[0].width;
+
+    if (scrollRef && scrollRef.current) {
+      const move = selected === 'following' ? -width! : width!;
+      scrollRef.current.scrollBy({ left: move, top: 0, behavior: 'smooth' });
+    }
+  };
 
   return (
-    <>
-      <Follow
-        followers={
-          !followers.pending && followers.data.length
-            ? (followers.data as FollowType[])
-            : []
-        }
-        followings={
-          !followings.pending && followings.data.length
-            ? (followings.data as FollowType[])
-            : []
-        }
-      />
-    </>
+    <Style.Container className="container">
+      <div className="follow-title-wrap">
+        <span
+          css={css`
+            color: ${selected === 'follower' ? 'black' : '#d2d2d2'};
+          `}
+          onClick={() => handleFollowTypeClick('follower')}
+        >
+          팔로워
+        </span>
+        <span
+          css={css`
+            color: ${selected === 'following' ? 'black' : '#d2d2d2'};
+          `}
+          onClick={() => handleFollowTypeClick('following')}
+        >
+          팔로잉
+        </span>
+      </div>
+      <Style.UnderLine className={selected === 'following' ? 'active' : ''} />
+      <div
+        ref={scrollRef}
+        css={css`
+          overflow-x: hidden;
+        `}
+      >
+        <div className="follow-list-container">
+          <Suspense
+            fallback={
+              <>
+                <FollowSkeleton />
+                <FollowSkeleton />
+              </>
+            }
+          >
+            <FollowLists />
+          </Suspense>
+        </div>
+      </div>
+    </Style.Container>
   );
 }
 

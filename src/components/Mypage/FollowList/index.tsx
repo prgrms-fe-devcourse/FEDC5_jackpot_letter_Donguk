@@ -14,7 +14,7 @@ function FollowList({ type, followList }: FollowListProps) {
         {followList.map((follow) => (
           <FollowListItem
             key={follow._id}
-            image={follow.image ? follow.image : ''}
+            image={follow.image}
             name={follow.name}
             _id={follow._id}
             type={type}

@@ -1,5 +1,7 @@
-import { ReactElement } from 'react';
+import { ReactElement, Suspense } from 'react';
+import CommentSkeleton from '@/components/Mypage/CommentSkeleton';
 import PasswordUpdate from '@/components/Mypage/PasswordUpdate';
+import PostSkeleton from '@/components/Mypage/PostSkeleton';
 import ProfileUpdate from '@/components/Mypage/ProfileUpdate';
 import Post from '@/components/Post';
 import Comment from '@/components/PostComment';
@@ -31,10 +33,21 @@ interface userRoutes {
   mypage: Array<RouteProps>;
 }
 
+interface SuspenseCompProps {
+  children: ReactElement;
+}
+
+function SuspenseComponent({ children }: SuspenseCompProps) {
+  return <Suspense fallback={null}>{children}</Suspense>;
+}
+
+function PostSuspenseComponent({ children }: SuspenseCompProps) {
+  return <Suspense fallback={<PostSkeleton />}>{children}</Suspense>;
+}
+
 // 로그인 상태 접근
 const userRoutes: userRoutes = {
   page: [
-    { path: PATH.MYPAGE, exact: true, component: <Mypage /> },
     {
       path: PATH.CHANNEL_CREATE,
       exact: true,
@@ -45,23 +58,53 @@ const userRoutes: userRoutes = {
     { path: `${PATH.MESSAGE}/:receiverId`, exact: true, component: <Message /> }
   ],
   mypage: [
+    { path: PATH.MYPAGE, exact: true, component: <Mypage /> },
+
     {
       path: PATH.MYPAGE_PROFILE_UPDATE,
       exact: true,
       component: <ProfileUpdate />
     },
-    { path: PATH.MYPAGE_FOLLOW, exact: true, component: <FollowPage /> },
-    { path: PATH.MYPGE_POST_LIST, exact: true, component: <PostListPage /> },
-    { path: PATH.MYPGE_LIKE_LIST, exact: true, component: <LikeListPage /> },
+    {
+      path: PATH.MYPAGE_FOLLOW,
+      exact: true,
+      component: <FollowPage />
+    },
+    {
+      path: PATH.MYPGE_POST_LIST,
+      exact: true,
+      component: (
+        <PostSuspenseComponent>
+          <PostListPage />
+        </PostSuspenseComponent>
+      )
+    },
+    {
+      path: PATH.MYPGE_LIKE_LIST,
+      exact: true,
+      component: (
+        <PostSuspenseComponent>
+          <LikeListPage />
+        </PostSuspenseComponent>
+      )
+    },
     {
       path: PATH.MYPGE_RECEIVED_POST_LIST,
       exact: true,
-      component: <ReceivedPostListPage />
+      component: (
+        <PostSuspenseComponent>
+          <ReceivedPostListPage />
+        </PostSuspenseComponent>
+      )
     },
     {
       path: PATH.MYPGE_COMMNET_LIST,
       exact: true,
-      component: <CommentListPage />
+      component: (
+        <Suspense fallback={<CommentSkeleton />}>
+          <CommentListPage />
+        </Suspense>
+      )
     },
     {
       path: PATH.MYPGE_PASSWORD_UPDATE,
@@ -83,7 +126,11 @@ const commonRoutes: Array<RouteProps> = [
   {
     path: `${PATH.CHANNEL}/:channelName`,
     exact: false,
-    component: <Channel />
+    component: (
+      <SuspenseComponent>
+        <Channel />
+      </SuspenseComponent>
+    )
   },
   { path: PATH.POST_CREATE, exact: true, component: <PostCreate /> },
   { path: `${PATH.USER}`, exact: true, component: <UserPage /> },

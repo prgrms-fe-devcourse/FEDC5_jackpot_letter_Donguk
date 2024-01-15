@@ -8,15 +8,13 @@ import * as Style from './indext.style';
 interface PostListProps {
   posts: UserPost[];
   type: 'post' | 'like';
-  isLoading?: boolean;
 }
 
-function PostList({ posts, type, isLoading }: PostListProps) {
+function PostList({ posts, type }: PostListProps) {
   const selectedSideMenu = PATHNAME[location.pathname];
-
   return (
     <>
-      {!isLoading && posts.length === 0 ? (
+      {posts.length === 0 ? (
         <Empty text={`${selectedSideMenu}가`} />
       ) : (
         <div className="container">
@@ -26,7 +24,7 @@ function PostList({ posts, type, isLoading }: PostListProps) {
                 to={`${PATH.COMMENT}/${_id}`}
                 key={_id}
               >
-                <Style.PostItem id={_id}>
+                <Style.PostItem>
                   <span className="post-title">{title}</span>
                   <span className="post-content">{content}</span>
                   <Style.PostInfo>

@@ -5,6 +5,5 @@ export const ChannelButton = styled.div`
   justify-content: space-evenly;
   position: absolute;
   bottom: 2rem;
-  left: 2rem;
-  gap: 1rem;
+  width: 100%;
 `;

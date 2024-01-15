@@ -1,13 +1,12 @@
-import { useNavigate } from 'react-router-dom';
 import ChannelPosts from '@/components/Channel/ChannelPosts';
-import Button from '@/components/Common/Button';
 import OpenChannel from '@/components/Common/CustomChannelIcon/OpenChannel';
-import useChannelPostsQuery from '@/hooks/api/useChannelPostsQuery';
-import useChannelQuery from '@/hooks/api/useChannelQuery';
+import useGetChannelInfo from '@/hooks/api/useGetChannelInfo';
+import useGetChannelPosts from '@/hooks/api/useGetChannelPosts';
 import { parsedColor } from '@/utils/parse';
-import { Body, ChannelButton, OpenIcon } from './index.style';
+import ChannelButton from '../ChannelButton';
+import { Body, OpenIcon } from './index.style';
 
-interface channelOpenProps {
+export interface channelOpenProps {
   channelId: string;
   channelName: string;
   channelDescription: string;
@@ -34,21 +33,8 @@ function ChannelOpen({
         channelId={channelId}
       />
       <ChannelButton>
-        <Button
-          onClick={() =>
-            navigate('/post/new', {
-              state: { channelName, channelId, channelDescription }
-            })
-          }
-          content="마음 전달하기"
-          size="md"
-          kind={'assistant'}
-        />
-        <Button
-          onClick={() => navigate('/channel/new')}
-          content="나도 만들기"
-          size="md"
-        />
+        channelId={channelId}
+        channelName={channelName}
       </ChannelButton>
     </Body>
   );

@@ -37,33 +37,25 @@ function UserList({ userName, filteringData }: userListProps) {
   return (
     <>
       <Style.UserListContainer>
-        {messageListData &&
-          messageListData.map(
-            ({ fullName, image, isOnline, _id, receptionMessage }) =>
-              fullName !== userName && (
-                <Style.UserList
-                  key={_id}
-                  onClick={() => navigate(`/message/${_id}`)}>
-                  <Style.UserProfile>
-                    <ProfileImg
-                      width={2}
-                      height={2}
-                      alt="messageList userProfile Image"
-                      image={image ? image : ''}
-                    />
-                    <Style.UserOnline isColor={isOnline} />
-                  </Style.UserProfile>
-                  <Style.UserName>{fullName}</Style.UserName>
-                  {recentMessageCount(receptionMessage) === 0 ? (
-                    false
-                  ) : (
-                    <Style.MessageCount>
-                      {recentMessageCount(receptionMessage)}
-                    </Style.MessageCount>
-                  )}
-                </Style.UserList>
-              )
-          )}
+        {filteringData.map(
+          ({ fullName, image, isOnline, _id }) =>
+            fullName !== userName && (
+              <Style.UserList
+                key={_id}
+                onClick={() => navigate(`/message/${_id}`)}>
+                <Style.UserProfile>
+                  <ProfileImg
+                    width={2}
+                    height={2}
+                    alt="messageList userProfile Image"
+                    image={image ? image : ''}
+                  />
+                  <Style.UserOnline isColor={isOnline} />
+                </Style.UserProfile>
+                <Style.UserName>{fullName}</Style.UserName>
+              </Style.UserList>
+            )
+        )}
       </Style.UserListContainer>
     </>
   );

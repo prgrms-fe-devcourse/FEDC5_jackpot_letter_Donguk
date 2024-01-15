@@ -5,10 +5,10 @@ export const InputContainer = styled.div`
   flex-direction: column;
 `;
 
-export const Label = styled.label(({ theme }) => ({
+export const Label = styled.p(({ theme, color }) => ({
   paddingBottom: '0.3rem',
   ...theme.typography.label,
-  color: theme.palette.gray_1
+  color: color
 }));
 
 export const StyledInput = styled.input(({ theme, width, height, color }) => ({
@@ -19,5 +19,5 @@ export const StyledInput = styled.input(({ theme, width, height, color }) => ({
     color === 'error'
       ? `1px solid ${theme.palette.error}`
       : `0.9px solid ${theme.palette.gray_2}`,
-  borderRadius: '3px'
+  'border-radius': '3px'
 }));

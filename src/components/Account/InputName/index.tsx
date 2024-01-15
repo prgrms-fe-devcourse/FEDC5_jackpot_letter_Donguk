@@ -2,8 +2,9 @@ import { FieldValues, Path } from 'react-hook-form';
 import { ErrorMessage } from '@hookform/error-message';
 import Button from '@/components/Common/Button';
 import Input from '@/components/Common/Input';
-import Description from '../../Description';
-import { FormInputProps } from '../../FormInput';
+import { theme } from '@/theme';
+import Description from '../Description';
+import { FormInputProps } from '../FormInput';
 import { Container } from './index.style';
 
 interface InputNameProps<T extends FieldValues> extends FormInputProps<T> {
@@ -21,6 +22,7 @@ function InputName<T extends FieldValues>({
         <Input
           width="9.5rem"
           label="이름(채널)"
+          labelColor={theme.palette.gray_1}
           value={'fullName' as Path<T>}
           type="text"
           height="2.47rem"
