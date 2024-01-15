@@ -5,8 +5,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import Account from '@/components/Account';
 import Button from '@/components/Common/Button';
-import { useSignUpMutation } from '@/hooks/api/useSignUpMutation';
-import { useUserListQuery } from '@/hooks/api/useUserListQuery';
+import { useSignUp } from '@/hooks/api/useSignUp';
+import { useUserList } from '@/hooks/api/useUserList';
 import { SignUpSchema } from '@/utils/validation';
 import FormInput from '../FormInput';
 import InputName from './InputName';
@@ -25,8 +25,8 @@ function SignUpForm() {
   const [isDuplicate, setIsDuplicate] = useState(false);
   const [isDuplicateChecked, setIsDuplicateChecked] = useState(false);
 
-  const { mutateSignUp } = useSignUpMutation();
-  const { data: userList } = useUserListQuery();
+  const { mutateSignUp } = useSignUp();
+  const { data: userList } = useUserList();
 
   const fullNameValue = watch('fullName', '');
 

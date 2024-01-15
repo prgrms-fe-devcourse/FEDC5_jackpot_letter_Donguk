@@ -7,9 +7,8 @@ export interface NewNotificationProps {
   userId: string;
   postId: string | null;
 }
-
-export const useNewNotification = () => {
-  const createNotificatioMutation = useMutation({
+export const useCreateNotification = () => {
+  const mutation = useMutation({
     mutationFn: (notificationOption: NewNotificationProps) =>
       createNotification(notificationOption),
     onError: (e) => {
@@ -17,5 +16,5 @@ export const useNewNotification = () => {
     }
   });
 
-  return { mutateNewNotification: createNotificatioMutation.mutate };
+  return { mutate: mutation.mutate };
 };
