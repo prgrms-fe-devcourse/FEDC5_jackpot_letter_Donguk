@@ -36,18 +36,27 @@ export const END_POINTS = {
   MESSAGES_CREATE: '/messages/create',
   MESSAGES_CONVERSATIONS: '/messages/conversations',
   MESSAGES_UPDATE_SEEN: '/messages/update-seen'
-};
+} as const;
 
-export const ACCESS_TOKEN_KEY = 'ACCESS_TOKEN';
-export const ACCESS_USER_ID = 'ACCESS_USER_ID';
-export const ACCESS_CHANNEL_NAME = 'ACCESS_CHANNEL_NAME';
+export const ACCESS_TOKEN_KEY = 'ACCESS_TOKEN' as const;
+export const ACCESS_USER_ID = 'ACCESS_USER_ID' as const;
+export const ACCESS_CHANNEL_NAME = 'ACCESS_CHANNEL_NAME' as const;
 
-export const DARKMODE = 'DARK_MODE';
+export const DARKMODE = 'DARK_MODE' as const;
 
 export const ERROR_MESSAGE = {
   'Your email and password combination does not match an account.':
     '등록되지 않은 아이디이거나 아이디 또는 비밀번호를 잘못 입력했습니다',
   'The email address is already being used.': '이미 사용중인 이메일 입니다.'
-};
+} as const;
 
-export const INTERNAL_SERVER_ERROR = 500;
+export const HTTP_STATUS_CODE = {
+  SUCCESS: 200,
+  CREATED: 201,
+  NO_CONTENT: 204,
+  BAD_REQUEST: 400,
+  UNAUTHORIZED: 401,
+  NOT_FOUND: 404,
+  CONTENT_TOO_LARGE: 413,
+  INTERNAL_SERVER_ERROR: 500
+} as const;

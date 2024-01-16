@@ -30,8 +30,8 @@ export const useSignUp = () => {
       toast.success('회원가입 성공');
     },
     onError: (error: ErrorResponseData) => {
-      if (error.customMessage) {
-        toast.error(error.customMessage);
+      if (error.message) {
+        toast.error(error.message);
       }
       setIsLoggedIn(false);
     }

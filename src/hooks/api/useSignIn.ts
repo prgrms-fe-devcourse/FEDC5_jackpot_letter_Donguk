@@ -33,11 +33,11 @@ export const useSignIn = () => {
       queryClient.invalidateQueries({ queryKey: ['userList'] });
     },
     onError: (error: ErrorResponseData) => {
-      if (error.customMessage) {
-        toast.error(error.customMessage);
+      if (error.message) {
+        toast.error(error.message);
+      } else {
+        toast.error('로그인 실패');
       }
-      setIsLoggedIn(false);
-      toast.error('로그인 실패');
     }
   });
 

@@ -29,8 +29,7 @@ export const useSignOut = () => {
 
       queryClient.invalidateQueries({ queryKey: ['userList'] });
     },
-    onError: (error) => {
-      console.log(error);
+    onError: () => {
       toast.error('잠시후 다시 이용해주세요');
     }
   });
