@@ -1,3 +1,4 @@
+import { cpSync } from 'fs';
 import { BgType } from '@/components/ChannelTemplate/SelectBackground/type';
 import {
   ColorName,
@@ -32,5 +33,10 @@ export const parsedPosts = (posts: Post[]) => {
 
 export const getImageUrl = (name: string) => {
   const url = `../assets/images/background/${name}.png`;
-  return new URL(url, import.meta.url).href;
+  const parsedUrl = new URL(url, import.meta.url).href;
+  const url2 = `/assets/images/background/${name}.png`;
+  console.log(parsedUrl);
+  const parsedUrl2 = new URL(url2, import.meta.url).href;
+  console.log(parsedUrl, parsedUrl2);
+  return parsedUrl2;
 };
