@@ -5,7 +5,7 @@ import { BgName, BgType } from './type';
 export const Background = styled.div<{ selectedValue: BgName }>`
   position: relative;
   height: 100vh;
-  background-image: ${({ selectedValue }) => getImageUrl(selectedValue)}
+  background-image: url(${({ selectedValue }) => getImageUrl(selectedValue)});
   background-repeat: no-repeat;
   background-size: cover;
   color: ${({ selectedValue }) =>
