@@ -27,7 +27,6 @@ function SelectBackground({ option, setOption }: Props) {
         {Object.keys(BgType).map((item) => (
           <Li key={`channel-background${item}`}>
             <Item
-              size={'5.5rem'}
               css={option.background === item && selectedStyle}
               src={`${
                 import.meta.env.VITE_PUBLIC_URL

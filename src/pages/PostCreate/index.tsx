@@ -14,12 +14,6 @@ import { ChannelButton } from '../ChannelTemplate/index.style';
 import { Body } from './index.style';
 
 export const selectedStyle = css`
-  width: calc(5rem - 7px);
-  height: calc(5rem - 7px);
-  @media (max-width: 767px) {
-    width: calc(2rem - 7px);
-    height: calc(2rem - 7px);
-  }
   border: 3px solid ${theme.palette.main};
 `;
 
@@ -43,13 +37,14 @@ function PostCreate() {
             onClick={() => setColor(colorName as ColorName)}
             role="button">
             <Item
-              size={'2rem'}
               src={`${
                 import.meta.env.VITE_PUBLIC_URL
               }/images/letter/${colorName}.png`}
               css={colorName === color && selectedStyle}
               styleOption={{
-                padding: '2rem'
+                padding: '1rem',
+                width: 'calc(90% - 2.5rem)',
+                height: 'calc(90% - 2.5rem)'
               }}
             />
           </Li>

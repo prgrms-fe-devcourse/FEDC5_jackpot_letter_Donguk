@@ -13,18 +13,12 @@ export const Background = styled.div<{ selectedValue: BgName }>`
 `;
 
 export const Item = styled.img<{
-  size: string;
   styleOption?: { [key: string]: string };
 }>`
-  margin: 0.5rem;
-  width: ${({ size }) => `calc(${size} + 3rem)`};
-  height: ${({ size }) => `calc(${size} + 3rem)`};
-  @media (max-width: 767px) {
-    width: ${({ size }) => size};
-    height: ${({ size }) => size};
-  }
+  width: 90%;
+  object-content: fill;
+  height: 90%;
   border-radius: 10px;
-  object-fit: fill;
   box-shadow: 1px 1px 7px ${({ theme }) => theme.palette.gray_2};
   ${({ styleOption }) => styleOption}
 `;

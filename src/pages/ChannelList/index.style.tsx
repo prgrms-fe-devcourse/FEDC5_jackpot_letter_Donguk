@@ -36,19 +36,11 @@ export const Body = styled.div`
   padding-top: 1rem;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
 `;
+
 export const ChannelIconList = styled.ul`
   margin: auto;
-  width: 100%;
-  overflow-y: scroll;
-  ::-webkit-scrollbar {
-    display: none;
-  }
-  height: 74vh;
-  @media (max-width: 767px) {
-    height: 63vh;
-  }
+  width: 90%;
   color: white;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(auto-fill, minmax(8.5rem, auto));
+  grid-template-columns: repeat(3, 33%);
 `;
