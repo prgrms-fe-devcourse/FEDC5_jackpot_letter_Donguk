@@ -6,9 +6,7 @@ import { Header, NotificationContainer } from './index.style';
 
 function AlarmList() {
   const { data } = useGetNotifications();
-
   const { mutate } = useCheckNotifications();
-
   const handleClickButton = () => {
     mutate();
   };
