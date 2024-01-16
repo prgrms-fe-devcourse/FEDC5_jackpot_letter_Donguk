@@ -9,6 +9,10 @@ import { useLikeCreateMutation } from '@/hooks/api/useLikeCreateMutation';
 import { useLikeDeleteMutation } from '@/hooks/api/useLikeDeleteMutation';
 import { usePostDeleteMutation } from '@/hooks/api/usePostDeleteMutation';
 import { usePostUpdateMutation } from '@/hooks/api/usePostUpdateMutation';
+import likeIcon from '@/assets/Like.svg';
+import completeIcon from '@/assets/complete.svg';
+import deleteIcon from '@/assets/delete.svg';
+import editIcon from '@/assets/edit.svg';
 import { idAtom } from '@/store/auth';
 import { Post } from '@/types/ResponseType';
 import * as Style from './index.style';
@@ -156,23 +160,23 @@ function PrePost({ darkMode, postId, postDetail }: PrePostProps) {
           )}
           {postState ? (
             <Style.CompleteImg
-              src="/src/assets/complete.svg"
+              src={completeIcon}
               onClick={handleSubmit(onSubmit)}
             />
           ) : (
             <Style.EditImg
-              src="/src/assets/edit.svg"
+              src={editIcon}
               onClick={handlePostToggleClick}
             />
           )}
           <Style.DeleteImg
-            src="/src/assets/delete.svg"
+            src={deleteIcon}
             onClick={handleDeletePostClick}
           />
         </Style.PrePostContainer>
         <Style.LikeCommentContainer>
           <Style.LikeLogoContainer onClick={handleLikeCreateClick}>
-            <Style.LikeLogo src="/src/assets/Like.svg" />
+            <Style.LikeLogo src={likeIcon} />
             <Style.ListCount darkMode={darkMode}>
               {postDetail?.likes.length}
             </Style.ListCount>
@@ -197,7 +201,7 @@ function PrePost({ darkMode, postId, postDetail }: PrePostProps) {
                   </Style.PrePostUserName>
                   {titleAndCommentParsing(comment).comment}
                   <Style.CommentDeleteImg
-                    src="/src/assets/delete.svg"
+                    src={deleteIcon}
                     data-id={_id}
                     onClick={handleDeleteCommentClick}
                   />
