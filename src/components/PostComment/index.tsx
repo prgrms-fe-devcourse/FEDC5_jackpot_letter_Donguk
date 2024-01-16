@@ -78,7 +78,6 @@ function PostComment() {
     <>
       <Style.CommentContainer>
         {postDetail && <Header channelName={postDetail?.channel.name} />}
-        {/* <Style.GroudImage src="/src/assets/ShortLogo.svg" /> */}
         <div
           style={{
             position: 'absolute',

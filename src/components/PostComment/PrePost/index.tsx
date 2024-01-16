@@ -4,7 +4,6 @@ import toast, { Toaster } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { useAtomValue } from 'jotai';
 import { useCommentDeleteMutation } from '@/hooks/api/useCommentDeleteMutation';
-// import { useGetPostDetailQuery } from '@/hooks/api/useGetPostDetailQuery';
 import { useLikeCreateMutation } from '@/hooks/api/useLikeCreateMutation';
 import { useLikeDeleteMutation } from '@/hooks/api/useLikeDeleteMutation';
 import { usePostDeleteMutation } from '@/hooks/api/usePostDeleteMutation';

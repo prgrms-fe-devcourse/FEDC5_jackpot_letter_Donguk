@@ -24,8 +24,6 @@ function Footer() {
           size="lg"
           type="submit"
           content="메시지 남기기"
-
-          // onClick={handleSubmit(onSubmit)}
         />
       </Style.FooterContainer>
     </>
