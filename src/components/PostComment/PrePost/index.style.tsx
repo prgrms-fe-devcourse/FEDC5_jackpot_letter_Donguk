@@ -13,16 +13,12 @@ export const PrePostAndCommentContainer = styled.div`
   overflow: overlay;
 
   @media (max-height: 667px) {
-    height: 22rem;
+    height: 20rem;
   }
+
   ::-webkit-scrollbar {
     width: 0;
   }
-
-  // ::-webkit-scrollbar-thumb {
-  //   background-color: hsla(0, 0%, 42%, 0.3);
-  //   border-radius: 100px;
-  // }
 `;
 
 export const PrePostContainer = styled.div<{ darkMode: boolean }>`
