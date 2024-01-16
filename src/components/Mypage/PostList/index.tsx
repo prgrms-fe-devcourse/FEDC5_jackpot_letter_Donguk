@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom';
+import { useAtomValue } from 'jotai';
 import { PATH } from '@/constants/path';
 import { PATHNAME } from '@/constants/sidebar';
+import { darkAtom } from '@/store/theme';
+import { theme } from '@/theme';
 import { UserPost } from '@/types/ResponseType';
 import Empty from '../Empty';
 import * as Style from './indext.style';
@@ -12,6 +15,8 @@ interface PostListProps {
 
 function PostList({ posts, type }: PostListProps) {
   const selectedSideMenu = PATHNAME[location.pathname];
+  const darkMode = useAtomValue(darkAtom);
+
   return (
     <>
       {posts.length === 0 ? (
@@ -19,9 +24,13 @@ function PostList({ posts, type }: PostListProps) {
       ) : (
         <div className="container">
           {posts.map(
-            ({ title, channelName, content, likes, comments, _id }) => (
+            ({ title, channelName, content, likes, comments, _id, postId }) => (
               <Link
-                to={`${PATH.COMMENT}/${_id}`}
+                to={
+                  type === 'like'
+                    ? `${PATH.COMMENT}/${postId}`
+                    : `${PATH.COMMENT}/${_id}`
+                }
                 key={_id}
               >
                 <Style.PostItem>
@@ -51,7 +60,13 @@ function PostList({ posts, type }: PostListProps) {
                               fillRule="evenodd"
                               clipRule="evenodd"
                               d="M12 6.00019C10.2006 3.90317 7.19377 3.2551 4.93923 5.17534C2.68468 7.09558 2.36727 10.3061 4.13778 12.5772C5.60984 14.4654 10.0648 18.4479 11.5249 19.7369C11.6882 19.8811 11.7699 19.9532 11.8652 19.9815C11.9483 20.0062 12.0393 20.0062 12.1225 19.9815C12.2178 19.9532 12.2994 19.8811 12.4628 19.7369C13.9229 18.4479 18.3778 14.4654 19.8499 12.5772C21.6204 10.3061 21.3417 7.07538 19.0484 5.17534C16.7551 3.2753 13.7994 3.90317 12 6.00019Z"
-                              stroke={type === 'post' ? '#000000' : '#ff1100'}
+                              stroke={
+                                type === 'post'
+                                  ? darkMode
+                                    ? theme.lightTheme.bgColor
+                                    : theme.darkTheme.bgColor
+                                  : '#ff1100'
+                              }
                               strokeWidth="2"
                               strokeLinecap="round"
                               strokeLinejoin="round"
@@ -62,7 +77,11 @@ function PostList({ posts, type }: PostListProps) {
                       </div>
                       <div className="reaction-wrap">
                         <svg
-                          fill="#000000"
+                          fill={
+                            darkMode
+                              ? theme.lightTheme.bgColor
+                              : theme.darkTheme.bgColor
+                          }
                           viewBox="0 0 32 32"
                           version="1.1"
                           xmlns="http://www.w3.org/2000/svg"

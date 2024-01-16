@@ -7,9 +7,6 @@ import { Notification } from '@/types/ResponseType';
 import * as Style from './index.style';
 import { Type } from './type';
 
-dayjs.extend(relativeTime);
-dayjs.locale('ko');
-
 interface Prop {
   info: Notification;
 }
@@ -18,7 +15,7 @@ function AlarmItem({ info }: Prop) {
   const navigate = useNavigate();
   const { author, createdAt, comment, message, follow, like, seen, post } =
     info;
-  const optionalVariables = [comment, message, follow, like, post];
+  const optionalVariables = [comment, message, follow, like, post, author._id];
   const optinalNumber = optionalVariables.findIndex(
     (variable) => variable !== undefined
   );
@@ -29,6 +26,9 @@ function AlarmItem({ info }: Prop) {
   const handleClickItem = () => {
     navigate(`/${url_path}/${optionalVariables[url_id]}`);
   };
+
+  dayjs.extend(relativeTime);
+  dayjs.locale('ko');
 
   return (
     <Style.Notification onClick={handleClickItem}>

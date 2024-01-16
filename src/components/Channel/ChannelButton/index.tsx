@@ -3,8 +3,11 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useAtomValue } from 'jotai';
 import Button from '@/components/Common/Button';
 import useGetChannelList from '@/hooks/api/useGetChannelList';
+import { PATH } from '@/constants/path';
 import { channelNameAtom } from '@/store/auth';
 import { Channel } from '@/types/ResponseType';
+import { isAnonymous, isInclude, isLogout } from '@/utils/access';
+import { parsedDescription } from '@/utils/parse';
 import { channelOpenProps } from '../ChannelOpen';
 import * as Style from './index.style';
 
@@ -20,21 +23,42 @@ function ChannelButton({
   const isMyChannel = userName === channelName;
   const { data: channelListData } = useGetChannelList();
 
+  const { allowWriteAll } = parsedDescription(channelDescription);
+  const movePostPage = () => {
+    navigate(PATH.POST_CREATE, {
+      state: { channelName, channelId, channelDescription }
+    });
+  };
+
   const handleClickShareButton = () => {
     const decodedPathname = decodeURI(location.pathname);
-    const url = `http://localhost:3000${decodedPathname}`;
+    const url = `https://jackpot-letter-daebak.vercel.app${decodedPathname}`;
     navigator.clipboard.writeText(url);
     toast.success('링크가 복사되었습니다.');
+  };
+
+  const handleClickPost = () => {
+    if (allowWriteAll) return movePostPage();
+    const logout = isLogout(userName, '가입한 회원만 작성가능한 채널이에요');
+    const anonymous = isAnonymous(
+      userName,
+      '가입한 회원만 작성가능한 채널이에요'
+    );
+    if (logout && anonymous) movePostPage();
   };
 
   const handleClickCreateChnnelButton = () => {
     const channelNames = channelListData.map(
       (channel: Channel) => channel.name
     );
+    const logout = isLogout(userName, '가입한 회원만 채널을 생성할 수 있어요');
+    const include = isInclude(channelNames, userName, '이미 채널을 생성했어요');
+    const anonymous = isAnonymous(
+      userName,
+      '익명사용자는 채널을 생성할 수 없어요'
+    );
 
-    if (channelNames.includes(userName))
-      return toast.error('이미 채널을 생성했습니다.');
-    navigate('/channel/new');
+    if (logout && include && anonymous) navigate(PATH.CHANNEL_CREATE);
   };
 
   return (
@@ -48,11 +72,7 @@ function ChannelButton({
       ) : (
         <>
           <Button
-            onClick={() =>
-              navigate('/post/new', {
-                state: { channelName, channelId, channelDescription }
-              })
-            }
+            onClick={handleClickPost}
             content="마음 전달하기"
             size="md"
             kind={'assistant'}

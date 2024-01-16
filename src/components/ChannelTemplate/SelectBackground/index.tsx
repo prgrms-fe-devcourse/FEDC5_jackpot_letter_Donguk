@@ -14,7 +14,6 @@ interface Props {
 
 function SelectBackground({ option, setOption }: Props) {
   const channelName = useAtomValue(channelNameAtom);
-
   return (
     <Background selectedValue={option.background}>
       <Title>
@@ -29,7 +28,9 @@ function SelectBackground({ option, setOption }: Props) {
             <Item
               size={'5.5rem'}
               css={option.background === item && selectedStyle}
-              src={`/src/assets/background/${item}.png`}
+              src={`${
+                import.meta.env.VITE_PUBLIC_URL
+              }/images/background/${item}.png`}
               alt={`background-image-${item}`}
               onClick={() =>
                 setOption({ ...option, background: item as BgName })

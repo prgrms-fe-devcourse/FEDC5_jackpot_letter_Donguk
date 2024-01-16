@@ -21,7 +21,7 @@ function useAuthorPost(authorId: string) {
       });
       return response;
     },
-    staleTime: Infinity
+    refetchOnMount: 'always'
   });
 }
 

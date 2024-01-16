@@ -30,6 +30,7 @@ function ChannelOpen({
         posts={postList ?? []}
         channelName={channelInfo.name}
         channelId={channelId}
+        channelDescription={channelDescription}
       />
       <ChannelButton
         channelId={channelId}

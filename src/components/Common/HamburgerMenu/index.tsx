@@ -2,20 +2,19 @@ import { useEffect, useState } from 'react';
 import { IoMenu } from 'react-icons/io5';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
-import { useAtom, useAtomValue } from 'jotai';
+import { useAtomValue } from 'jotai';
+import useIsLoggedIn from '@/hooks/useIsLoggedIn';
 import { PATH } from '@/constants/path';
 import { darkAtom } from '@/store/theme';
 import { theme } from '@/theme';
 import { useSignOut } from '../../../hooks/api/useSignOut';
-import { isLoggedInAtom } from '../../../store/auth';
 import DarkMode from '../../DarkMode';
 import { Button, Container, Menu, MenuContainer } from './index.style';
 
 function HamburgerMenu() {
   const [toggle, setToggle] = useState(false);
-
-  const [isLoggedIn] = useAtom(isLoggedInAtom);
   const darkMode = useAtomValue(darkAtom);
+  const isLoggedIn = useIsLoggedIn();
 
   const { pathname } = useLocation();
 
@@ -44,12 +43,13 @@ function HamburgerMenu() {
             USER_MENU.map((data) => (
               <Link
                 to={data.link}
-                key={data.id}
-              >
+                key={data.id}>
                 <Menu>{data.menu}</Menu>
               </Link>
             ))}
-
+          <Link to={PATH.ROOT}>
+            <Menu>채널 목록</Menu>
+          </Link>
           {isLoggedIn ? (
             <Button onClick={handleLogOut}>
               <Menu>로그아웃</Menu>
@@ -79,10 +79,5 @@ const USER_MENU = [
     id: 2,
     menu: '쪽지함',
     link: '/messageList'
-  },
-  {
-    id: 3,
-    menu: '채널 목록',
-    link: PATH.ROOT
   }
 ];

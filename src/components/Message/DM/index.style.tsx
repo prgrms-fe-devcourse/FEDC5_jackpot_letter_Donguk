@@ -4,7 +4,6 @@ export const DmContainer = styled.div`
   width: 100%;
   margin: 0 auto;
   margin-top: 1rem;
-  overflow-y: scroll;
 `;
 
 export const IntroduceContainer = styled.div`
@@ -45,7 +44,7 @@ export const UserProfile = styled.div<{ isSize: number }>`
   border: 1px solid gray;
 `;
 
-export const Message = styled.div`
+export const Message = styled.div<{ darkMode: boolean }>`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -54,8 +53,12 @@ export const Message = styled.div`
   padding: 0.3rem 0.6rem;
   margin: 0 0.5rem;
   border-radius: 10px;
-  color: black;
-  background-color: ${({ theme }) => theme.palette.sub};
+  background-color: ${(props) =>
+    props.darkMode ? props.theme.palette.sub : props.theme.palette.dark};
+  color: ${(props) =>
+    props.darkMode
+      ? props.theme.palette.light_font
+      : props.theme.palette.dark_font};
 `;
 
 export const opponentCheck = styled.div`

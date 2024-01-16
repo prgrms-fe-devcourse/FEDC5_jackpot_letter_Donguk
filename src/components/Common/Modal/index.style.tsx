@@ -45,4 +45,5 @@ export const ModalContainer = styled.div<{
     left: ${(props) => props.left}px;
     transform: ${(props) => `translate(-100%, ${props.marginTop}rem)`};
   }
+  z-index: 1;
 `;

@@ -4,12 +4,12 @@ import styled from '@emotion/styled';
 const ContainerMixin = css`
   display: flex;
   flex-direction: column;
-  // align-items: center;
-  width: 19.375rem;
+  width: 100%;
   border-radius: 20px;
 `;
 
 export const PrePostAndCommentContainer = styled.div`
+  width: 100%;
   overflow: overlay;
 
   @media (max-height: 667px) {
@@ -25,26 +25,31 @@ export const PrePostAndCommentContainer = styled.div`
   // }
 `;
 
-export const PrePostContainer = styled.div`
+export const PrePostContainer = styled.div<{ darkMode: boolean }>`
   ${ContainerMixin}
   position: relative;
-  background-color: ${(props) => props.theme.palette.sub};
+  background-color: ${(props) =>
+    props.darkMode ? props.theme.palette.sub : props.theme.palette.dark};
   height: 13.3125rem;
   margin-bottom: 0.2rem;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 `;
 
 // 다크모드라 이전 포스트의 배경색이 밝은데 폰트색도 밝아서 안보임.
-export const PrePostInnerTitle = styled.div`
+export const PrePostInnerTitle = styled.div<{ darkMode: boolean }>`
   flex-grow: 0;
   width: 95%;
   height: 2.5rem;
   font-size: 1rem;
   font-weight: 500;
-  color: black;
+  color: ${(props) =>
+    props.darkMode
+      ? props.theme.palette.light_font
+      : props.theme.palette.dark_font};
   background-color: transparent;
   border-color: transparent;
   margin: 0 auto;
-  padding: 1rem 1rem 0 0.5rem;
+  padding: 1rem 1rem 0 0.9rem;
   box-sizing: border-box;
 `;
 
@@ -55,17 +60,20 @@ export const PrePostUnnerline = styled.div`
   background-color: #aca3a3;
 `;
 
-export const PrePostContent = styled.div`
+export const PrePostContent = styled.div<{ darkMode: boolean }>`
   flex-grow: 1;
   font-size: 0.7rem;
   width: 95%;
-  color: black;
+  color: ${(props) =>
+    props.darkMode
+      ? props.theme.palette.light_font
+      : props.theme.palette.dark_font};
   background-color: transparent;
   border-color: transparent;
   outline: none;
   resize: none;
   margin: 0.5rem auto 2rem auto;
-  padding: 0 0.6rem;
+  padding: 0 0.9rem;
   box-sizing: border-box;
 `;
 
@@ -73,7 +81,7 @@ export const PrePostEditContent = styled.textarea`
   flex-grow: 1;
   font-size: 0.7rem;
   width: 95%;
-  color: black;
+  // color: black;
   background-color: transparent;
   border-color: transparent;
   outline: none;
@@ -89,6 +97,8 @@ export const EditImg = styled.img`
   bottom: 0.5rem;
   width: 1.2rem;
   cursor: pointer;
+  filter: invert(53%) sepia(49%) saturate(669%) hue-rotate(122deg)
+    brightness(95%) contrast(98%);
 `;
 
 export const DeleteImg = styled.img`
@@ -97,6 +107,8 @@ export const DeleteImg = styled.img`
   bottom: 0.5rem;
   width: 1.2rem;
   cursor: pointer;
+  filter: invert(53%) sepia(49%) saturate(669%) hue-rotate(122deg)
+    brightness(95%) contrast(98%);
 `;
 
 export const CompleteImg = styled.img`
@@ -105,6 +117,8 @@ export const CompleteImg = styled.img`
   bottom: 0.5rem;
   width: 1.2rem;
   cursor: pointer;
+  filter: invert(53%) sepia(49%) saturate(669%) hue-rotate(122deg)
+    brightness(95%) contrast(98%);
 `;
 
 export const LikeCommentContainer = styled.div`
@@ -124,8 +138,11 @@ export const LikeLogo = styled.img`
   width: 1.5rem;
 `;
 
-export const ListCount = styled.span`
-  color: white;
+export const ListCount = styled.span<{ darkMode: boolean }>`
+  color: ${(props) =>
+    props.darkMode
+      ? props.theme.palette.dark_font
+      : props.theme.palette.light_font};
   padding-left: 0.4rem;
   margin-top: 0.4rem;
 `;
@@ -133,8 +150,11 @@ export const CommentCount = styled.span`
   color: ${({ theme }) => theme.palette.main};
 `;
 
-export const CommentCountText = styled.span`
-  color: white;
+export const CommentCountText = styled.span<{ darkMode: boolean }>`
+  color: ${(props) =>
+    props.darkMode
+      ? props.theme.palette.dark_font
+      : props.theme.palette.light_font};
   font-weight: 500;
   margin: 0.7rem;
   padding-top: 0.4rem;
@@ -142,29 +162,34 @@ export const CommentCountText = styled.span`
   font-size: 0.8rem;
 `;
 
-// ${ContainerMixin}
 export const PreCommentContainer = styled.div`
-  width: 19.375rem;
+  width: 100%;
+  height: 14rem;
+  flex-grow: 1;
   border-radius: 20px;
   position: relative;
-  height: 13.5625rem;
   margin-top: 0.5rem;
 `;
 
-export const PrePostComment = styled.div`
+export const PrePostComment = styled.div<{ darkMode: boolean }>`
   position: relative;
-  margin: auto 0;
-  color: black;
-  background-color: ${(props) => props.theme.palette.sub};
-  font-size: 0.8rem;
-  font-weight: 400;
   width: 100%;
   height: auto;
+  margin: auto 0;
+  background-color: ${(props) =>
+    props.darkMode ? props.theme.palette.sub : props.theme.palette.dark};
+  color: ${(props) =>
+    props.darkMode
+      ? props.theme.palette.light_font
+      : props.theme.palette.dark_font};
+  font-size: 0.8rem;
+  font-weight: 400;
   line-height: 1rem;
   margin-bottom: 0.6rem;
   padding: 1rem 2.5rem 1rem 0.7rem;
   box-sizing: border-box;
   border-radius: 10px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 `;
 
 export const PrePostUserName = styled.span`
@@ -176,4 +201,6 @@ export const CommentDeleteImg = styled.img`
   right: 1rem;
   width: 1.2rem;
   cursor: pointer;
+  filter: invert(53%) sepia(49%) saturate(669%) hue-rotate(122deg)
+    brightness(95%) contrast(98%);
 `;

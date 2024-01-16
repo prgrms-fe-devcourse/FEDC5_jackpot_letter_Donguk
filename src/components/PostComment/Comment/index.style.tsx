@@ -1,21 +1,25 @@
 import styled from '@emotion/styled';
 
-export const CommentContainer = styled.div`
-  position: absolute;
+export const CommentContainer = styled.div<{ darkMode: boolean }>`
+  width: 100%;
   bottom: 5.2rem;
-  background-color: ${(props) => props.theme.palette.sub};
+  background-color: ${(props) =>
+    props.darkMode ? props.theme.palette.sub : props.theme.palette.dark};
   display: flex;
   flex-direction: column;
-  width: 19.375rem;
   height: 8.1875rem;
   border-radius: 10px;
   margin-top: 0.7rem;
 `;
 
-export const CommentTitleInput = styled.input`
+export const CommentTitleInput = styled.input<{ darkMode: boolean }>`
   width: 95%;
   height: 2rem;
-  padding: 0.5rem 0.7rem 0.3rem 0.7rem;
+  color: ${(props) =>
+    props.darkMode
+      ? props.theme.palette.light_font
+      : props.theme.palette.dark_font};
+  padding: 0.5rem 0.7rem 0.3rem 0.9rem;
   margin: 0 auto;
   box-sizing: border-box;
   outline: none;
@@ -45,14 +49,18 @@ export const CommentTitleUnderLine = styled.div`
   background-color: #aca3a3;
 `;
 
-export const CommentContent = styled.textarea`
+export const CommentContent = styled.textarea<{ darkMode: boolean }>`
   flex-grow: 1;
   width: 95%;
   background-color: transparent;
   border-color: transparent;
+  color: ${(props) =>
+    props.darkMode
+      ? props.theme.palette.light_font
+      : props.theme.palette.dark_font};
   outline: none;
   resize: none;
   margin: 0.3rem auto;
-  padding: 0 0.7rem;
+  padding: 0 0.9rem;
   box-sizing: border-box;
 `;

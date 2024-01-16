@@ -25,9 +25,13 @@ function UserList({ userName, filteringData }: userListProps) {
     if (receptionMessage === undefined || receptionMessage.length === 0)
       return 0;
 
-    return receptionMessage.filter(({ seen }) => seen === false).length;
+    // 상대방이 보낸 메세지만 카운팅
+    return receptionMessage.filter(({ seen, sender }) => {
+      if (sender.fullName === userName) return false;
+
+      return seen === false;
+    }).length;
   };
-  console.log(messageListData);
 
   useEffect(() => {
     setMessageListData(
@@ -43,17 +47,24 @@ function UserList({ userName, filteringData }: userListProps) {
       <Style.UserListContainer>
         {messageListData &&
           messageListData.map(
-            ({ fullName, image, isOnline, _id, receptionMessage }) =>
-              fullName !== userName && (
+            ({ role, fullName, image, isOnline, _id, receptionMessage }) =>
+              fullName !== userName &&
+              role !== 'SuperAdmin' && (
                 <Style.UserList
                   key={_id}
-                  onClick={() => navigate(`/message/${_id}`)}>
+                  onClick={(e) => {
+                    const target = e.target as HTMLDivElement;
+                    if (target.id !== 'profile') {
+                      navigate(`/message/${_id}`);
+                    }
+                  }}>
                   <Style.UserProfile>
                     <ProfileImg
                       width={2}
                       height={2}
                       alt="messageList userProfile Image"
                       image={image ? image : ''}
+                      userId={_id}
                     />
                     <Style.UserOnline isColor={isOnline} />
                   </Style.UserProfile>

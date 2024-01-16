@@ -1,3 +1,4 @@
+import searchIcon from '@/assets/Search.svg';
 import { AuthenticationUser } from '@/types/ResponseType';
 import * as Style from './index.style';
 
@@ -31,7 +32,7 @@ function SearchBar({ userListData, setUserFilterData }: searchBar) {
   return (
     <>
       <Style.SearchBarContainer>
-        <Style.SearchIcon src="/src/assets/search.svg" />
+        <Style.SearchIcon src={searchIcon} />
         <Style.SearchBar
           onChange={handleSearchBarOnChange}
           autoFocus={true}

@@ -55,7 +55,9 @@ function Responsive() {
         {LETTER_COLOR.map((color, index) => (
           <img
             key={index}
-            src={`${import.meta.env.VITE_PUBLIC_URL}/letter/${color}.png`}
+            src={`${
+              import.meta.env.VITE_PUBLIC_URL
+            }/images/letter/${color}.png`}
             width={32}
           />
         ))}

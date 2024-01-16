@@ -1,27 +1,32 @@
-import { useState } from 'react';
+import { IoNotificationsOutline } from 'react-icons/io5';
+import { useAtomValue } from 'jotai';
 import AlarmList from '@/components/Alarm/AlarmList';
 import useModal from '@/hooks/useModal';
-import Alarm from '@/assets/Alarm.svg';
+import { darkAtom } from '@/store/theme';
+import { theme } from '@/theme';
 import Modal from '../Modal';
 import { Button } from './index.style';
 
 function NotificationMenu() {
-  const [toggle, setToggle] = useState(false);
   const [visible, handleModalClick] = useModal();
 
+  const darkMode = useAtomValue(darkAtom);
+
   const handleClickButton = (e: React.MouseEvent<HTMLElement>) => {
-    setToggle(!toggle);
     handleModalClick(e);
   };
+
   return (
     <>
       <Button
-        onClick={handleClickButton}
-        src={Alarm}
-        alt="alarm-button"
         role="button"
-      />
-      {toggle && (
+        onClick={handleClickButton}>
+        <IoNotificationsOutline
+          size={28}
+          color={darkMode ? theme.palette.sub : theme.palette.dark}
+        />
+      </Button>
+      {visible && (
         <Modal
           width={20}
           height={25}

@@ -13,11 +13,11 @@ import { ChannelButton } from '../ChannelTemplate/index.style';
 import { Body } from './index.style';
 
 export const selectedStyle = css`
-  width: calc(6rem - 7px);
-  height: calc(6rem - 7px);
+  width: calc(5rem - 7px);
+  height: calc(5rem - 7px);
   @media (max-width: 767px) {
-    width: calc(3rem - 7px);
-    height: calc(3rem - 7px);
+    width: calc(2rem - 7px);
+    height: calc(2rem - 7px);
   }
   border: 3px solid ${theme.palette.main};
 `;
@@ -38,10 +38,12 @@ function PostCreate() {
       <ChannelIconList>
         {Object.keys(ColorType).map((colorName) => (
           <Item
-            size={'3rem'}
+            size={'2rem'}
             role="button"
             key={`letter-color${colorName}`}
-            src={`/src/assets/letter/${colorName}.png`}
+            src={`${
+              import.meta.env.VITE_PUBLIC_URL
+            }/images/letter/${colorName}.png`}
             css={colorName === color && selectedStyle}
             onClick={() => setColor(colorName as ColorName)}
             styleOption={{

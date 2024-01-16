@@ -1,16 +1,15 @@
 import styled from '@emotion/styled';
 
 export const HeaderContainer = styled.div`
-  width: 19.375rem;
-  height: 3rem;
-  margin-left: 5%;
-  margin-top: 2.0625rem;
+  padding: 2rem;
 `;
 
-export const HeaderInnerText = styled.div`
-  ${(props) => props.theme.typography.postTitle}
-  line-height: 1.8rem;
-  color: white;
+export const HeaderInnerText = styled.div<{ darkMode: boolean }>`
+  ${(props) => props.theme.typography.postTitle};
+  color: ${(props) =>
+    props.darkMode
+      ? props.theme.palette.dark_font
+      : props.theme.palette.light_font};
 `;
 
 export const HeaderUserName = styled.span`

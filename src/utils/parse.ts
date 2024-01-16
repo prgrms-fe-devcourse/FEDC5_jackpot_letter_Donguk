@@ -5,7 +5,7 @@ import {
 } from '@/components/ChannelTemplate/SelectColor/type';
 import { Post } from '@/types/ResponseType';
 
-const parsedDescription = (description: string) => {
+export const parsedDescription = (description: string) => {
   try {
     return { ...JSON.parse(description) };
   } catch (e) {

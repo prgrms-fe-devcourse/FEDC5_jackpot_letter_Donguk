@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 export const WarningContainer = styled.div`
   display: flex;
   align-items: center;
-  width: 18.625rem;
+  width: 80%;
   height: 3.5rem;
   background-color: #323232;
   margin-top: 1.8rem;

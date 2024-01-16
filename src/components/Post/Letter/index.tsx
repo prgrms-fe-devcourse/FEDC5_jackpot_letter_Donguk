@@ -6,14 +6,26 @@ export interface useFormProps {
   letterComment: string;
 }
 interface letterProps {
+  darkMode: boolean;
   register: UseFormRegister<useFormProps>;
+  userName: string;
 }
 
-function Letter({ register }: letterProps) {
+function Letter({ darkMode, register, userName }: letterProps) {
   return (
-    <Style.LetterContainer>
+    <Style.LetterContainer darkMode={darkMode}>
       <Style.LetterTitle
-        placeholder="작성자명을 입력하세요(최대 15자)"
+        darkMode={darkMode}
+        value={
+          userName ? (userName === '익명' ? undefined : userName) : undefined
+        }
+        placeholder={
+          userName
+            ? userName === '익명'
+              ? '작성자명을 입력해주세요(최대 15자)'
+              : ''
+            : '작성자명을 입력해주세요(최대 15자)'
+        }
         maxLength={15}
         {...register('letterTitle', {
           required: '작성자명은 반드시 입력해야합니다.'
@@ -21,6 +33,7 @@ function Letter({ register }: letterProps) {
       />
       <Style.TitleUnderLine />
       <Style.LetterContent
+        darkMode={darkMode}
         placeholder="내용을 입력하세요"
         {...register('letterComment', {
           required: '편지 내용은 반드시 입력해야합니다.'
