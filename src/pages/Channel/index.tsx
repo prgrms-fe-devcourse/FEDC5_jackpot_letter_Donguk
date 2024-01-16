@@ -23,7 +23,6 @@ function Channel() {
 
   useEffect(() => {
     const background: BgName = parsedBackground(data?.description);
-
     if ((BgType[background] === 'dark') !== darkMode) {
       toggleTheme();
       setmode(true);
@@ -33,7 +32,7 @@ function Channel() {
         toggleTheme();
       }
     };
-  }, [darkMode, mode, toggleTheme]);
+  }, [data?.description]);
 
   if (channelName === undefined) {
     return <Navigate to="/" />;

@@ -9,9 +9,7 @@ import { Button } from './index.style';
 
 function NotificationMenu() {
   const [visible, handleModalClick] = useModal();
-
   const darkMode = useAtomValue(darkAtom);
-
   const handleClickButton = (e: React.MouseEvent<HTMLElement>) => {
     handleModalClick(e);
   };
