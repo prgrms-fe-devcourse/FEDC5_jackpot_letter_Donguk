@@ -23,7 +23,7 @@ function NotificationMenu() {
     const filteredNotification = data?.filter(
       (notification: Notification) => notification.seen === false
     );
-    return filteredNotification.length > 0;
+    return filteredNotification?.length > 0;
   };
 
   return (
