@@ -75,7 +75,7 @@ function ChannelPosts({
             position={positions[index]}
             onClick={() => handleClickLetter(post)}>
             <img
-              src={`${import.meta.env.VITE_PUBLIC_URL}/letter/${
+              src={`${import.meta.env.VITE_PUBLIC_URL}/images/letter/${
                 post.color
               }.png`}
             />
