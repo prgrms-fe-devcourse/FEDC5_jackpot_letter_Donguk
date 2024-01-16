@@ -40,7 +40,6 @@ function Channel() {
     }
     const parsedOption = parsedDescription(channelInfo?.description);
     setData({ ...data, description: parsedOption });
-    console.log(data.description);
     return () => {
       if (mode) {
         toggleTheme();

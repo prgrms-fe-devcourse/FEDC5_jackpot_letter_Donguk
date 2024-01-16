@@ -9,13 +9,11 @@ import Modal from '../Modal';
 import { Button } from './index.style';
 
 function NotificationMenu() {
-  const [toggle, setToggle] = useState(false);
   const [visible, handleModalClick] = useModal();
 
   const darkMode = useAtomValue(darkAtom);
 
   const handleClickButton = (e: React.MouseEvent<HTMLElement>) => {
-    setToggle(!toggle);
     handleModalClick(e);
   };
 
@@ -29,7 +27,7 @@ function NotificationMenu() {
           color={darkMode ? theme.palette.sub : theme.palette.dark}
         />
       </Button>
-      {toggle && (
+      {visible && (
         <Modal
           width={20}
           height={25}

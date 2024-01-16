@@ -37,14 +37,15 @@ export const Body = styled.div`
   border-top: 1px solid rgba(255, 255, 255, 0.2);
 `;
 export const ChannelIconList = styled.ul`
-  margin: 0.5rem;
+  margin: auto;
+  width: 90%;
   overflow-y: scroll;
   ::-webkit-scrollbar {
     display: none;
   }
   height: 74vh;
   @media (max-width: 767px) {
-    height: 60vh;
+    height: 63vh;
   }
   color: white;
   display: grid;
