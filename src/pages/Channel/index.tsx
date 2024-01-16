@@ -56,7 +56,6 @@ function Channel() {
         <span>{data?.posts.length}개의 주머니가 도착했어요</span>
         <ChannelOption description={data?.description} />
       </Title>
-
       {isOpened ? (
         <>
           <ChannelAnimation />
