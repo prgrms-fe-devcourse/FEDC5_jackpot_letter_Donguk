@@ -31,7 +31,6 @@ export const PrePostContainer = styled.div<{ darkMode: boolean }>`
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 `;
 
-// 다크모드라 이전 포스트의 배경색이 밝은데 폰트색도 밝아서 안보임.
 export const PrePostInnerTitle = styled.div<{ darkMode: boolean }>`
   flex-grow: 0;
   width: 95%;
@@ -73,11 +72,14 @@ export const PrePostContent = styled.div<{ darkMode: boolean }>`
   box-sizing: border-box;
 `;
 
-export const PrePostEditContent = styled.textarea`
+export const PrePostEditContent = styled.textarea<{ darkMode: boolean }>`
   flex-grow: 1;
   font-size: 0.7rem;
   width: 95%;
-  // color: black;
+  color: ${(props) =>
+    props.darkMode
+      ? props.theme.palette.light_font
+      : props.theme.palette.dark_font};
   background-color: transparent;
   border-color: transparent;
   outline: none;

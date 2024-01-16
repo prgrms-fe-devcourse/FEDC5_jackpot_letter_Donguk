@@ -156,6 +156,7 @@ function PrePost({ userName, darkMode, postId, postDetail }: PrePostProps) {
           <Style.PrePostUnnerline />
           {postState ? (
             <Style.PrePostEditContent
+              darkMode={darkMode}
               defaultValue={postDetail && JSON.parse(postDetail.title).content}
               {...register('prePostContent', {
                 required: '편지 내용은 반드시 입력해야 합니다.'
@@ -179,7 +180,7 @@ function PrePost({ userName, darkMode, postId, postDetail }: PrePostProps) {
                   toast.error('익명 회원은 편지를 수정 할 수 없습니다.');
                   return;
                 }
-                handlePostToggleClick;
+                handlePostToggleClick();
               }}
             />
           )}
