@@ -9,13 +9,15 @@ interface useFormProps {
 interface CommentProps {
   register: UseFormRegister<useFormProps>;
   userName: string;
+  darkMode: boolean;
 }
 
-function Comment({ register, userName }: CommentProps) {
+function Comment({ darkMode, register, userName }: CommentProps) {
   return (
     <>
-      <Style.CommentContainer>
+      <Style.CommentContainer darkMode={darkMode}>
         <Style.CommentTitleInput
+          darkMode={darkMode}
           placeholder={userName ? '' : '작성자명을 입력해주세요'}
           value={userName ? userName : undefined}
           {...(userName === ''
@@ -29,6 +31,7 @@ function Comment({ register, userName }: CommentProps) {
 
         <Style.CommentTitleUnderLine />
         <Style.CommentContent
+          darkMode={darkMode}
           placeholder="댓글을 입력하세요"
           {...register('commentContent', {
             required: '댓글 내용은 반드시 입력하셔야합니다.'

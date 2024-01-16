@@ -3,11 +3,13 @@ import { useForm } from 'react-hook-form';
 import { Toaster } from 'react-hot-toast';
 import { toast } from 'react-hot-toast';
 import { useParams } from 'react-router-dom';
+import ShortLogo from '@components/Common/Logo/ShortLogo';
 import { useAtomValue } from 'jotai';
 import { useGetPostDetailQuery } from '@/hooks/api/useGetPostDetailQuery';
 import { usePostCommentCreateMutation } from '@/hooks/api/usePostCommentCreateMutation';
 // import { useUserInfomationQuery } from '@/hooks/api/useUserInfomationQuery';
 import { channelNameAtom } from '@/store/auth';
+import { darkAtom } from '@/store/theme';
 import Comment from './Comment';
 import Footer from './Footer';
 import Header from './Header';
@@ -27,6 +29,7 @@ interface useFormProps {
 
 function PostComment() {
   const userName = useAtomValue(channelNameAtom);
+  const darkMode = useAtomValue(darkAtom);
   const { postId } = useParams() as { postId: string };
   const { data: postDetail } = useGetPostDetailQuery(postId);
   const { mutationCommentCreate } = usePostCommentCreateMutation(postId);
@@ -76,14 +79,25 @@ function PostComment() {
     <>
       <Style.CommentContainer>
         {postDetail && <Header channelName={postDetail?.channel.name} />}
-        <Style.GroudImage src="/src/assets/ShortLogo.svg" />
+        {/* <Style.GroudImage src="/src/assets/ShortLogo.svg" /> */}
+        <div
+          style={{
+            position: 'absolute',
+            top: '0',
+            right: '2rem',
+            zIndex: '1'
+          }}>
+          <ShortLogo darkMode={darkMode} />
+        </div>
         {postDetail && (
           <PrePost
+            darkMode={darkMode}
             postId={postId}
             postDetail={postDetail}
           />
         )}
         <Comment
+          darkMode={darkMode}
           register={register}
           userName={userName}
         />

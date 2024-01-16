@@ -9,6 +9,10 @@ import { useLikeCreateMutation } from '@/hooks/api/useLikeCreateMutation';
 import { useLikeDeleteMutation } from '@/hooks/api/useLikeDeleteMutation';
 import { usePostDeleteMutation } from '@/hooks/api/usePostDeleteMutation';
 import { usePostUpdateMutation } from '@/hooks/api/usePostUpdateMutation';
+import likeIcon from '@/assets/Like.svg';
+import completeIcon from '@/assets/complete.svg';
+import deleteIcon from '@/assets/delete.svg';
+import editIcon from '@/assets/edit.svg';
 import { idAtom } from '@/store/auth';
 import { Post } from '@/types/ResponseType';
 import * as Style from './index.style';
@@ -16,6 +20,7 @@ import * as Style from './index.style';
 interface PrePostProps {
   postId: string;
   postDetail: Post;
+  darkMode: boolean;
 }
 
 interface userFormProps {
@@ -28,7 +33,7 @@ const toastStyle = {
   marginTop: '0.5rem'
 };
 
-function PrePost({ postId, postDetail }: PrePostProps) {
+function PrePost({ darkMode, postId, postDetail }: PrePostProps) {
   const userId = useAtomValue(idAtom);
 
   const { mutationLikeCreate } = useLikeCreateMutation(postId); // 특정 포스트 좋아요 추가
@@ -135,8 +140,8 @@ function PrePost({ postId, postDetail }: PrePostProps) {
   return (
     <>
       <Style.PrePostAndCommentContainer>
-        <Style.PrePostContainer>
-          <Style.PrePostInnerTitle>
+        <Style.PrePostContainer darkMode={darkMode}>
+          <Style.PrePostInnerTitle darkMode={darkMode}>
             {postDetail && JSON.parse(postDetail.title).title}
           </Style.PrePostInnerTitle>
           <Style.PrePostUnnerline />
@@ -148,32 +153,34 @@ function PrePost({ postId, postDetail }: PrePostProps) {
               })}
             />
           ) : (
-            <Style.PrePostContent>
+            <Style.PrePostContent darkMode={darkMode}>
               {postDetail && JSON.parse(postDetail.title).content}
             </Style.PrePostContent>
           )}
           {postState ? (
             <Style.CompleteImg
-              src="/src/assets/complete.svg"
+              src={completeIcon}
               onClick={handleSubmit(onSubmit)}
             />
           ) : (
             <Style.EditImg
-              src="/src/assets/edit.svg"
+              src={editIcon}
               onClick={handlePostToggleClick}
             />
           )}
           <Style.DeleteImg
-            src="/src/assets/delete.svg"
+            src={deleteIcon}
             onClick={handleDeletePostClick}
           />
         </Style.PrePostContainer>
         <Style.LikeCommentContainer>
           <Style.LikeLogoContainer onClick={handleLikeCreateClick}>
-            <Style.LikeLogo src="/src/assets/Like.svg" />
-            <Style.ListCount>{postDetail?.likes.length}</Style.ListCount>
+            <Style.LikeLogo src={likeIcon} />
+            <Style.ListCount darkMode={darkMode}>
+              {postDetail?.likes.length}
+            </Style.ListCount>
           </Style.LikeLogoContainer>
-          <Style.CommentCountText>
+          <Style.CommentCountText darkMode={darkMode}>
             총{' '}
             <Style.CommentCount>
               {postDetail?.comments.length}개
@@ -185,15 +192,19 @@ function PrePost({ postId, postDetail }: PrePostProps) {
           {postDetail?.comments.map(
             ({ comment, _id, author }, idx) =>
               titleAndCommentParsing(comment) && (
-                <Style.PrePostComment key={idx}>
+
+                <Style.PrePostComment
+                  darkMode={darkMode}
+                  key={idx}>
                   <Style.PrePostUserName
                     onClick={() => navigator(`/user/${author._id}`)}
                   >
+
                     {`💬 ${titleAndCommentParsing(comment).title}: `}
                   </Style.PrePostUserName>
                   {titleAndCommentParsing(comment).comment}
                   <Style.CommentDeleteImg
-                    src="/src/assets/delete.svg"
+                    src={deleteIcon}
                     data-id={_id}
                     onClick={handleDeleteCommentClick}
                   />

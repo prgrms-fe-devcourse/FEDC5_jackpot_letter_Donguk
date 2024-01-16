@@ -9,6 +9,7 @@ import { useAtomValue } from 'jotai';
 // import { useGetPostDetailQuery } from '@/hooks/api/useGetPostDetailQuery';
 import { usePostCreateMutation } from '@/hooks/api/usePostCreateMutation';
 import { channelNameAtom, tokenAtom } from '@/store/auth';
+import { darkAtom } from '@/store/theme';
 import Button from '../Common/Button';
 import Footer from './Footer';
 import Header from './Header';
@@ -39,6 +40,7 @@ export interface channelInfo {
 function Post() {
   const userName = useAtomValue(channelNameAtom);
   const JWTtoken = useAtomValue(tokenAtom);
+  const darkMode = useAtomValue(darkAtom);
 
   const { channelId } = useParams();
   const { mutationPostCreate } = usePostCreateMutation();
@@ -135,6 +137,7 @@ function Post() {
         <Header channelName={state.channelName} />
         <Style.GroudImage src="/src/assets/ShortLogo.svg" />
         <Letter
+          darkMode={darkMode}
           userName={userName}
           register={register}
         />
