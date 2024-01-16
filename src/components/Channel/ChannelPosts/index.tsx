@@ -57,8 +57,11 @@ function ChannelPosts({ posts, channelName, channelId }: Prop) {
                   channelId
                 }
               })
-            }>
-            <img src={`/src/assets/letter/${color}.png`} />
+            }
+          >
+            <img
+              src={`${import.meta.env.VITE_PUBLIC_URL}/letter/${color}.png`}
+            />
             <span>{title}</span>
           </Letter>
         ))}

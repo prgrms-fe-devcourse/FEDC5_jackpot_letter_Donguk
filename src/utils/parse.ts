@@ -5,7 +5,7 @@ import {
 } from '@/components/ChannelTemplate/SelectColor/type';
 import { Post } from '@/types/ResponseType';
 
-const parsedDescription = (description: string) => {
+export const parsedDescription = (description: string) => {
   try {
     return { ...JSON.parse(description) };
   } catch (e) {
@@ -28,4 +28,8 @@ export const parsedPosts = (posts: Post[]) => {
     const postInfo = parsedDescription(post.title);
     return { ...postInfo, postId: post._id };
   });
+};
+
+export const getImageUrl = (dir: string, name: string) => {
+  return new URL(`/src/${dir}/${name}.png`, import.meta.url).href;
 };

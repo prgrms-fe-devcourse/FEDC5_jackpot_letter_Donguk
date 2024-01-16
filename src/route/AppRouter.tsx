@@ -59,7 +59,6 @@ const userRoutes: userRoutes = {
   ],
   mypage: [
     { path: PATH.MYPAGE, exact: true, component: <Mypage /> },
-
     {
       path: PATH.MYPAGE_PROFILE_UPDATE,
       exact: true,

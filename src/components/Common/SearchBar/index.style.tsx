@@ -13,6 +13,7 @@ export const SearchBarContainer = styled.div`
     background-color: #f9fafb;
     outline: none;
     border: none;
+    width: 100%;
   }
   img {
     opacity: 50%;

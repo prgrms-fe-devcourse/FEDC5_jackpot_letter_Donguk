@@ -12,7 +12,7 @@ function useTheme() {
     setStorage(DARKMODE, !darkMode);
   }, [darkMode, setDarkMode]);
 
-  return { toggleTheme };
+  return { toggleTheme, darkMode };
 }
 
 export default useTheme;
