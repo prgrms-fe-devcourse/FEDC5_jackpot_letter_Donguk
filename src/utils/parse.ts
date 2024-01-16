@@ -30,6 +30,12 @@ export const parsedPosts = (posts: Post[]) => {
   });
 };
 
-export const getImageUrl = (dir: string, name: string) => {
-  return new URL(`/src/${dir}/${name}.png`, import.meta.url).href;
+export const getImageUrl = (name: string) => {
+  const url = `../assets/images/background/${name}.png`;
+  const parsedUrl = new URL(url, import.meta.url).href;
+  const url2 = `/assets/images/background/${name}.png`;
+  console.log(parsedUrl);
+  const parsedUrl2 = new URL(url2, import.meta.url).href;
+  console.log(parsedUrl, parsedUrl2);
+  return parsedUrl2;
 };
