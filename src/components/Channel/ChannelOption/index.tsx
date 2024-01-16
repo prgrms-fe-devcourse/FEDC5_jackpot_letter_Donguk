@@ -7,17 +7,17 @@ interface Props {
   description: string;
 }
 function ChannelOption({ description }: Props) {
-  const { allowViewAll, allowWriteAll } = parsedDescription(description);
+  const result = parsedDescription(description);
   return (
     <>
       <OptionBox>
         <Option>
           <div>열람</div>
-          <img src={allowViewAll ? Public : Private} />
+          <img src={result?.allowViewAll ? Public : Private} />
         </Option>
         <Option>
           <div>작성</div>
-          <img src={allowWriteAll ? Public : Private} />
+          <img src={result?.allowWriteAll ? Public : Private} />
         </Option>
       </OptionBox>
     </>
