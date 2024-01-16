@@ -33,6 +33,9 @@ function Channel() {
 
   useEffect(() => {
     if (channelInfo) setData(channelInfo);
+  }, [channelInfo]);
+
+  useEffect(() => {
     const background: BgName = parsedBackground(channelInfo?.description);
     if ((BgType[background] === 'dark') !== darkMode) {
       toggleTheme();
@@ -45,7 +48,7 @@ function Channel() {
         toggleTheme();
       }
     };
-  }, [channelInfo, darkMode, mode, toggleTheme]);
+  }, [darkMode, mode, toggleTheme]);
 
   if (channelName === undefined) {
     return <Navigate to="/" />;
@@ -59,8 +62,7 @@ function Channel() {
     <Background
       selectedValue={
         description && parsedBackground(description as unknown as string)
-      }
-    >
+      }>
       <Title>
         <h1>
           <span>{name}</span>님의 박
