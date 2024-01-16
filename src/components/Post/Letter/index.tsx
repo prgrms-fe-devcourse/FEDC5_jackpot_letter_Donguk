@@ -16,8 +16,16 @@ function Letter({ darkMode, register, userName }: letterProps) {
     <Style.LetterContainer darkMode={darkMode}>
       <Style.LetterTitle
         darkMode={darkMode}
-        value={userName ? userName : undefined}
-        placeholder={userName ? '' : '작성자명을 입력해주세요(최대 15자)'}
+        value={
+          userName ? (userName === '익명' ? undefined : userName) : undefined
+        }
+        placeholder={
+          userName
+            ? userName === '익명'
+              ? '작성자명을 입력해주세요(최대 15자)'
+              : ''
+            : '작성자명을 입력해주세요(최대 15자)'
+        }
         maxLength={15}
         {...register('letterTitle', {
           required: '작성자명은 반드시 입력해야합니다.'

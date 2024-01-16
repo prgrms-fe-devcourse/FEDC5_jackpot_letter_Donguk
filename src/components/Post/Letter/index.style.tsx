@@ -37,7 +37,7 @@ export const LetterTitle = styled.textarea<{ darkMode: boolean }>`
   height: 40px;
   font-size: 1rem;
   font-weight: 500;
-  padding: 1rem 3rem 0 0.5rem;
+  padding: 1rem 3rem 0 0.9rem;
 `;
 
 export const TitleUnderLine = styled.div`
@@ -56,5 +56,5 @@ export const LetterContent = styled.textarea<{ darkMode: boolean }>`
   font-size: 0.7rem;
   width: 95%;
   margin: 0.6rem 0;
-  padding: 0 0.6rem;
+  padding: 0 1rem;
 `;
