@@ -15,7 +15,7 @@ function AlarmItem({ info }: Prop) {
   const navigate = useNavigate();
   const { author, createdAt, comment, message, follow, like, seen, post } =
     info;
-  const optionalVariables = [comment, message, follow, like, post];
+  const optionalVariables = [comment, message, follow, like, post, author._id];
   const optinalNumber = optionalVariables.findIndex(
     (variable) => variable !== undefined
   );

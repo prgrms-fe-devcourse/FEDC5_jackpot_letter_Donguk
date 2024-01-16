@@ -16,7 +16,7 @@ export const Type: { [key: number]: AlarmType } = {
     type: 'Message',
     annouce: '메시지가 도착했어요',
     url_path: 'message',
-    url_id: 1
+    url_id: 5
   },
   2: {
     type: 'Follow',
