@@ -6,10 +6,7 @@ export const Background = styled.div<{ selectedValue: BgName }>`
   position: relative;
   height: 100vh;
   background-image: ${({ selectedValue }) =>
-    getImageUrl(
-      `${import.meta.env.VITE_PUBLIC_URL}/images/background`,
-      selectedValue
-    )}
+    getImageUrl(`assets/images/background`, selectedValue)}
   background-repeat: no-repeat;
   background-size: cover;
   color: ${({ selectedValue }) =>
