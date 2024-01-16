@@ -41,7 +41,9 @@ function PostCreate() {
             size={'2rem'}
             role="button"
             key={`letter-color${colorName}`}
-            src={`${import.meta.env.VITE_PUBLIC_URL}/letter/${colorName}.png`}
+            src={`${
+              import.meta.env.VITE_PUBLIC_URL
+            }/images/letter/${colorName}.png`}
             css={colorName === color && selectedStyle}
             onClick={() => setColor(colorName as ColorName)}
             styleOption={{

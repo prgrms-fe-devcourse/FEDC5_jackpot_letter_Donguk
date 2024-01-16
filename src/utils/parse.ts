@@ -31,5 +31,5 @@ export const parsedPosts = (posts: Post[]) => {
 };
 
 export const getImageUrl = (dir: string, name: string) => {
-  return new URL(`/src/${dir}/${name}.png`, import.meta.url).href;
+  return new URL(`../${dir}/${name}.png`, import.meta.url).href;
 };

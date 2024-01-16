@@ -32,13 +32,15 @@ function ChannelList() {
   };
 
   const handleClickCreateChannel = () => {
-    let access = true;
     const channelNames = channelList.map((channel: Channel) => channel.name);
-    access = isLogout(userName, '가입한 회원만 채널을 생성할 수 있어요');
-    access = isInclude(channelNames, userName, '이미 채널을 생성했어요');
-    access = isAnonymous(userName, '익명사용자는 채널을 생성할 수 없어요');
+    const logout = isLogout(userName, '가입한 회원만 채널을 생성할 수 있어요');
+    const include = isInclude(channelNames, userName, '이미 채널을 생성했어요');
+    const anonymous = isAnonymous(
+      userName,
+      '익명사용자는 채널을 생성할 수 없어요'
+    );
 
-    if (access) navigator(PATH.CHANNEL_CREATE);
+    if (logout && include && anonymous) navigator(PATH.CHANNEL_CREATE);
   };
 
   return (
@@ -71,8 +73,7 @@ function ChannelList() {
             [...channels].reverse().map((channel: Channel) => (
               <div
                 key={`channel-${channel._id}`}
-                role="button"
-              >
+                role="button">
                 <Link to={`/channel/${channel.name}`}>
                   <ChannelIcon channel={channel} />
                 </Link>
