@@ -16,19 +16,12 @@ function Footer() {
           onClick={goBackPage}
           size="sm"
           content="이전"
-          styleOption={{
-            backgroundColor: 'transparent',
-            border: 'solid 1px #8C999A',
-            height: '2.5625rem'
-          }}
+          kind="outlined"
         />
         <Button
           type="submit"
           size="lg"
           content="답장 남기기"
-          styleOption={{
-            height: '2.5625rem'
-          }}
         />
       </Style.FooterContainer>
     </>
