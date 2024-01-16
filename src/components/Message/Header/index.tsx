@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import ProfileImg from '@components/Common/ProfileImg';
+import arrowLeftIcon from '@/assets/ArrowLeft.svg';
 import * as Style from './index.style';
 
 interface headerProps {
@@ -12,7 +13,7 @@ function Header({ fullName, userImage, isOnline }: headerProps) {
   return (
     <>
       <Style.MoveBack
-        src="/src/assets/ArrowLeft.svg"
+        src={arrowLeftIcon}
         isSize={1}
         onClick={() => navigater(-1)}
       />

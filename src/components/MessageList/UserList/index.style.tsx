@@ -2,7 +2,8 @@ import styled from '@emotion/styled';
 
 export const UserListContainer = styled.div`
   width: 90%;
-  height: calc(100vh - 12.5625rem);
+  height: calc(100vh - 10.5625rem);
+  padding: 0 0.5rem;
   margin: 1rem auto 0.5rem auto;
   box-sizing: border-box;
   overflow: overlay;
@@ -24,6 +25,7 @@ export const UserList = styled.div`
   width: 100%;
   height: 2.5rem;
   margin: 0.3rem 0;
+  border-radius: 10px;
   &:hover {
     background-color: ${({ theme }) => theme.palette.main};
   }
