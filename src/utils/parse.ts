@@ -29,3 +29,8 @@ export const parsedPosts = (posts: Post[]) => {
     return { ...postInfo, postId: post._id };
   });
 };
+
+export const getImageUrl = (dir: string, name: string) => {
+  console.log('/sss', new URL(`/src/${dir}/${name}.png`, import.meta.url).href);
+  return new URL(`/src/${dir}/${name}.png`, import.meta.url).href;
+};

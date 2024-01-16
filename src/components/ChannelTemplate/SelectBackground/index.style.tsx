@@ -1,11 +1,15 @@
+import { getImageUrl } from '@/utils/parse';
 import styled from '@emotion/styled';
 import { BgName, BgType } from './type';
 
 export const Background = styled.div<{ selectedValue: BgName }>`
   position: relative;
   height: 100vh;
-  background-image: ${({ selectedValue }) =>
-    `url('/assets/images/background/${selectedValue}.png')`}
+  background-image: ${({ selectedValue }) => {
+    console.log(selectedValue);
+    console.log(getImageUrl('assets/background', selectedValue));
+    return getImageUrl('assets/background', selectedValue);
+  }}
   background-repeat: no-repeat;
   background-size: cover;
   color: ${({ selectedValue }) =>
