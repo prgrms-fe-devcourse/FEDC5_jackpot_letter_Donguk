@@ -13,8 +13,9 @@ export const LetterForm = styled.form`
   width: 100%;
 `;
 
-export const LetterContainer = styled.div`
-  background-color: ${(props) => props.theme.palette.sub};
+export const LetterContainer = styled.div<{ darkMode: boolean }>`
+  background-color: ${(props) =>
+    props.darkMode ? props.theme.palette.sub : props.theme.palette.dark};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -25,8 +26,12 @@ export const LetterContainer = styled.div`
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 `;
 
-export const LetterTitle = styled.textarea`
-  ${TextArea}
+export const LetterTitle = styled.textarea<{ darkMode: boolean }>`
+  ${TextArea};
+  color: ${(props) =>
+    props.darkMode
+      ? props.theme.palette.light_font
+      : props.theme.palette.dark_font};
   flex-grow: 0;
   width: 95%;
   height: 40px;
@@ -41,8 +46,12 @@ export const TitleUnderLine = styled.div`
   background-color: #aca3a3;
 `;
 
-export const LetterContent = styled.textarea`
-  ${TextArea}
+export const LetterContent = styled.textarea<{ darkMode: boolean }>`
+  ${TextArea};
+  color: ${(props) =>
+    props.darkMode
+      ? props.theme.palette.light_font
+      : props.theme.palette.dark_font};
   flex-grow: 1;
   font-size: 0.7rem;
   width: 95%;

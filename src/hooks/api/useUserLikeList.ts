@@ -16,9 +16,10 @@ function useUserLikeList(userData: User) {
               const response = {
                 ...data,
                 _id: like._id,
+                postId: like.post,
                 title,
                 content,
-                channelName: data.author.fullName
+                channelName: data.channel.name
               };
               console.log(response);
 

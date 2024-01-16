@@ -59,7 +59,8 @@ function Channel() {
     <Background
       selectedValue={
         description && parsedBackground(description as unknown as string)
-      }>
+      }
+    >
       <Title>
         <h1>
           <span>{name}</span>님의 박

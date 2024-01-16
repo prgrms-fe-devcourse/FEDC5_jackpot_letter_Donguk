@@ -41,7 +41,7 @@ function FollowListItem({
       <li className="follow-item">
         <div
           onClick={() => {
-            navigate('/user', { state: { userId: userId } });
+            navigate(`/user/${userId}`);
           }}
         >
           <ProfileImg

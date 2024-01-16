@@ -21,7 +21,8 @@ function NotificationMenu() {
     <>
       <Button
         role="button"
-        onClick={handleClickButton}>
+        onClick={handleClickButton}
+      >
         <IoNotificationsOutline
           size={28}
           color={darkMode ? theme.palette.sub : theme.palette.dark}
@@ -35,7 +36,8 @@ function NotificationMenu() {
           handleModalClose={(e: React.MouseEvent<HTMLDivElement>) =>
             handleModalClick(e)
           }
-          type={'center'}>
+          type={'center'}
+        >
           <AlarmList />
         </Modal>
       )}
