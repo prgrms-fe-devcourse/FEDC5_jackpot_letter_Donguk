@@ -1,4 +1,3 @@
-import { cpSync } from 'fs';
 import { BgType } from '@/components/ChannelTemplate/SelectBackground/type';
 import {
   ColorName,
