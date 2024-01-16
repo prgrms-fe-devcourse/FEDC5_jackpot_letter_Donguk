@@ -131,9 +131,6 @@ function Post() {
         ))}
       <Style.PostContainer>
         <Header channelName={state.channelName} />
-        <div style={{ position: 'absolute', top: '0', right: '2rem' }}>
-          <ShortLogo darkMode={darkMode} />
-        </div>
         <Letter
           darkMode={darkMode}
           userName={userName}

@@ -78,15 +78,6 @@ function PostComment() {
     <>
       <Style.CommentContainer>
         {postDetail && <Header channelName={postDetail?.channel.name} />}
-        <div
-          style={{
-            position: 'absolute',
-            top: '0',
-            right: '2rem',
-            zIndex: '1'
-          }}>
-          <ShortLogo darkMode={darkMode} />
-        </div>
         {postDetail && (
           <PrePost
             darkMode={darkMode}
