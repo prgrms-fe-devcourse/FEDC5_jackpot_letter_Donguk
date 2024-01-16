@@ -39,8 +39,14 @@ export const Body = styled.div`
 
 export const ChannelIconList = styled.ul`
   margin: auto;
+  padding: 1rem;
   width: 90%;
+  max-height: 65vh;
+  @media (max-width: 767px) {
+    max-height: 60vh;
+  }
   color: white;
   display: grid;
+  overflow: scroll;
   grid-template-columns: repeat(3, 33%);
 `;
