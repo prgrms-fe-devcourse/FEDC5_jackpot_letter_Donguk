@@ -4,6 +4,7 @@ import toast from 'react-hot-toast';
 import { useAtomValue } from 'jotai';
 import { useCreateNotification } from '@/hooks/api/useCreateNotification';
 import { useMessageCreateMutation } from '@/hooks/api/useMessageCreateMutation';
+import sendIcon from '@/assets/send.svg';
 import { tokenAtom } from '@/store/auth';
 import * as Style from './index.style';
 
@@ -90,7 +91,7 @@ function SendMessage({ receiverId }: sendMessageProps) {
         })}
       />
       <Style.IconButton type="submit">
-        <Style.sendIcon src="/src/assets/send.svg" />
+        <Style.sendIcon src={sendIcon} />
       </Style.IconButton>
     </Style.Form>
   );
