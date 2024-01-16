@@ -4,6 +4,7 @@ export const OptionBox = styled.div`
   margin: 0.5rem 0;
   display: flex;
   gap: 0.2rem;
+  z-index: 1;
 `;
 export const Option = styled.div`
   ${({ theme }) => theme.typography.description};
