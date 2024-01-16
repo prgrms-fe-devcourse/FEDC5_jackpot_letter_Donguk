@@ -11,38 +11,22 @@ import {
 } from '@/components/ChannelTemplate/SelectBackground/type';
 import useGetChannelInfo from '@/hooks/api/useGetChannelInfo';
 import useTheme from '@/hooks/useTheme';
-import { parsedBackground, parsedDescription } from '@/utils/parse';
+import { parsedBackground } from '@/utils/parse';
 import { Title } from '../ChannelList/index.style';
 
 function Channel() {
-  const [data, setData] = useState({
-    name: '프룽',
-    posts: [],
-    description: '' || {
-      allowViewAll: true,
-      allowWriteAll: true,
-      background: 'mountain2',
-      color: 'red'
-    }
-  });
-  const { channelName } = useParams();
-  const { data: channelInfo } = useGetChannelInfo(channelName ?? '');
+  const { channelName } = useParams() as { channelName: string };
+  const { data } = useGetChannelInfo(channelName);
   const { darkMode, toggleTheme } = useTheme();
   const [mode, setmode] = useState<boolean>(false);
   const [isOpened, setIsOpened] = useState(false);
 
   useEffect(() => {
-    if (channelInfo) setData(channelInfo);
-  }, [channelInfo]);
-
-  useEffect(() => {
-    const background: BgName = parsedBackground(channelInfo?.description);
+    const background: BgName = parsedBackground(data?.description);
     if ((BgType[background] === 'dark') !== darkMode) {
       toggleTheme();
       setmode(true);
     }
-    const parsedOption = parsedDescription(channelInfo?.description);
-    setData({ ...data, description: parsedOption });
     return () => {
       if (mode) {
         toggleTheme();
@@ -57,27 +41,28 @@ function Channel() {
   const handleIconClick = (): void => {
     setIsOpened(true);
   };
-  const { description, name, posts } = data;
+
   return (
     <Background
       selectedValue={
-        description && parsedBackground(description as unknown as string)
+        data?.description &&
+        parsedBackground(data?.description as unknown as string)
       }>
       <Title>
         <h1>
-          <span>{name}</span>님의 박
+          <span>{data?.name}</span>님의 박
         </h1>
-        <span>{posts.length}개의 주머니가 도착했어요</span>
-        <ChannelOption description={description} />
+        <span>{data?.posts.length}개의 주머니가 도착했어요</span>
+        <ChannelOption description={data?.description} />
       </Title>
 
       {isOpened ? (
         <>
           <ChannelAnimation />
           <ChannelOpen
-            channelId={channelInfo?._id}
+            channelId={data?._id}
             channelName={channelName}
-            channelDescription={channelInfo.description}
+            channelDescription={data.description}
           />
         </>
       ) : (

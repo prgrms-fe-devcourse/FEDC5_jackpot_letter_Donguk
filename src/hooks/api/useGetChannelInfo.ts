@@ -4,7 +4,8 @@ import { getChannelInfo } from '@/api/channel';
 const useGetChannelInfo = (channelName: string) => {
   return useQuery({
     queryKey: ['channel', channelName],
-    queryFn: () => getChannelInfo(channelName)
+    queryFn: () => getChannelInfo(channelName),
+    enabled: !!channelName
   });
 };
 
