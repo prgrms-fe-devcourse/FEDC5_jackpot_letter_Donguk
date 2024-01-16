@@ -3,7 +3,6 @@ import { useForm } from 'react-hook-form';
 import { Toaster } from 'react-hot-toast';
 import { toast } from 'react-hot-toast';
 import { useParams } from 'react-router-dom';
-import ShortLogo from '@components/Common/Logo/ShortLogo';
 import { useAtomValue } from 'jotai';
 import { useGetPostDetailQuery } from '@/hooks/api/useGetPostDetailQuery';
 import { usePostCommentCreateMutation } from '@/hooks/api/usePostCommentCreateMutation';
