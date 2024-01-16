@@ -1,16 +1,16 @@
 import { ReactElement } from 'react';
 import { Navigate } from 'react-router-dom';
-import { ACCESS_TOKEN_KEY } from '@/constants/api';
-import { getStorage } from '@/utils/LocalStorage';
+import useIsLoggedIn from '@/hooks/useIsLoggedIn';
 import { PATH } from '../constants/path';
 
 interface AuthMiddlewareProps {
   children: ReactElement;
 }
-const AuthMiddleware = ({ children }: AuthMiddlewareProps) => {
-  const token = getStorage(ACCESS_TOKEN_KEY);
 
-  if (!token) {
+const AuthMiddleware = ({ children }: AuthMiddlewareProps) => {
+  const isLoggedIn = useIsLoggedIn();
+
+  if (!isLoggedIn) {
     return <Navigate to={PATH.SIGNIN} />;
   }
   return children;
