@@ -1,13 +1,14 @@
 import * as Style from './index.style';
 
 interface headerProps {
-  userName: string | undefined;
+  userName: string;
+  darkMode: boolean;
 }
-function Header({ userName }: headerProps) {
+function Header({ darkMode, userName }: headerProps) {
   return (
     <>
       <Style.HeaderContainer>
-        <Style.HeaderInnerText>
+        <Style.HeaderInnerText darkMode={darkMode}>
           <Style.HeaderUserName>{userName}</Style.HeaderUserName>의 메시지함
         </Style.HeaderInnerText>
       </Style.HeaderContainer>

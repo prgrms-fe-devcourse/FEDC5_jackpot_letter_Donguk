@@ -93,6 +93,7 @@ function PostComment() {
             darkMode={darkMode}
             postId={postId}
             postDetail={postDetail}
+            userName={userName}
           />
         )}
         <Comment

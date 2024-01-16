@@ -22,8 +22,10 @@ export const SearchBar = styled.input`
   width: 100%;
   height: 100%;
   font-size: 1.2rem;
+  border: 0.5px solid gray;
   padding: 0 0.6rem 0 2.5rem;
   background-color: white;
   border-radius: 10px;
   box-sizing: border-box;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 `;
