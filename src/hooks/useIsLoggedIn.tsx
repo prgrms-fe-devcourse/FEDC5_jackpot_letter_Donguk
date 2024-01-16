@@ -1,16 +1,19 @@
 import { useEffect } from 'react';
 import { useAtom, useAtomValue } from 'jotai';
-import { idAtom, isLoggedInAtom } from '@/store/auth';
+import { idAtom, isLoggedInAtom, tokenAtom } from '@/store/auth';
 
 function useIsLoggedIn() {
   const [isLoggedIn, setIsLoggedIn] = useAtom(isLoggedInAtom);
+  const token = useAtomValue(tokenAtom);
   const userId = useAtomValue(idAtom);
 
   useEffect(() => {
-    if (userId === import.meta.env.VITE_ANONYMOUS_ID_KEY) {
+    if (token && userId !== import.meta.env.VITE_ANONYMOUS_ID_KEY) {
+      setIsLoggedIn(true);
+    } else {
       setIsLoggedIn(false);
     }
-  }, [setIsLoggedIn, userId]);
+  }, [setIsLoggedIn, token, userId]);
 
   return isLoggedIn;
 }
