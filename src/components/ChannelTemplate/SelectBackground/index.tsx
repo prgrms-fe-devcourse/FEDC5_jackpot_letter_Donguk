@@ -4,6 +4,7 @@ import { ChannelIconList, Title } from '@/pages/ChannelList/index.style.tsx';
 import { channelNameAtom } from '@/store/auth';
 import { ChannelOptionType } from '@/types/channel';
 import { selectedStyle } from '../SelectColor';
+import { Li } from '../SelectColor/index.style';
 import { Background, Item } from './index.style';
 import { BgName, BgType } from './type';
 
@@ -24,7 +25,7 @@ function SelectBackground({ option, setOption }: Props) {
       </Title>
       <ChannelIconList>
         {Object.keys(BgType).map((item) => (
-          <div key={`channel-background${item}`}>
+          <Li key={`channel-background${item}`}>
             <Item
               size={'5.5rem'}
               css={option.background === item && selectedStyle}
@@ -36,7 +37,7 @@ function SelectBackground({ option, setOption }: Props) {
                 setOption({ ...option, background: item as BgName })
               }
             />
-          </div>
+          </Li>
         ))}
       </ChannelIconList>
     </Background>

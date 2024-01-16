@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAtomValue } from 'jotai/react';
+import { Li } from '@/components/ChannelTemplate/SelectColor/index.style';
 import Button from '@/components/Common/Button';
 import ShortLogo from '@/components/Common/Logo/ShortLogo';
 import SearchBar from '@/components/Common/SearchBar';
@@ -71,13 +72,13 @@ function ChannelList() {
         <ChannelIconList>
           {channels &&
             [...channels].reverse().map((channel: Channel) => (
-              <div
+              <Li
                 key={`channel-${channel._id}`}
                 role="button">
                 <Link to={`/channel/${channel.name}`}>
                   <ChannelIcon channel={channel} />
                 </Link>
-              </div>
+              </Li>
             ))}
         </ChannelIconList>
       </Body>

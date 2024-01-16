@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Item } from '@/components/ChannelTemplate/SelectBackground/index.style';
+import { Li } from '@/components/ChannelTemplate/SelectColor/index.style';
 import {
   ColorName,
   ColorType
@@ -37,19 +38,21 @@ function PostCreate() {
       </Title>
       <ChannelIconList>
         {Object.keys(ColorType).map((colorName) => (
-          <Item
-            size={'2rem'}
-            role="button"
+          <Li
             key={`letter-color${colorName}`}
-            src={`${
-              import.meta.env.VITE_PUBLIC_URL
-            }/images/letter/${colorName}.png`}
-            css={colorName === color && selectedStyle}
             onClick={() => setColor(colorName as ColorName)}
-            styleOption={{
-              padding: '2rem'
-            }}
-          />
+            role="button">
+            <Item
+              size={'2rem'}
+              src={`${
+                import.meta.env.VITE_PUBLIC_URL
+              }/images/letter/${colorName}.png`}
+              css={colorName === color && selectedStyle}
+              styleOption={{
+                padding: '2rem'
+              }}
+            />
+          </Li>
         ))}
       </ChannelIconList>
       <ChannelButton>

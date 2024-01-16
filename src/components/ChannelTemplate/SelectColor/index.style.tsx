@@ -1,5 +1,11 @@
 import styled from '@emotion/styled';
 
+export const Li = styled.li`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
 export const Item = styled.div`
   display: flex;
   flex-direction: column;
