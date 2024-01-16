@@ -24,7 +24,7 @@ export const Title = styled.div`
     opacity: 50%;
   }
 `;
-export const Img = styled.img`
+export const Img = styled.div`
   position: absolute;
   right: 22%;
   @media (max-width: 500px) {
