@@ -8,9 +8,10 @@ import * as Style from './index.style';
 
 interface DMprops {
   receiverData: User;
+  darkMode: boolean;
 }
 
-function DM({ receiverData }: DMprops) {
+function DM({ darkMode, receiverData }: DMprops) {
   const userId = useAtomValue(idAtom);
   const { data: messageData } = useGetMessagesQuery(receiverData?._id);
   const underScrollRef = useRef<HTMLDivElement | null>(null);
@@ -59,14 +60,14 @@ function DM({ receiverData }: DMprops) {
                     image={receiverData.image ? receiverData.image : ''}
                   />
                 </Style.UserProfile>
-                <Style.Message>{message}</Style.Message>
+                <Style.Message darkMode={darkMode}>{message}</Style.Message>
               </Style.MessageContainer>
             ) : (
               <Style.MessageContainer
                 isOrder={false}
                 key={idx}>
                 {readCheck(idx, messageData)}
-                <Style.Message>{message}</Style.Message>
+                <Style.Message darkMode={darkMode}>{message}</Style.Message>
                 <Style.UserProfile isSize={2}>
                   <ProfileImg
                     width={2}

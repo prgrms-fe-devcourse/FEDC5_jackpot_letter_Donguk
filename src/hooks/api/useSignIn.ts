@@ -27,10 +27,15 @@ export const useSignIn = () => {
       setIdState(_id);
       setNameState(fullName);
 
-      setIsLoggedIn(true);
-      toast.success('로그인 성공');
+      if (_id === import.meta.env.VITE_ANONYMOUS_ID_KEY) {
+        setIsLoggedIn(false);
+        toast.success('익명 사용자입니다');
+      } else {
+        setIsLoggedIn(true);
+        toast.success('로그인 성공');
+      }
 
-      queryClient.invalidateQueries({ queryKey: ['userList'] });
+      queryClient.invalidateQueries({ queryKey: ['userOnline'] });
     },
     onError: (error: ErrorResponseData) => {
       if (error.message) {

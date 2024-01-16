@@ -57,8 +57,7 @@ function UserList({ userName, filteringData }: userListProps) {
                     if (target.id !== 'profile') {
                       navigate(`/message/${_id}`);
                     }
-                  }}
-                >
+                  }}>
                   <Style.UserProfile>
                     <ProfileImg
                       width={2}

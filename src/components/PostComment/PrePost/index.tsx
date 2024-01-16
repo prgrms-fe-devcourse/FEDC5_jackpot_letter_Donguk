@@ -4,7 +4,6 @@ import toast, { Toaster } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { useAtomValue } from 'jotai';
 import { useCommentDeleteMutation } from '@/hooks/api/useCommentDeleteMutation';
-// import { useGetPostDetailQuery } from '@/hooks/api/useGetPostDetailQuery';
 import { useLikeCreateMutation } from '@/hooks/api/useLikeCreateMutation';
 import { useLikeDeleteMutation } from '@/hooks/api/useLikeDeleteMutation';
 import { usePostDeleteMutation } from '@/hooks/api/usePostDeleteMutation';
@@ -21,6 +20,7 @@ interface PrePostProps {
   postId: string;
   postDetail: Post;
   darkMode: boolean;
+  userName: string;
 }
 
 interface userFormProps {
@@ -33,7 +33,7 @@ const toastStyle = {
   marginTop: '0.5rem'
 };
 
-function PrePost({ darkMode, postId, postDetail }: PrePostProps) {
+function PrePost({ userName, darkMode, postId, postDetail }: PrePostProps) {
   const userId = useAtomValue(idAtom);
 
   const { mutationLikeCreate } = useLikeCreateMutation(postId); // 특정 포스트 좋아요 추가
@@ -88,6 +88,10 @@ function PrePost({ darkMode, postId, postDetail }: PrePostProps) {
 
   /** 특정 포스트 삭제 함수 */
   const handleDeletePostClick = () => {
+    if (userName === '익명') {
+      toast.error('익명 회원은 편지를 삭제 할 수 없습니다.');
+      return;
+    }
     const deleteCheck = confirm(
       '편지를 삭제 하시겠습니까? 편지를 삭제하시면 편지를 포함한 모든 댓글도 함께 삭제됩니다.'
     );
@@ -103,6 +107,11 @@ function PrePost({ darkMode, postId, postDetail }: PrePostProps) {
 
   /** 특정 댓글 삭제하는 함수 */
   const handleDeleteCommentClick = (e: React.MouseEvent<HTMLImageElement>) => {
+    console.log(userName);
+    if (userName === '익명') {
+      toast.error('익명 회원은 댓글을 삭제할 수 없습니다.');
+      return;
+    }
     const deleteCheck = confirm('댓글 삭제하시겠습니까?');
     if (deleteCheck) {
       const targetElement = e.target as HTMLElement;
@@ -165,7 +174,13 @@ function PrePost({ darkMode, postId, postDetail }: PrePostProps) {
           ) : (
             <Style.EditImg
               src={editIcon}
-              onClick={handlePostToggleClick}
+              onClick={() => {
+                if (userName === '익명') {
+                  toast.error('익명 회원은 편지를 수정 할 수 없습니다.');
+                  return;
+                }
+                handlePostToggleClick;
+              }}
             />
           )}
           <Style.DeleteImg
@@ -192,14 +207,11 @@ function PrePost({ darkMode, postId, postDetail }: PrePostProps) {
           {postDetail?.comments.map(
             ({ comment, _id, author }, idx) =>
               titleAndCommentParsing(comment) && (
-
                 <Style.PrePostComment
                   darkMode={darkMode}
                   key={idx}>
                   <Style.PrePostUserName
-                    onClick={() => navigator(`/user/${author._id}`)}
-                  >
-
+                    onClick={() => navigator(`/user/${author._id}`)}>
                     {`💬 ${titleAndCommentParsing(comment).title}: `}
                   </Style.PrePostUserName>
                   {titleAndCommentParsing(comment).comment}
