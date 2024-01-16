@@ -8,13 +8,12 @@ import Button from '@/components/Common/Button';
 import useCreateUserPhoto from '@/hooks/api/useCreateUserPhoto';
 import { userAtom } from '@/store/user';
 import { theme } from '@/theme';
-import { ImageSchema, NameSchema } from '@/utils/validation';
+import { ImageSchema } from '@/utils/validation';
 import ProfileImg from '../../Common/ProfileImg';
 import * as Style from './index.style';
 
 export interface FormValue {
-  name?: string;
-  image?: FileList;
+  image: FileList;
 }
 
 function ProfileUpdate() {
@@ -22,8 +21,7 @@ function ProfileUpdate() {
   const previewRef = useRef<HTMLImageElement>(null);
 
   const schema = z.object({
-    ...ImageSchema.shape,
-    ...NameSchema.shape
+    ...ImageSchema.shape
   });
 
   const {

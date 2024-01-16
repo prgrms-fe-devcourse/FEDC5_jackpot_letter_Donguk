@@ -25,6 +25,8 @@ export const Container = styled.div`
     .input-wrap {
       flex-grow: 1;
       width: 100%;
+      display: flex;
+      align-items: self-end;
     }
   }
 `;
@@ -40,6 +42,7 @@ export const ProfileImgWrap = styled.div`
     right: 0px;
     width: 2rem;
     height: 2rem;
+    z-index: 100;
 
     #profile {
       position: absolute;

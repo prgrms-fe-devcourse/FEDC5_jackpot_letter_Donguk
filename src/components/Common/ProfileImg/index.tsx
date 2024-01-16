@@ -23,22 +23,38 @@ function ProfileImg(
 
   const navigate = useNavigate();
 
-  return (
-    <ProfilePhoto
-      id="profile"
-      ref={ref}
-      css={css`
-        height: ${height}rem;
-        width: ${width}rem;
-      `}
-      src={image || empty_user}
-      alt={alt}
-      onError={(e: SyntheticEvent<HTMLImageElement, Event>) =>
-        handleImgError(e)
-      }
-      onClick={() => (userId ? navigate(`/user/${userId}`) : null)}
-    />
-  );
+  if (userId) {
+    return (
+      <ProfilePhoto
+        ref={ref}
+        css={css`
+          height: ${height}rem;
+          width: ${width}rem;
+        `}
+        src={image || empty_user}
+        alt={alt}
+        onError={(e: SyntheticEvent<HTMLImageElement, Event>) =>
+          handleImgError(e)
+        }
+        onClick={() => navigate(`/user/${userId}`)}
+      />
+    );
+  } else {
+    return (
+      <ProfilePhoto
+        ref={ref}
+        css={css`
+          height: ${height}rem;
+          width: ${width}rem;
+        `}
+        src={image || empty_user}
+        alt={alt}
+        onError={(e: SyntheticEvent<HTMLImageElement, Event>) =>
+          handleImgError(e)
+        }
+      />
+    );
+  }
 }
 
 const ForwardRefProfileImg = forwardRef<HTMLImageElement, ProfileImgProps>(
