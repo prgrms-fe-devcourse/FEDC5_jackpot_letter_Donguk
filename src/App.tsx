@@ -5,6 +5,8 @@ import SignIn from '@components/Common/SignIn';
 import { useAtomValue } from 'jotai';
 import { theme } from '@/theme';
 import { Global } from '@emotion/react';
+import HamburgerMenu from './components/Common/HamburgerMenu';
+import NotificationMenu from './components/Common/NotificationMenu';
 import ResponsiveLayout from './components/Common/Responsive/ResponsiveLayout';
 import MypageLayout from './components/Mypage/MypageLayout';
 import QueryErrorBoundary from './components/Mypage/QueryErrorBoundary';
@@ -44,7 +46,7 @@ function App() {
               path={route.path}
               element={<SignIn>{route.component}</SignIn>}
               key={idx}
-            />
+            ></Route>
           ))}
           {userRoutes.page.map((route, idx) => (
             <Route
@@ -55,17 +57,22 @@ function App() {
                 </AuthMiddleware>
               }
               key={idx}
-            />
+            ></Route>
           ))}
           <Route
             path="/mypage"
             element={
               <AuthMiddleware>
-                <MenuBar>
-                  <MypageLayout />
-                </MenuBar>
+                <>
+                  <div style={{ position: 'relative' }}>
+                    <NotificationMenu />
+                    <HamburgerMenu />
+                    <MypageLayout />
+                  </div>
+                </>
               </AuthMiddleware>
-            }>
+            }
+          >
             {userRoutes.mypage.map((route, idx) => (
               <Route
                 path={route.path}

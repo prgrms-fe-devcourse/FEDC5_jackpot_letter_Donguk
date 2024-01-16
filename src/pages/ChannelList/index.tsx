@@ -2,11 +2,12 @@ import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAtomValue } from 'jotai/react';
 import Button from '@/components/Common/Button';
+import ShortLogo from '@/components/Common/Logo/ShortLogo';
 import SearchBar from '@/components/Common/SearchBar';
 import useGetChannelList from '@/hooks/api/useGetChannelList';
-import ChannelImg from '@/assets/channelWithLongLine.svg';
 import { PATH } from '@/constants/path';
 import { channelNameAtom } from '@/store/auth';
+import { darkAtom } from '@/store/theme';
 import { Channel } from '@/types/ResponseType';
 import { createChannelFromAnonymous } from '@/utils/anonymous';
 import ChannelIcon from '../../components/ChannelList/ChannelIcon';
@@ -17,6 +18,7 @@ function ChannelList() {
   const userName = useAtomValue(channelNameAtom);
   const [channels, setChannels] = useState<Channel[]>(channelList);
   const navigator = useNavigate();
+  const darkMode = useAtomValue(darkAtom);
 
   useEffect(() => {
     setChannels(channelList);
@@ -48,10 +50,9 @@ function ChannelList() {
             onClick={handleClickCreateChannel}
           />
         </Title>
-        <Img
-          src={ChannelImg}
-          alt="background-channel-icon"
-        />
+        <Img>
+          <ShortLogo darkMode={darkMode} />
+        </Img>
       </Header>
       <Body>
         <SearchBar
@@ -63,7 +64,8 @@ function ChannelList() {
             [...channels].reverse().map((channel: Channel) => (
               <div
                 key={`channel-${channel._id}`}
-                role="button">
+                role="button"
+              >
                 <Link to={`/channel/${channel.name}`}>
                   <ChannelIcon channel={channel} />
                 </Link>

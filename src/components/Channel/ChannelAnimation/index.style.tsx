@@ -28,6 +28,7 @@ export const CoveredAnimation = styled.img`
     100% {
       transform: scale(1);
       opacity: 0;
+      display: none;
     }
   }
 `;

@@ -104,7 +104,6 @@ function PrePost({ darkMode, postId, postDetail }: PrePostProps) {
   /** 특정 댓글 삭제하는 함수 */
   const handleDeleteCommentClick = (e: React.MouseEvent<HTMLImageElement>) => {
     const deleteCheck = confirm('댓글 삭제하시겠습니까?');
-
     if (deleteCheck) {
       const targetElement = e.target as HTMLElement;
       const commentId = targetElement.dataset.id;
@@ -191,12 +190,16 @@ function PrePost({ darkMode, postId, postDetail }: PrePostProps) {
         </Style.LikeCommentContainer>
         <Style.PreCommentContainer>
           {postDetail?.comments.map(
-            ({ comment, _id }, idx) =>
+            ({ comment, _id, author }, idx) =>
               titleAndCommentParsing(comment) && (
+
                 <Style.PrePostComment
                   darkMode={darkMode}
                   key={idx}>
-                  <Style.PrePostUserName>
+                  <Style.PrePostUserName
+                    onClick={() => navigator(`/user/${author._id}`)}
+                  >
+
                     {`💬 ${titleAndCommentParsing(comment).title}: `}
                   </Style.PrePostUserName>
                   {titleAndCommentParsing(comment).comment}

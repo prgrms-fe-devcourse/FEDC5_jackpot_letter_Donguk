@@ -1,15 +1,11 @@
 import styled from '@emotion/styled';
 
 export const HeaderContainer = styled.div`
-  width: 19.375rem;
-  height: 3rem;
-  margin-left: 5%;
-  margin-top: 2.0625rem;
+  padding: 2rem;
 `;
 
 export const HeaderInnerText = styled.div`
   ${(props) => props.theme.typography.postTitle}
-  line-height: 1.8rem;
   color: white;
 `;
 
