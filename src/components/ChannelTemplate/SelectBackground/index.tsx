@@ -14,7 +14,6 @@ interface Props {
 
 function SelectBackground({ option, setOption }: Props) {
   const channelName = useAtomValue(channelNameAtom);
-
   return (
     <Background selectedValue={option.background}>
       <Title>

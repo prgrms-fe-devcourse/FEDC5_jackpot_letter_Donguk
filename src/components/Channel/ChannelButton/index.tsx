@@ -24,7 +24,6 @@ function ChannelButton({
   const { data: channelListData } = useGetChannelList();
 
   const { allowWriteAll } = parsedDescription(channelDescription);
-
   const movePostPage = () => {
     navigate(PATH.POST_CREATE, {
       state: { channelName, channelId, channelDescription }
@@ -40,13 +39,11 @@ function ChannelButton({
 
   const handleClickPost = () => {
     if (allowWriteAll) return movePostPage();
-
     const logout = isLogout(userName, '가입한 회원만 작성가능한 채널이에요');
     const anonymous = isAnonymous(
       userName,
       '가입한 회원만 작성가능한 채널이에요'
     );
-
     if (logout && anonymous) movePostPage();
   };
 
