@@ -53,7 +53,7 @@ function UserPage() {
 
   const handleMessageClick = () => {
     // 임시 url
-    navigate('/message');
+    navigate(`/message/${userId}`);
   };
 
   const handleGoButtonClick = () => {
