@@ -33,7 +33,10 @@ function AlarmItem({ info }: Prop) {
   return (
     <Style.Notification onClick={handleClickItem}>
       <Style.Content>
-        <img src={`/src/assets/${type}.svg`} />
+        <img
+          src={`${import.meta.env.VITE_PUBLIC_URL}/images/alarm/${type}.svg`}
+          alt="alarm-image"
+        />
         <div>
           <div>{author.fullName}</div>
           <span>{annouce}</span>
