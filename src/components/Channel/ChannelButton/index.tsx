@@ -40,23 +40,28 @@ function ChannelButton({
 
   const handleClickPost = () => {
     if (allowWriteAll) return movePostPage();
-    let access = true;
-    access = isLogout(userName, '가입한 회원만 작성가능한 채널이에요');
-    access = isAnonymous(userName, '가입한 회원만 작성가능한 채널이에요');
 
-    if (access) movePostPage();
+    const logout = isLogout(userName, '가입한 회원만 작성가능한 채널이에요');
+    const anonymous = isAnonymous(
+      userName,
+      '가입한 회원만 작성가능한 채널이에요'
+    );
+
+    if (logout && anonymous) movePostPage();
   };
 
   const handleClickCreateChnnelButton = () => {
-    let access = true;
     const channelNames = channelListData.map(
       (channel: Channel) => channel.name
     );
-    access = isLogout(userName, '가입한 회원만 채널을 생성할 수 있어요');
-    access = isInclude(channelNames, userName, '이미 채널을 생성했어요');
-    access = isAnonymous(userName, '익명사용자는 채널을 생성할 수 없어요');
+    const logout = isLogout(userName, '가입한 회원만 채널을 생성할 수 있어요');
+    const include = isInclude(channelNames, userName, '이미 채널을 생성했어요');
+    const anonymous = isAnonymous(
+      userName,
+      '익명사용자는 채널을 생성할 수 없어요'
+    );
 
-    if (access) navigate(PATH.CHANNEL_CREATE);
+    if (logout && include && anonymous) navigate(PATH.CHANNEL_CREATE);
   };
 
   return (
