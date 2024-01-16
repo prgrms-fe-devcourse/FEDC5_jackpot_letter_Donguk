@@ -5,8 +5,7 @@ export const Background = styled.div<{ selectedValue: BgName }>`
   position: relative;
   height: 100vh;
   background-image: ${({ selectedValue }) =>
-    new URL(`/src/assets/background/${selectedValue}.png`, import.meta.url)
-      .href}
+    `url('/assets/images/background/${selectedValue}.png')`}
   background-repeat: no-repeat;
   background-size: cover;
   color: ${({ selectedValue }) =>
