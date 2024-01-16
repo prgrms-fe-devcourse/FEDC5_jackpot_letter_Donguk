@@ -106,13 +106,13 @@ function Post() {
           children={
             <div>
               <div style={{ textAlign: 'center', whiteSpace: 'pre-wrap' }}>
-                {`박 주인의 설정으로 인해 로그인 한 회원만 편지를 작성할 수 있습니다. 로그인 하시겠습니까?`}
+                {`해당 채널은 "회원" 또는 "익명으로 체험하기"를 선택한 회원만 편지를 작성할 수 있습니다.\n\n로그인 페이지로 이동하시겠습니까?`}
               </div>
               <div
                 style={{
                   display: 'flex',
                   justifyContent: 'space-around',
-                  marginTop: '2.5rem'
+                  marginTop: '0.5rem'
                 }}>
                 <Button
                   content="예"
