@@ -158,7 +158,7 @@ export const CommentCountText = styled.span<{ darkMode: boolean }>`
 
 export const PreCommentContainer = styled.div`
   width: 100%;
-  height: 18rem;
+  height: 14rem;
   flex-grow: 1;
   border-radius: 20px;
   position: relative;
