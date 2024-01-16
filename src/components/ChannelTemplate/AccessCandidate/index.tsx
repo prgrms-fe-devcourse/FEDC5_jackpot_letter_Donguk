@@ -1,5 +1,4 @@
-import Private from '@/assets/Private.svg';
-import Public from '@/assets/Public.svg';
+import { IoLockClosedOutline, IoLockOpenOutline } from 'react-icons/io5';
 import { theme } from '@/theme';
 import { css } from '@emotion/react';
 import { Container } from './index.style';
@@ -19,9 +18,18 @@ function AccessCandidate({ security, selected, text, onClick }: Props) {
   return (
     <Container
       onClick={onClick}
-      css={selected === security && selectedStyle}
-    >
-      <img src={security ? Private : Public} />
+      css={selected === security && selectedStyle}>
+      {security ? (
+        <IoLockOpenOutline
+          size={28}
+          color={theme.palette.dark}
+        />
+      ) : (
+        <IoLockClosedOutline
+          size={28}
+          color={theme.palette.dark}
+        />
+      )}
       <span>{text}</span>
     </Container>
   );
