@@ -2,7 +2,6 @@ import styled from '@emotion/styled';
 
 export const Header = styled.div`
   display: flex;
-  padding-bottom: 1rem;
 `;
 export const Title = styled.div`
   padding: 2rem;
@@ -25,6 +24,13 @@ export const Title = styled.div`
     opacity: 50%;
   }
 `;
+export const Img = styled.img`
+  position: absolute;
+  right: 22%;
+  @media (max-width: 500px) {
+    right: 10%;
+  }
+`;
 export const Body = styled.div`
   padding: 0.5rem;
   padding-top: 1rem;
@@ -36,12 +42,12 @@ export const ChannelIconList = styled.ul`
   ::-webkit-scrollbar {
     display: none;
   }
-  height: 70vh;
+  height: 74vh;
   @media (max-width: 767px) {
     height: 60vh;
   }
-
   color: white;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(auto-fill, minmax(8.5rem, auto));
 `;

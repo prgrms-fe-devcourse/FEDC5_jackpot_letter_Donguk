@@ -5,6 +5,7 @@ import Button from '@/components/Common/Button';
 import useGetChannelList from '@/hooks/api/useGetChannelList';
 import { channelNameAtom } from '@/store/auth';
 import { Channel } from '@/types/ResponseType';
+import { createChannelFromAnonymous } from '@/utils/anonymous';
 import { channelOpenProps } from '../ChannelOpen';
 import * as Style from './index.style';
 
@@ -31,6 +32,8 @@ function ChannelButton({
     const channelNames = channelListData.map(
       (channel: Channel) => channel.name
     );
+
+    if (!createChannelFromAnonymous(userName)) return;
 
     if (channelNames.includes(userName))
       return toast.error('이미 채널을 생성했습니다.');

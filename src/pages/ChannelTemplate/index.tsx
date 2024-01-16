@@ -1,11 +1,13 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAtomValue } from 'jotai';
 import SelectAccess from '@/components/ChannelTemplate/SelectAccess';
 import SelectBackground from '@/components/ChannelTemplate/SelectBackground';
+import { BgType } from '@/components/ChannelTemplate/SelectBackground/type';
 import SelectColor from '@/components/ChannelTemplate/SelectColor';
 import Button from '@/components/Common/Button';
 import { useCreateChannel } from '@/hooks/api/useCreateChannel';
+import useTheme from '@/hooks/useTheme';
 import { channelNameAtom } from '@/store/auth';
 import { ChannelOptionType } from '@/types/channel';
 import { Body } from '../PostCreate/index.style';
@@ -24,7 +26,9 @@ function ChannelTemplate() {
     allowViewAll: true,
     allowWriteAll: true
   });
+
   const { mutate } = useCreateChannel();
+
   const PhaseInfo: PhaseType = {
     0: (
       <SelectBackground
@@ -62,6 +66,22 @@ function ChannelTemplate() {
   const handlePrevButtonClick = () => {
     isInit ? navigate(-1) : setPhase(phase - 1);
   };
+
+  const { darkMode, toggleTheme } = useTheme();
+  const [mode, setmode] = useState<boolean>(false);
+
+  useEffect(() => {
+    if ((BgType[channelOption.background] === 'dark') !== darkMode) {
+      toggleTheme();
+      setmode(true);
+    }
+    return () => {
+      if (mode) {
+        toggleTheme();
+      }
+    };
+  }, [channelOption.background, darkMode, mode, toggleTheme]);
+
   return (
     <Body>
       <div>{PhaseInfo[phase]}</div>

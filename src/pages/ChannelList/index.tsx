@@ -1,15 +1,22 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAtomValue } from 'jotai/react';
+import Button from '@/components/Common/Button';
 import SearchBar from '@/components/Common/SearchBar';
 import useGetChannelList from '@/hooks/api/useGetChannelList';
 import ChannelImg from '@/assets/channelWithLongLine.svg';
+import { PATH } from '@/constants/path';
+import { channelNameAtom } from '@/store/auth';
 import { Channel } from '@/types/ResponseType';
+import { createChannelFromAnonymous } from '@/utils/anonymous';
 import ChannelIcon from '../../components/ChannelList/ChannelIcon';
-import { Body, ChannelIconList, Header, Title } from './index.style';
+import { Body, ChannelIconList, Header, Img, Title } from './index.style';
 
 function ChannelList() {
   const { data: channelList } = useGetChannelList();
+  const userName = useAtomValue(channelNameAtom);
   const [channels, setChannels] = useState<Channel[]>(channelList);
+  const navigator = useNavigate();
 
   useEffect(() => {
     setChannels(channelList);
@@ -21,15 +28,27 @@ function ChannelList() {
     );
     setChannels(filteredChannels);
   };
-
+  const handleClickCreateChannel = () => {
+    if (!createChannelFromAnonymous(userName)) return;
+    navigator(PATH.CHANNEL_CREATE);
+  };
   return (
     <>
       <Header>
         <Title>
           <h1>공개 박 구경하기</h1>
           <span>친구들의 박을 구경하고 메시지를 남겨봐요.</span>
+          <Button
+            content="나의 박 만들기"
+            size={'lg'}
+            styleOption={{
+              height: '2.5rem',
+              'margin-top': '1rem'
+            }}
+            onClick={handleClickCreateChannel}
+          />
         </Title>
-        <img
+        <Img
           src={ChannelImg}
           alt="background-channel-icon"
         />

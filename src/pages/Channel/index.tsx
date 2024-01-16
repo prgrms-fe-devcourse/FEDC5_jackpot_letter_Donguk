@@ -4,7 +4,12 @@ import ChannelAnimation from '@/components/Channel/ChannelAnimation';
 import ChannelClose from '@/components/Channel/ChannelClose';
 import ChannelOpen from '@/components/Channel/ChannelOpen';
 import { Background } from '@/components/ChannelTemplate/SelectBackground/index.style';
+import {
+  BgName,
+  BgType
+} from '@/components/ChannelTemplate/SelectBackground/type';
 import useGetChannelInfo from '@/hooks/api/useGetChannelInfo';
+import useTheme from '@/hooks/useTheme';
 import { parsedBackground } from '@/utils/parse';
 import { Title } from '../ChannelList/index.style';
 
@@ -18,10 +23,22 @@ function Channel() {
   const [isOpened, setIsOpened] = useState(false);
   const { channelName } = useParams();
   const { data: channelInfo } = useGetChannelInfo(channelName ?? '');
+  const { darkMode, toggleTheme } = useTheme();
+  const [mode, setmode] = useState<boolean>(false);
 
   useEffect(() => {
     if (channelInfo) setData(channelInfo);
-  }, [channelInfo]);
+    const background: BgName = parsedBackground(channelInfo?.description);
+    if ((BgType[background] === 'dark') !== darkMode) {
+      toggleTheme();
+      setmode(true);
+    }
+    return () => {
+      if (mode) {
+        toggleTheme();
+      }
+    };
+  }, [channelInfo, darkMode, mode, toggleTheme]);
 
   if (channelName === undefined) {
     return <Navigate to="/" />;
