@@ -52,13 +52,20 @@ function UserList({ userName, filteringData }: userListProps) {
               role !== 'SuperAdmin' && (
                 <Style.UserList
                   key={_id}
-                  onClick={() => navigate(`/message/${_id}`)}>
+                  onClick={(e) => {
+                    const target = e.target as HTMLDivElement;
+                    if (target.id !== 'profile') {
+                      navigate(`/message/${_id}`);
+                    }
+                  }}
+                >
                   <Style.UserProfile>
                     <ProfileImg
                       width={2}
                       height={2}
                       alt="messageList userProfile Image"
                       image={image ? image : ''}
+                      userId={_id}
                     />
                     <Style.UserOnline isColor={isOnline} />
                   </Style.UserProfile>
