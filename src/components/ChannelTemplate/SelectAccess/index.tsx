@@ -16,7 +16,7 @@ function SelectAccess({ option, setOption }: Props) {
   const channelName = useAtomValue(channelNameAtom);
 
   return (
-    <Background selectedValue={option.background}>
+    <Background selectedValue={option?.background}>
       <Title>
         <h1>
           <span>{channelName}</span>님의 박

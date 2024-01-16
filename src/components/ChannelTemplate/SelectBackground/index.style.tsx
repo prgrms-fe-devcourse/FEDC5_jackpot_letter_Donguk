@@ -6,8 +6,6 @@ export const Background = styled.div<{ selectedValue: BgName }>`
   position: relative;
   height: 100vh;
   background-image: ${({ selectedValue }) => {
-    console.log(selectedValue);
-    console.log(getImageUrl('assets/background', selectedValue));
     return getImageUrl('assets/background', selectedValue);
   }}
   background-repeat: no-repeat;
