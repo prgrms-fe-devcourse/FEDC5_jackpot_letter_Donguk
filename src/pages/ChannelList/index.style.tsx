@@ -48,5 +48,8 @@ export const ChannelIconList = styled.ul`
   color: white;
   display: grid;
   overflow: scroll;
+  ::-webkit-scrollbar {
+    display: none;
+  }
   grid-template-columns: repeat(3, 33%);
 `;
