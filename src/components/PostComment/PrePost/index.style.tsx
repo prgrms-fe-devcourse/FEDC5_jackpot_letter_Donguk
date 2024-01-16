@@ -97,6 +97,8 @@ export const EditImg = styled.img`
   bottom: 0.5rem;
   width: 1.2rem;
   cursor: pointer;
+  filter: invert(53%) sepia(49%) saturate(669%) hue-rotate(122deg)
+    brightness(95%) contrast(98%);
 `;
 
 export const DeleteImg = styled.img`
@@ -105,6 +107,8 @@ export const DeleteImg = styled.img`
   bottom: 0.5rem;
   width: 1.2rem;
   cursor: pointer;
+  filter: invert(53%) sepia(49%) saturate(669%) hue-rotate(122deg)
+    brightness(95%) contrast(98%);
 `;
 
 export const CompleteImg = styled.img`
@@ -113,6 +117,8 @@ export const CompleteImg = styled.img`
   bottom: 0.5rem;
   width: 1.2rem;
   cursor: pointer;
+  filter: invert(53%) sepia(49%) saturate(669%) hue-rotate(122deg)
+    brightness(95%) contrast(98%);
 `;
 
 export const LikeCommentContainer = styled.div`
@@ -195,4 +201,6 @@ export const CommentDeleteImg = styled.img`
   right: 1rem;
   width: 1.2rem;
   cursor: pointer;
+  filter: invert(53%) sepia(49%) saturate(669%) hue-rotate(122deg)
+    brightness(95%) contrast(98%);
 `;
