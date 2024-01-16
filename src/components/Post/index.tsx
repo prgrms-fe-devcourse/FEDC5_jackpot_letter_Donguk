@@ -3,7 +3,6 @@ import { useForm } from 'react-hook-form';
 import { Toaster } from 'react-hot-toast';
 import { toast } from 'react-hot-toast';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import ShortLogo from '@components/Common/Logo/ShortLogo';
 import Modal from '@components/Common/Modal';
 import { useAtomValue } from 'jotai';
 import { usePostCreateMutation } from '@/hooks/api/usePostCreateMutation';
@@ -131,9 +130,6 @@ function Post() {
         ))}
       <Style.PostContainer>
         <Header channelName={state.channelName} />
-        <div style={{ position: 'absolute', top: '0', right: '2rem' }}>
-          <ShortLogo darkMode={darkMode} />
-        </div>
         <Letter
           darkMode={darkMode}
           userName={userName}

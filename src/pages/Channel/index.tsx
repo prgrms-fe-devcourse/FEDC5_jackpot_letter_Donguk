@@ -23,6 +23,7 @@ function Channel() {
 
   useEffect(() => {
     const background: BgName = parsedBackground(data?.description);
+
     if ((BgType[background] === 'dark') !== darkMode) {
       toggleTheme();
       setmode(true);

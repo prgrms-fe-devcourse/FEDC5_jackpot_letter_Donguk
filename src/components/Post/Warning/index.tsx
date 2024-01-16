@@ -1,3 +1,4 @@
+import warningIcon from '@/assets/WarningLogo.svg';
 import { channelInfo } from '../index';
 import * as Style from './index.style';
 
@@ -9,7 +10,7 @@ function Warning({ allowRangeData }: channelInfo) {
   return (
     <>
       <Style.WarningContainer>
-        <Style.WarningLogo src="/src/assets/WarningLogo.svg" />
+        <Style.WarningLogo src={warningIcon} />
         <Style.WarninginnerText>{warningMessage}</Style.WarninginnerText>
       </Style.WarningContainer>
     </>
