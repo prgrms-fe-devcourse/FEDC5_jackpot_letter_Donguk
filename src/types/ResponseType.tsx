@@ -138,6 +138,7 @@ export interface AuthenticationUser {
 export interface UserPost extends Post {
   channelName: string;
   content: string;
+  postId?: string;
 }
 
 export interface UserComment extends Comment {
