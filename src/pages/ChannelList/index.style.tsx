@@ -38,7 +38,7 @@ export const Body = styled.div`
 `;
 export const ChannelIconList = styled.ul`
   margin: auto;
-  width: 90%;
+  width: 100%;
   overflow-y: scroll;
   ::-webkit-scrollbar {
     display: none;
