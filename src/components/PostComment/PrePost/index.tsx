@@ -100,14 +100,13 @@ function PrePost({ userName, darkMode, postId, postDetail }: PrePostProps) {
       mutationPostDelete({
         id: postId
       });
-    }
 
-    navigator(`/channel/${postDetail.channel.name}`);
+      navigator(`/channel/${postDetail.channel.name}`);
+    }
   };
 
   /** 특정 댓글 삭제하는 함수 */
   const handleDeleteCommentClick = (e: React.MouseEvent<HTMLImageElement>) => {
-    console.log(userName);
     if (userName === '익명') {
       toast.error('익명 회원은 댓글을 삭제할 수 없습니다.');
       return;
