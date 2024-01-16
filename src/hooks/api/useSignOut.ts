@@ -27,7 +27,7 @@ export const useSignOut = () => {
       toast.success('로그아웃 성공');
       location.reload();
 
-      queryClient.invalidateQueries({ queryKey: ['userList'] });
+      queryClient.invalidateQueries({ queryKey: ['userOnline'] });
     },
     onError: (error) => {
       console.log(error);
