@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { useAtomValue } from 'jotai';
 import { ColorName } from '@/components/ChannelTemplate/SelectColor/type';
 import Pagenation from '@/components/Common/Pagenation';
 import { channelNameAtom } from '@/store/auth';
 import { Post } from '@/types/ResponseType';
-import { parsedPosts } from '@/utils/parse';
+import { parsedDescription, parsedPosts } from '@/utils/parse';
 import { AnnounceBox, Letter, LetterContainer } from './index.style';
 import { positions } from './position';
 
@@ -13,6 +14,7 @@ interface Prop {
   posts: Post[] | undefined;
   channelName: string;
   channelId: string;
+  channelDescription: string;
 }
 interface FilteredPost {
   title: string;
@@ -21,13 +23,19 @@ interface FilteredPost {
   postId: string;
 }
 
-function ChannelPosts({ posts, channelName, channelId }: Prop) {
+function ChannelPosts({
+  posts,
+  channelName,
+  channelId,
+  channelDescription
+}: Prop) {
   const [post, setPost] = useState<FilteredPost[][]>([]);
   const [page, setPage] = useState<number>(0);
   const navigator = useNavigate();
 
   const userName = useAtomValue(channelNameAtom);
   const isMyChannel = userName === channelName;
+  const { allowViewAll } = parsedDescription(channelDescription);
 
   useEffect(() => {
     if (posts) {
@@ -40,28 +48,38 @@ function ChannelPosts({ posts, channelName, channelId }: Prop) {
     }
   }, [posts]);
 
+  const handleClickLetter = (post: FilteredPost) => {
+    if (!allowViewAll)
+      return toast.error('편지 공개를 허용하지않은 채널이에요.');
+
+    const { title, content, color, postId } = post;
+    const letterState = {
+      title,
+      color,
+      content,
+      channelName,
+      channelId
+    };
+
+    navigator(`/comment/${postId}`, {
+      state: letterState
+    });
+  };
+
   return (
     <LetterContainer>
       {post &&
-        post[page]?.map(({ title, content, color, postId }, index) => (
+        post[page]?.map((post, index) => (
           <Letter
             key={`channel-letter${index}`}
             position={positions[index]}
-            onClick={() =>
-              navigator(`/comment/${postId}`, {
-                state: {
-                  title,
-                  color,
-                  content,
-                  channelName,
-                  channelId
-                }
-              })
-            }>
+            onClick={() => handleClickLetter(post)}>
             <img
-              src={`${import.meta.env.VITE_PUBLIC_URL}/letter/${color}.png`}
+              src={`${import.meta.env.VITE_PUBLIC_URL}/letter/${
+                post.color
+              }.png`}
             />
-            <span>{title}</span>
+            <span>{post.title}</span>
           </Letter>
         ))}
       <AnnounceBox visible={post?.length === 0}>

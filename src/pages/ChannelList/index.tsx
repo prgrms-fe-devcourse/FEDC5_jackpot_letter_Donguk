@@ -9,7 +9,7 @@ import { PATH } from '@/constants/path';
 import { channelNameAtom } from '@/store/auth';
 import { darkAtom } from '@/store/theme';
 import { Channel } from '@/types/ResponseType';
-import { createChannelFromAnonymous } from '@/utils/anonymous';
+import { isAnonymous, isInclude, isLogout } from '@/utils/access';
 import ChannelIcon from '../../components/ChannelList/ChannelIcon';
 import { Body, ChannelIconList, Header, Img, Title } from './index.style';
 
@@ -30,10 +30,17 @@ function ChannelList() {
     );
     setChannels(filteredChannels);
   };
+
   const handleClickCreateChannel = () => {
-    if (!createChannelFromAnonymous(userName)) return;
-    navigator(PATH.CHANNEL_CREATE);
+    let access = true;
+    const channelNames = channelList.map((channel: Channel) => channel.name);
+    access = isLogout(userName, '가입한 회원만 채널을 생성할 수 있어요');
+    access = isInclude(channelNames, userName, '이미 채널을 생성했어요');
+    access = isAnonymous(userName, '익명사용자는 채널을 생성할 수 없어요');
+
+    if (access) navigator(PATH.CHANNEL_CREATE);
   };
+
   return (
     <>
       <Header>
