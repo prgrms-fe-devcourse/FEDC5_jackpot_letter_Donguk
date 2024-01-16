@@ -22,8 +22,10 @@ export const Info = styled.div<{ seen: boolean }>`
     ${({ theme }) => theme.typography.label};
   }
 `;
-export const Content = styled.div`
+export const Content = styled.div<{ seen: boolean }>`
   display: flex;
+  color: ${({ theme, seen }) =>
+    seen ? theme.palette.gray_2 : theme.palette.gray_1};
   gap: 1rem;
   div {
     ${({ theme }) => theme.typography.description2};
@@ -35,7 +37,6 @@ export const Content = styled.div`
     padding: 0.1rem;
   }
   span {
-    color: ${({ theme }) => theme.palette.gray_1};
     ${({ theme }) => theme.typography.mypage_small};
   }
 `;

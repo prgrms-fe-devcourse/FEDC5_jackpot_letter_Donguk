@@ -32,7 +32,7 @@ function AlarmItem({ info }: Prop) {
 
   return (
     <Style.Notification onClick={handleClickItem}>
-      <Style.Content>
+      <Style.Content seen={seen}>
         <img
           src={`${import.meta.env.VITE_PUBLIC_URL}/images/alarm/${type}.svg`}
           alt="alarm-image"
@@ -44,7 +44,10 @@ function AlarmItem({ info }: Prop) {
       </Style.Content>
       <Style.Info seen={seen}>
         <div>{dayjs(createdAt).fromNow()}</div>
-        <img src={New} />
+        <img
+          src={New}
+          alt="unread notification"
+        />
       </Style.Info>
     </Style.Notification>
   );
