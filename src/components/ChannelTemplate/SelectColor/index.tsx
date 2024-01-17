@@ -7,7 +7,7 @@ import { theme } from '@/theme';
 import { ChannelOptionType } from '@/types/channel';
 import { css } from '@emotion/react';
 import { Background } from '../SelectBackground/index.style';
-import { Item } from './index.style';
+import { Item, Li } from './index.style';
 import { ColorName, ColorType } from './type';
 
 interface Props {
@@ -16,12 +16,6 @@ interface Props {
 }
 
 export const selectedStyle = css`
-  width: calc(8.625rem - 7px);
-  height: calc(8.625rem - 7px);
-  @media (max-width: 767px) {
-    width: calc(5.625rem - 7px);
-    height: calc(5.625rem - 7px);
-  }
   border: 3px solid ${theme.palette.main};
 `;
 
@@ -38,13 +32,16 @@ function SelectColor({ option, setOption }: Props) {
       </Title>
       <ChannelIconList>
         {Object.keys(ColorType).map((color) => (
-          <Item
-            role="button"
-            key={`channel-color${color}`}
-            css={option.color === color && selectedStyle}
-            onClick={() => setOption({ ...option, color: color as ColorName })}>
-            <CustomChannelIcon color={ColorType[color as ColorName]} />
-          </Item>
+          <Li key={`channel-color${color}`}>
+            <Item
+              role="button"
+              css={option.color === color && selectedStyle}
+              onClick={() =>
+                setOption({ ...option, color: color as ColorName })
+              }>
+              <CustomChannelIcon color={ColorType[color as ColorName]} />
+            </Item>
+          </Li>
         ))}
       </ChannelIconList>
     </Background>

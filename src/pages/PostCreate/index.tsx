@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Item } from '@/components/ChannelTemplate/SelectBackground/index.style';
+import { Li } from '@/components/ChannelTemplate/SelectColor/index.style';
 import {
   ColorName,
   ColorType
@@ -13,12 +14,6 @@ import { ChannelButton } from '../ChannelTemplate/index.style';
 import { Body } from './index.style';
 
 export const selectedStyle = css`
-  width: calc(5rem - 7px);
-  height: calc(5rem - 7px);
-  @media (max-width: 767px) {
-    width: calc(2rem - 7px);
-    height: calc(2rem - 7px);
-  }
   border: 3px solid ${theme.palette.main};
 `;
 
@@ -37,19 +32,22 @@ function PostCreate() {
       </Title>
       <ChannelIconList>
         {Object.keys(ColorType).map((colorName) => (
-          <Item
-            size={'2rem'}
-            role="button"
+          <Li
             key={`letter-color${colorName}`}
-            src={`${
-              import.meta.env.VITE_PUBLIC_URL
-            }/images/letter/${colorName}.png`}
-            css={colorName === color && selectedStyle}
             onClick={() => setColor(colorName as ColorName)}
-            styleOption={{
-              padding: '2rem'
-            }}
-          />
+            role="button">
+            <Item
+              src={`${
+                import.meta.env.VITE_PUBLIC_URL
+              }/images/letter/${colorName}.png`}
+              css={colorName === color && selectedStyle}
+              styleOption={{
+                padding: '1rem',
+                width: 'calc(90% - 2.5rem)',
+                height: 'calc(90% - 2.5rem)'
+              }}
+            />
+          </Li>
         ))}
       </ChannelIconList>
       <ChannelButton>
