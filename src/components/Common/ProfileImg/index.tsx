@@ -26,6 +26,7 @@ function ProfileImg(
   if (userId) {
     return (
       <ProfilePhoto
+        id="profile-img"
         ref={ref}
         css={css`
           height: ${height}rem;
