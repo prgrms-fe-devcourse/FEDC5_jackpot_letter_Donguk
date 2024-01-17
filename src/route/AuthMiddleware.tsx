@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import useIsLoggedIn from '@/hooks/useIsLoggedIn';
 import { PATH } from '@/constants/path';
 
@@ -8,8 +8,11 @@ interface AuthMiddlewareProps {
 }
 const AuthMiddleware = ({ children }: AuthMiddlewareProps) => {
   const isLoggedIn = useIsLoggedIn();
+  const navigate = useNavigate();
 
-  if (!isLoggedIn) <Navigate to={PATH.SIGNIN} />;
+  if (!isLoggedIn) {
+    navigate(PATH.SIGNIN);
+  }
 
   return children;
 };
