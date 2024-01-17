@@ -3,6 +3,7 @@ import { useAtomValue } from 'jotai';
 import AccessCandidate from '@/components/ChannelTemplate/AccessCandidate';
 import { Title } from '@/pages/ChannelList/index.style.tsx';
 import { channelNameAtom } from '@/store/auth';
+import { darkAtom } from '@/store/theme';
 import { ChannelOptionType } from '@/types/channel';
 import { Background } from '../SelectBackground/index.style';
 import { CadidateContainer } from './index.style';
@@ -14,7 +15,7 @@ interface Props {
 
 function SelectAccess({ option, setOption }: Props) {
   const channelName = useAtomValue(channelNameAtom);
-
+  const darkMode = useAtomValue(darkAtom);
   return (
     <Background selectedValue={option?.background}>
       <Title>
@@ -23,7 +24,7 @@ function SelectAccess({ option, setOption }: Props) {
         </h1>
         <span>내 채널의 접근 권한을 선택해주세요</span>
       </Title>
-      <CadidateContainer>
+      <CadidateContainer darkMode={darkMode}>
         <span>편지 공개여부</span>
         <div>
           <AccessCandidate

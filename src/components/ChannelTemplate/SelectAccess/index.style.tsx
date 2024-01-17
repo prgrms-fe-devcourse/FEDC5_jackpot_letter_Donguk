@@ -1,12 +1,16 @@
+import { theme } from '@/theme';
 import styled from '@emotion/styled';
 
-export const CadidateContainer = styled.div`
+export const CadidateContainer = styled.div<{
+  darkMode: boolean;
+}>`
   max-width: 22rem;
   padding: 1rem;
   margin: auto;
   & > span {
     ${({ theme }) => theme.typography.description2};
-    color: white;
+    color: ${({ darkMode }) =>
+      darkMode ? theme.palette.gray_3 : theme.palette.gray_1};
     opacity: 50%;
   }
   & > div {
