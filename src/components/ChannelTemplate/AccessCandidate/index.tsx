@@ -20,12 +20,12 @@ function AccessCandidate({ security, selected, text, onClick }: Props) {
       onClick={onClick}
       css={selected === security && selectedStyle}>
       {security ? (
-        <IoLockOpenOutline
+        <IoLockClosedOutline
           size={28}
           color={theme.palette.dark}
         />
       ) : (
-        <IoLockClosedOutline
+        <IoLockOpenOutline
           size={28}
           color={theme.palette.dark}
         />
