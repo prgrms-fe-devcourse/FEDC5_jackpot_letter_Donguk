@@ -28,7 +28,7 @@ export const useSignIn = () => {
       setNameState(fullName);
 
       if (_id === import.meta.env.VITE_ANONYMOUS_ID_KEY) {
-        setIsLoggedIn(false);
+        setIsLoggedIn(true);
         toast.success('익명 사용자입니다');
       } else {
         setIsLoggedIn(true);
