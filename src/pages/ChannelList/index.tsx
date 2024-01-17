@@ -12,7 +12,7 @@ import { darkAtom } from '@/store/theme';
 import { Channel } from '@/types/ResponseType';
 import { isAnonymous, isInclude, isLogout } from '@/utils/access';
 import ChannelIcon from '../../components/ChannelList/ChannelIcon';
-import { Body, ChannelIconList, Header, Img, Title } from './index.style';
+import { Body, ChannelIconList, Header, Img, Page, Title } from './index.style';
 
 function ChannelList() {
   const { data: channelList } = useGetChannelList();
@@ -45,7 +45,7 @@ function ChannelList() {
   };
 
   return (
-    <>
+    <Page>
       <Header>
         <Title>
           <h1>공개 박 구경하기</h1>
@@ -82,7 +82,7 @@ function ChannelList() {
             ))}
         </ChannelIconList>
       </Body>
-    </>
+    </Page>
   );
 }
 

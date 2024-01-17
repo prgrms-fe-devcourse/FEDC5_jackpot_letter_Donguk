@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
 export const Button = styled.div<{ isUnread: boolean }>`
+  cursor: pointer;
   position: absolute;
   padding: 2rem 1rem;
   right: 3rem;

@@ -56,6 +56,7 @@ export const Pointer = styled.img`
 export const ChannelIcon = styled.div`
   position: absolute;
   top: 0px;
+  cursor: pointer;
   left: calc(50% - 7rem);
   transform-origin: 50% 0%;
   cursor: pointer;

@@ -1,5 +1,9 @@
 import styled from '@emotion/styled';
 
+export const Page = styled.div`
+  height: 100%;
+  overflow: hidden;
+`;
 export const Header = styled.div`
   display: flex;
 `;
@@ -43,7 +47,7 @@ export const ChannelIconList = styled.ul`
   width: 90%;
   max-height: 65vh;
   @media (max-width: 767px) {
-    max-height: 60vh;
+    max-height: 55vh;
   }
   color: white;
   display: grid;

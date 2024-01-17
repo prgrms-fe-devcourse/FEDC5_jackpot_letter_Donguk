@@ -15,6 +15,7 @@ export const Header = styled.div`
   padding-bottom: 1rem;
 
   span {
+    cursor: pointer;
     padding: 0.5rem;
     border-radius: 10px;
     ${({ theme }) => theme.typography.label};
