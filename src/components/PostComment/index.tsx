@@ -4,6 +4,7 @@ import { Toaster } from 'react-hot-toast';
 import { toast } from 'react-hot-toast';
 import { useParams } from 'react-router-dom';
 import { useAtomValue } from 'jotai';
+import { useCreateNotification } from '@/hooks/api/useCreateNotification';
 import { useGetPostDetailQuery } from '@/hooks/api/useGetPostDetailQuery';
 import { usePostCommentCreateMutation } from '@/hooks/api/usePostCommentCreateMutation';
 import { channelNameAtom } from '@/store/auth';
@@ -30,7 +31,9 @@ function PostComment() {
   const darkMode = useAtomValue(darkAtom);
   const { postId } = useParams() as { postId: string };
   const { data: postDetail } = useGetPostDetailQuery(postId);
-  const { mutationCommentCreate } = usePostCommentCreateMutation(postId);
+  const { mutate: commentCreateMutate, data: commentCreateData } =
+    usePostCommentCreateMutation(postId);
+  const { mutate: notificationMutate } = useCreateNotification();
 
   const {
     register,
@@ -48,7 +51,7 @@ function PostComment() {
 
   /** 댓글 작성 시 서버로 전송 */
   const onSubmit = (data: useFormProps) => {
-    mutationCommentCreate({
+    commentCreateMutate({
       title: data.commentTitle,
       comment: data.commentContent,
       postId
@@ -58,6 +61,17 @@ function PostComment() {
   useEffect(() => {
     setValue('commentTitle', userName);
   }, [userName]);
+
+  useEffect(() => {
+    commentCreateData &&
+      postDetail &&
+      notificationMutate({
+        notificationType: 'COMMENT',
+        notificationTypeId: commentCreateData._id,
+        userId: postDetail.author._id,
+        postId: postDetail._id
+      });
+  }, [commentCreateData]);
 
   useEffect(() => {
     if (isSubmitSuccessful) reset();
