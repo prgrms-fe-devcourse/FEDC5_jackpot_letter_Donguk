@@ -15,6 +15,7 @@ function SignInBtn({ onClick }: ButtonType) {
       email: import.meta.env.VITE_ANONYMOUS_EMAIL_KEY,
       password: import.meta.env.VITE_ANONYMOUS_PASSWORD_KEY
     });
+
     navigate(PATH.ROOT);
   };
 
