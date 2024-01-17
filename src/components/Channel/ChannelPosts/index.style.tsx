@@ -12,6 +12,7 @@ export const Letter = styled.div<{
 }>`
   position: absolute;
   width: 4rem;
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
