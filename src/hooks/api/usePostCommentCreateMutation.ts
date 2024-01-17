@@ -12,7 +12,7 @@ interface mutationProps {
 export const usePostCommentCreateMutation = (postId: string) => {
   const queryClient = useQueryClient();
 
-  const postCommentCreateMutation = useMutation({
+  return useMutation({
     mutationFn: ({ title, comment, postId }: mutationProps) =>
       postPostCommentCreate(title, comment, postId),
     onSuccess: () => {
@@ -21,6 +21,4 @@ export const usePostCommentCreateMutation = (postId: string) => {
     },
     onError: () => toast.error('댓글을 작성하는데 실패하였습니다.')
   });
-
-  return { mutationCommentCreate: postCommentCreateMutation.mutate };
 };

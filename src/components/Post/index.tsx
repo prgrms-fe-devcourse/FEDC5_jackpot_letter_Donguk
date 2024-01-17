@@ -41,11 +41,12 @@ function Post() {
   const darkMode = useAtomValue(darkAtom);
 
   const { channelId } = useParams();
-  const { mutationPostCreate } = usePostCreateMutation();
-  const navigate = useNavigate();
   const { state } = useLocation();
   const [modalState, setModalState] = useState(true);
+  const navigate = useNavigate();
   const allowRangeData = JSON.parse(state.channelDescription);
+
+  const { mutationPostCreate } = usePostCreateMutation();
 
   const {
     register,
@@ -60,7 +61,7 @@ function Post() {
   });
 
   /** 포스트 작성 시 서버로 전송 */
-  const onSubmit = (submitData: useFormProps) => {
+  const onPostSubmit = (submitData: useFormProps) => {
     if (channelId)
       mutationPostCreate({
         title: submitData.letterTitle,
@@ -136,7 +137,7 @@ function Post() {
           register={register}
         />
         <Warning allowRangeData={allowRangeData} />
-        <Style.Form onSubmit={handleSubmit(onSubmit)}>
+        <Style.Form onSubmit={handleSubmit(onPostSubmit)}>
           <Footer />
         </Style.Form>
       </Style.PostContainer>

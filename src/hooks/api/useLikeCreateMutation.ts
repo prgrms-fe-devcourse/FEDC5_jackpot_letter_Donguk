@@ -10,13 +10,11 @@ interface mutationProps {
 export const useLikeCreateMutation = (postId: string) => {
   const queryClient = useQueryClient();
 
-  const likeCreateMutation = useMutation({
+  return useMutation({
     mutationFn: ({ postId }: mutationProps) => postLikeCreate(postId),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['postDetail', postId] });
     },
     onError: () => toast.error('좋아요가 정상적으로 전달되지 않았습니다.')
   });
-
-  return { mutationLikeCreate: likeCreateMutation.mutate };
 };

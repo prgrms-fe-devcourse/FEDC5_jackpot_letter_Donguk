@@ -9,7 +9,7 @@ export const CommentContainer = styled.div<{ darkMode: boolean }>`
   flex-direction: column;
   height: 8.1875rem;
   border-radius: 10px;
-  margin-top: 0.7rem;
+  margin: 1rem 0;
 `;
 
 export const CommentTitleInput = styled.input<{ darkMode: boolean }>`
