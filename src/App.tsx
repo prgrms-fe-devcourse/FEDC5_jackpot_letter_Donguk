@@ -2,6 +2,7 @@ import { CSSProperties } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { Route, Routes } from 'react-router-dom';
 import SignIn from '@components/Common/SignIn';
+import * as Sentry from '@sentry/react';
 import { useAtomValue } from 'jotai';
 import { theme } from '@/theme';
 import { Global } from '@emotion/react';
@@ -15,6 +16,7 @@ import MenuBar from './route/MenuBar';
 import { darkAtom } from './store/theme';
 import reset from './styles/_reset';
 import global from './styles/global';
+import RouteChangeTracker from './utils/RouteChangeTracker';
 
 interface ToastStyleProps extends CSSProperties {
   textAlign: 'center';
@@ -31,9 +33,10 @@ function App() {
   };
 
   const darkMode = useAtomValue(darkAtom);
+  RouteChangeTracker();
 
   return (
-    <>
+    <Sentry.ErrorBoundary>
       <Global
         styles={[reset, global(darkMode ? theme.darkTheme : theme.lightTheme)]}
       />
@@ -43,8 +46,7 @@ function App() {
             <Route
               path={route.path}
               element={<SignIn>{route.component}</SignIn>}
-              key={idx}
-            ></Route>
+              key={idx}></Route>
           ))}
           {userRoutes.page.map((route, idx) => (
             <Route
@@ -54,8 +56,7 @@ function App() {
                   <MenuBar>{route.component}</MenuBar>
                 </AuthMiddleware>
               }
-              key={idx}
-            ></Route>
+              key={idx}></Route>
           ))}
           <Route
             path="/mypage"
@@ -67,8 +68,7 @@ function App() {
                   </MenuBar>
                 </>
               </AuthMiddleware>
-            }
-          >
+            }>
             {userRoutes.mypage.map((route, idx) => (
               <Route
                 path={route.path}
@@ -101,7 +101,7 @@ function App() {
           style: { ...toastStyle }
         }}
       />
-    </>
+    </Sentry.ErrorBoundary>
   );
 }
 

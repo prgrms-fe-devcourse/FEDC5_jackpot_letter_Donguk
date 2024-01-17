@@ -11,10 +11,8 @@ const ContainerMixin = css`
 export const PrePostAndCommentContainer = styled.div`
   width: 100%;
   overflow: overlay;
-
-  @media (max-height: 667px) {
-    height: 20rem;
-  }
+  height: 13rem;
+  flex-grow: 1;
 
   ::-webkit-scrollbar {
     width: 0;
@@ -192,6 +190,7 @@ export const PrePostComment = styled.div<{ darkMode: boolean }>`
 
 export const PrePostUserName = styled.span`
   font-weight: 700;
+  cursor: pointer;
 `;
 
 export const CommentDeleteImg = styled.img`

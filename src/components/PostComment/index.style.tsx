@@ -19,7 +19,7 @@ export const GroudImage = styled.img`
 `;
 
 export const Form = styled.form`
-  position: absolute;
+  // position: absolute;
   width: 100%;
   bottom: 2rem;
 `;

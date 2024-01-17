@@ -6,6 +6,7 @@ export const Notification = styled.div`
   gap: 0.5rem;
   justify-content: space-between;
   border-bottom: 1px solid ${({ theme }) => theme.palette.gray_3};
+  cursor: pointer;
 `;
 export const Info = styled.div<{ seen: boolean }>`
   display: flex;

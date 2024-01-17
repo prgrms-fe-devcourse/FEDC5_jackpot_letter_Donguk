@@ -6,6 +6,7 @@ export const Button = styled.div<{ isUnread: boolean }>`
   padding: 2rem 1rem;
   right: 3rem;
   z-index: 10;
+  cursor: pointer;
   img {
     position: absolute;
     right: 1rem;

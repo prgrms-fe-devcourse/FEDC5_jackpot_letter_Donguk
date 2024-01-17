@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/react';
 import { AxiosError, InternalAxiosRequestConfig } from 'axios';
 import {
   ACCESS_TOKEN_KEY,
@@ -24,6 +25,8 @@ export const setToken = (config: InternalAxiosRequestConfig) => {
 
 export const responseError = async (error: AxiosError<string>) => {
   if (!error.response) throw error;
+
+  Sentry.captureException(error);
 
   const { data: message, status: statusCode } = error.response;
   const customMessage = getCustomMessage(message);
