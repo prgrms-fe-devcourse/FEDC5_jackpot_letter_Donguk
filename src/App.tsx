@@ -85,7 +85,6 @@ function App() {
               />
             ))}
           </Route>
-          <dfd></dfd>
           {commonRoutes.map((route, idx) => (
             <Route
               path={route.path}
