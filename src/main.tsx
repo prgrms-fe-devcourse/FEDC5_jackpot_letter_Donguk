@@ -10,7 +10,7 @@ import { ThemeProvider } from '@emotion/react';
 import { theme } from './theme';
 
 Sentry.init({
-  dsn: 'https://3a0217d88e1a10d00095e11ac9ae7a3a@o4506583607279616.ingest.sentry.io/4506583610884096',
+  dsn: 'https://4a1ca6d4b39692fe0fd32bd1591dbf64@o4506583607279616.ingest.sentry.io/4506584655527936',
   integrations: [
     new Sentry.BrowserTracing({
       tracePropagationTargets: [
