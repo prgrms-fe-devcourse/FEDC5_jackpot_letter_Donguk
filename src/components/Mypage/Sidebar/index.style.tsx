@@ -51,13 +51,13 @@ export const ProfileContainer = styled.div`
   }
 `;
 
-export const FollowWrapper = styled.div<{ size?: string }>`
+export const FollowWrapper = styled.div<{ size?: string; cursor?: string }>`
   font-size: ${(props) => props.size || theme.typography.mypage_small.fontSize};
   text-align: left;
 
   .follow {
     color: #717171;
-    cursor: pointer;
+    cursor: ${(props) => props.cursor ?? 'default'};
   }
 
   .following::before {

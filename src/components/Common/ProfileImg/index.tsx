@@ -22,7 +22,6 @@ function ProfileImg(
   };
 
   const navigate = useNavigate();
-
   if (userId) {
     return (
       <ProfilePhoto
@@ -34,6 +33,7 @@ function ProfileImg(
         `}
         src={image || empty_user}
         alt={alt}
+        cursor="pointer"
         onError={(e: SyntheticEvent<HTMLImageElement, Event>) =>
           handleImgError(e)
         }
