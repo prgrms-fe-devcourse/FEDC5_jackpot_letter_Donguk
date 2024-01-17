@@ -54,10 +54,11 @@ function UserList({ userName, filteringData }: userListProps) {
                   key={_id}
                   onClick={(e) => {
                     const target = e.target as HTMLDivElement;
-                    if (target.id !== 'profile') {
+                    if (target.id !== 'profile-img') {
                       navigate(`/message/${_id}`);
                     }
-                  }}>
+                  }}
+                >
                   <Style.UserProfile>
                     <ProfileImg
                       width={2}

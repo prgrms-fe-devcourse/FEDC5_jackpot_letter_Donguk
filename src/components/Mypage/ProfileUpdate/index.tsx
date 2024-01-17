@@ -5,28 +5,23 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useAtomValue } from 'jotai';
 import { z } from 'zod';
 import Button from '@/components/Common/Button';
-import Input from '@/components/Common/Input';
 import useCreateUserPhoto from '@/hooks/api/useCreateUserPhoto';
-import useUpdateUser from '@/hooks/api/useUpdateUser';
 import { userAtom } from '@/store/user';
 import { theme } from '@/theme';
-import { ImageSchema, NameSchema } from '@/utils/validation';
+import { ImageSchema } from '@/utils/validation';
 import ProfileImg from '../../Common/ProfileImg';
 import * as Style from './index.style';
 
 export interface FormValue {
-  name?: string;
-  image?: FileList;
+  image: FileList;
 }
 
 function ProfileUpdate() {
-  const { mutate: userNameMutate } = useUpdateUser();
   const { mutate: userPhotoMutate } = useCreateUserPhoto();
   const previewRef = useRef<HTMLImageElement>(null);
 
   const schema = z.object({
-    ...ImageSchema.shape,
-    ...NameSchema.shape
+    ...ImageSchema.shape
   });
 
   const {
@@ -38,13 +33,9 @@ function ProfileUpdate() {
     resolver: zodResolver(schema)
   });
 
-  const handleNameSubmit: SubmitHandler<FormValue> = async (data) => {
+  const handleUpdateDataSubmit: SubmitHandler<FormValue> = async (data) => {
     if (data.image && data.image[0]) {
       userPhotoMutate({ isCover: false, image: data.image[0] });
-    }
-
-    if (data.name && data.name !== '') {
-      userNameMutate(data.name);
     }
 
     reset();
@@ -71,7 +62,7 @@ function ProfileUpdate() {
     <Style.Container className="container">
       <form
         encType="multipart/form-data"
-        onSubmit={handleSubmit(handleNameSubmit)}
+        onSubmit={handleSubmit(handleUpdateDataSubmit)}
         className="name-form"
       >
         <Style.ProfileImgWrap>
@@ -127,31 +118,17 @@ function ProfileUpdate() {
           render={({ message }) => <p className="warning-text">{message}</p>}
         />
         <div className="input-wrap">
-          <Input
-            width="100%"
-            height="3rem"
-            type="text"
-            label="이름"
-            register={register}
-            value="name"
-            required
-          />
-          <ErrorMessage
-            errors={errors}
-            name="name"
-            render={({ message }) => <p className="warning-text">{message}</p>}
+          <Button
+            content="수정"
+            type="submit"
+            onClick={handleSubmit(handleUpdateDataSubmit)}
+            styleOption={{
+              height: '3.5rem',
+              width: '100%',
+              fontSize: theme.typography.mypage_regular.fontSize
+            }}
           />
         </div>
-        <Button
-          content="수정"
-          type="submit"
-          onClick={handleSubmit(handleNameSubmit)}
-          styleOption={{
-            height: '3.5rem',
-            width: '100%',
-            fontSize: theme.typography.mypage_regular.fontSize
-          }}
-        />
       </form>
     </Style.Container>
   );

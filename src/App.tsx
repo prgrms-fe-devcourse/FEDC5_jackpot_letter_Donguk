@@ -5,8 +5,6 @@ import SignIn from '@components/Common/SignIn';
 import { useAtomValue } from 'jotai';
 import { theme } from '@/theme';
 import { Global } from '@emotion/react';
-import HamburgerMenu from './components/Common/HamburgerMenu';
-import NotificationMenu from './components/Common/NotificationMenu';
 import ResponsiveLayout from './components/Common/Responsive/ResponsiveLayout';
 import MypageLayout from './components/Mypage/MypageLayout';
 import QueryErrorBoundary from './components/Mypage/QueryErrorBoundary';
@@ -64,11 +62,9 @@ function App() {
             element={
               <AuthMiddleware>
                 <>
-                  <div style={{ position: 'relative' }}>
-                    <NotificationMenu />
-                    <HamburgerMenu />
+                  <MenuBar>
                     <MypageLayout />
-                  </div>
+                  </MenuBar>
                 </>
               </AuthMiddleware>
             }
