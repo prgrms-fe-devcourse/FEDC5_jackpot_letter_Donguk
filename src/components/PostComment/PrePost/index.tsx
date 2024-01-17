@@ -4,6 +4,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { useAtomValue } from 'jotai';
 import { useCommentDeleteMutation } from '@/hooks/api/useCommentDeleteMutation';
+import { useCreateNotification } from '@/hooks/api/useCreateNotification';
 import { useLikeCreateMutation } from '@/hooks/api/useLikeCreateMutation';
 import { useLikeDeleteMutation } from '@/hooks/api/useLikeDeleteMutation';
 import { usePostDeleteMutation } from '@/hooks/api/usePostDeleteMutation';
@@ -36,11 +37,13 @@ const toastStyle = {
 function PrePost({ userName, darkMode, postId, postDetail }: PrePostProps) {
   const userId = useAtomValue(idAtom);
 
-  const { mutationLikeCreate } = useLikeCreateMutation(postId); // 특정 포스트 좋아요 추가
+  const { mutate: likeCreateMutate, data: likeCreateData } =
+    useLikeCreateMutation(postId); // 특정 포스트 좋아요 추가
   const { mutationLikeDelete } = useLikeDeleteMutation(postId); // 특정 포스트 좋아요 제거
   const { mutationPostDelete } = usePostDeleteMutation(); // 특정 포스트 제거
   const { mutationPostUpdate } = usePostUpdateMutation(postId); // 특정 포스트 수정
   const { mutationCommentDelete } = useCommentDeleteMutation(postId); // 특정 댓글 제거
+  const { mutate: notificationMutate } = useCreateNotification();
   const navigator = useNavigate();
 
   const {
@@ -62,7 +65,7 @@ function PrePost({ userName, darkMode, postId, postDetail }: PrePostProps) {
     const isUserId = postDetail?.likes.find(({ user }) => user === userId);
 
     if (!isUserId) {
-      mutationLikeCreate({
+      likeCreateMutate({
         postId
       });
     } else {
@@ -136,6 +139,16 @@ function PrePost({ userName, darkMode, postId, postDetail }: PrePostProps) {
 
     handlePostToggleClick();
   };
+
+  useEffect(() => {
+    likeCreateData &&
+      notificationMutate({
+        notificationType: 'LIKE',
+        notificationTypeId: likeCreateData._id,
+        userId: postDetail.author._id,
+        postId: postDetail._id
+      });
+  }, [likeCreateData]);
 
   useEffect(() => {
     if (isSubmitting) {
