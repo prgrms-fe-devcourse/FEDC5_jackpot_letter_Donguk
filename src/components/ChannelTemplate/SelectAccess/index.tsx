@@ -41,7 +41,7 @@ function SelectAccess({ option, setOption }: Props) {
           />
         </div>
       </CadidateContainer>
-      <CadidateContainer>
+      <CadidateContainer darkMode={darkMode}>
         <span>작성자 허용범위</span>
         <div>
           <AccessCandidate
