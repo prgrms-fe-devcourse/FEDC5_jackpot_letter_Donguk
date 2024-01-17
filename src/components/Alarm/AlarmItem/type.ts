@@ -9,7 +9,7 @@ export const Type: { [key: number]: AlarmType } = {
   0: {
     type: 'Comment',
     annouce: '댓글이 도착했어요',
-    url_path: 'post',
+    url_path: 'comment',
     url_id: 4
   },
   1: {
@@ -27,7 +27,7 @@ export const Type: { [key: number]: AlarmType } = {
   3: {
     type: 'Like',
     annouce: '내 포스트를 좋아해요',
-    url_path: 'post',
+    url_path: 'comment',
     url_id: 4
   }
 };

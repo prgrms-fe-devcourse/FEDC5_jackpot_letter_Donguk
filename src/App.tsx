@@ -1,6 +1,7 @@
 import { CSSProperties } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { Route, Routes } from 'react-router-dom';
+import * as Sentry from '@Sentry/react';
 import SignIn from '@components/Common/SignIn';
 import { useAtomValue } from 'jotai';
 import { theme } from '@/theme';
@@ -33,7 +34,7 @@ function App() {
   const darkMode = useAtomValue(darkAtom);
 
   return (
-    <>
+    <Sentry.ErrorBoundary>
       <Global
         styles={[reset, global(darkMode ? theme.darkTheme : theme.lightTheme)]}
       />
@@ -43,8 +44,7 @@ function App() {
             <Route
               path={route.path}
               element={<SignIn>{route.component}</SignIn>}
-              key={idx}
-            ></Route>
+              key={idx}></Route>
           ))}
           {userRoutes.page.map((route, idx) => (
             <Route
@@ -54,8 +54,7 @@ function App() {
                   <MenuBar>{route.component}</MenuBar>
                 </AuthMiddleware>
               }
-              key={idx}
-            ></Route>
+              key={idx}></Route>
           ))}
           <Route
             path="/mypage"
@@ -67,8 +66,7 @@ function App() {
                   </MenuBar>
                 </>
               </AuthMiddleware>
-            }
-          >
+            }>
             {userRoutes.mypage.map((route, idx) => (
               <Route
                 path={route.path}
@@ -101,7 +99,7 @@ function App() {
           style: { ...toastStyle }
         }}
       />
-    </>
+    </Sentry.ErrorBoundary>
   );
 }
 
