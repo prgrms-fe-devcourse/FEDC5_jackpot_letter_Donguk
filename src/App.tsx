@@ -16,6 +16,7 @@ import MenuBar from './route/MenuBar';
 import { darkAtom } from './store/theme';
 import reset from './styles/_reset';
 import global from './styles/global';
+import RouteChangeTracker from './utils/RouteChangeTracker';
 
 interface ToastStyleProps extends CSSProperties {
   textAlign: 'center';
@@ -32,6 +33,7 @@ function App() {
   };
 
   const darkMode = useAtomValue(darkAtom);
+  RouteChangeTracker();
 
   return (
     <Sentry.ErrorBoundary>
