@@ -20,6 +20,7 @@ export const Header = styled.div`
     ${({ theme }) => theme.typography.label};
     color: ${({ theme }) => theme.palette.gray_2};
     background-color: ${({ theme }) => theme.palette.gray_3};
+    cursor: pointer;
   }
   span:hover {
     color: ${({ theme }) => theme.palette.gray_1};

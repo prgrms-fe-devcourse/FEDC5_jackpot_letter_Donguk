@@ -56,33 +56,34 @@ export const Pointer = styled.img`
 export const ChannelIcon = styled.div`
   position: absolute;
   top: 0px;
-  left:calc(50% - 7rem);
+  left: calc(50% - 7rem);
   transform-origin: 50% 0%;
+  cursor: pointer;
   animation: shake 5s;
 
   animation-iteration-count: infinite;
 
-  @keyframes shake{
-    0%{
+  @keyframes shake {
+    0% {
       transform: rotate(0deg);
     }
-    5%{
+    5% {
       transform: rotate(5deg);
     }
-    10%{
+    10% {
       transform: rotate(-5deg);
     }
-    20%{
+    20% {
       transform: rotate(7deg);
     }
-    30%{
+    30% {
       transform: rotate(-3deg);
     }
-    40%{
+    40% {
       transform: rotate(3deg);
     }
-    50%{
+    50% {
       transform: rotate(0deg);
     }
-   
+  }
 `;

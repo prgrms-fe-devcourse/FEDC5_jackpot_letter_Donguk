@@ -16,6 +16,7 @@ export const Letter = styled.div<{
   flex-direction: column;
   align-items: center;
   gap: 0.2rem;
+  cursor: pointer;
   img {
     width: 3rem;
     height: 3.5rem;

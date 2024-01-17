@@ -128,7 +128,7 @@ function Sidebar({
             </svg>
           </button>
         </div>
-        <Style.FollowWrapper>
+        <Style.FollowWrapper cursor="pointer">
           <Link
             className="follow followers"
             to="/mypage/follow"
