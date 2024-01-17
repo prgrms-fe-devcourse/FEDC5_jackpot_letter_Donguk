@@ -1,8 +1,8 @@
 import { CSSProperties } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { Route, Routes } from 'react-router-dom';
-import * as Sentry from '@Sentry/react';
 import SignIn from '@components/Common/SignIn';
+import * as Sentry from '@sentry/react';
 import { useAtomValue } from 'jotai';
 import { theme } from '@/theme';
 import { Global } from '@emotion/react';

@@ -1,4 +1,4 @@
-import * as Sentry from '@Sentry/react';
+import * as Sentry from '@sentry/react';
 import { AxiosError, InternalAxiosRequestConfig } from 'axios';
 import {
   ACCESS_TOKEN_KEY,
