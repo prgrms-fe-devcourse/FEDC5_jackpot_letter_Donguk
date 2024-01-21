@@ -47,11 +47,11 @@ function DM({ darkMode, receiverData }: DMprops) {
       </Style.IntroduceContainer>
       {messageData &&
         messageData.map(({ sender, message }, idx) => (
-          <>
+          <Style.MessageContainer
+            isOrder={sender._id !== userId}
+            key={idx}>
             {userId && sender._id !== userId ? (
-              <Style.MessageContainer
-                isOrder={true}
-                key={idx}>
+              <>
                 <Style.UserProfile isSize={2}>
                   <ProfileImg
                     width={2}
@@ -61,11 +61,9 @@ function DM({ darkMode, receiverData }: DMprops) {
                   />
                 </Style.UserProfile>
                 <Style.Message darkMode={darkMode}>{message}</Style.Message>
-              </Style.MessageContainer>
+              </>
             ) : (
-              <Style.MessageContainer
-                isOrder={false}
-                key={idx}>
+              <>
                 {readCheck(idx, messageData)}
                 <Style.Message darkMode={darkMode}>{message}</Style.Message>
                 <Style.UserProfile isSize={2}>
@@ -84,9 +82,9 @@ function DM({ darkMode, receiverData }: DMprops) {
                     }
                   />
                 </Style.UserProfile>
-              </Style.MessageContainer>
+              </>
             )}
-          </>
+          </Style.MessageContainer>
         ))}
       <div ref={underScrollRef}></div>
     </>
