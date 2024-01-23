@@ -57,6 +57,19 @@ function SendMessage({ receiverId }: sendMessageProps) {
     });
   };
 
+  const handleTextareaKeyPress = (e: React.KeyboardEvent) => {
+    if (e.nativeEvent.isComposing) return;
+
+    // if (e.key === 'Enter' && e.shiftKey) {
+    //   setText((text) => text + '<br />');
+    // }
+
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleSubmit(handleTextareaOnSubmit)();
+    }
+  };
+
   useEffect(() => {
     /** 알림 생성 */
     messageData &&
@@ -79,8 +92,9 @@ function SendMessage({ receiverId }: sendMessageProps) {
   }, [isSubmitting, isSubmitSuccessful]);
 
   return (
-    <Style.Form onSubmit={handleSubmit(handleTextareaOnSubmit)}>
+    <Style.Form>
       <Style.sendMessage
+        onKeyDown={(e) => handleTextareaKeyPress(e)}
         value={text}
         placeholder="메시지를 보내보세요."
         {...register('message', {
@@ -90,7 +104,9 @@ function SendMessage({ receiverId }: sendMessageProps) {
           }
         })}
       />
-      <Style.IconButton type="submit">
+      <Style.IconButton
+        type="submit"
+        onClick={handleSubmit(handleTextareaOnSubmit)}>
         <Style.sendIcon src={sendIcon} />
       </Style.IconButton>
     </Style.Form>

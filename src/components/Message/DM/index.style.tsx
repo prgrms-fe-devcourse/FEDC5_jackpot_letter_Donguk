@@ -59,6 +59,7 @@ export const Message = styled.div<{ darkMode: boolean }>`
     props.darkMode
       ? props.theme.palette.light_font
       : props.theme.palette.dark_font};
+  white-space: pre;
 `;
 
 export const opponentCheck = styled.div`
