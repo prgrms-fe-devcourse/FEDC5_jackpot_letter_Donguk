@@ -49,7 +49,7 @@ function ChannelPosts({
   }, [posts]);
 
   const handleClickLetter = (post: FilteredPost) => {
-    if (!allowViewAll)
+    if (!allowViewAll && !isMyChannel)
       return toast.error('편지 공개를 허용하지않은 채널이에요.');
 
     const { title, content, color, postId } = post;
