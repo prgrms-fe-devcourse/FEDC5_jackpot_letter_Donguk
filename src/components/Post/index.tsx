@@ -9,9 +9,9 @@ import { usePostCreateMutation } from '@/hooks/api/usePostCreateMutation';
 import { channelNameAtom, tokenAtom } from '@/store/auth';
 import { darkAtom } from '@/store/theme';
 import Button from '../Common/Button';
+import Textarea from '../Common/Textarea';
 import Footer from './Footer';
 import Header from './Header';
-import Letter from './Letter';
 import Warning from './Warning';
 import * as Style from './index.style';
 
@@ -23,7 +23,7 @@ const toastStyle = {
 
 export interface useFormProps {
   letterTitle: string;
-  letterComment: string;
+  letterContent: string;
 }
 
 export interface channelInfo {
@@ -56,7 +56,7 @@ function Post() {
     mode: 'onSubmit',
     defaultValues: {
       letterTitle: userName ? userName : '',
-      letterComment: ''
+      letterContent: ''
     }
   });
 
@@ -65,7 +65,7 @@ function Post() {
     if (channelId)
       mutationPostCreate({
         title: submitData.letterTitle,
-        content: submitData.letterComment,
+        content: submitData.letterContent,
         image: null,
         channelId,
         color: state.color
@@ -75,8 +75,8 @@ function Post() {
   useEffect(() => {
     /** react-hook-form validation */
     if (isSubmitting) {
-      errors.letterComment
-        ? toast.error(errors.letterComment.message as string)
+      errors.letterContent
+        ? toast.error(errors.letterContent.message as string)
         : null;
       errors.letterTitle
         ? toast.error(errors.letterTitle.message as string)
@@ -131,11 +131,33 @@ function Post() {
         ))}
       <Style.PostContainer>
         <Header channelName={state.channelName} />
-        <Letter
-          darkMode={darkMode}
-          userName={userName}
-          register={register}
-        />
+        <Textarea>
+          <Textarea.TextareaTitle
+            darkMode={darkMode}
+            value={
+              userName
+                ? userName === '익명'
+                  ? undefined
+                  : userName
+                : undefined
+            }
+            placeholder={
+              userName
+                ? userName === '익명'
+                  ? '작성자명을 입력해주세요(최대 15자)'
+                  : userName
+                : '작성자명을 입력해주세요(최대 15자)'
+            }
+            maxLength={15}
+            register={register}
+          />
+          <Textarea.TextareaUnderLine />
+          <Textarea.TextareaContent
+            darkMode={darkMode}
+            placeholder={'내용을 입력하세요'}
+            register={register}
+          />
+        </Textarea>
         <Warning allowRangeData={allowRangeData} />
         <Style.Form onSubmit={handleSubmit(onPostSubmit)}>
           <Footer />

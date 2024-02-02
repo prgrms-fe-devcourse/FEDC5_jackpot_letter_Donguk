@@ -1,5 +1,5 @@
 import { UseFormRegister } from 'react-hook-form';
-import * as Style from './index.style';
+import Textarea from '@components/Common/Textarea';
 
 export interface useFormProps {
   letterTitle: string;
@@ -13,8 +13,8 @@ interface letterProps {
 
 function Letter({ darkMode, register, userName }: letterProps) {
   return (
-    <Style.LetterContainer darkMode={darkMode}>
-      <Style.LetterTitle
+    <Textarea>
+      <Textarea.TextareaTitle
         darkMode={darkMode}
         value={
           userName ? (userName === '익명' ? undefined : userName) : undefined
@@ -27,19 +27,15 @@ function Letter({ darkMode, register, userName }: letterProps) {
             : '작성자명을 입력해주세요(최대 15자)'
         }
         maxLength={15}
-        {...register('letterTitle', {
-          required: '작성자명은 반드시 입력해야합니다.'
-        })}
+        register={register}
       />
-      <Style.TitleUnderLine />
-      <Style.LetterContent
+      <Textarea.TextareaUnderLine />
+      <Textarea.TextareaContent
         darkMode={darkMode}
-        placeholder="내용을 입력하세요"
-        {...register('letterComment', {
-          required: '편지 내용은 반드시 입력해야합니다.'
-        })}
+        placeholder={'내용을 입력하세요'}
+        register={register}
       />
-    </Style.LetterContainer>
+    </Textarea>
   );
 }
 
