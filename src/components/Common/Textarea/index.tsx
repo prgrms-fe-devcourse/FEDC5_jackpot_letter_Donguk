@@ -7,7 +7,7 @@ import TextareaTitle from './TextareaTitle';
 import TextareaUnderLine from './TextareaUnderLine';
 import * as Style from './index.style';
 
-const TextareaContext = createContext({
+export const TextareaContext = createContext({
   darkMode: false
 });
 
@@ -21,7 +21,6 @@ export interface useFormProps {
 }
 
 export interface TextareaProps {
-  darkMode: boolean;
   value?: undefined | string;
   register?: UseFormRegister<useFormProps>;
   placeholder: string;

@@ -1,7 +1,10 @@
-import { TextareaProps } from './index';
+import { useContext } from 'react';
+import { TextareaContext, TextareaProps } from './index';
 import * as Style from './index.style';
 
-function TextareaContent({ darkMode, register, placeholder }: TextareaProps) {
+function TextareaContent({ register, placeholder }: TextareaProps) {
+  const { darkMode } = useContext(TextareaContext);
+
   return (
     <Style.TextareaContent
       darkMode={darkMode}

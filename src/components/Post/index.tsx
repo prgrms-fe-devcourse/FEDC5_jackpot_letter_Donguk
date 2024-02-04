@@ -133,7 +133,6 @@ function Post() {
         <Header channelName={state.channelName} />
         <Textarea>
           <Textarea.TextareaTitle
-            darkMode={darkMode}
             value={
               userName
                 ? userName === '익명'
@@ -153,7 +152,6 @@ function Post() {
           />
           <Textarea.TextareaUnderLine />
           <Textarea.TextareaContent
-            darkMode={darkMode}
             placeholder={'내용을 입력하세요'}
             register={register}
           />
