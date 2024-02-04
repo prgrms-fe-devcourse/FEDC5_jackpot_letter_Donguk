@@ -1,15 +1,29 @@
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { useSuspenseInfiniteQuery } from '@tanstack/react-query';
 import { getAuthorPost } from '@/api/post';
+import { ACCESS_USER_ID } from '@/constants/api';
 import { Post, UserPost } from '@/types/ResponseType';
+import { getStorage } from '@/utils/LocalStorage';
 
-function useAuthorPost(authorId: string) {
-  return useSuspenseQuery({
-    queryKey: ['authorPost', authorId] as const,
-    queryFn: () => {
-      return getAuthorPost(authorId);
+interface PostDatas {
+  pages: Post[][];
+  pageParams: number[];
+}
+
+function useAuthorPost(COUNT: number) {
+  const userId = getStorage(ACCESS_USER_ID, '');
+
+  return useSuspenseInfiniteQuery({
+    queryKey: ['infiniteAuthorPost', userId, COUNT],
+    queryFn: getAuthorPost,
+    initialPageParam: 1,
+    getNextPageParam: (lastPage, allPages) => {
+      if (allPages[allPages.length - 1].length !== 0) {
+        return allPages.length + 1;
+      }
     },
-    select: (data: Post[]): UserPost[] => {
-      const response = data.map((post) => {
+    select: (data: PostDatas): UserPost[] => {
+      const pages = ([] as Post[]).concat(...data.pages);
+      const response = pages.map((post) => {
         const { title, content } = JSON.parse(post.title);
 
         return {

@@ -3,11 +3,23 @@ import { END_POINTS } from '@/constants/api';
 import { Comment, Like, Post } from '@/types/ResponseType';
 import { axiosInstance } from './axiosInstance';
 
-export const getAuthorPost = async (authorId: string) => {
-  const { data } = await axiosInstance.get<Post[]>(
-    `${END_POINTS.AUTHOR_POST_LIST}/${authorId}`,
+interface AuthorPostPros {
+  pageParam: number;
+  queryKey: (string | number)[];
+}
+
+export const getAuthorPost = async ({
+  pageParam,
+  queryKey
+}: AuthorPostPros) => {
+  const { data } = await axiosInstance.get(
+    `${END_POINTS.AUTHOR_POST_LIST}/${queryKey[1]}`,
     {
-      authorization: false
+      authorization: false,
+      params: {
+        offset: (queryKey[2] as number) * (pageParam - 1),
+        limit: queryKey[2]
+      }
     }
   );
 
