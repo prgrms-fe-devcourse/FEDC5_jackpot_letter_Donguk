@@ -20,7 +20,7 @@ interface PostListProps {
   nextPage?: (
     options?: FetchPreviousPageOptions
   ) => Promise<UseInfiniteQueryResult>;
-  isFetchingNextPage: boolean;
+  isFetchingNextPage?: boolean;
 }
 
 function PostList({
@@ -31,7 +31,7 @@ function PostList({
 }: PostListProps) {
   const selectedSideMenu = PATHNAME[location.pathname];
   const darkMode = useAtomValue(darkAtom);
-  const ref = useIntersection(nextPage!);
+  const ref = useIntersection(nextPage!, posts.length);
 
   return (
     <>

@@ -7,7 +7,8 @@ import {
 function useIntersection(
   nextPage: (
     options?: FetchPreviousPageOptions
-  ) => Promise<UseInfiniteQueryResult>
+  ) => Promise<UseInfiniteQueryResult>,
+  postLength?: number
 ) {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -19,7 +20,7 @@ function useIntersection(
         }
       });
     },
-    [nextPage]
+    [nextPage, postLength]
   );
 
   useEffect(() => {
