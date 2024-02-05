@@ -3,15 +3,52 @@ import { END_POINTS } from '@/constants/api';
 import { Comment, Like, Post } from '@/types/ResponseType';
 import { axiosInstance } from './axiosInstance';
 
-export const getAuthorPost = async (authorId: string) => {
-  const { data } = await axiosInstance.get<Post[]>(
-    `${END_POINTS.AUTHOR_POST_LIST}/${authorId}`,
+interface AuthorPost {
+  pageParam: number;
+  queryKey: (string | number)[];
+}
+
+interface ReceivedPost {
+  pageParam: number;
+  queryKey: (string | number)[];
+}
+
+export const getAuthorPost = async ({ pageParam, queryKey }: AuthorPost) => {
+  const { data } = await axiosInstance.get(
+    `${END_POINTS.AUTHOR_POST_LIST}/${queryKey[1]}`,
     {
-      authorization: false
+      authorization: false,
+      params: {
+        offset: (queryKey[2] as number) * (pageParam - 1),
+        limit: queryKey[2]
+      }
     }
   );
 
   return data;
+};
+
+export const getInfiniteChannelPost = async ({
+  pageParam,
+  queryKey
+}: ReceivedPost) => {
+  if (!queryKey[1]) return [];
+  try {
+    const { data } = await axiosInstance.get<Post[]>(
+      `${END_POINTS.CHANNEL_POST_LIST}/${queryKey[1]}`,
+      {
+        authorization: false,
+        params: {
+          offset: (queryKey[2] as number) * (pageParam - 1),
+          limit: queryKey[2]
+        }
+      }
+    );
+    return data;
+  } catch (e) {
+    console.error(e);
+    return [];
+  }
 };
 
 export const getChannelPost = async (channelId: string) => {

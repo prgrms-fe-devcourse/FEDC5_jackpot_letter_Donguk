@@ -7,7 +7,7 @@ import { UserPost } from '@/types/ResponseType';
 import * as Style from './index.style';
 
 function ReceivedPostListPage() {
-  const { data } = useChannelPost();
+  const { data, fetchNextPage, isFetchingNextPage } = useChannelPost();
 
   const [posts, setPosts] = useState<UserPost[]>(data);
 
@@ -26,6 +26,7 @@ function ReceivedPostListPage() {
   if (!data.length) {
     return <EmptyChannel />;
   }
+
   return (
     <Style.Container>
       <SearchBar
@@ -35,6 +36,8 @@ function ReceivedPostListPage() {
       <PostList
         type="post"
         posts={posts}
+        nextPage={fetchNextPage}
+        isFetchingNextPage={isFetchingNextPage}
       />
     </Style.Container>
   );

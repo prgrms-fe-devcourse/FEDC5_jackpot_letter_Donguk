@@ -1,9 +1,14 @@
-import { useSuspenseQuery } from '@tanstack/react-query';
-import { getChannelPost } from '@/api/post';
+import { useSuspenseInfiniteQuery } from '@tanstack/react-query';
+import { getInfiniteChannelPost } from '@/api/post';
 import { ACCESS_CHANNEL_NAME } from '@/constants/api';
 import { Post, UserPost } from '@/types/ResponseType';
 import { getStorage } from '@/utils/LocalStorage';
 import useGetChannelInfo from './useGetChannelInfo';
+
+interface PostDatas {
+  pages: Post[][];
+  pageParams: number[];
+}
 
 function useChannelPost() {
   const channelName = getStorage(ACCESS_CHANNEL_NAME, '');
@@ -11,15 +16,20 @@ function useChannelPost() {
   const { data: channel } = useGetChannelInfo(channelName ?? '');
 
   const channelId = channel?._id;
+  const COUNT = 8;
 
-  // channelId 종속 쿼리
-  return useSuspenseQuery({
-    queryKey: ['channelPost', channelId] as const,
-    queryFn: () => {
-      return getChannelPost(channelId);
+  return useSuspenseInfiniteQuery({
+    queryKey: ['infiniteChannelPost', channelId, COUNT],
+    queryFn: getInfiniteChannelPost,
+    initialPageParam: 1,
+    getNextPageParam: (lastPage, allPages) => {
+      if (allPages[allPages.length - 1].length !== 0) {
+        return allPages.length + 1;
+      }
     },
-    select: (data: Post[]): UserPost[] => {
-      const response = data.map((post) => {
+    select: (data: PostDatas): UserPost[] => {
+      const pages = ([] as Post[]).concat(...data.pages);
+      const response = pages.map((post) => {
         const { title, content } = JSON.parse(post.title);
         return {
           ...post,
